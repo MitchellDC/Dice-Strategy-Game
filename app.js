@@ -3,42 +3,21 @@ const fs = require('fs');
 const url = require('url');
 const path = require('path');
 
-db = []
-
-function contains(s){
-	a = [];
-	for(let i = 0; i<phoneBook.length; i++){
-		if (phoneBook[i].name.toLowerCase().startsWith(s.toLowerCase()))
-		{
-			a.push(phoneBook[i]);
-		}
-	}
-	return a;
+function signIn(query,res){
+	//signIn code goes here
 }
 
-function processQuery(query, res){
-	if(query.uname && query.pword){
-		db.push(query);
-		console.log(db[0].uname);
-
-		res.writeHead(200,{'Content-Type': 'text/plain'});
-		res.write("Success");
-		res.end();
-	}
-	else if(query.pword==undefined)
-	{
-		res.writeHead(200,{'Content-Type':'text/plain'});
-		res.write("Type Password");
-		res.end();
-	}
-	else{
+function signUp(query, res){
+	if(query.uname==undefined && query.pword==undefined){
 		res.writeHead(404,{'Content-Type': 'text/plain'});
 		res.write('Error 404: resource not found.');
-		res.end();
+		}
+	else {
+		res.writeHead(200,{'Content-Type':'application/json'});
+		res.write(JSON.stringify({uname:query.uname,pword:query.pword}));
+		}
+	res.end();
 	}
-
-}
-
 function responses(ext,res){
 	 switch(ext){
 		case '.jpg':
@@ -91,14 +70,17 @@ const sendFile = function(req,res){
 const main = function(req, res){
 
 	let parsedURL = url.parse(req.url,true);
-	
-	if (parsedURL.pathname=="/search"){
-		return processQuery(parsedURL.query,res);
+	if (parsedURL.pathname=="/signup"){
+		return signUp(parsedURL.query,res);
 		}
-	else{
+	else if(parsedURL.pathname=="/signin"){
+		return signIn(parsedURL.query,res);
+		}
+	else
+	{
 		return sendFile(req,res);
 	}
 }
 
 const myserver = http.createServer(main);
-myserver.listen(80, function() {console.log("Listening on port 80" )});
+myserver.listen(80, function() {console.log("Listening on port 80")});
