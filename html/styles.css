@@ -14,6 +14,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     border-radius: 15px;
+    padding-bottom: 10px;
 }
 
 .flex-container form h1{
@@ -28,4 +29,19 @@ body {
     position: relative;
     top: 20px;
     width: 100%;
+}
+
+button.b1{
+	text-align:center;
+	background-color:#0d6efd;
+	color:white;
+	border-radius:5px;
+	border-style:hidden;
+	margin-top:10px;
+	width:100%;
+	justify-content:center;
+	height:35px;
+}
+p.p1{
+	font-size:10px;
 }

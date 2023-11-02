@@ -8,13 +8,14 @@ function signIn(query,res){
 }
 
 function signUp(query, res){
-	if(query.uname==undefined && query.pword==undefined){
+	if(query.fname==undefined || query.lname==undefined ||
+	query.uname==undefined || query.pword==undefined){
 		res.writeHead(404,{'Content-Type': 'text/plain'});
 		res.write('Error 404: resource not found.');
 		}
 	else {
 		res.writeHead(200,{'Content-Type':'application/json'});
-		res.write(JSON.stringify({uname:query.uname,pword:query.pword}));
+		res.write(JSON.stringify({fname:query.fname,lname:query.lname,uname:query.uname,pword:query.pword}));
 		}
 	res.end();
 	}
