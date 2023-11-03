@@ -5,46 +5,58 @@ function queryObjectToString(query) {
     return(arrOfQuesryStrings.join('&'));
  }
 
-let db = [{fname:"Dom",lname:"Carrillo",uname:"mongabcarrillo",pword:"password"}];
+
+function extra(obj){
+	if(vpass.value != obj.pword){
+		document.getElementById("result").innerHTML = "Passwords do not match!";
+        }
+	else{
+		let founduname = false;
+		let foundemail = false;
+		for(const i in db){
+			if(obj.uname==db[i].uname){
+				founduname = true;
+				console.log("username already exists");
+			}
+			if(obj.email==db[i].email){
+				foundemail = true;
+				console.log("email already exists");
+                         }
+		}
+		if(founduname || foundemail){
+			console.log("account exists");
+			if(foundemail){
+				document.getElementById("result").innerHTML = "Account with your email already exists!";
+				}
+			else{
+				document.getElementById("result").innerHTML = "Username already taken! Choose another one.";
+				}
+			}
+		else{
+			console.log("new account created");
+			db.push(obj);
+			console.log(db);
+			document.getElementById("result").innerHTML = "Account Created!";
+			}
+	}
+}
+
+
+let db = [{email:"carrillod5@southernct.edu",uname:"mongabcarrillo",pword:"password"}];
 console.log(db);
 const sendAJAX = function(){
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){ alert("Error") };
-
 	xmlhttp.onload = function() {
 		if (this.status == 200){
 			alert("it's working");
 			resultObject = JSON.parse(this.responseText);
 
-			if(resultObject.fname && resultObject.lname && resultObject.uname && resultObject.pword)
+			if(resultObject.email && resultObject.uname && resultObject.pword)
 			{	console.log(vpass.value);
 				if(vpass.value)
 				{
-					if(vpass.value != resultObject.pword)
-					{
-						 document.getElementById("result").innerHTML = "Passwords do not match!";
-					}
-					else{
-						let found = false;
-						for(const i in db){
-							if(resultObject.uname==db[i].uname){
-								found = true;
-								console.log("username already exists");
-								}
-							}
-						if(found==true)
-						{
-							console.log("account exists");
-							document.getElementById("result").innerHTML = "Username Already Taken! Choose another one.";
-						}
-						else
-						{
-							console.log("new account created");
-							db.push(resultObject);
-							console.log(db);
-							document.getElementById("result").innerHTML = "Account Created!";
-						}
-					    }
+					extra(resultObject);
 				}
 				else{
 					 document.getElementById("result").innerHTML = "Verify your password!";
@@ -58,8 +70,8 @@ const sendAJAX = function(){
 			alert("Error Code:"+this.status);
 			}
 		}
-	xmlhttp.open("GET","http://35.231.124.196/signup?"+queryObjectToString({fname:fname.value,lname:lname.value,uname:uname.value,pword:pword.value}));
+	xmlhttp.open("GET","http://35.231.124.196/signup?"+queryObjectToString({email:email.value,uname:uname.value,pword:pword.value}));
 	xmlhttp.send();
 }
 document.getElementById("button").addEventListener("click",sendAJAX);
-document.getElementById("result").innerHTML = "";
+document.getElementById("result").innerHTML = "Create your account!";
