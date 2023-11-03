@@ -5,7 +5,6 @@ function queryObjectToString(query) {
     return(arrOfQuesryStrings.join('&'));
  }
 
-
 function extra(obj){
 	if(vpass.value != obj.pword){
 		document.getElementById("result").innerHTML = "Passwords do not match!";
