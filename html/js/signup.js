@@ -66,7 +66,7 @@ const sendAJAX = function(){
 			}
 		}
 		else{
-			alert("Error Code:"+this.status);
+			alert("Fill in the blanks to create account!");
 			}
 		}
 	xmlhttp.open("GET","http://35.231.124.196/signup?"+queryObjectToString({email:email.value,uname:uname.value,pword:pword.value}));
