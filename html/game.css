@@ -1,3 +1,23 @@
-body {
-    background-color: blue;
+/* body {
+    /* background-image: url('fight.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed; */
+
+
+.Player1 {
+    position: fixed;
+    height: 300px;
+    bottom: 0;
+    /* filter: invert(100%); */
+    margin-left: 10%;
+}
+
+.Player2 {
+    position: fixed;
+    height: 300px;
+    bottom: 0;
+    right: 0;
+    /* filter: invert(100%); */
+    margin-right: 10%;
 }
