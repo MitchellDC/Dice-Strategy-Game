@@ -1,6 +1,5 @@
 let db = [{email:"carrillod5@southernct.edu",uname:"mongabcarrillo",pword:"password"}];
 
-
 const checkQuery = function(){
 	if(!uname.value||!pword.value)
 	{
