@@ -10,19 +10,20 @@
 </head>
 <body>
     <div class="flex-container">
-            <form action="">
+            <form action="" onsubmit="event.preventDefault()">
                 <h1>Login Page</h1>
                 <label for="username">Username</label>
                 <br>
-                <input type="text" placeholder="Username" class="form-control"></input>
+                <input type="text" placeholder="Username" class="form-control" id="uname"></input>
                 <label for="password">Password</label>
-                <input type="password" placeholder="Password" class="form-control"></input>
+                <input type="password" placeholder="Password" class="form-control" id="pword"></input>
                 <br>
-                <input type="submit" class="btn btn-primary"></input> 
-                <a class="btn btn-primary" href="signup.html">Create Account</a>
-            </form>
-            
+		<p class="p1" id="loginstatus"> </p>
+                <input type="submit" class="btn btn-primary" id="sbutton"></input> 
+                <a class="btn btn-primary" href="signup.html">Create new account</a>
+            </form>      
 
     </div>
+    <script src="js/login.js"></script>
 </body>
 </html>
