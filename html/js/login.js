@@ -16,6 +16,7 @@ const checkQuery = function(){
 		else{
 			if(pword.value==db[index].pword){
 				document.getElementById("loginstatus").innerHTML="Successful Login!";
+				window.open("http://35.231.124.196/home","_self");
 			}
 			else{
 				document.getElementById("loginstatus").innerHTML="Incorrect Password!";
