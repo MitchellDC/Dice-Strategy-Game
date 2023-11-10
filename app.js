@@ -3,6 +3,26 @@ const fs = require('fs');
 const url = require('url');
 const path = require('path');
 
+function home(req,res)
+{
+	console.log("yes");
+	let fileName = "html/home_page/html/home.html";
+        fs.readFile(fileName, function(err,data){
+
+        if(err){
+                res.writeHead(404,{'Content-Type': 'text/plain'});
+                res.write('Error 404: resource not found.');
+                res.end();
+                }
+        else {
+                responses(path.extname(fileName),res);
+                write(data,res);
+                }
+
+        });
+}
+
+
 function signIn(query,res){
 	//signIn code goes here
 
@@ -76,6 +96,9 @@ const main = function(req, res){
 		}
 	else if(parsedURL.pathname=="/signin"){
 		return signIn(parsedURL.query,res);
+		}
+	else if(parsedURL.pathname=="/home"){
+		return home(req,res);
 		}
 	else
 	{
