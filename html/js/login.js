@@ -26,5 +26,8 @@ const checkQuery = function(){
 }
 
 document.getElementById("loginstatus").innerHTML="Type your username and password!";
+document.getElementById("cbutton").addEventListener("click",function() {
+                                window.open("http://35.231.124.196/signup.html","_self");
+                                        });
 document.getElementById("sbutton").addEventListener("click",checkQuery);
 

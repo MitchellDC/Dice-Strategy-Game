@@ -73,4 +73,7 @@ const sendAJAX = function(){
 	xmlhttp.send();
 }
 document.getElementById("button").addEventListener("click",sendAJAX);
+document.getElementById("lbutton").addEventListener("click",function() {
+				window.open("http://35.231.124.196/login.html","_self");
+					});
 document.getElementById("result").innerHTML = "Create your account!";
