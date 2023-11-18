@@ -2,11 +2,38 @@ const http = require('http');
 const fs = require('fs');
 const url = require('url');
 const path = require('path');
+const mysql = require('mysql');
+
+const conn = mysql.createConnection({
+        host: '34.73.177.149',
+        user: 'mitchelldc22',
+        password: 'teaminfinitetime330',
+        database: 'Project',
+});
+conn.connect(function(err) {
+        if (err) {
+                console.log("Error");
+        }
+
+        else {
+                console.log("Connected to the database");
+                conn.query("INSERT INTO Player(Player_ID, Username, Email, Passw                                                                                                             ord, Games_Played, Games_Won, Ongoing_Games) VALUES (1, 'Username', 'Email', 'Pa                                                                                                             ssword', NULL, NULL, NULL);", function(err, result) {
+                if(err) {
+                        console.log("problem" + err.message);
+                }
+                else {
+                        console.log("data is in");
+                }
+                conn.end();
+             });
+        }
+});
+
 
 function home(req,res)
 {
-	console.log("yes");
-	let fileName = "html/home_page/html/home.html";
+        console.log("yes");
+        let fileName = "html/home_page/html/home.html";
         fs.readFile(fileName, function(err,data){
 
         if(err){
@@ -23,33 +50,36 @@ function home(req,res)
 }
 
 
+
+
+
 function signIn(query,res){
-	//signIn code goes here
+        //signIn code goes here
 
 }
 
 function signUp(query, res){
-	if(!query.email|| !query.uname || !query.pword){
-		res.writeHead(404,{'Content-Type': 'text/plain'});
-		res.write('Error 404: resource not found.');
-		}
-	else {
-		res.writeHead(200,{'Content-Type':'application/json'});
-		res.write(JSON.stringify({email:query.email,uname:query.uname,pword:query.pword}));
-		}
-	res.end();
-	}
+        if(!query.email|| !query.uname || !query.pword){
+                res.writeHead(404,{'Content-Type': 'text/plain'});
+                res.write('Error 404: resource not found.');
+                }
+        else {
+                res.writeHead(200,{'Content-Type':'application/json'});
+                res.write(JSON.stringify({email:query.email,uname:query.uname,pw                                                                                                             ord:query.pword}));
+                }
+        res.end();
+        }
 function responses(ext,res){
-	 switch(ext){
-		case '.jpg':
-			res.writeHead(200, {'Content-Type': 'image/jpg'});
-			break;
+         switch(ext){
+                case '.jpg':
+                        res.writeHead(200, {'Content-Type': 'image/jpg'});
+                        break;
                 case '.gif':
                         res.writeHead(200, {'Content-Type': 'image/gif'});
                         break;
                 case '.png':
                         res.writeHead(200, {'Content-Type': 'image/png'});
-                        break;     
+                        break;
                 case '.js':
                         res.writeHead(200, {'Content-Type': 'text/javascript'});
                         break;
@@ -63,47 +93,47 @@ function responses(ext,res){
                         res.writeHead(200, {'Content-Type': 'text/plain'});
                         break;
 
-	}
+        }
 }
 
 function write(data,res){
-	res.write(data);
-	res.end();
+        res.write(data);
+        res.end();
 }
 
 const sendFile = function(req,res){
-	let fileName = "html"+url.parse(req.url).pathname;
-	fs.readFile(fileName, function(err,data){
+        let fileName = "html"+url.parse(req.url).pathname;
+        fs.readFile(fileName, function(err,data){
 
-	if(err){
-		res.writeHead(404,{'Content-Type': 'text/plain'});
-		res.write('Error 404: resource not found.');
-		res.end();
-		}
-	else {
-		responses(path.extname(fileName),res);
-		write(data,res);
-		}
+        if(err){
+                res.writeHead(404,{'Content-Type': 'text/plain'});
+                res.write('Error 404: resource not found.');
+                res.end();
+                }
+        else {
+                responses(path.extname(fileName),res);
+                write(data,res);
+                }
 
-	});
+        });
 }
 
 const main = function(req, res){
 
-	let parsedURL = url.parse(req.url,true);
-	if (parsedURL.pathname=="/signup"){
-		return signUp(parsedURL.query,res);
-		}
-	else if(parsedURL.pathname=="/signin"){
-		return signIn(parsedURL.query,res);
-		}
-	else if(parsedURL.pathname=="/home"){
-		return home(req,res);
-		}
-	else
-	{
-		return sendFile(req,res);
-	}
+        let parsedURL = url.parse(req.url,true);
+        if (parsedURL.pathname=="/signup"){
+                return signUp(parsedURL.query,res);
+                }
+        else if(parsedURL.pathname=="/signin"){
+                return signIn(parsedURL.query,res);
+                }
+        else if(parsedURL.pathname=="/home"){
+                return home(req,res);
+                }
+        else
+        {
+                return sendFile(req,res);
+        }
 }
 
 const myserver = http.createServer(main);
