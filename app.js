@@ -10,6 +10,7 @@ const conn = mysql.createConnection({
         password: 'teaminfinitetime330',
         database: 'Project',
 });
+/*
 conn.connect(function(err) {
         if (err) {
                 console.log("Error");
@@ -17,18 +18,40 @@ conn.connect(function(err) {
 
         else {
                 console.log("Connected to the database");
-                conn.query("INSERT INTO Player(Player_ID, Username, Email, Passw                                                                                                             ord, Games_Played, Games_Won, Ongoing_Games) VALUES (1, 'Username', 'Email', 'Pa                                                                                                             ssword', NULL, NULL, NULL);", function(err, result) {
+                conn.query("INSERT INTO Player(Username, Email, Password, Games_Played, Games_Won, Ongoing_Games) VALUES ('Username', 'Email', 'Password', NULL, NULL, NULL);", function(err, result) {
                 if(err) {
                         console.log("problem" + err.message);
                 }
                 else {
                         console.log("data is in");
                 }
-                conn.end();
              });
         }
 });
+*/
+function addPlayer(query){
+	conn.connect(function(err){
+	if(err){
+		console.log("Errorr");
+	}
+	else{
+		conn.query("INSERT INTO Player(Username, Email, Password, Games_Played, Games_Won, Ongoing_Games)"+
+			"VALUES ('Username', 'Email', 'Password', NULL, NULL, NULL);", function(err, result) {
+                if(err) {
+                        console.log("problem" + err.message);
+                }
+                else {
+                        console.log("new account created");
+                }
+                conn.end();
+             });
 
+	}
+
+
+	})
+
+}
 
 function home(req,res)
 {
@@ -58,16 +81,128 @@ function signIn(query,res){
 
 }
 
-function signUp(query, res){
-        if(!query.email|| !query.uname || !query.pword){
+function insertD(qu,res){
+
+}
+
+function signUp(qu, res){
+        if(!qu.email|| !qu.uname || !qu.pword){
                 res.writeHead(404,{'Content-Type': 'text/plain'});
                 res.write('Error 404: resource not found.');
                 }
         else {
-                res.writeHead(200,{'Content-Type':'application/json'});
-                res.write(JSON.stringify({email:query.email,uname:query.uname,pw                                                                                                             ord:query.pword}));
-                }
-        res.end();
+		//make if else statements here to check if the email and  username are already in the database
+
+		//if email  already exists goes here
+		let efound = false;
+		let ufound = false;
+
+		res.writeHead(200,{'Content-Type':'application/json'});
+
+		conn.query("SELECT * FROM Player WHERE Email='"+qu.email+"';",function(err,result)
+		{
+			if(err)
+			{
+				console.log(err);
+			}
+			else{
+				console.log("email working");
+				console.log(result.length);
+				if(result.length!=0) {
+					efound=true;
+					console.log(efound);
+					res.write(JSON.stringify({email:"found",uname:qu.uname,pword:qu.pword}));
+					res.end();
+				}
+				else{
+					 conn.query("SELECT * FROM Player WHERE Username='"+qu.uname+"';",function(err,result)
+                			{
+                        			if(err)
+                        			{
+                       			         console.log(err);
+                       				 }
+                        			else{
+                                			console.log("username working");
+                               				console.log(result);
+                                			if(result.length!=0) {
+                                        			ufound=true;
+                                        			res.write(JSON.stringify({email:qu.email,uname:"found",pword:qu.pword}));
+                                        			res.end();
+			                                }
+							else{
+								conn.query("INSERT INTO Player(Username, Email, Password, Games_Played, Games_Won, Ongoing_Games)"+
+                   						     "VALUES ('"+qu.uname+"', '"+qu.email+"', '"+qu.pword+"', NULL, NULL, NULL);", function(err, result)
+                						{
+                						        if(err)
+                        						{
+                                						console.log(err);
+                        						}
+                       							else{
+                                						console.log("account created");
+										res.write(JSON.stringify({email:qu.email,uname:qu.uname,pword:qu.pword}));
+                                        					res.end();
+										conn.end();
+                          						}
+               	 						});
+
+							}
+                        			 }
+                 			});
+
+				}
+			}
+		}
+				);
+		/*
+		conn.query("SELECT * FROM Player WHERE Username='"+qu.uname+"';",function(err,result)
+               	{
+			if(err)
+                       	{
+				console.log(err);
+                        }
+                        else{
+                 		console.log("username working");
+                                console.log(result);
+                                if(result.length!=0) {
+                              		ufound=true;
+					res.write(JSON.stringify({email:qu.email,uname:"found",pword:qu.pword}));
+					res.end();
+					conn.end();
+                                }
+                         }
+                 });
+		conn.query("INSERT INTO Player(Username, Email, Password, Games_Played, Games_Won, Ongoing_Games)"+
+			"VALUES ('"+qu.uname+"', '"+qu.email+"', '"+qu.pword+"', NULL, NULL, NULL);", function(err, result)
+                {
+			if(err)
+			{
+				console.log(err);
+			}
+			else{
+				console.log("account created");
+	        	  }
+	      	});*/
+
+
+			//conn.end();
+		//ufound = conn.query("SELECT Username FROM Player WHERE EXISTS (SELECT Username FROM Player WHERE qu.uname = Player.Username)");
+		//if(efound)
+
+
+		//else if(){} if username already exists goes here
+		//else if(ufound)
+                /*
+		if(efound){
+			res.write(JSON.stringify({email:"found",uname:qu.uname,pword:qu.pword}));
+		}
+		else if(ufound){
+			res.write(JSON.stringify({email:qu.email,uname:"found",pword:qu.pword}));
+		}
+		else{
+			res.write(JSON.stringify({email:qu.email,uname:qu.uname,pword:qu.pword}));
+        		}
+	        }*/
+		}
         }
 function responses(ext,res){
          switch(ext){
@@ -102,7 +237,7 @@ function write(data,res){
 }
 
 const sendFile = function(req,res){
-        let fileName = "html"+url.parse(req.url).pathname;
+        let fileName = "login-signup"+url.parse(req.url).pathname;
         fs.readFile(fileName, function(err,data){
 
         if(err){
@@ -130,7 +265,7 @@ const main = function(req, res){
         else if(parsedURL.pathname=="/home"){
                 return home(req,res);
                 }
-        else
+	 else
         {
                 return sendFile(req,res);
         }
