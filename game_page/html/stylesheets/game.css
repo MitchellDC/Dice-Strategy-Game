@@ -1,5 +1,5 @@
 body {
-    background-image: url("/game_page/images/homeTableBackground.png");
+    background-image: url("images/homeTableBackground.png");
     background-repeat: repeat;
     background-size: cover;
 }
