@@ -76,9 +76,40 @@ function home(req,res)
 
 
 
-function signIn(query,res){
+function logIn(qu,res){
         //signIn code goes here
+	if(!qu.uname || !qu.pword){
+		res.writeHead(404,{'Content-Type': 'text/plain'});
+		res.write('Error 404: resource not found.');
+		res.end();
+		console.log("not working");
+	}
+	else
+	{
+		res.writeHead(200,{'Content-Type':'application/json'});
 
+		conn.query("SELECT Password FROM Player WHERE Username='"+qu.uname+"';",function(err,result)
+                {
+			if(err)
+			{
+				console.log(err);
+                       	}
+                        else{
+                        	console.log(result[0].Password);
+				if(result.length!=0)
+				{
+					console.log("username found")
+					res.write(JSON.stringify({uname:qu.uname,pword:result[0].Password}));
+			        }
+				else{
+					console.log("username not found");
+					res.write(JSON.stringify({uname:"none",pword:qu.pword}));
+				}
+				res.end();
+			}
+
+		});
+	}
 }
 
 function insertD(qu,res){
@@ -153,55 +184,6 @@ function signUp(qu, res){
 			}
 		}
 				);
-		/*
-		conn.query("SELECT * FROM Player WHERE Username='"+qu.uname+"';",function(err,result)
-               	{
-			if(err)
-                       	{
-				console.log(err);
-                        }
-                        else{
-                 		console.log("username working");
-                                console.log(result);
-                                if(result.length!=0) {
-                              		ufound=true;
-					res.write(JSON.stringify({email:qu.email,uname:"found",pword:qu.pword}));
-					res.end();
-					conn.end();
-                                }
-                         }
-                 });
-		conn.query("INSERT INTO Player(Username, Email, Password, Games_Played, Games_Won, Ongoing_Games)"+
-			"VALUES ('"+qu.uname+"', '"+qu.email+"', '"+qu.pword+"', NULL, NULL, NULL);", function(err, result)
-                {
-			if(err)
-			{
-				console.log(err);
-			}
-			else{
-				console.log("account created");
-	        	  }
-	      	});*/
-
-
-			//conn.end();
-		//ufound = conn.query("SELECT Username FROM Player WHERE EXISTS (SELECT Username FROM Player WHERE qu.uname = Player.Username)");
-		//if(efound)
-
-
-		//else if(){} if username already exists goes here
-		//else if(ufound)
-                /*
-		if(efound){
-			res.write(JSON.stringify({email:"found",uname:qu.uname,pword:qu.pword}));
-		}
-		else if(ufound){
-			res.write(JSON.stringify({email:qu.email,uname:"found",pword:qu.pword}));
-		}
-		else{
-			res.write(JSON.stringify({email:qu.email,uname:qu.uname,pword:qu.pword}));
-        		}
-	        }*/
 		}
         }
 function responses(ext,res){
@@ -259,8 +241,8 @@ const main = function(req, res){
         if (parsedURL.pathname=="/signup"){
                 return signUp(parsedURL.query,res);
                 }
-        else if(parsedURL.pathname=="/signin"){
-                return signIn(parsedURL.query,res);
+        else if(parsedURL.pathname=="/login"){
+                return logIn(parsedURL.query,res);
                 }
         else if(parsedURL.pathname=="/home"){
                 return home(req,res);
