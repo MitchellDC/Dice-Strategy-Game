@@ -51,8 +51,7 @@ const checkQuery = function(){
 						{
 							//Successful Login
 							alert("Successful Login!");
-							window.open( "http://35.231.124.196/home",);
-							window.open("http://35.231.124.196/home","_self");
+							window.open("http://35.231.124.196/home.html","_self");
 
 						}
 					}
