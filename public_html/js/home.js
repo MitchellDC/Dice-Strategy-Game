@@ -17,3 +17,7 @@ function toGame(){
 function toNewGame(){
     document.getElementById("newGame").onclick = function() { location.href = "battleground.html"}
 }
+
+function toLogin(){
+    document.getElementById("signout").onclick = function() { location.href = "login.html"}
+}
