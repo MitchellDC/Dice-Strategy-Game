@@ -1,6 +1,6 @@
 body {
     font-family: 'Courier New', Courier, monospace;
-    background-image: url("/home_page/images/homePageBackground.png");
+    background-image: url("/collaboration-infinite-time-1/home_page/images/homePageBackground.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -66,7 +66,7 @@ body {
 }
 
 .rules {
-    background-image: url("/home_page/images/homeInstructionsBackground.png");
+    background-image: url("/collaboration-infinite-time-1/home_page/images/homeTableBackground.png");
     padding-top: 1px;
     text-align: center;
     margin-left: 35.5%;
@@ -131,7 +131,7 @@ body {
 .background {
     width: 70%;
     height: 10%;
-    background-image: url("/home_page/images/homeTableBackground.png");
+    background-image: url("/collaboration-infinite-time-1/home_page/images/homeTableBackground.png");
     background-position: center;
     background-size: cover;
     margin-left: 14%;
@@ -162,7 +162,7 @@ body {
 .new {
     width: 10%;
     height: 4%;
-    font-size: 30px;
+    font-size: 150%;
     background-color: #074d5c;
     color: white;
     text-align: center;
@@ -276,4 +276,13 @@ select {
     font-size: xx-large;
     width: 30%;
     margin-right: 8%;
+}
+
+.arrow {
+    width: 10%;
+    height: 10%;
+}
+
+.arrow:hover {
+    cursor: pointer;
 }
