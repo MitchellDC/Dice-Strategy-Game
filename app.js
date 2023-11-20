@@ -239,8 +239,26 @@ function write(data,res){
         res.end();
 }
 
+const homeFile = function(req,res){
+	let hName = "home_page/html/stylesheets/home.css";
+	console.log(url.parse(req.url).pathname);
+	fs.readFile(hName, function(err,data){
+
+        if(err){
+                res.writeHead(404,{'Content-Type': 'text/plain'});
+                res.write('Error 404: resource not found.');
+                res.end();
+                }
+        else {
+                responses(path.extname(hName),res);
+                write(data,res);
+                }
+
+        });
+
+}
 const sendFile = function(req,res){
-        let fileName = "login-signup"+url.parse(req.url).pathname;
+        let fileName = "public_html"+url.parse(req.url).pathname;
         fs.readFile(fileName, function(err,data){
 
         if(err){
@@ -271,6 +289,9 @@ const main = function(req, res){
 	else if(parsedURL.pathname=="/admin"){
 		return admin(req,res)
 		}
+	else if(parsedURL.pathname=="/homefile"){
+		return homeFile(req,res);
+	}
 	else
         {
                 return sendFile(req,res);
