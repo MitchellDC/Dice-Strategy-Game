@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <html>
     <head>
         <title> 330 Project Home Page </title>
@@ -47,4 +48,57 @@
             <p class="instructions"> Here is placeholder text on the rules of the game. Here, we will insdivuct you on how to play the game.  </p>
         </div>
     </body>
+=======
+<html>
+    <head>
+        <title> 330 Project Home Page </title>
+        <link rel = 'stylesheet' href = '/collaboration-infinite-time/home_page/stylesheets/home.css'>
+        <script src="/collaboration-infinite-time/home_page/js/index.js"></script>
+    </head>
+
+    <body>
+        <div class="flex">
+            <h1 class="header"> Welcome Player! </h1>
+            <div id="home" onclick="toHome()">Home</div>
+            <div id="rules" onclick="toRules()">Rulesets</div>
+            <div>Sign Out</div>
+        </div>
+
+        <h1 class="title"> <u>GAMES</u> </h1>
+        <div class="background">
+            <div class="flex-titles">
+                <div class="details"><b>Opponent</b></div>
+                <div class="details"><b>Ruleset</b></div>
+                <div class="details"><b>Turn</b></div>
+            </div>
+            <div class="flex-games">
+                <div id="list" onclick="toGame()">Proppa Demo infinite-time</div>
+            </div>
+        </div>
+        <button class="new" onclick="createGame()"><b>Create Game</b></button>
+
+        <div class="popup" id="popup1">
+            <div class="overlay"></div>
+            <div class="content">
+                <div class="close" onclick="createGame()">&times;</div>
+                <div class="flex-create">
+                    <div> <b>Opponent:</b> </div>
+                    <div><b>Ruleset:</b> </div>
+                </div>
+                <div class="flex-inputs">
+                    <input type="text" placeholder="opponent username">
+                    <select>
+                        <option value="0">select ruleset</option>
+                        <option value="1">Ruleset A</option>
+                    </select>
+                    <img class="arrow" id="newGame" src="/collaboration-infinite-time/home_page/images/arrow.webp" onclick="toNewGame()">
+                </div>
+            </div>
+            
+        <h2 class="title"><u>HOW TO PLAY</u></h2>
+        <div class="rules">
+            <p class="instructions"> Here is placeholder text on the rules of the game. Here, we will insdivuct you on how to play the game.  </p>
+        </div>
+    </body>
+>>>>>>> aaron
 </html>
