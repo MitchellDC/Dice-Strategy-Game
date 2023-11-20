@@ -120,6 +120,7 @@ function logIn(qu,res){
 				{
 					console.log("username found")
 					res.write(JSON.stringify({uname:qu.uname,pword:result[0].Password}));
+					//window.open("http://35.231.124.196/home","_self");
 			        }
 				else{
 					console.log("username not found");
