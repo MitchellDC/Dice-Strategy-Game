@@ -1,10 +1,9 @@
 body {
     font-family: 'Courier New', Courier, monospace;
-    background-image: url("images/homePageBackground.png");
+    background-image: url("images/homeBackground.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    caret-color: transparent;
 }
 
 .header {

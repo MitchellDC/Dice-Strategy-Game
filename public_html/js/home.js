@@ -11,11 +11,11 @@ function createGame() {
 }
 
 function toGame(){
-    document.getElementById("list").onclick = function() { location.href = "battleground.html"}
+    document.getElementById("list").onclick = function() { location.href = "game.html"}
 }
 
 function toNewGame(){
-    document.getElementById("newGame").onclick = function() { location.href = "battleground.html"}
+    document.getElementById("newGame").onclick = function() { location.href = "game.html"}
 }
 
 function toLogin(){
