@@ -151,7 +151,7 @@ function signUp(qu, res){
 
 		res.writeHead(200,{'Content-Type':'application/json'});
 
-		conn.query("SELECT * FROM Player WHERE Email='"+qu.email+"';",function(err,result)
+		conn.query("SELECT * FROM Player WHERE Email='"+qu.email.toLowerCase()+"';",function(err,result)
 		{
 			if(err)
 			{
@@ -182,20 +182,22 @@ function signUp(qu, res){
                                         			res.end();
 			                                }
 							else{
-								conn.query("INSERT INTO Player(Username, Email, Password, Games_Played, Games_Won, Ongoing_Games)"+
-                   						     "VALUES ('"+qu.uname+"', '"+qu.email+"', '"+qu.pword+"', NULL, NULL, NULL);", function(err, result)
-                						{
-                						        if(err)
-                        						{
-                                						console.log(err);
-                        						}
-                       							else{
-                                						console.log("account created");
-										res.write(JSON.stringify({email:qu.email,uname:qu.uname,pword:qu.pword}));
-                                        					res.end();
-										conn.end();
-                          						}
-               	 						});
+								if(qu.pword.length<8){console.log("password length is less than 8");}
+								else{
+									conn.query("INSERT INTO Player(Username, Email, Password, Games_Played, Games_Won, Ongoing_Games)"+
+                   						     	"VALUES ('"+qu.uname.toLowerCase()+"', '"+qu.email.toLowerCase()+"', '"+qu.pword+"', NULL, NULL, NULL);", function(err, result)
+                							{
+                						        	if(err)
+                        							{
+                                							console.log(err);
+                        							}
+                       								else{
+                                							console.log("account created");
+											res.write(JSON.stringify({email:qu.email,uname:qu.uname,pword:qu.pword}));
+                                        						res.end();
+                          							}
+               	 							});
+								}
 
 							}
                         			 }

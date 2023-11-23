@@ -66,7 +66,7 @@ const checkQuery = function(){
 				alert("Fill in everything!");
 			}
 		}
-		xmlhttp.open("GET","http://35.231.124.196/login?"+queryObjectToString({uname:uname.value,pword:pword.value}));
+		xmlhttp.open("GET","http://35.231.124.196/login?"+queryObjectToString({uname:uname.value.toLowerCase(),pword:pword.value}));
 		xmlhttp.send();
 
 
