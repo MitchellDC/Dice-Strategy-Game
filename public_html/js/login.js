@@ -1,5 +1,6 @@
 let db = [{email:"carrillod5@southernct.edu",uname:"mongabcarrillo",pword:"password"}];
 
+
 function queryObjectToString(query) {
     let properties = Object.keys(query);
     let arrOfQuesryStrings = properties.map(prop => prop+"="+query[prop]);
@@ -10,6 +11,7 @@ function clearFields(){
 	document.getElementById("uname").value = "";
 	document.getElementById("pword").value = "";
 }
+
 
 const checkQuery = function(){
 	// AT LEAST ONE BLANK WAS NOT FILLED IN
@@ -50,7 +52,9 @@ const checkQuery = function(){
 						{
 							//Successful Login
 							alert("Successful Login!");
-							window.open("http://35.231.124.196/home?"+queryObjectToString({uname:uname.value.toLowerCase()}),"_self");
+							localStorage.setItem('username', uname.value); //made username in localstorage for access 
+												       //of the variable in the homepage
+							window.open("http://35.231.124.196/home.html","_self");
 
 						}
 					}

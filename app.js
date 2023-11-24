@@ -274,7 +274,6 @@ const sendFile = function(req,res){
                 res.end();
                 }
         else {
-		console.log();
                 responses(path.extname(fileName),res);
                 write(data,res);
                 }
