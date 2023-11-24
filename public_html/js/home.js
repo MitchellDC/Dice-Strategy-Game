@@ -1,3 +1,8 @@
+const urlParams = new URLSearchParams(window.location.search);
+const uname = urlParams.get("uname");
+console.log(uname);
+
+
 function toHome() {
     document.getElementById("home").onclick = function () { location.href = "home.html"}
 }
@@ -21,3 +26,5 @@ function toNewGame(){
 function toLogin(){
     document.getElementById("signout").onclick = function() { location.href = "login.html"}
 }
+
+document.getElementById("heading").innerHTML="Welcome "+uname+"!";

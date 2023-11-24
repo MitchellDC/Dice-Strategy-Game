@@ -6,14 +6,26 @@ function queryObjectToString(query) {
  }
 
 function validPassword(pass){
-	if(pass.length<8)
+	if(pass.length<8) //makes sure password has at least 8 characters
 	{
-		alert("Password must contain at least 8 characters!")
+		alert("Password must contain at least 8 characters!");
+		document.getElementById("result").innerHTML = "Password must contain at least 8 characters!";
+
 		return false;
 	}
 	else
 	{
-		return true;
+		if(vpass.value==pass) //checks if the password in the verify textbox is the same
+		{
+			return true;
+		}
+		else{
+			alert("Passwords do not match!");
+			document.getElementById("result").innerHTML = "Make sure the passwords match!";
+                	clearPasswords();
+
+			return false;
+		}
 	}
 
 }
@@ -21,7 +33,12 @@ function validUname(uname){
 	let specialChars =/[`!@#$%^&*()\-+=\[\]{};':"\\|,<>\/?~ ]/;
 	if(specialChars.test(uname) || uname.length<3)
 	{
-		alert("Invalid username!")
+		if(specialChars.test(uname)){
+			alert("Username must not contain any special characters!");
+		}
+		else{
+			alert("Username must contain at least 3 digits!")
+		}
 		return false;
 	}
 	else
@@ -37,6 +54,7 @@ function validEmail(email){
 	}
 	else{
 		alert("Invalid Email!");
+		document.getElementById("result").innerHTML = "Enter valid email!";
 		return false;
 	}
 
@@ -57,71 +75,45 @@ function clearPasswords(){
 
 
 function extra(obj){
-	if(vpass.value != obj.pword){
-		document.getElementById("result").innerHTML = "Passwords do not match!";
-		clearPasswords();
-        }
+	if(obj.email=="found")
+	{
+		alert("Account with your email already exists!");
+		document.getElementById("result").innerHTML = "Account with your email already exists!";
+		clearFields();
+	}
+	else if(obj.uname=="found")
+	{
+		alert("Account with your username already exists!");
+		document.getElementById("result").innerHTML = "Account with your username already exists!";
+		clearFields();
+	}
 	else{
-		console.log(obj.email)
-		if(obj.email=="found")
-		{
-			document.getElementById("result").innerHTML = "Account with your email already exists!";
-			clearFields();
-		}
-		else if(obj.uname=="found")
-		{
-			document.getElementById("result").innerHTML = "Account with your username already exists!";
-			clearFields();
-		}
-		else{
-			alert("Account Successfully Created!");
-			window.open("http://35.231.124.196/login.html","_self");
-		}
+		alert("Account Successfully Created!");
+		window.open("http://35.231.124.196/login.html","_self");
 	}
 }
 
 const sendAJAX = function(){
-	let checkEmail = validEmail(email.value);
-	let checkUname = validUname(uname.value);
+	alert("working 3");
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){ alert("Error") };
 	xmlhttp.onload = function() {
 		if (this.status == 200){
-			alert("it's working");
-			let resultObject = JSON.parse(this.responseText);
-
-			// ALL BLANKS WERE FILLED IN
-			if(resultObject.email && resultObject.uname && resultObject.pword)
-			{	
-				if(checkEmail && checkUname){
-					if(vpass.value ) //validPassword(pword.value))
-					{
-						if(validPassword(pword.value))
-                                        	{
-                                                	extra(resultObject);
-                                        	}
-                                       		else
-                                        	{
-                                                	document.getElementById("result").innerHTML = "Password must contain at least 8 characters!";
-							clearPasswords();
-                                        	}
-					}
-					else
-					{
-						document.getElementById("result").innerHTML = "Verify your Password!";
-						clearPasswords();
-					}
-				}
-				else{
-					document.getElementById("result").innerHTML = "Type Valid Username and Email Address!";
-                                        clearFields();
-				}
-			}
-			// AT LEAST ONE BLANK WAS NOT FILLED IN
-			else{
-				document.getElementById("result").innerHTML = "Fill in everything!";
-				clearFields();
-			}
+			let resObj = JSON.parse(this.responseText);
+			if(resObj.email=="found")
+        		{
+               			alert("Account with your email already exists!");
+                		clearFields();
+        		}
+        		else if(resObj.uname=="found")
+        		{
+                		alert("Account with your username already exists!");
+                		clearFields();
+        		}
+        		else{
+                		alert("Account Successfully Created!");
+                		window.open("http://35.231.124.196/login.html","_self");
+        		}
 		}
 		else{ //NOTHING WAS FILLED IN
 			alert("Fill in the blanks to create account!");
@@ -130,8 +122,58 @@ const sendAJAX = function(){
 	xmlhttp.open("GET","http://35.231.124.196/signup?"+queryObjectToString({email:email.value.toLowerCase(),uname:uname.value.toLowerCase(),pword:pword.value}));
 	xmlhttp.send();
 }
-alert("keep going");
-document.getElementById("button").addEventListener("click",sendAJAX); // CREATE ACCOUNT BUTTON
+
+function checkInputs(){ //making sure every input is valid before sending data to the server
+	alert("working 2");
+        let checkEmail = validEmail(email.value);
+	if(checkEmail) //checks if email is valid
+	{
+		let checkUname = validUname(uname.value);
+		if(checkUname){ //checks if username is valid
+			if(vpass.value) //checks if second password is entered
+                        {
+				let checkPassword = validPassword(pword.value);
+				if(checkPassword){ //calls the AJAX function if password is valid
+	                                sendAJAX();
+                        	}
+                        	else{
+                                	clearPasswords();
+                        	}
+
+                        }
+                        else
+                        {
+                        	alert("Verify your password!");
+                                document.getElementById("result").innerHTML = "Verify your password!";
+                                clearPasswords();
+                        }
+		}
+		else{
+			document.getElementById("result").innerHTML = "Enter valid username!";
+                        clearFields();
+		}
+	}
+	else
+	{
+                clearFields();
+	}
+}
+
+const allFilled = function(){ //function that checks if every textbox was filled in
+	alert("working 1");
+	if(email.value && uname.value && pword.value){
+		alert("onto the next");
+		checkInputs(); //calls the checkInputs function if everything was filled in
+	}
+	else{
+		alert("Fill in all the textboxes!");
+		document.getElementById("result").innerHTML = "Fill in everything!";
+                clearFields();
+	}
+}
+
+
+document.getElementById("button").addEventListener("click",allFilled); // CREATE ACCOUNT BUTTON
 document.getElementById("lbutton").addEventListener("click",function() { //MOVING TO LOGIN PAGE WITHOUT NEEDING TO SIGN IN
 				window.open("http://35.231.124.196/login.html","_self");
 					});

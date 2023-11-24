@@ -27,7 +27,6 @@ const checkQuery = function(){
 
 		xmlhttp.onload = function(){
 			if (this.status = 200){
-				alert("it's working");
 				console.log(this.responseText)
 				let resObj = JSON.parse(this.responseText);
 
@@ -45,13 +44,13 @@ const checkQuery = function(){
 						if(resObj.pword!=pword.value)
                                         	{
                                                 	alert("Incorrect Password!")
-                                                	clearFields();
+							document.getElementById("pword").value = "";
                                         	}
 						else
 						{
 							//Successful Login
 							alert("Successful Login!");
-							window.open("http://35.231.124.196/home.html","_self");
+							window.open("http://35.231.124.196/home?"+queryObjectToString({uname:uname.value.toLowerCase()}),"_self");
 
 						}
 					}
@@ -69,34 +68,8 @@ const checkQuery = function(){
 		xmlhttp.open("GET","http://35.231.124.196/login?"+queryObjectToString({uname:uname.value.toLowerCase(),pword:pword.value}));
 		xmlhttp.send();
 
-
-
-		/*
-		// FINDING INDEX OF ARRAY OBJECT IF USERNAME IS IN THE ARRAY
-		// COMMENT OUT WHEN DATABASE IS USED
-		//const index = db.findIndex(i =>{
-		//	return i.uname === uname.value});
-		// USERNAME IS NOT IN ARRAY OR DATABASE
-		if(index<0){
-		
-			document.getElementById("loginstatus").innerHTML="Type Valid Username!";
-		}
-		// USERNAME IS IN ARRAY
-		else{
-			// TYPES IN PASSWORD  MATCHES THE USER'S PASSWORD IN THE DATABASE
-			// SUCCESSFUL LOGIN
-			if(pword.value==db[index].pword){
-				document.getElementById("loginstatus").innerHTML="Successful Login!";
-				window.open("http://35.231.124.196/home","_self");
-			}
-			// PASSWORD IS NOT TYPED IN
-			else{
-				document.getElementById("loginstatus").innerHTML="Incorrect Password!";
-			}
-		}*/
 	}
 }
-alert("keep on going");
 document.getElementById("loginstatus").innerHTML="Type your username and password!";
 document.getElementById("cbutton").addEventListener("click",function() { //MOVING TO SIGN UP PAGE IF BUTTON IS CLICKED
                                 window.open("http://35.231.124.196/signup.html","_self");

@@ -72,11 +72,10 @@ function admin(req,res)
 
         });
 }
-function home(req,res)
+function home(qu,res)
 {
-        console.log("yes");
-        //let fileName = "html/home_page/html/home.html";
-	let fileName = "home_page/html/home.html"
+        console.log(qu.uname);
+	let fileName = "public_html/home.html"
         fs.readFile(fileName, function(err,data){
 
         if(err){
@@ -84,17 +83,31 @@ function home(req,res)
                 res.write('Error 404: resource not found.');
                 res.end();
                 }
-        else {
-                responses(path.extname(fileName),res);
-                write(data,res);
-                }
+        else{  //home page is only displayed if the uname in the query is in the player
+		conn.query("SELECT * FROM Player WHERE Username='"+qu.uname.toLowerCase()+"';",function(err,result)
+                {
+                        if(err)
+                        {
+                                console.log(err);
+                        }
+                        else{
+                                if(result.length!=0)
+                                {
+					responses(path.extname(fileName),res);
+                			write(data,res);
+                                }
+                                else{ // shows an error if username is not in the database
+					res.writeHead(404,{'Content-Type': 'text/plain'});
+                			res.write('Error 404: resource not found.');
+                                }
+                                res.end();
+                        }
+
+                });
+	}
 
         });
 }
-
-
-
-
 
 function logIn(qu,res){
         //signIn code goes here
@@ -108,19 +121,17 @@ function logIn(qu,res){
 	{
 		res.writeHead(200,{'Content-Type':'application/json'});
 
-		conn.query("SELECT Password FROM Player WHERE Username='"+qu.uname+"';",function(err,result)
+		conn.query("SELECT Password FROM Player WHERE Username='"+qu.uname.toLowerCase()+"';",function(err,result)
                 {
 			if(err)
 			{
 				console.log(err);
                        	}
                         else{
-                        	console.log(result[0].Password);
 				if(result.length!=0)
 				{
 					console.log("username found")
 					res.write(JSON.stringify({uname:qu.uname,pword:result[0].Password}));
-					//window.open("http://35.231.124.196/home","_self");
 			        }
 				else{
 					console.log("username not found");
@@ -133,9 +144,6 @@ function logIn(qu,res){
 	}
 }
 
-function insertD(qu,res){
-
-}
 
 function signUp(qu, res){
         if(!qu.email|| !qu.uname || !qu.pword){
@@ -182,9 +190,7 @@ function signUp(qu, res){
                                         			res.end();
 			                                }
 							else{
-								if(qu.pword.length<8){console.log("password length is less than 8");}
-								else{
-									conn.query("INSERT INTO Player(Username, Email, Password, Games_Played, Games_Won, Ongoing_Games)"+
+								conn.query("INSERT INTO Player(Username, Email, Password, Games_Played, Games_Won, Ongoing_Games)"+
                    						     	"VALUES ('"+qu.uname.toLowerCase()+"', '"+qu.email.toLowerCase()+"', '"+qu.pword+"', NULL, NULL, NULL);", function(err, result)
                 							{
                 						        	if(err)
@@ -197,7 +203,6 @@ function signUp(qu, res){
                                         						res.end();
                           							}
                	 							});
-								}
 
 							}
                         			 }
@@ -269,6 +274,7 @@ const sendFile = function(req,res){
                 res.end();
                 }
         else {
+		console.log();
                 responses(path.extname(fileName),res);
                 write(data,res);
                 }
@@ -286,7 +292,7 @@ const main = function(req, res){
                 return logIn(parsedURL.query,res);
                 }
         else if(parsedURL.pathname=="/home"){
-                return home(req,res);
+                return home(parsedURL.query,res);
                 }
 	else if(parsedURL.pathname=="/admin"){
 		return admin(req,res)
