@@ -1,0 +1,136 @@
+/* 0 = roll both |||| 1 = re-roll one dice |||| +2 one dice |||| end turn*/
+
+
+let stage = 1
+let dfsDiceId = document.getElementById("defenseDiceId")
+let atkDiceId = document.getElementById("attackDiceId")
+let selected = null
+let attackNum = 0
+let defenseNum = 0
+
+function rollDefense() {
+    defenseNum = Math.floor(Math.random() * 6) + 1;
+    dfsDiceId.src = `css/images/dd${defenseNum}.jpeg`
+
+}
+
+function rollAttack() {
+    attackNum = Math.floor(Math.random() * 6) + 1;
+    atkDiceId.src = `css/images/dd${attackNum}.jpeg`
+
+}
+
+function allowSelection() {
+
+    dfsDiceId.addEventListener("click", function() {
+        if (stage != 4) {
+            selected = dfsDiceId
+            dfsDiceId.style.border = "5px solid #000000"
+            atkDiceId.style.border = "0px"
+        }
+
+    })
+    atkDiceId.addEventListener("click", function() {
+        if (stage != 4) {
+            selected = atkDiceId
+            atkDiceId.style.border = "5px solid #000000"
+            dfsDiceId.style.border = "0px"
+        }
+
+    })
+
+}
+
+document.getElementById("rollButtonId").addEventListener("click", function() {
+
+    if (stage == 1) { 
+        rollAttack()
+        rollDefense()
+
+        document.getElementById("instructionsId").innerHTML = "Select one die to re-roll (or skip)"
+
+        allowSelection(true)
+        stage = 2
+
+    }
+    else if (stage == 2) {
+        if (selected == dfsDiceId) {
+            rollDefense()
+            dfsDiceId.style.border = "0px"
+            
+        }
+
+        else if (selected == atkDiceId) {
+            rollAttack()
+            atkDiceId.style.border = "0px"
+            
+        }
+        else {
+            alert("skipped re-roll")
+
+        }
+
+        document.getElementById("instructionsId").innerHTML = "Select one die to +2"
+        document.getElementById("rollButtonId").innerHTML = "+2"
+        //allowSelection()
+        stage = 3
+
+
+    }
+    else if (stage == 3) {
+        if (selected == null) {
+            alert("please select dice")
+        }
+
+        else if (selected == atkDiceId) {
+            attackNum += 2
+            atkDiceId.src = `css/images/dd${attackNum}.jpeg`
+
+        }
+        else if (selected == dfsDiceId) {
+            defenseNum += 2
+            dfsDiceId.src = `css/images/dd${defenseNum}.jpeg`
+
+        }
+        allowSelection(false)
+        
+        selected = null
+        atkDiceId.style.border = "0px"
+        dfsDiceId.style.border = "0px"
+        
+        stage = 4
+        document.getElementById("instructionsId").innerHTML = "End turn"
+        document.getElementById("rollButtonId").innerHTML = "END"
+
+    }
+    else if (stage == 4) {
+        alert("turn ended")
+
+    }
+    
+
+
+        
+
+
+})
+
+document.getElementById("instructionsId").innerHTML = "Roll dice"
+// update instruction text
+
+
+/*
+elem.addEventListener("click", function() {
+    alert("test")
+    console.log("test")
+
+})
+
+
+const elem = document.getElementById("rollButtonID");
+console.log(elem)
+
+
+/*
+const rollButton = document.querySelector(".rollButton");
+rollButton.addEventListener("click", rollDice); */
