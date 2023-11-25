@@ -1,33 +1,88 @@
-<html>
-    <head>
-        <title> 330 Battleground Project </title>
-    <link rel = 'stylesheet' href = 'css/game.css'>
-    </head>
-    <body>
-        <h1>Information</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-        <div class="image-flex">
-            <div class="but">
-                <button class="rerollA">Attack! </button>
-                <button class="rerollB">Defense! </button>
-            </div> 
 
-            <div class="p1-flex">
-                <div class="p1"> 20 </div>
-                <img class = "img1" src="css/images/sunglasses.webp" alt="Player 1 - Sunglasses">
-                <button class="rollp1">Re-Roll</button>
-            </div>
 
-            <div class="p2-flex">
-                <div class="p2"> 20 </div>
-                <img class = "img2" src="css/images/skull.webp" alt="Player 2 - Eric Miguel">  
-                <button class="rollp2">Re-Roll</button>
-            </div>
-            <div class="but2">
-                <button class="rerollA">Attack! </button>
-                <button class="rerollB">Defense! </button>
-            </div> 
+<head>
+    <link rel="stylesheet" href="css/game.css">
+    
+    <title>Document</title>
+
+
+</head>
+
+
+<body>
+
+    <div class = "title">
+        infintite dice gamead
+    </div>
+
+    <div class = "instructions" id = "instructionsId">
+        sample instructional text
+    </div>
+
+    <div class = "player">
+        <div class = "playerHealth">
+            20 / 20
         </div>
-        
-    </body>
+
+        <div class = "playerFace">
+            <img src = "css/images/emoji1.png" class = "playerFaceImage"> </img>
+        </div>
+
+        <div class = "playerDice">
+            <div class = "playerDefenseDice">
+                <img src = "css/images/dd0.jpeg" id = "defenseDiceId" class = "playerDefenseDiceImage"> </img>
+            </div>
+            <div class = "playerAttackDice">
+                <img src = "css/images/dd0.jpeg" id = "attackDiceId" class = "playerAttackDiceImage"> </img>
+            </div>
+
+            <div class = "playerButton">
+                <button class="rollButton" id="rollButtonId"> ROLL </button>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class = "enemy">
+        <div class = "enemyHealth">
+            20 / 20
+        </div>
+
+        <div class = "enemyFace">
+            <img src = "css/images/emoji2.png" class = "enemyFaceImage"> </img>
+        </div>
+
+        <div class = "enemyDice">
+            <div class = "enemyDefenseDice">
+                <img src = "css/images/dice3.gif" class = "enemyDefenseDiceImage"> </img>
+            </div>
+            <div class = "enemyAttackDice">
+                <img src = "css/images/dice5.gif" class = "enemyAttackDiceImage"> </img>
+            </div>
+            <div class = "enemyButton">
+            
+            </div>
+
+        </div>
+    </div>
+
+    <div class = "center">
+        <div class = "defenseIcon">
+            <img src = "css/images/shield.png" class = "defenseIconImage">
+
+        </div>
+
+        <div class = "attackIcon">
+            <img src = "css/images/sword.png" class = "attackIconImage">
+        </div>
+    </div>  
+
+    <script src= "js/game.js"> </script>
+
+</body>
 </html>
