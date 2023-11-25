@@ -1,128 +1,280 @@
+/*
+    All classes are for divs, 
+    unless "Image" is in class name,
+    meaning class is for an image
+
+*/
+
+.title {
+    width: 100%;
+    height: 100px;
+    background-color: rgb(194, 159, 159);
+    margin-top: 40px;
+
+    font-style: bold;
+    font-size: 50pt;
+    text-align: center;
+
+}
+
 body {
-    background-image: url("images/homeTableBackground.png");
-    background-repeat: repeat;
+    background-image: url('images/gamebg.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
-}
 
-h1 {
+}
+.instructions {
+    width: 100%;
+    height: 50px;
+    background-color: rgb(159, 171, 194);
+
+    font-style: bold;
+    font-size: 20pt;
     text-align: center;
-    margin: 5%;
-    font-size: larger;
+
 }
 
+/* PLAYER start */
 
-.image-flex  {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 2%;
-    /* background-color: white; */
-    height: 50%;
+/*entire player side*/
+.player {
+    width: 45%;
+    height: 650px;
+    /*background-color: rgb(159, 190, 194);*/
+    margin-top: 40px;
+    display: inline-block;
+
+
 }
 
-.image-flex img {
-    position: relative;
-    margin: auto;
-}
+.playerHealth {
+    width: 60%;
+    margin-top: 20px;
+    margin-left: 16%;
+    margin-right: 24%;
+    height: 60px;
 
-.image-flex .but button {
-    display: block;
-    position: relative;
-    background-color: #4CAF50;
-    font-size: x-large;
-    color: white;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    cursor: pointer;
-    height: 18%;
-    width: 85%;
-    left: 10px;
-    margin: 10px;
-}
 
-.p1-flex {
-    display: flex;
-    flex-direction: column;
-    /* background-color: green; */
-    height: 100%;
-    width: 20%;
-    margin-right: 20%;
-}
-
-.p1-flex div {
-    position: static;
     text-align: center;
-    border: 1pt solid black;
-    border-radius: 5pt;
-    background-color: lightgreen;
-    font-size: xx-large;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
+    font-weight: bold;
+    font-size: 60pt;
 }
 
-.p1-flex button {
-    position: static; 
-    height: 18%;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0%;
-    background-color: #4CAF50;
-    font-size: x-large;
-    color: white;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    cursor: pointer;
+.playerFace {
+    width: 60%;
+    margin-top: 20px;
+    margin-left: 16%;
+    height: 520px;
+    
+    display: inline-block;
+
 }
 
-
-.p2-flex {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    /* background-color: green; */
+.playerFaceImage {
+    width: 100%;
     height: 100%;
+
+
+}
+
+/* column with dice and button */
+.playerDice {
     width: 20%;
+    margin-top: 20px;
+    margin-right: 0%;
+    height: 520px;
+    
+    float: right;
+
+}
+
+.playerDefenseDice {
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 50px;
+    height: 150px;
+
+
+}
+.playerDefenseDiceImage {
+    width: 100%;
+    height: 100%;
+
+}
+
+.playerAttackDice {
+    width: 100%;
+    margin-bottom: 25px;
+    height: 150px;
+
+}
+
+.playerAttackDiceImage {
+    width: 100%;
+    height: 100%;
+
+}
+/* div containing button */
+.playerButton {
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    height: 75px;
+    background-color: rgb(255, 255, 255);
+    border-style: solid;
+    border-color: black;
+    border-width: 4px;
+    
+}
+/* button itself */
+.rollButton {
+
+    text-align: center;
+    font-weight: bold;
+    font-size: 40pt;
+
+    width: 100%;
+    height: 100%;
+
+
+}
+
+/* PLAYER end */
+
+.center {
+    
+    width: 10%;
+    float: right;
+    height: 650px;
+    margin-top: 140px;
+
+
+}
+
+.defenseIcon {
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 50px;
+    height: 150px;
+
+}
+
+.defenseIconImage {
+    width: 100%;
+    height: 100%;
+
+}
+
+.attackIcon {
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 50px;
+    height: 150px;
+
+}
+
+.attackIconImage {
+    width: 100%;
+    height: 100%;
+    
+
+}
+/* ENEMY start */
+
+.enemy {
+    width: 45%;
+    height: 650px;
+
+    margin-top: 40px;
+    float: right;
+
+}
+.enemyHealth {
+    width: 60%;
+    margin-top: 20px;
+    margin-left: 24%;
+    margin-right: 16%;
+    height: 60px;
+
+    text-align: center;
+    font-weight: bold;
+    font-size: 60pt;
+
+}
+
+.playerHealth {
+    width: 60%;
+    margin-top: 20px;
+    margin-left: 16%;
+    margin-right: 24%;
+    height: 60px;
+
+
+    text-align: center;
+    font-weight: bold;
+    font-size: 60pt;
+}
+
+.enemyFace {
+    width: 60%;
+    margin-top: 20px;
+    margin-right: 16%;
+    height: 520px;
+    float: right;
+}
+
+.enemyFaceImage {
+    width: 100%;
+    height: 100%;
+
+}
+
+.enemyDice {
+    width: 20%;
+    margin-top: 20px;
+
+    height: 520px;
+    float: left;
     
 }
 
-.p2-flex div {
-    position: static;
-    text-align: center;
-    border: 1pt solid black;
-    border-radius: 5pt;
-    background-color: lightgreen;
-    font-size: xx-large;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.p2-flex button {
-    position: static; 
-    height: 18%;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0%;
-    background-color: #4CAF50;
-    font-size: x-large;
-    color: white;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    cursor: pointer;
-}    
-
-.image-flex .but2 button {
-    display: block;
-    position: relative;
-    background-color: #4CAF50;
-    font-size: x-large;
-    color: white;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    cursor: pointer;
-    height: 18%;
-    left: 10px;
-    margin: 10px;
-    width: 85%;
+.enemyDefenseDice {
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 50px;
+    height: 150px;
 
 }
+
+.enemyDefenseDiceImage {
+    width: 100%;
+    height: 100%;
+
+}
+
+.enemyAttackDice {
+    width: 100%;
+    margin-top: 25px;
+    height: 150px;
+
+}
+
+.enemyAttackDiceImage {
+    width: 100%;
+    height: 100%;
+
+}
+
+.enemyButton {
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    height: 75px;
+   
+
+}
+
+
+/* ENEMY end */
 
