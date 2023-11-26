@@ -54,7 +54,15 @@ const checkQuery = function(){
 							alert("Successful Login!");
 							localStorage.setItem('username', uname.value); //made username in localstorage for access 
 												       //of the variable in the homepage
-							window.open("http://35.231.124.196/home.html","_self");
+							if(resObj.is_admin==1)
+							{
+								alert("user is an admin");
+								window.open("http://35.231.124.196/admin.html","_self");
+							}
+							else{
+								window.open("http://35.231.124.196/home.html","_self");
+							}
+
 
 						}
 					}

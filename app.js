@@ -121,7 +121,7 @@ function logIn(qu,res){
 	{
 		res.writeHead(200,{'Content-Type':'application/json'});
 
-		conn.query("SELECT Password FROM Player WHERE Username='"+qu.uname.toLowerCase()+"';",function(err,result)
+		conn.query("SELECT Password, Is_Admin FROM Player WHERE Username='"+qu.uname.toLowerCase()+"';",function(err,result)
                 {
 			if(err)
 			{
@@ -130,8 +130,9 @@ function logIn(qu,res){
                         else{
 				if(result.length!=0)
 				{
-					console.log("username found")
-					res.write(JSON.stringify({uname:qu.uname,pword:result[0].Password}));
+					console.log("username found");
+					console.log(result[0].Is_Admin[0]);
+					res.write(JSON.stringify({uname:qu.uname,pword:result[0].Password,is_admin:result[0].Is_Admin[0]}));
 			        }
 				else{
 					console.log("username not found");

@@ -94,7 +94,6 @@ function extra(obj){
 }
 
 const sendAJAX = function(){
-	alert("working 3");
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){ alert("Error") };
 	xmlhttp.onload = function() {
@@ -124,7 +123,6 @@ const sendAJAX = function(){
 }
 
 function checkInputs(){ //making sure every input is valid before sending data to the server
-	alert("working 2");
         let checkEmail = validEmail(email.value);
 	if(checkEmail) //checks if email is valid
 	{
@@ -160,9 +158,7 @@ function checkInputs(){ //making sure every input is valid before sending data t
 }
 
 const allFilled = function(){ //function that checks if every textbox was filled in
-	alert("working 1");
 	if(email.value && uname.value && pword.value){
-		alert("onto the next");
 		checkInputs(); //calls the checkInputs function if everything was filled in
 	}
 	else{
