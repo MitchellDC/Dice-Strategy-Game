@@ -2,14 +2,13 @@ const http = require('http');
 const fs = require('fs');
 const url = require('url');
 const path = require('path');
-<<<<<<< HEAD
+
 const express = require('express'); 
 const bodyParser = require('body-parser');
-const mysql = require('mysql');
 
 const app = express();
 const port = 3000;
-=======
+
 const mysql = require('mysql');
 
 const conn = mysql.createConnection({
@@ -57,33 +56,50 @@ function addPlayer(query){
 	}
 
 
-	})
+	});
 
 }
 
+function admin(req,res)
+{
+        console.log("yes");
+        //let fileName = "html/home_page/html/home.html";
+        let fileName = "home_page/html/admin.html"
+        fs.readFile(fileName, function(err,data){
+
+        if(err){
+                res.writeHead(404,{'Content-Type': 'text/plain'});
+                res.write('Error 404: resource not found.');
+                res.end();
+                }
+        else {
+                responses(path.extname(fileName),res);
+                write(data,res);
+                }
+
+        });
+}
 function home(req,res)
 {
         console.log("yes");
-        let fileName = "html/home_page/html/home.html";
+        //let fileName = "html/home_page/html/home.html";
+	let fileName = "home_page/html/home.html"
         fs.readFile(fileName, function(err,data){
->>>>>>> bb03f9e8ae29874652413e0b51de0add185b82e4
 
-
-
+	});
+}
 app.use(express.json()); 
 
-<<<<<<< HEAD
+
 app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/signup.html');
 });
-=======
 
 
 
-function signIn(query,res){
+function logIn(qu,res){
         //signIn code goes here
->>>>>>> bb03f9e8ae29874652413e0b51de0add185b82e4
-
+}
 app.post('/', (req, res) => {
 	const {uname, email, pword} = req.body; 
 	const {authorization} = req.headers; 
@@ -93,13 +109,46 @@ app.post('/', (req, res) => {
 		pword, 
 		authorization,
 	}); 
-}); 
+      }); 
 
-<<<<<<< HEAD
 app.listen(3000, () => {
 	console.log("port 3000"); 
 });
-=======
+	if(!qu.uname || !qu.pword){
+		res.writeHead(404,{'Content-Type': 'text/plain'});
+		res.write('Error 404: resource not found.');
+		res.end();
+		console.log("not working");
+	}
+	else
+	{
+		res.writeHead(200,{'Content-Type':'application/json'});
+
+		conn.query("SELECT Password FROM Player WHERE Username='"+qu.uname+"';",function(err,result)
+                {
+			if(err)
+			{
+				console.log(err);
+                       	}
+                        else{
+                        	console.log(result[0].Password);
+				if(result.length!=0)
+				{
+					console.log("username found")
+					res.write(JSON.stringify({uname:qu.uname,pword:result[0].Password}));
+					//window.open("http://35.231.124.196/home","_self");
+			        }
+				else{
+					console.log("username not found");
+					res.write(JSON.stringify({uname:"none",pword:qu.pword}));
+				}
+				res.end();
+			}
+
+		});
+	}
+}
+
 function insertD(qu,res){
 
 }
@@ -172,55 +221,6 @@ function signUp(qu, res){
 			}
 		}
 				);
-		/*
-		conn.query("SELECT * FROM Player WHERE Username='"+qu.uname+"';",function(err,result)
-               	{
-			if(err)
-                       	{
-				console.log(err);
-                        }
-                        else{
-                 		console.log("username working");
-                                console.log(result);
-                                if(result.length!=0) {
-                              		ufound=true;
-					res.write(JSON.stringify({email:qu.email,uname:"found",pword:qu.pword}));
-					res.end();
-					conn.end();
-                                }
-                         }
-                 });
-		conn.query("INSERT INTO Player(Username, Email, Password, Games_Played, Games_Won, Ongoing_Games)"+
-			"VALUES ('"+qu.uname+"', '"+qu.email+"', '"+qu.pword+"', NULL, NULL, NULL);", function(err, result)
-                {
-			if(err)
-			{
-				console.log(err);
-			}
-			else{
-				console.log("account created");
-	        	  }
-	      	});*/
-
-
-			//conn.end();
-		//ufound = conn.query("SELECT Username FROM Player WHERE EXISTS (SELECT Username FROM Player WHERE qu.uname = Player.Username)");
-		//if(efound)
-
-
-		//else if(){} if username already exists goes here
-		//else if(ufound)
-                /*
-		if(efound){
-			res.write(JSON.stringify({email:"found",uname:qu.uname,pword:qu.pword}));
-		}
-		else if(ufound){
-			res.write(JSON.stringify({email:qu.email,uname:"found",pword:qu.pword}));
-		}
-		else{
-			res.write(JSON.stringify({email:qu.email,uname:qu.uname,pword:qu.pword}));
-        		}
-	        }*/
 		}
         }
 function responses(ext,res){
@@ -278,18 +278,24 @@ const main = function(req, res){
         if (parsedURL.pathname=="/signup"){
                 return signUp(parsedURL.query,res);
                 }
-        else if(parsedURL.pathname=="/signin"){
-                return signIn(parsedURL.query,res);
+        else if(parsedURL.pathname=="/login"){
+                return logIn(parsedURL.query,res);
                 }
         else if(parsedURL.pathname=="/home"){
                 return home(req,res);
                 }
-	 else
+	else if(parsedURL.pathname=="/admin"){
+		return admin(req,res)
+		}
+	else
         {
                 return sendFile(req,res);
         }
 }
 
 const myserver = http.createServer(main);
-myserver.listen(80, function() {console.log("Listening on port 80")});
->>>>>>> bb03f9e8ae29874652413e0b51de0add185b82e4
+myserver.listen(80, function() {
+   console.log("Listening on port 80");
+});
+
+
