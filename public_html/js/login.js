@@ -56,10 +56,11 @@ const checkQuery = function(){
 												       //of the variable in the homepage
 							if(resObj.is_admin==1)
 							{
-								alert("user is an admin");
+								//takes admin to the admin page
 								window.open("http://35.231.124.196/admin.html","_self");
 							}
 							else{
+								//if user is not an admin, server goes to the homepage
 								window.open("http://35.231.124.196/home.html","_self");
 							}
 

@@ -128,11 +128,12 @@ function logIn(qu,res){
 				console.log(err);
                        	}
                         else{
+				//console.log(result[0].Is_Admin);
 				if(result.length!=0)
 				{
 					console.log("username found");
-					console.log(result[0].Is_Admin[0]);
-					res.write(JSON.stringify({uname:qu.uname,pword:result[0].Password,is_admin:result[0].Is_Admin[0]}));
+					//console.log(result[0].Is_Admin[0]);
+					res.write(JSON.stringify({uname:qu.uname,pword:result[0].Password,is_admin:result[0].Is_Admin}));
 			        }
 				else{
 					console.log("username not found");
