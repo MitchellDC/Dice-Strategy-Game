@@ -7,9 +7,16 @@ body {
     caret-color: transparent;
 }
 
+.ongoing {
+    width: 5%;
+    font-size: xx-large;
+    text-align: center;
+    color: whitesmoke;
+}
+
 .ongoing:hover {
     cursor: pointer;
-    color: #732b86;
+    color: rgb(111, 33, 246);
 }
 
 .header {
@@ -119,32 +126,16 @@ body {
 .background {
     width: 70%;
     height: 10%;
-    background-image: url('images/homeTableBackground.png');
+    background-color: #000;
     background-position: center;
     background-size: cover;
     margin-left: 14%;
     font-size: xx-large;
 }
 
-.flex-titles {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-around;
+.list {
     align-items: center;
     background-color: #074d5c;
-}
-
-.flex-games {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    
-}
-
-.flex-games > div {
-    font-size: x-large;
-    color: white;
-    line-height: 50px;
 }
 
 .new {
@@ -172,14 +163,16 @@ body {
 }
 
 .details {
+    width: 5%;
     font-size: xx-large;
     text-align: center;
     color: whitesmoke;
 }
 
-.split {
-    border-left: 4px solid black;
-    height: 100px;
+.scroll {
+    height: 5rem;
+    background-image: url('images/homeTableBackground.png');
+    background-size: cover;
 }
 
 .popup .overlay {
