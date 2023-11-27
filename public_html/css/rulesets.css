@@ -36,3 +36,42 @@ body {
 .flex > div:hover {
     color:aqua;
 }
+
+.background {
+    width: 70%;
+    height: 50%;
+    background-color: #000;
+    background-position: center;
+    background-size: cover;
+    margin-left: 14%;
+    font-size: xx-large;
+}
+
+.list {
+    align-items: center;
+    background-color: #074d5c;
+}
+
+.r-titles {
+    width: 5%;
+    font-size: 5rem;
+    text-align: center;
+    color: whitesmoke;
+}
+
+.rules {
+    line-height: 3rem;
+    width: 5%;
+    font-size: xx-large;
+    text-align: center;
+    color: #fff;
+}
+
+.info {
+    background-image: url('images/homeTableBackground.png');
+    background-size: cover;
+}
+
+h1 {
+    color: #ffffff;
+}
