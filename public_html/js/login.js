@@ -15,7 +15,6 @@ function clearFields(){
 
 const checkQuery = function(){
 	// AT LEAST ONE BLANK WAS NOT FILLED IN
-	alert("function is working");
 	if(!uname.value||!pword.value)
 	{
 		document.getElementById("loginstatus").innerHTML="Fill in everything!";
