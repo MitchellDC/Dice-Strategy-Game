@@ -1,21 +1,25 @@
 <html>
     <head>
         <title> 330 Project Home Page </title>
-        <link rel = 'stylesheet' href = 'css/home.css'>
+        <link rel = 'stylesheet' href = 'css/admin.css'>
         <script src="js/home.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     </head>
 
     <body style="background-image: url(css/images/adminPageBackground.png)">
-        <h1 class="header" style="background-color:#562567 "> Admin </h1>
-        <button class="create" onclick="createPopup()">Create Ruleset</button>
-        <button class="edit" onclick="editPopup()">Edit Ruleset</button>
-        <!-- <div class="popup" id="popup1">
-            <div class="overlay"></div>
-            <div class="content">
-                <div class="close">&times;</div>
-                <h1>Title</h1>
-                <p>Popup stuff</p>
-            </div> 
-        </div>-->
+        <h1 class="header"> Admin </h1>
+
+        <div class="modal" id="mymodal" >
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Standard Ruleset</p>
+                <p>Risk Ruleset</p>
+                <p>Chaos Ruleset</p>
+            </div>
+
+        </div>
+        <button class="btn btn-outline-dark text-light" id="create" onclick="createPopup()">Create Ruleset</button>
+        <button class="btn btn-outline-dark text-light" id="edit" onclick="editPopup()">Edit Ruleset</button>
+
     </body>
 </html>

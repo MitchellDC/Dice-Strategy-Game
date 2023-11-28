@@ -1,7 +1,7 @@
 const username = localStorage.getItem('username'); //takes the username from the login page
 
 if(username == null){ //goes back to the login page if user did not log in
-	alert("you are being redirected to the login page");
+	// alert("you are being redirected to the login page");
 	document.getElementById('homepage').style.display='none';
 	window.open("http://35.231.124.196/login.html","_self");
 }
@@ -33,5 +33,14 @@ function toNewGame(){
 function toLogin(){
 	localStorage.removeItem('username');
 	document.getElementById("signout").onclick = function() { location.href = "login.html"}
+}
+
+function createPopup() {
+	let modal = document.getElementById("mymodal"); 
+	let span = document.getElementsByClassName("close");
+	modal.style.display = "block";
+	span[0].onclick = function() {
+		modal.style.display = "none"
+	}
 }
 

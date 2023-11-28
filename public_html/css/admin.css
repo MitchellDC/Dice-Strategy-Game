@@ -1,0 +1,105 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-image: url('images/homeBackground.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    caret-color: transparent;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.header {
+    width: 100%;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    background-color:#562567;
+    box-sizing: border-box;
+}
+
+
+
+.admin {
+    text-align: center;
+    width: 40rem;
+    height: 30rem;
+    border-radius: 5%;
+    margin-left: 36%;
+    font-size: xx-large;
+}
+
+#create {
+    /* height: 10%;
+    width: 22%;
+    margin-left: 15%;
+    margin-top: 13%;
+    font-size: 1rem;
+    text-align: center;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    font-family: 'Courier New', Courier, monospace;
+    height: 10%;
+    width: 22%;    
+    margin-left: 15%;
+    font-size: 100px */
+    margin-top: 13%;
+    margin-left: 18%;
+    font-size: 4rem;
+    text-align: center;
+}
+
+
+
+#edit {
+    /* height: 10%;
+    width: 20%;
+    margin-left: 28%;
+    margin-top: 13%;
+    font-size: 1rem;
+    text-align: center;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 4rem; */
+    margin-top: 13%;
+    margin-left: 10%;
+    font-size: 4rem;   
+}
+
+div .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    margin-left: 20%;
+}
+
+div .modal-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
