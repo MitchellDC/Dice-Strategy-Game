@@ -22,7 +22,6 @@ body {
 
 .header {
     text-align: center;
-    background-color: #074d5c;
     font-family: 'Courier New', Courier, monospace;
     color: white;
     padding-right: 30%;
@@ -145,8 +144,8 @@ body {
     background:#0bafd4;
     border: 2px solid #fff;
     transform: translate(-50%, -50%) scale(0);
-    width: 40%;
-    height: 15%;
+    width: 55%;
+    height: 25%;
     z-index: 1;
     text-align: center;
     padding: 20px;
@@ -196,17 +195,16 @@ body {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    font-size: xx-large;
     color: #000;
 }
 
 input {
-    font-size: xx-large;
+    font-size: large;
     width: 35%;
 }
 
 select {
-    font-size: xx-large;
+    font-size: large;
     width: 30%;
     margin-right: 8%;
 }
