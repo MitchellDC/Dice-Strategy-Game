@@ -2,15 +2,15 @@
     <head>
         <title> Ruleset Page </title>
         <link rel = 'stylesheet' href = 'css/rulesets.css'>
-        <script src="js/home.js"></script>
+        <script src="js/rulesets.js"></script>
     </head>
 
     <body>
         <div class="flex">
-            <h1 class="header">Ruleset Page</h1>
+            <h2 class="header">Ruleset Page</h2>
             <div id="home" onclick="toHome()">Home</div>
             <div id="rules" onclick="toRules()">Rulesets</div>
-            <div>Sign Out</div>
+            <div id="signout" onclick="toLogin()">Sign Out</div>
         </div>
         <br><br>
 
@@ -22,9 +22,107 @@
                 <td class="r-titles"><b><u>Risk</u></b></td>
             </tr>
             <tr class="info">
-                <td class="rules">Each player is given 20hp (Health points). Every three turns a question will be asked to each player when it is their turn. Upon answering successfully, player will be granted a powerup <b>of their choice.</b> If answering incorrectly, player will be given a <b>random</b> disadvantage.</td>
-                <td class="rules">Each player is given 40hp. Every turn a question will be asked to each player. Upon answering successfully, player will be granted a <b>random</b> power up. If answered incorrectly, player will be given a <b>random</b> disadvantage.</td>
-                <td class="rules">Each player is given 20hp. Every 3 turns each player can <b>choose from</b> 3 powerups, but will also be given a <b>random</b> disadvantage.</td>
+                <td class="rules">
+                    Each player is given 20hp (Health points). Every three turns a question will be asked to each player when it is their turn. Upon answering successfully, player will be granted a powerup <b>of their choice.</b> If answering incorrectly, player will be given a <b>random</b> disadvantage.
+                    <br><br>
+                    <div>View</div>
+                    <div class="view" onclick="showPowers()"><u>Powerups</u></div>
+                    <div class="view" onclick="showDis()"><u>Disadvantages</u></div>
+                </td>
+                <div class="popup" id="powers">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <div class="close" onclick="showPowers()">&times;</div>
+                            <div class="p-title"><b><u>Powerups</u></b></div>
+                            <div class="p-list"><b>Pillow and blanket</b> -> +2 Shield</div>
+                            <div class="p-list"><b>Go to Wells Fargo</b> -> +1 Attack</div>
+                            <div class="p-list"><b>USE BRAIN</b> -> +3 Shield</div>
+                            <div class="p-list"><b>More labs more learning</b> -> +2 Attack</div>
+                            <div class="p-list"><b>Hey!</b> -> +1 Shield</div>
+
+                    </div>
+                </div>
+                <div class="popup" id="disadvantage">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <div class="close" onclick="showDis()">&times;</div>
+                            <div class="p-title"><b><u>Disadvantages</u></b></div>
+                            <div class="p-list"><b>Late</b> -> -1 Shield</div>
+                            <div class="p-list"><b>What happen??</b> -> -2 Attack</div>
+                            <div class="p-list"><b>You drop the ic's???</b> -> Death</div>
+                            <div class="p-list"><b>Minus 5 points</b> -> -5 Attack</div>
+                            <div class="p-list"><b>YOU MISS MY CLASS?</b> -> -2 Shield</div>
+
+                    </div>
+                </div>                
+                </td>
+                <td class="rules">
+                    Each player is given 40hp. Every turn a question will be asked to each player. Upon answering successfully, player will be granted a <b>random</b> power up. If answered incorrectly, player will be given a <b>random</b> disadvantage.
+                    <br><br>
+                    <div>View</div>
+                    <div class="view" onclick="showPowers()"><u>Powerups</u></div>
+                    <div class="view" onclick="showDis()"><u>Disadvantages</u></div>
+                </td>
+                <div class="popup" id="powers">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <div class="close" onclick="showPowers()">&times;</div>
+                            <div class="p-title"><b><u>Powerups</u></b></div>
+                            <div class="p-list"><b>Pillow and blanket</b> -> +2 Shield</div>
+                            <div class="p-list"><b>Go to Wells Fargo</b> -> +1 Attack</div>
+                            <div class="p-list"><b>USE BRAIN</b> -> +3 Shield</div>
+                            <div class="p-list"><b>More labs more learning</b> -> +2 Attack</div>
+                            <div class="p-list"><b>Hey!</b> -> +1 Shield</div>
+
+                    </div>
+                </div>
+                <div class="popup" id="disadvantage">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <div class="close" onclick="showDis()">&times;</div>
+                            <div class="p-title"><b><u>Disadvantages</u></b></div>
+                            <div class="p-list"><b>Late</b> -> -1 Shield</div>
+                            <div class="p-list"><b>What happen??</b> -> -2 Attack</div>
+                            <div class="p-list"><b>You drop the ic's???</b> -> Death</div>
+                            <div class="p-list"><b>Minus 5 points</b> -> -5 Attack</div>
+                            <div class="p-list"><b>YOU MISS MY CLASS?</b> -> -2 Shield</div>
+
+                    </div>
+                </div>
+                </td>
+                <td class="rules">
+                    Each player is given 20hp. Every 3 turns each player can <b>choose from</b> 3 powerups, but will also be given a <b>random</b> disadvantage.
+                    <br><br>
+                    <div>View</div>
+                    <div class="view" onclick="showPowers()"><u>Powerups</u></div>
+                    <div class="view" onclick="showDis()"><u>Disadvantages</u></div>
+                </td>
+                <div class="popup" id="powers">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <div class="close" onclick="showPowers()">&times;</div>
+                            <div class="p-title"><b><u>Powerups</u></b></div>
+                            <div class="p-list"><b>Pillow and blanket</b> -> +2 Shield</div>
+                            <div class="p-list"><b>Go to Wells Fargo</b> -> +1 Attack</div>
+                            <div class="p-list"><b>USE BRAIN</b> -> +3 Shield</div>
+                            <div class="p-list"><b>More labs more learning</b> -> +2 Attack</div>
+                            <div class="p-list"><b>Hey!</b> -> +1 Shield</div>
+
+                    </div>
+                </div>
+                <div class="popup" id="disadvantage">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <div class="close" onclick="showDis()">&times;</div>
+                            <div class="p-title"><b><u>Disadvantages</u></b></div>
+                            <div class="p-list"><b>Late</b> -> -1 Shield</div>
+                            <div class="p-list"><b>What happen??</b> -> -2 Attack</div>
+                            <div class="p-list"><b>You drop the ic's???</b> -> Death</div>
+                            <div class="p-list"><b>Minus 5 points</b> -> -5 Attack</div>
+                            <div class="p-list"><b>YOU MISS MY CLASS?</b> -> -2 Shield</div>
+
+                    </div>
+                </div>
             </tr>
         </table>
         
