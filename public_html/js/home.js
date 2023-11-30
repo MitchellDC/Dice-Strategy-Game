@@ -14,12 +14,12 @@ function createGame() {
     document.getElementById("popup1").classList.toggle("active")
 }
 
-function toGame(){
+function toNewGame(){
     let username = document.getElementById("newGame").value
     let ruleset = document.getElementById("ruleset").value
 
     if(!username.trim()) alert("Error. No name specified")
-    if(ruleset.value = "0") alert("No ruleset selected!")
+    if(ruleset.value == "0") alert("No ruleset selected!")
 
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.onerror = function() { alert("Error")};
@@ -46,10 +46,10 @@ function toGame(){
         }
     }
 }
-xmlhttp.open("GET","http://35.231.124.196/home?");
+xmlhttp.open("GET","http://35.231.124.196/home?"+queryObjectToString({uname:uname.value}));
 xmlhttp.send();
 
-function toNewGame(){
-    document.getElementById("newGame").onclick = function() { location.href = "game.html"}
+function toGame(){
+    document.getElementById("list").onclick = function() { location.href = "game.html"}
 }
 
