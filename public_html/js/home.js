@@ -7,7 +7,7 @@ if(username == null){ //goes back to the login page if user did not log in
 }
 else{ //displays username on the heading if the user logged in
 	document.getElementById('homepage').style.display='block';
-	document.getElementById("heading").innerHTML="Welcome "+username+"!";
+	document.getElementById("player").innerHTML="Welcome "+username+"!";
 }
 
 function toHome() {

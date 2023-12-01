@@ -1,6 +1,7 @@
 /* 0 = roll both |||| 1 = re-roll one dice |||| +2 one dice |||| end turn*/
 
 
+
 let stage = 1
 let dfsDiceId = document.getElementById("defenseDiceId")
 let atkDiceId = document.getElementById("attackDiceId")
@@ -18,6 +19,11 @@ let defenseNum2 = 0
 let health1 = 20;
 let health2 = 20;
 
+let roundDone = false;
+
+let flipped1 = false;
+let flipped2 = false;
+
 document.getElementById("p1Health").innerHTML = health1;
 document.getElementById("p2Health").innerHTML = health2;
 
@@ -26,6 +32,12 @@ let turn = 0;
 
 document.getElementById("rollButtonId").style.display = "block";
 document.getElementById("rollButtonId2").style.display = "none";
+
+function refreshButtons(){
+	document.getElementById("rollButtonId").innerHTML = "ROLL"
+        document.getElementById("rollButtonId2").innerHTML = "ROLL"
+
+}
 
 function refreshDice(){
 	atkDiceId.src = `css/images/dd0.jpeg`
@@ -73,16 +85,26 @@ function healthChange(){
 	document.getElementById("p1Health").innerHTML = health1;
 	document.getElementById("p2Health").innerHTML = health2;
 
+	refreshButtons()
+	refreshDice()
 }
 
 
 function allowSelection() {
 	atkDiceId.addEventListener("click", function() {
 		if(turn==0 && stage!=1 && stage!=4 ){
-			if(stage==2 && selected==atkDiceId)
-			{
-				selected.style.border="0px"
-				selected = null
+			if(stage==2) {
+				if(selected==atkDiceId){
+					selected.style.border="0px"
+					selected = null
+					document.getElementById("rollButtonId").innerHTML = "SKIP"
+				}
+				else{
+					document.getElementById("rollButtonId").innerHTML = "RE-ROLL"
+					selected = atkDiceId
+                                	dfsDiceId.style.border = "0px"
+                                	atkDiceId.style.border = "5px solid #000000"
+				}
 			}
 			else{
                                 selected = atkDiceId
@@ -93,10 +115,18 @@ function allowSelection() {
 	 })
         dfsDiceId.addEventListener("click", function() {
                 if(turn==0 && stage!=1 && stage!=4 ){
-			if(stage==2 && selected==dfsDiceId)
-			{
-				selected.style.border="0px"
-				selected = null
+			if(stage==2){
+				if(selected==dfsDiceId){
+					selected.style.border="0px"
+					selected = null
+					document.getElementById("rollButtonId").innerHTML = "SKIP"
+				}
+				else{
+					selected = dfsDiceId
+                                	dfsDiceId.style.border = "5px solid #000000"
+                                	atkDiceId.style.border = "0px"
+					document.getElementById("rollButtonId").innerHTML = "RE-ROLL"
+				}
 			}
 			else{
 		                selected = dfsDiceId
@@ -109,9 +139,18 @@ function allowSelection() {
 function allowSelection2(){
         atkDiceId2.addEventListener("click", function() {
 		if(turn==1 && stage!=1 && stage!=4){
-			if(stage==2 && selected==atkDiceId2){
-				selected.style.border="0px"
-				selected = null
+			if(stage==2){
+				if(selected==atkDiceId2){
+					selected.style.border="0px"
+					selected = null
+					document.getElementById("rollButtonId2").innerHTML = "SKIP"
+				}
+				else{
+					document.getElementById("rollButtonId2").innerHTML = "RE-ROLL"
+					selected = atkDiceId2
+					dfsDiceId2.style.border = "0px"
+					atkDiceId2.style.border = "5px solid #000000"
+				}
 			}
 			else{
                 		selected = atkDiceId2
@@ -122,9 +161,18 @@ function allowSelection2(){
 	})
         dfsDiceId2.addEventListener("click", function() {
                 if(turn==1 && stage!=1 && stage!=4){
-			if(stage==2 && selected==dfsDiceId2){
-				selected.style.border="0px"
-				selected = null
+			if(stage==2){
+				if(selected==dfsDiceId2){
+					selected.style.border="0px"
+					selected = null
+					document.getElementById("rollButtonId2").innerHTML = "SKIP"
+				}
+				else{
+					document.getElementById("rollButtonId2").innerHTML = "RE-ROLL"
+					selected = dfsDiceId2
+					dfsDiceId2.style.border = "5px solid #000000"
+					atkDiceId2.style.border = "0px"
+				}
 			}
 			else{
 		       		selected = dfsDiceId2
@@ -137,6 +185,12 @@ function allowSelection2(){
 }
 
 
+function hideButtons(){
+	document.getElementById("rollButtonId").style.display = "none";
+	document.getElementById("rollButtonId2").style.display = "none";
+}
+
+
 function pTurn(){
         if (stage == 1) {
                 rollAttack();
@@ -144,6 +198,8 @@ function pTurn(){
 
                 document.getElementById("instructionsId").innerHTML = "Select one die to re-roll (or skip)"
                 stage = 2
+		document.getElementById("rollButtonId").innerHTML = "SKIP"
+		document.getElementById("rollButtonId2").innerHTML = "SKIP"
         }
         else if (stage == 2) {
 		if(turn == 0){
@@ -196,6 +252,7 @@ function pTurn(){
                         		dfsDiceId.src = `css/images/dd${defenseNum}.jpeg`
 					dfsDiceId.style.border = "0px"
 				}
+				flipped1 = true
 				document.getElementById("rollButtonId").innerHTML = "END"
 			}
 			else{
@@ -209,6 +266,7 @@ function pTurn(){
                                         dfsDiceId2.src = `css/images/dd${defenseNum2}.jpeg`
 					dfsDiceId2.style.border = "0px"
 				}
+				flipped2 = true
 				document.getElementById("rollButtonId2").innerHTML = "END"
 			}
 			stage = 4
@@ -218,34 +276,49 @@ function pTurn(){
                 selected = null
         }
 	else{
-
-                if(turn==0){
-			alert("player 2's turn now")
-                        turn=1
-                        document.getElementById("instructionsId").innerHTML = "Roll dice Player 2"
-			document.getElementById("rollButtonId").style.display = "none";
-			document.getElementById("rollButtonId2").style.display = "block";
-			document.getElementById("rollButtonId2").innerHTML = "ROLL"
-                }
-                else{
-			alert("player 1's turn now")
-                        turn=0
-                        document.getElementById("instructionsId").innerHTML = "Roll dice Player 1"
-			document.getElementById("rollButtonId").style.display = "block";
-                        document.getElementById("rollButtonId2").style.display = "none";
-			document.getElementById("rollButtonId").innerHTML = "ROLL"
-
+		if(flipped1 && flipped2){
 			healthChange()
+			flipped1 = false
+			flipped2 = false
+			document.getElementById("instructionsId").innerHTML = "Roll dice Player "+(turn+1)
 
-			refreshDice()
-                }
-		if(health1<=0)
+        	}
+		else{
+			if(turn==0){
+                	        alert("player 2's turn now")
+				turn=1
+                	        document.getElementById("instructionsId").innerHTML = "Roll dice Player 2"
+                	        document.getElementById("rollButtonId").style.display = "none";
+                	        document.getElementById("rollButtonId2").style.display = "block";
+                        	document.getElementById("rollButtonId2").innerHTML = "ROLL"
+                	}
+                	else{
+                        	alert("player 1's turn now")
+                        	turn=0
+                        	document.getElementById("instructionsId").innerHTML = "Roll dice Player 1"
+                        	document.getElementById("rollButtonId").style.display = "block";
+                        	document.getElementById("rollButtonId2").style.display = "none";
+                        	document.getElementById("rollButtonId").innerHTML = "ROLL"
+                	}
+		}
+		if(health1<=0 && health2<=0){
+			hideButtons();
+			alert("Game ends in a draw!")
+			document.getElementById("instructionsId").innerHTML = "Game is a draw!"
+			document.getElementById("p1Health").innerHTML = 0;
+			document.getElementById("p2Health").innerHTML = 0;
+		}
+		else if(health1<=0)
 		{
+			hideButtons();
 			alert("Player 2 wins!")
+			document.getElementById("instructionsId").innerHTML = "Player 2 wins!"
 			document.getElementById("p1Health").innerHTML = 0;
 		}
 		else if(health2<=0){
+			hideButtons();
 			alert("Player 1 wins!");
+			document.getElementById("instructionsId").innerHTML = "Player 1 wins!"
 			document.getElementById("p2Health").innerHTML = 0;
 		}
 		else{
