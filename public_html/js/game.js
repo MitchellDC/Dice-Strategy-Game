@@ -394,6 +394,15 @@ function playerAction(){
 
 }
 
+
+//for onclick function that brings the user back home
+function backHome(){
+	location.href="home.html";
+
+};
+
+
+
 allowSelection();
 allowSelection2();
 
@@ -401,3 +410,4 @@ document.getElementById("rollButtonId").addEventListener("click",playerAction)
 document.getElementById("rollButtonId2").addEventListener("click",playerAction)
 
 document.getElementById("instructionsId").innerHTML = "Roll dice Player 1" // db username
+document.getElementById("BackHome").addEventListener("click",backHome)
