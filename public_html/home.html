@@ -10,15 +10,20 @@
             <div id="home" onclick="toHome()">Home</div>
             <div id="rules" onclick="toRules()">Rulesets</div>
             <div id="signout" onclick="toLogin()">Sign Out</div>
-        </div>
-
+        </div style="overflow:scroll">
         <h1 class="title"> <u>GAMES</u> </h1>
-        <table class="background">
+
+
+
+	<p class="rules" id="noGames" style="height:40px;color:white;border:black"><b>No Active Games</b></p>
+        <table class="background" id="gameTable">
             <tr class="list">
                 <td class="details"><b>Opponent</b></td>
                 <td class="details"><b>Ruleset</b></td>
                 <td class="details"><b>Turn</b></td>
             </tr>
+
+	<!--
             <tr class="scroll">
                 <td class="ongoing" id="list" onclick="toGame()">Demo</td>
                 <td class="details">Risk</td>
@@ -28,8 +33,9 @@
                 <td class="ongoing" id="list" onclick="toGame()">Demo</td>
                 <td class="details">Standard</td>
                 <td class="details">13</td>
-            </tr>
+            </tr> -->
         </table>
+
         <button class="new" onclick="createGame()"><b>Create Game</b></button>
 
         <div class="popup" id="popup1">

@@ -82,6 +82,8 @@ body {
     background-size: cover;
     margin: auto;
     font-size: xx-large;
+    overflow-y:auto;
+    max-height:10%;
 }
 
 .list {
@@ -124,6 +126,7 @@ body {
     height: 5rem;
     background-image: url('images/homeTableBackground.png');
     background-size: cover;
+    color: red;
 }
 
 .popup .overlay {
