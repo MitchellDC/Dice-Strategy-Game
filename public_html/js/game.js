@@ -5,7 +5,7 @@
 /* end goals and notes */
 
 const gameID = localStorage.getItem('gameID'); //takes gameID from the home page
-const user = localStorage.getItem('username');
+const user = localStorage.getItem('username'); //takes username of the user on a device
 
 
 
@@ -64,51 +64,51 @@ function getGame(){
 			alert("Error!");
 		}
 		else{
-			let resp = JSON.parse(this.responseText);
+			let resp = JSON.parse(this.responseText); //takes response from the server of the game data
 			console.log(resp);
-			username1=resp[0].Player1_uname;
-			username2=resp[0].Player2_uname;
+			username1=resp[0].Player1_uname; //takes username of player 1
+			username2=resp[0].Player2_uname; //takes username of player2
 
-			health1=resp[0].Player1_Health;
-			health2=resp[0].Player2_Health;
+			health1=resp[0].Player1_Health; //takes health of player1
+			health2=resp[0].Player2_Health; //takes health of player2
 
-			turn=resp[0].turn;
-			totalTurns=resp[0].totalturns;
+			turn=resp[0].turn; //takes who's turn 
+			totalTurns=resp[0].totalturns; //takes the number of turns in the game
 
 
-			attackNum1=resp[0].Player1_attack;
-			defenseNum1=resp[0].Player1_defense;
+			attackNum1=resp[0].Player1_attack; //takes the attacknum of player 1
+			defenseNum1=resp[0].Player1_defense; // takes the defensenum of player 1
 
-			attackNum2=resp[0].Player2_attack;
-                        defenseNum2=resp[0].Player2_defense;
+			attackNum2=resp[0].Player2_attack; //takes the attack dice value of player 2
+                        defenseNum2=resp[0].Player2_defense; // takes the defense dice value of player 2
 
-			if(attackNum1>0)
+			if(attackNum1>0) //checks if player 1 has rolled his dice, makes diceReady1 true if so
 			{
 				diceReady1=true;
 			}
-			if(attackNum2>0)
+			if(attackNum2>0) //checks if player 2 has rolled his dice, makes diceReady2 true if so
 			{
 				diceReady2=true;
 			}
 
-
+			// changes the images of the die
 			atkDiceId.src = `css/images/dd`+attackNum1+`.jpeg`
         		dfsDiceId.src = `css/images/dd`+defenseNum1+`.jpeg`
         		atkDiceId2.src = `css/images/dd`+attackNum2+`.jpeg`
         		dfsDiceId2.src = `css/images/dd`+defenseNum2+`.jpeg`
 
 
-			if(user==turn){
-				if(turn==username2){
+			if(user==turn){ //if it is the user's turn a button will show
+				if(turn==username2){ //shows player 2 button if the user in a device is player 2
                                 	document.getElementById("rollButtonId").style.display = "none";
                                 	document.getElementById("rollButtonId2").style.display = "block";
                         	}
-                        	else{
+                        	else{ //shows player 1 button if the user is player 1
                                 	document.getElementById("rollButtonId").style.display = "block";
                                 	document.getElementById("rollButtonId2").style.display = "none";
                         	}
 			}
-			else{
+			else{ //hides buttons if it is not user's turn
 				document.getElementById("rollButtonId").style.display = "none";
 				document.getElementById("rollButtonId2").style.display = "none";
 
@@ -399,11 +399,8 @@ function playerAction(){
     }
 	// stage 4 = after player ends turn
 	else if (stage == 4){
-		alert(diceReady1)
-		alert(diceReady2)
 		// checks if battle ready
 		if(diceReady1 && diceReady2){
-			alert("dice are ready");
 			healthChange()
 			refreshButtons()
 			refreshDice()
@@ -442,16 +439,19 @@ function playerAction(){
 					player2Health: health2,
 					player1Attack: attackNum1,
 					player1Defense: defenseNum1,
+					player2Attack: attackNum2,
+                                        player2Defense: defenseNum2,
 					turn: username2,
 					gameId: gameID,
 					totalturns: totalTurns
 				}
 
+				xhr.onload = function(){
+                                        console.log(this.responseText)
+                                }
+
 				xhr.open("POST","http://35.231.124.196/updategame1?"+queryObjectToString(updated));
 				//xhr.setRequestHeader('Content-type', 'application/json');
-				xhr.onload = function(){
-					console.log(this.responseText)
-				}
 				xhr.send();
 
 			}
@@ -477,6 +477,8 @@ function playerAction(){
                                 let updated = {
                                         player1Health: health1,
                                         player2Health: health2,
+					player1Attack:0,
+					player1Defense:0,
                                         player2Attack: attackNum2,
                                         player2Defense: defenseNum2,
                                         turn: username1,
