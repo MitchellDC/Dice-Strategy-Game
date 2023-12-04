@@ -14,9 +14,11 @@ function toHome() {
     document.getElementById("home").onclick = function () { location.href = "home.html"}
 }
 
+/*
 function toLogin(){
     document.getElementById("signout").onclick = function() { location.href = "login.html"}
 }
+*/
 
 function toRules() {
     document.getElementById("rules").onclick = function () { location.href = "rulesets.html"}
@@ -35,6 +37,7 @@ function showGames(){
 		else{
 
 			let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
+			console.log(resp)
 			if(resp.length>0){
 				document.getElementById("noGames").style.display="none"; //hides the table that says no games if user has ongoing games
 				for(game in resp){ //every game in the response is taken
@@ -59,8 +62,27 @@ function showGames(){
 					oppColumn.id = "list"; //assigns id to the first column
 					ruleColumn.classList.add("details"); //assigns class to the second column
 					turnColumn.classList.add("details"); //assigns class to the third column
+					//alert(resp[game].Game_ID)
+					let gameID = resp[game].Game_ID;
 
-					oppColumn.addEventListener("click", toGame); //brings user to the game if the opponent's username is clicked
+
+					/*
+					oppColumn.addEventListener("click", function(){
+						alert(opponent);
+						location.href="game.html";
+					}); //brings user to the game if the opponent's username is clicked*/
+
+
+					// anonymous function where opponent is different at each iteration of the loop
+
+					(function (gameID) {
+        					oppColumn.addEventListener("click", function () {
+     							//alert(gameID);
+							localStorage.setItem('gameID', gameID);
+            						location.href = "game.html";
+        					});
+    					})(gameID)
+
 				}
 			}
 			else{
@@ -119,8 +141,9 @@ function toNewGame(){
 xmlhttp.open("GET","http://35.231.124.196/home?"+queryObjectToString({uname:uname.value}));
 xmlhttp.send();
 */
-function toGame(){
+function toGame(opp){
 	location.href = "game.html";
+	console.log(opp);
 	//window.open("http://35.231.124.196/game.html");
     //document.getElementById("list").onclick = function() { location.href = "game.html"}
 }
