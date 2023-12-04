@@ -11,6 +11,81 @@ const conn = mysql.createConnection({
         database: 'Project',
 });
 
+function updateGame1(qu,res){
+	if(!qu){
+		res.writeHead(404,{'Content-Type': 'text/plain'});
+                res.write('Error 404: resource not found.');
+                res.end();
+	}
+	else{
+		res.writeHead(200, {'Content-Type': 'text/plain'});
+		conn.query("UPDATE Game SET Player1_Health="+qu.player1Health+","+
+			" Player2_Health="+qu.player2Health+","+
+			" Player1_attack="+qu.player1Attack+","+
+			" Player1_defense="+qu.player1Defense+","+
+			" totalturns="+qu.totalturns+","+
+			" turn='"+qu.turn+"' WHERE Game_ID="+qu.gameId+";",function(err,result){
+			if(err){
+				console.log("error");
+			}
+			else{
+				console.log(qu);
+				res.write("updated");
+				res.end();
+			}
+		});
+	}
+}
+
+function updateGame2(qu,res){
+        if(!qu){
+                res.writeHead(404,{'Content-Type': 'text/plain'});
+                res.write('Error 404: resource not found.');
+                res.end();
+        }
+        else{
+                res.writeHead(200, {'Content-Type': 'text/plain'});
+                conn.query("UPDATE Game SET Player1_Health="+qu.player1Health+","+
+                        " Player2_Health="+qu.player2Health+","+
+                        " Player2_attack="+qu.player2Attack+","+
+                        " Player2_defense="+qu.player2Defense+","+
+			" totalturns="+qu.totalturns+","+
+                        " turn='"+qu.turn+"' WHERE Game_ID="+qu.gameId+";",function(err,result){
+                        if(err){
+                                console.log("error");
+                        }
+                        else{
+				console.log(qu);
+                                res.write("updated");
+                                res.end();
+                        }
+                });
+        }
+}
+
+function game(qu,res){
+	if(!qu){
+		res.writeHead(404,{'Content-Type': 'text/plain'});
+		res.write('Error 404: resource not found.')
+		res.end();
+	}
+	else{
+		res.writeHead(200,{'Content-Type':'application/json'});
+                conn.query("SELECT * FROM Game WHERE Game_ID='"+qu.gameId+"'", function(err,result){
+                if(err){
+                        console.log("err");
+
+                }
+                else{
+                        res.write(JSON.stringify(result));
+                        res.end();
+                }
+
+
+                })
+	}
+}
+
 function games(qu,res){
 	if(!qu){
                 res.writeHead(404,{'Content-Type': 'text/plain'});
@@ -32,7 +107,6 @@ function games(qu,res){
 
 		})
 	}
-
 
 }
 
@@ -259,17 +333,17 @@ const main = function(req, res){
         else if(parsedURL.pathname=="/login"){
                 return logIn(parsedURL.query,res);
                 }
-        else if(parsedURL.pathname=="/home"){
-                return home(parsedURL.query,res);
-                }
-	else if(parsedURL.pathname=="/admin"){
-		return admin(req,res)
-		}
-	else if(parsedURL.pathname=="/homefile"){
-		return homeFile(req,res);
-	}
 	else if(parsedURL.pathname=="/games"){
                 return games(parsedURL.query,res);
+        }
+	else if(parsedURL.pathname=="/game"){
+		return game(parsedURL.query,res);
+	}
+	else if(parsedURL.pathname=="/updategame1"){
+		return updateGame1(parsedURL.query,res);
+	}
+	else if(parsedURL.pathname=="/updategame2"){
+                return updateGame2(parsedURL.query,res);
         }
 	else
         {
