@@ -3,6 +3,7 @@ const fs = require('fs');
 const url = require('url');
 const path = require('path');
 const mysql = require('mysql');
+const querystring = require('querystring');
 
 const conn = mysql.createConnection({
         host: '34.73.177.149',
@@ -12,6 +13,35 @@ const conn = mysql.createConnection({
 });
 
 function updateGame1(qu,res){
+
+	/*
+	const path = url.parse(req.url).pathname;
+	let body = '';
+
+	req.on('data', data =>{body+=data});
+
+	req.on('end', () => {
+		const quObj = querystring.parse(body);
+		console.log(quObj);
+		//console.log(queryObj.player1Health);
+	res.writeHead(200, {'Content-Type': 'text/plain'});
+        conn.query("UPDATE Game SET Player1_Health="+quObj.player1Health+","+
+                        " Player2_Health="+quObj.player2Health+","+
+                        " Player1_attack="+quObj.player1Attack+","+
+                        " Player1_defense="+quObj.player1Defense+","+
+                        " totalturns="+quObj.totalturns+","+
+                        " turn='"+quObj.turn+"' WHERE Game_ID="+quObj.gameId+";",function(err,result){
+                        if(err){
+                                console.log(err);
+                        }
+                        else{
+                                console.log(quObj);
+                                res.write("updated");
+                                res.end();
+                        }
+                });
+	});*/
+
 	if(!qu){
 		res.writeHead(404,{'Content-Type': 'text/plain'});
                 res.write('Error 404: resource not found.');
@@ -21,6 +51,8 @@ function updateGame1(qu,res){
 		res.writeHead(200, {'Content-Type': 'text/plain'});
 		conn.query("UPDATE Game SET Player1_Health="+qu.player1Health+","+
 			" Player2_Health="+qu.player2Health+","+
+			" Player2_attack="+qu.player2Attack+", "+
+			" Player2_defense="+qu.player2Defense+", "+
 			" Player1_attack="+qu.player1Attack+","+
 			" Player1_defense="+qu.player1Defense+","+
 			" totalturns="+qu.totalturns+","+
@@ -38,6 +70,7 @@ function updateGame1(qu,res){
 }
 
 function updateGame2(qu,res){
+	console.log(qu)
         if(!qu){
                 res.writeHead(404,{'Content-Type': 'text/plain'});
                 res.write('Error 404: resource not found.');
@@ -47,6 +80,8 @@ function updateGame2(qu,res){
                 res.writeHead(200, {'Content-Type': 'text/plain'});
                 conn.query("UPDATE Game SET Player1_Health="+qu.player1Health+","+
                         " Player2_Health="+qu.player2Health+","+
+			" Player1_attack="+qu.player1Attack+", "+
+			" Player1_defense="+qu.player1Defense+", "+
                         " Player2_attack="+qu.player2Attack+","+
                         " Player2_defense="+qu.player2Defense+","+
 			" totalturns="+qu.totalturns+","+
@@ -327,6 +362,7 @@ const sendFile = function(req,res){
 const main = function(req, res){
 
         let parsedURL = url.parse(req.url,true);
+
         if (parsedURL.pathname=="/signup"){
                 return signUp(parsedURL.query,res);
                 }
