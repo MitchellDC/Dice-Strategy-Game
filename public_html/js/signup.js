@@ -5,6 +5,16 @@ function queryObjectToString(query) {
     return(arrOfQuesryStrings.join('&'));
  }
 
+function hashFunction(pw){
+	let total = 0;
+	for(let i=0;i<pw.length;i++){
+		total +=(i+1)*pw.charCodeAt(i);
+	}
+	return total*1984%1955673
+
+}
+
+
 function validPassword(pass){
 	if(pass.length<8) //makes sure password has at least 8 characters
 	{
@@ -118,7 +128,9 @@ const sendAJAX = function(){
 			alert("Fill in the blanks to create account!");
 			}
 		}
-	xmlhttp.open("GET","http://35.231.124.196/signup?"+queryObjectToString({email:email.value.toLowerCase(),uname:uname.value.toLowerCase(),pword:pword.value}));
+	let hashValue = hashFunction(pword.value)
+	alert(hashValue);
+	xmlhttp.open("GET","http://35.231.124.196/signup?"+queryObjectToString({email:email.value.toLowerCase(),uname:uname.value.toLowerCase(),pword:hashValue}));
 	xmlhttp.send();
 }
 
