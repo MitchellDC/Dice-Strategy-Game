@@ -187,6 +187,10 @@ body div .playerHealth {
 }
 /* ENEMY start */
 
+#rollButtonId2{
+
+    width: 100%;
+}
 .enemy {
     width: 45%;
     height: 650px;

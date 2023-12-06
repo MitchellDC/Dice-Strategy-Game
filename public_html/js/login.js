@@ -1,6 +1,11 @@
-let db = [{email:"carrillod5@southernct.edu",uname:"mongabcarrillo",pword:"password"}];
+function hashFunction(pw){
+        let total = 0;
+        for(let i=0;i<pw.length;i++){
+                total +=(i+1)*pw.charCodeAt(i);
+        }
+        return total*1984%1955673
 
-
+}
 function queryObjectToString(query) {
     let properties = Object.keys(query);
     let arrOfQuesryStrings = properties.map(prop => prop+"="+query[prop]);
@@ -23,6 +28,7 @@ const checkQuery = function(){
 	// ALL BLANKS WERE FILLED IN
 	else
 	{
+		let hashValue = hashFunction(pword.value);
 		let xmlhttp = new XMLHttpRequest();
 		xmlhttp.onerror = function(){ alert("Error") };
 
@@ -42,7 +48,7 @@ const checkQuery = function(){
 					else
 					{
 						console.log(resObj.pword)
-						if(resObj.pword!=pword.value)
+						if(resObj.pword!=hashValue)
                                         	{
                                                 	alert("Incorrect Password!")
 							document.getElementById("pword").value = "";
@@ -77,7 +83,7 @@ const checkQuery = function(){
 				alert("Fill in everything!");
 			}
 		}
-		xmlhttp.open("GET","http://35.231.124.196/login?"+queryObjectToString({uname:uname.value.toLowerCase(),pword:pword.value}));
+		xmlhttp.open("GET","http://35.231.124.196/login?"+queryObjectToString({uname:uname.value.toLowerCase(),pword:hashValue}));
 		xmlhttp.send();
 
 	}

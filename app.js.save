@@ -3,7 +3,6 @@ const fs = require('fs');
 const url = require('url');
 const path = require('path');
 const mysql = require('mysql');
-const querystring = require('querystring');
 
 const conn = mysql.createConnection({
         host: '34.73.177.149',
@@ -11,140 +10,48 @@ const conn = mysql.createConnection({
         password: 'teaminfinitetime330',
         database: 'Project',
 });
-
-function updateGame1(qu,res){
-
-	/*
-	const path = url.parse(req.url).pathname;
-	let body = '';
-
-	req.on('data', data =>{body+=data});
-
-	req.on('end', () => {
-		const quObj = querystring.parse(body);
-		console.log(quObj);
-		//console.log(queryObj.player1Health);
-	res.writeHead(200, {'Content-Type': 'text/plain'});
-        conn.query("UPDATE Game SET Player1_Health="+quObj.player1Health+","+
-                        " Player2_Health="+quObj.player2Health+","+
-                        " Player1_attack="+quObj.player1Attack+","+
-                        " Player1_defense="+quObj.player1Defense+","+
-                        " totalturns="+quObj.totalturns+","+
-                        " turn='"+quObj.turn+"' WHERE Game_ID="+quObj.gameId+";",function(err,result){
-                        if(err){
-                                console.log(err);
-                        }
-                        else{
-                                console.log(quObj);
-                                res.write("updated");
-                                res.end();
-                        }
-                });
-	});*/
-
-	if(!qu){
-		res.writeHead(404,{'Content-Type': 'text/plain'});
-                res.write('Error 404: resource not found.');
-                res.end();
-	}
-	else{
-		res.writeHead(200, {'Content-Type': 'text/plain'});
-		conn.query("UPDATE Game SET Player1_Health="+qu.player1Health+","+
-			" Player2_Health="+qu.player2Health+","+
-			" Player2_attack="+qu.player2Attack+", "+
-			" Player2_defense="+qu.player2Defense+", "+
-			" Player1_attack="+qu.player1Attack+","+
-			" Player1_defense="+qu.player1Defense+","+
-			" totalturns="+qu.totalturns+","+
-			" turn='"+qu.turn+"' WHERE Game_ID="+qu.gameId+";",function(err,result){
-			if(err){
-				console.log("error");
-			}
-			else{
-				console.log(qu);
-				res.write("updated");
-				res.end();
-			}
-		});
-	}
-}
-
-function updateGame2(qu,res){
-	console.log(qu)
-        if(!qu){
-                res.writeHead(404,{'Content-Type': 'text/plain'});
-                res.write('Error 404: resource not found.');
-                res.end();
+/*
+conn.connect(function(err) {
+        if (err) {
+                console.log("Error");
         }
-        else{
-                res.writeHead(200, {'Content-Type': 'text/plain'});
-                conn.query("UPDATE Game SET Player1_Health="+qu.player1Health+","+
-                        " Player2_Health="+qu.player2Health+","+
-			" Player1_attack="+qu.player1Attack+", "+
-			" Player1_defense="+qu.player1Defense+", "+
-                        " Player2_attack="+qu.player2Attack+","+
-                        " Player2_defense="+qu.player2Defense+","+
-			" totalturns="+qu.totalturns+","+
-                        " turn='"+qu.turn+"' WHERE Game_ID="+qu.gameId+";",function(err,result){
-                        if(err){
-                                console.log("error");
-                        }
-                        else{
-				console.log(qu);
-                                res.write("updated");
-                                res.end();
-                        }
-                });
+
+        else {
+                console.log("Connected to the database");
+                conn.query("INSERT INTO Player(Username, Email, Password, Games_Played, Games_Won, Ongoing_Games) VALUES ('Username', 'Email', 'Password', NULL, NULL, NULL);", function(err, result) {
+                if(err) {
+                        console.log("problem" + err.message);
+                }
+                else {
+                        console.log("data is in");
+                }
+             });
         }
-}
-
-function game(qu,res){
-	if(!qu){
-		res.writeHead(404,{'Content-Type': 'text/plain'});
-		res.write('Error 404: resource not found.')
-		res.end();
+});
+*/
+function addPlayer(query){
+	conn.connect(function(err){
+	if(err){
+		console.log("Errorr");
 	}
 	else{
-		res.writeHead(200,{'Content-Type':'application/json'});
-                conn.query("SELECT * FROM Game WHERE Game_ID='"+qu.gameId+"'", function(err,result){
-                if(err){
-                        console.log("err");
-
+		conn.query("INSERT INTO Player(Username, Email, Password, Games_Played, Games_Won, Ongoing_Games)"+
+			"VALUES ('Username', 'Email', 'Password', NULL, NULL, NULL);", function(err, result) {
+                if(err) {
+                        console.log("problem" + err.message);
                 }
-                else{
-                        res.write(JSON.stringify(result));
-                        res.end();
+                else {
+                        console.log("new account created");
                 }
+                conn.end();
+             });
 
-
-                })
 	}
-}
-
-function games(qu,res){
-	if(!qu){
-                res.writeHead(404,{'Content-Type': 'text/plain'});
-                res.write('Error 404: resource not found.');
-                res.end();
-	}
-	else{
-		res.writeHead(200,{'Content-Type':'application/json'});
-		conn.query("SELECT * FROM Game WHERE Player1_uname='"+qu.uname.toLowerCase()+"' OR Player2_uname='"+qu.uname.toLowerCase()+"'", function(err,result){
-		if(err){
-			console.log("err");
-
-		}
-		else{
-			res.write(JSON.stringify(result));
-			res.end();
-		}
 
 
-		})
-	}
+	})
 
 }
-
 
 function admin(req,res)
 {
@@ -177,7 +84,6 @@ function home(qu,res)
                 res.end();
                 }
         else{  //home page is only displayed if the uname in the query is in the player
-		console.log(qu.uname.toLowerCase());
 		conn.query("SELECT * FROM Player WHERE Username='"+qu.uname.toLowerCase()+"';",function(err,result)
                 {
                         if(err)
@@ -342,6 +248,24 @@ function write(data,res){
         res.end();
 }
 
+const homeFile = function(req,res){
+	let hName = "home_page/html/stylesheets/home.css";
+	console.log(url.parse(req.url).pathname);
+	fs.readFile(hName, function(err,data){
+
+        if(err){
+                res.writeHead(404,{'Content-Type': 'text/plain'});
+                res.write('Error 404: resource not found.');
+                res.end();
+                }
+        else {
+                responses(path.extname(hName),res);
+                write(data,res);
+                }
+
+        });
+
+}
 const sendFile = function(req,res){
         let fileName = "public_html"+url.parse(req.url).pathname;
         fs.readFile(fileName, function(err,data){
@@ -362,25 +286,21 @@ const sendFile = function(req,res){
 const main = function(req, res){
 
         let parsedURL = url.parse(req.url,true);
-
         if (parsedURL.pathname=="/signup"){
                 return signUp(parsedURL.query,res);
                 }
         else if(parsedURL.pathname=="/login"){
                 return logIn(parsedURL.query,res);
                 }
-	else if(parsedURL.pathname=="/games"){
-                return games(parsedURL.query,res);
-        }
-	else if(parsedURL.pathname=="/game"){
-		return game(parsedURL.query,res);
+        else if(parsedURL.pathname=="/home"){
+                return home(parsedURL.query,res);
+                }
+	else if(parsedURL.pathname=="/admin"){
+		return admin(req,res)
+		}
+	else if(parsedURL.pathname=="/homefile"){
+		return homeFile(req,res);
 	}
-	else if(parsedURL.pathname=="/updategame1"){
-		return updateGame1(parsedURL.query,res);
-	}
-	else if(parsedURL.pathname=="/updategame2"){
-                return updateGame2(parsedURL.query,res);
-        }
 	else
         {
                 return sendFile(req,res);

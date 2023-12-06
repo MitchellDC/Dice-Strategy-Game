@@ -5,6 +5,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     caret-color: transparent;
+    margin: 0;
 }
 
 .ongoing {
@@ -21,11 +22,9 @@ body {
 
 .header {
     text-align: center;
-    background-color: #074d5c;
     font-family: 'Courier New', Courier, monospace;
     color: white;
-    
-    /* padding-right: 28%; */
+    padding-right: 30%;
 }
 
 .flex {
@@ -38,12 +37,10 @@ body {
 }
 
 .flex > div {
-    width: 5%;
+    width: 15%;
     color: white;
     text-align: center;
     font-size: larger;
-    line-height: 55px;
-    margin: 5px;
     cursor: pointer;
 }
 
@@ -64,59 +61,12 @@ body {
     background-image: url('images/homeTableBackground.png');
     padding-top: 1px;
     text-align: center;
-    margin-left: 35.5%;
+    margin: auto;
     width: 45rem;
     height: 30rem;
     border-radius: 5%;
     border: 1px solid #fff;
     font-size: xx-large;
-}
-
-.admin {
-    text-align: center;
-    width: 40rem;
-    height: 30rem;
-    border-radius: 5%;
-    margin-left: 36%;
-    font-size: xx-large;
-}
-
-.create {
-    height: 10%;
-    width: 22%;
-    margin-left: 15%;
-    margin-top: 13%;
-    font-size: 1rem;
-    text-align: center;
-    cursor: pointer;
-    background-color: transparent;
-    color: white;
-    border: 1px solid white;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 4rem;
-}
-
-.create:hover {
-    background:#732b86;
-}
-
-.edit {
-    height: 10%;
-    width: 20%;
-    margin-left: 28%;
-    margin-top: 13%;
-    font-size: 1rem;
-    text-align: center;
-    cursor: pointer;
-    background-color: transparent;
-    color: white;
-    border: 1px solid white;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 4rem;
-}
-
-.edit:hover {
-    background:#732b86;
 }
 
 .instructions {
@@ -130,8 +80,10 @@ body {
     background-color: #000;
     background-position: center;
     background-size: cover;
-    margin-left: 14%;
+    margin: auto;
     font-size: xx-large;
+    overflow-y:auto;
+    max-height:10%;
 }
 
 .list {
@@ -142,7 +94,7 @@ body {
 .new {
     width: 10%;
     height: 4%;
-    font-size: 150%;
+    font-size: 100%;
     background-color: #074d5c;
     color: white;
     text-align: center;
@@ -174,6 +126,7 @@ body {
     height: 5rem;
     background-image: url('images/homeTableBackground.png');
     background-size: cover;
+    color: red;
 }
 
 .popup .overlay {
@@ -194,8 +147,8 @@ body {
     background:#0bafd4;
     border: 2px solid #fff;
     transform: translate(-50%, -50%) scale(0);
-    width: 40%;
-    height: 15%;
+    width: 55%;
+    height: 25%;
     z-index: 1;
     text-align: center;
     padding: 20px;
@@ -245,17 +198,16 @@ body {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    font-size: xx-large;
     color: #000;
 }
 
 input {
-    font-size: xx-large;
+    font-size: large;
     width: 35%;
 }
 
 select {
-    font-size: xx-large;
+    font-size: large;
     width: 30%;
     margin-right: 8%;
 }
