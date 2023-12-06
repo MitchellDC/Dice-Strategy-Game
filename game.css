@@ -1,0 +1,393 @@
+/*
+    All classes are for divs, 
+    unless "Image" is in class name,
+    meaning class is for an image
+
+*/
+
+
+.title {
+    width: 100%;
+    /*background-color: rgb(194, 159, 159);*/
+    font-size: 40pt;
+    font-weight: bold;
+    text-align: center;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    color:white;
+    margin-bottom: 0px;
+
+}
+
+body {
+
+    background-image: url('images/black.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    margin: 0;
+    padding: 0;
+}
+.instructions {
+    width: 100%;
+    height: auto;
+    /*background-color: rgb(159, 171, 194);*/
+    border-bottom: 1mm solid;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 24pt;
+    text-align: center;
+    color:white;
+    margin-top: 10px;
+    
+
+}
+
+/* PLAYER start */
+
+/*entire player side*/
+.player {
+    width: 45%;
+    height: 550px;
+    /*background-color: rgb(159, 190, 194);*/
+    margin-top: 0px;
+    display: inline-block;
+}
+
+
+.playerFace {
+    width: 60%;
+    margin-top: 20px;
+    margin-left: 16%;
+    height: 400px;
+    
+    display: inline-block;
+
+}
+
+.playerFaceImage {
+    width: 100%;
+    height: 100%;
+
+}
+
+/* column with dice and button */
+.playerDice {
+    width: 20%;
+    margin-top: -25px;
+    margin-right: 10px;
+    height: 450px;
+    
+    float: right;
+
+}
+
+.playerDefenseDice {
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 50px;
+    height: 150px;
+
+
+}
+.playerDefenseDiceImage {
+    width: 100%;
+    height: 100%;
+
+}
+
+.playerAttackDice {
+    width: 100%;
+    margin-bottom: 25px;
+    height: 150px;
+
+}
+
+.playerAttackDiceImage {
+    width: 100%;
+    height: 100%;
+
+}
+/* div containing button */
+.playerButton {
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    height: 75px;
+    font-family: 'Courier New', Courier, monospace;
+   
+    
+}
+
+#BackHome{
+    position: absolute;
+    right: 0;
+    margin-top: 20px;
+    margin-right: 10px;
+    color:rgb(200, 200, 200)
+}
+/* button itself */
+/* .rollButton {
+
+    text-align: center;
+    font-weight: bold;
+    font-size: 40pt;
+
+    width: 100%;
+    height: 100%;
+
+
+} */
+
+/* PLAYER end */
+
+#rollButtonId {
+
+    width: 100%;
+    font-size: 20pt;
+
+}
+
+.center {
+    
+    width: 10%;
+    float: right;
+    height: 450px;
+    margin-top: 55px;
+
+
+}
+
+.defenseIcon {
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 50px;
+    height: 150px;
+    align-items: center;
+
+}
+
+.defenseIconImage {
+    width: 100%;
+    height: 100%;
+
+}
+
+.attackIcon {
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 50px;
+    height: 150px;
+
+}
+
+.attackIconImage {
+    width: 100%;
+    height: 100%;
+    
+
+}
+/* ENEMY start */
+
+#rollButtonId2{
+
+    width: 100%;
+    font-size: 20pt;
+
+   
+
+}
+.enemy {
+    width: 45%;
+    height: 550px;
+
+    margin-top: 0px;
+    font-family: 'Courier New', Courier, monospace;
+    float: right;
+
+}
+.enemyHealth {
+    width: 60%;
+    margin-top: 20px;
+    margin-left: 24%;
+    margin-right: 16%;
+    height: 60px;
+
+    text-align: center;
+    font-weight: bold;
+    font-size: 35pt;
+    color: rgb(0,200,0);
+
+}
+
+
+.playerHealth {
+    width: 100%;
+    margin-top:20px;
+    
+    height: 60px;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(0,200,0);
+    font-weight: bold;
+    font-size: 35pt;
+    z-index: 100;
+
+}
+
+.enemyFace {
+    width: 60%;
+    margin-top: 20px;
+    margin-right: 16%;
+    height: 400px;
+    float: right;
+}
+
+.enemyFaceImage {
+    width: 100%;
+    height: 100%;
+
+}
+
+.enemyDice {
+    width: 20%;
+    margin-top: -25px;
+    margin-left: 10px;
+
+    height: 450px;
+    float: left;
+    
+}
+
+.enemyDefenseDice {
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 50px;
+    height: 150px;
+
+}
+
+.enemyDefenseDiceImage {
+    width: 100%;
+    height: 100%;
+
+}
+
+.enemyAttackDice {
+    width: 100%;
+    margin-top: 25px;
+    height: 150px;
+    margin-bottom: 25px;
+
+}
+
+.enemyAttackDiceImage {
+    width: 100%;
+    height: 100%;
+
+}
+
+.enemyButton {
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    height: 75px;
+
+}
+
+/* ENEMY end */
+
+.parentPowerups {
+    height: 600px;
+    width: 99%;
+    margin-top: -10px;
+
+    
+    margin-left: 5px;
+    margin-right: 5px;
+    display: inline-block;
+    
+
+}
+
+.playerPowerups {
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+
+    width: 49%;
+    height: 100%;
+    float: left;
+    margin-left: 4px;
+    margin-right: 8px;
+
+}
+
+.playerPowerupsTable {
+    text-align: left;
+    font-size: 20pt;
+    font-weight:bold;
+    font-family: 'Courier New', Courier, monospace;
+    width: 100%;
+
+    color: rgb(126, 126, 126);
+
+    margin-left: 15px;
+    margin-top: 0px;
+
+}
+
+.enemyPowerupsTable {
+    text-align: left;
+    font-size: 20pt;
+    font-weight:bold;
+    font-family: 'Courier New', Courier, monospace;
+    width: 100%;
+
+    color: rgb(126, 126, 126);
+
+    margin-left: 15px;
+    margin-right: 100px;
+    margin-top: 0px;
+    
+
+}
+
+.playerPowerupsTable td {
+    text-align: left;
+
+
+}
+
+.enemyPowerupsTable td {
+    text-align: left;
+
+}
+
+.tableTopName {
+    text-decoration: underline;
+    color: white;
+    font-size: 35pt;
+    
+}
+.tableDesc {
+    text-decoration: underline;
+
+}
+
+.enemyPowerups {
+    width: 49%;
+    height: 100%;
+    float: right;
+    padding-left: 10px;
+
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+
+    font-size: 20pt;
+    font-weight:bold;
+
+    margin-right: 5px;
+
+}
