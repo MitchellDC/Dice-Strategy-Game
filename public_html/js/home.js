@@ -1,4 +1,6 @@
 const username = localStorage.getItem('username'); //takes the username from the login page
+const id = localStorage.getItem('id');
+//alert("working")
 
 if(username == null){ //goes back to the login page if user did not log in
 	// alert("you are being redirected to the login page");
@@ -24,9 +26,8 @@ function toRules() {
     document.getElementById("rules").onclick = function () { location.href = "rulesets.html"}
 }
 
+
 function showGames(){
-
-
 	// takes the game table from the html
 	let gameTable = document.getElementById("gameTable");
 
@@ -41,12 +42,16 @@ function showGames(){
 			if(resp.length>0){
 				document.getElementById("noGames").style.display="none"; //hides the table that says no games if user has ongoing games
 				for(game in resp){ //every game in the response is taken
-					if(resp[game].Player1_uname==username){ // takes the username of the other player in the game
+					//alert(resp[game].Player1_ID);
+					//alert(resp[game].Player2_ID);
+					if(username==resp[game].Player1_uname){ // takes the username of the other player in the game
 						opponent = resp[game].Player2_uname;
 					}
 					else{
 						opponent = resp[game].Player1_uname;
 					}
+					//let opponent = getUser(opponentId);
+					//alert("opponent");
 					newRow = gameTable.insertRow(); // new row is made
 
 					newRow.classList.add("scroll"); // class 'scroll' is assigned to the new row
@@ -54,6 +59,7 @@ function showGames(){
 					ruleColumn = newRow.insertCell(1); // variable for the second column of the new row
 					turnColumn = newRow.insertCell(2); // variable for the third column of the new row
 
+					//alert("opponent: "+opponent);
 					oppColumn.innerHTML = opponent; // labels the first column of the first row as the user name of the opponent
 					ruleColumn.innerHTML = "Standard" //displays the ruleset (will change once the rulesets are applied)
 					turnColumn.innerHTML = resp[game].totalturns; //displays the number of turns in the game, taken from the server
@@ -87,14 +93,14 @@ function showGames(){
 			}
 			else{
 				document.getElementById("noGames").style.display="block"; //another table that says no ongoing games is shown if no games are being played
-				document.getElementById("noGames").innerHTML="<b>NO ONGOING GAMES</b>"
+				//document.getElementById("noGames").innerHTML="<b>NO ONGOING GAMES</b>"
 				gameTable.style.display='none'; //table is hidden if there are no ongoing games
 			}
 
 		}
 
 	}
-	xmlhttp.open("GET","http://35.231.124.196/games?"+queryObjectToString({uname:username}));
+	xmlhttp.open("GET","http://35.231.124.196/games?"+queryObjectToString({id:id}));
 	xmlhttp.send();
 
 
@@ -103,16 +109,52 @@ function showGames(){
 showGames();
 
 function createGame() {
-    document.getElementById("popup1").classList.toggle("active")
+	document.getElementById("popup1").classList.toggle("active")
+
 }
-/*
+
 function toNewGame(){
-    let username = document.getElementById("newGame").value
-    let ruleset = document.getElementById("ruleset").value
+    	let newOpp = document.getElementById("newGame").value.toLowerCase();
+    	let ruleset = document.getElementById("ruleset").value
 
-    if(!username.trim()) alert("Error. No name specified")
-    if(ruleset.value == "0") alert("No ruleset selected!")
+	if(!newOpp){ alert("Specify your opponent's name")}
+	else if(ruleset==0){alert("Choose a ruleset!")}
+	else{
+		if(newOpp!=username){ // makes sure that the opponent's username is not the same as the user
+			let xmlhttp = new XMLHttpRequest();
+			xmlhttp.onerror = function() {alert("Error")}
+			xmlhttp.onload = function(){
+				if(this.status!=200){
+					alert("Error Code: "+this.status)
+				}
+				else{
+					let ids = JSON.parse(this.responseText);
 
+					if(ids.player1ID!=0 && ids.player2ID!=0){
+						alert("Game Created!"); 
+						location.reload(); //refreshes page when game is created
+					}
+					else if(ids.player2ID==0){ //returns 0 if the typed in username is not in the database
+						alert("Opponent not found!");
+						document.getElementById("newGame").value=""; // clears the input value of opponent username
+					}
+				}
+			}
+			xmlhttp.open("GET","http://35.231.124.196/creategame?"+queryObjectToString({uname:username,opp:newOpp}));
+			xmlhttp.send();
+		}
+		else{
+			alert("Opponent cannot be your own username!");
+			document.getElementById("newGame").value="";
+		}
+	}
+}
+
+
+    //if(ruleset.value == "0") alert("No ruleset selected!")
+
+
+	/*
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.onerror = function() { alert("Error")};
 
@@ -136,11 +178,13 @@ function toNewGame(){
         } else {
             alert("server responded with status: ", this.status)
         }
-    }
-}
-xmlhttp.open("GET","http://35.231.124.196/home?"+queryObjectToString({uname:uname.value}));
-xmlhttp.send();
-*/
+    }*/
+
+//xmlhttp.open("GET","http://35.231.124.196/home?"+queryObjectToString({uname:uname.value}));
+//xmlhttp.send();
+
+
+
 function toGame(opp){
 	location.href = "game.html";
 	console.log(opp);
