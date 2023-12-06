@@ -129,7 +129,6 @@ const sendAJAX = function(){
 			}
 		}
 	let hashValue = hashFunction(pword.value)
-	alert(hashValue);
 	xmlhttp.open("GET","http://35.231.124.196/signup?"+queryObjectToString({email:email.value.toLowerCase(),uname:uname.value.toLowerCase(),pword:hashValue}));
 	xmlhttp.send();
 }
