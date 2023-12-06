@@ -134,6 +134,12 @@ function getGame(){
 getGame()
 
 
+function selectPower() {
+	if (totalTurns %3 == 0 && totalTurns != 0){
+		document.getElementById("select").classList.toggle("active")
+	}
+}
+
 
 // returns text of button to "ROLL" after a player ends turn
 function refreshButtons(){
