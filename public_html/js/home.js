@@ -5,7 +5,7 @@ const id = localStorage.getItem('id');
 if(username == null){ //goes back to the login page if user did not log in
 	// alert("you are being redirected to the login page");
 	document.getElementById('homepage').style.display='none';
-	window.open("http://35.231.124.196/login.html","_self");
+	window.open("http://104.196.1.169/login.html","_self");
 }
 else{ //displays username on the heading if the user logged in
 	document.getElementById('homepage').style.display='block';
@@ -100,7 +100,7 @@ function showGames(){
 		}
 
 	}
-	xmlhttp.open("GET","http://35.231.124.196/games?"+queryObjectToString({id:id}));
+	xmlhttp.open("GET","http://104.196.1.169/games?"+queryObjectToString({id:id}));
 	xmlhttp.send();
 
 
@@ -140,7 +140,7 @@ function toNewGame(){
 					}
 				}
 			}
-			xmlhttp.open("GET","http://35.231.124.196/creategame?"+queryObjectToString({uname:username,opp:newOpp}));
+			xmlhttp.open("GET","http://104.196.1.169/creategame?"+queryObjectToString({uname:username,opp:newOpp}));
 			xmlhttp.send();
 		}
 		else{
@@ -172,7 +172,7 @@ function toNewGame(){
                     clearFields();
                 } else { // if username exists
                     alert("Creating game...")
-                    window.location.href("http://35.231.124.196/game.html","_self");
+                    window.location.href("http://104.196.1.169/game.html","_self");
                 }
             }
         } else {
@@ -180,7 +180,7 @@ function toNewGame(){
         }
     }*/
 
-//xmlhttp.open("GET","http://35.231.124.196/home?"+queryObjectToString({uname:uname.value}));
+//xmlhttp.open("GET","http://104.196.1.169/home?"+queryObjectToString({uname:uname.value}));
 //xmlhttp.send();
 
 
@@ -188,7 +188,7 @@ function toNewGame(){
 function toGame(opp){
 	location.href = "game.html";
 	console.log(opp);
-	//window.open("http://35.231.124.196/game.html");
+	//window.open("http://104.196.1.169/game.html");
     //document.getElementById("list").onclick = function() { location.href = "game.html"}
 }
 
