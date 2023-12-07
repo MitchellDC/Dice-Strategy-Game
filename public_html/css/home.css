@@ -1,0 +1,222 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-image: url('images/homeBackground.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    caret-color: transparent;
+    margin: 0;
+}
+
+.ongoing {
+    width: 5%;
+    font-size: xx-large;
+    text-align: center;
+    color: whitesmoke;
+}
+
+.ongoing:hover {
+    cursor: pointer;
+    color: rgb(111, 33, 246);
+}
+
+.header {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    padding-right: 30%;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: #074d5c;
+    height: 5%;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.flex > div {
+    width: 15%;
+    color: white;
+    text-align: center;
+    font-size: larger;
+    cursor: pointer;
+}
+
+.flex > div:hover {
+    color:aqua;
+}
+
+.arules {
+    padding-top: 1px;
+    text-align: center;
+    width: 40rem;
+    height: 30rem;
+    border-radius: 5%;
+    font-size: xx-large;
+}
+
+.rules {
+    background-image: url('images/homeTableBackground.png');
+    padding-top: 1px;
+    text-align: center;
+    margin: auto;
+    width: 45rem;
+    height: 30rem;
+    border-radius: 5%;
+    border: 1px solid #fff;
+    font-size: xx-large;
+}
+
+.instructions {
+    font-size: x-large;
+    color: white;
+}
+
+.background {
+    width: 70%;
+    height: 10%;
+    background-color: #000;
+    background-position: center;
+    background-size: cover;
+    margin: auto;
+    font-size: xx-large;
+    overflow-y:auto;
+    max-height:10%;
+}
+
+.list {
+    align-items: center;
+    background-color: #074d5c;
+}
+
+.new {
+    width: 10%;
+    height: 4%;
+    font-size: 100%;
+    background-color: #074d5c;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    border: transparent;
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 16%;
+    margin-top: .3%;
+}
+
+.new:hover {
+    background-color:rgb(38, 107, 123) ;
+}
+
+.title {
+    text-align: center;
+    color: #fff;
+    font-size: 5rem;
+}
+
+.details {
+    width: 5%;
+    font-size: xx-large;
+    text-align: center;
+    color: whitesmoke;
+}
+
+.scroll {
+    height: 5rem;
+    background-image: url('images/homeTableBackground.png');
+    background-size: cover;
+    color: red;
+}
+
+.popup .overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 1;
+    display: none;
+}
+
+.popup .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background:#0bafd4;
+    border: 2px solid #fff;
+    transform: translate(-50%, -50%) scale(0);
+    width: 55%;
+    height: 25%;
+    z-index: 1;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 5%;
+
+}
+
+.popup .close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 30px;
+    height: 29px;
+    background: #222;
+    color: #fff;
+    font-size: 25px;
+    text-align: center;
+    font-weight: 600;
+    line-height: 30px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.popup.active .overlay {
+    display:block;
+}
+
+.popup.active .content {
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.flex-create {
+    padding-right: 30%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    font-size: xx-large;
+    color: #000;
+    line-height: 50px;
+}
+
+.flex-inputs {
+    padding-top: 1%;
+    padding-right: 15%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    color: #000;
+}
+
+input {
+    font-size: large;
+    width: 35%;
+}
+
+select {
+    font-size: large;
+    width: 30%;
+    margin-right: 8%;
+}
+
+.arrow {
+    width: 10%;
+    height: 10%;
+}
+
+.arrow:hover {
+    cursor: pointer;
+}

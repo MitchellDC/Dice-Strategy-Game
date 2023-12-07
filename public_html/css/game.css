@@ -1,0 +1,290 @@
+/*
+    All classes are for divs, 
+    unless "Image" is in class name,
+    meaning class is for an image
+
+*/
+
+.title {
+    width: 100%;
+    background-color: rgb(194, 159, 159);
+    font-style: bold;
+    font-size: 40pt;
+    text-align: center;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+
+}
+
+body {
+    background-image: url('images/gamebg.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+.instructions {
+    width: 100%;
+    height: auto;
+    background-color: rgb(159, 171, 194);
+    font-family: 'Courier New', Courier, monospace;
+    font-style: bold;
+    font-size: 20pt;
+    text-align: center;
+
+}
+
+/* PLAYER start */
+
+/*entire player side*/
+.player {
+    width: 45%;
+    height: 600px;
+    /*background-color: rgb(159, 190, 194);*/
+    margin-top: 40px;
+    display: inline-block;
+}
+
+body div .playerHealth {
+    width: 60%;
+    margin-top: 20px;
+    margin-left: 16%;
+    margin-right: 24%;
+    height: 60px;
+    text-align: center;
+    font-size: 40pt;
+}
+
+.playerFace {
+    width: 60%;
+    margin-top: 20px;
+    margin-left: 16%;
+    height: 350px;
+    
+    display: inline-block;
+
+}
+
+.playerFaceImage {
+    width: 100%;
+    height: 100%;
+
+
+}
+
+/* column with dice and button */
+.playerDice {
+    width: 20%;
+    margin-top: 20px;
+    margin-right: 0%;
+    height: 520px;
+    
+    float: right;
+
+}
+
+.playerDefenseDice {
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 50px;
+    height: 150px;
+
+
+}
+.playerDefenseDiceImage {
+    width: 100%;
+    height: 100%;
+
+}
+
+.playerAttackDice {
+    width: 100%;
+    margin-bottom: 25px;
+    height: 150px;
+
+}
+
+.playerAttackDiceImage {
+    width: 100%;
+    height: 100%;
+
+}
+/* div containing button */
+.playerButton {
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 25px;
+    height: 75px;
+   
+    
+}
+
+#BackHome{
+    position: absolute;
+    right: 0;
+    margin-top: 20px;
+    margin-right: 10px;
+    color: black;
+}
+/* button itself */
+/* .rollButton {
+
+    text-align: center;
+    font-weight: bold;
+    font-size: 40pt;
+
+    width: 100%;
+    height: 100%;
+
+
+} */
+
+/* PLAYER end */
+
+#rollButtonId {
+
+    width: 100%;
+}
+
+.center {
+    
+    width: 10%;
+    float: right;
+    height: 650px;
+    margin-top: 140px;
+
+
+}
+
+.defenseIcon {
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 50px;
+    height: 150px;
+
+}
+
+.defenseIconImage {
+    width: 100%;
+    height: 100%;
+
+}
+
+.attackIcon {
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 50px;
+    height: 150px;
+
+}
+
+.attackIconImage {
+    width: 100%;
+    height: 100%;
+    
+
+}
+/* ENEMY start */
+
+#rollButtonId2{
+
+    width: 100%;
+}
+.enemy {
+    width: 45%;
+    height: 650px;
+
+    margin-top: 40px;
+    float: right;
+
+}
+.enemyHealth {
+    width: 60%;
+    margin-top: 20px;
+    margin-left: 24%;
+    margin-right: 16%;
+    height: 60px;
+
+    text-align: center;
+    font-weight: bold;
+    font-size: 40pt;
+
+}
+
+.playerHealth {
+    width: 60%;
+    margin-top: 20px;
+    margin-left: 16%;
+    margin-right: 24%;
+    height: 60px;
+
+
+    text-align: center;
+    font-weight: bold;
+    font-size: 60pt;
+}
+
+.enemyFace {
+    width: 60%;
+    margin-top: 20px;
+    margin-right: 16%;
+    height: 350px;
+    float: right;
+}
+
+.enemyFaceImage {
+    width: 100%;
+    height: 100%;
+
+}
+
+.enemyDice {
+    width: 20%;
+    margin-top: 20px;
+
+    height: 520px;
+    float: left;
+    
+}
+
+.enemyDefenseDice {
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 50px;
+    height: 150px;
+
+}
+
+.enemyDefenseDiceImage {
+    width: 100%;
+    height: 100%;
+
+}
+
+.enemyAttackDice {
+    width: 100%;
+    margin-top: 25px;
+    height: 150px;
+    margin-bottom: 25px;
+
+}
+
+.enemyAttackDiceImage {
+    width: 100%;
+    height: 100%;
+
+}
+
+.enemyButton {
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 25px;
+    height: 75px;
+   
+
+}
+
+
+/* ENEMY end */
+

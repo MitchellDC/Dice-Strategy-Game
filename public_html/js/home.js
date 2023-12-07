@@ -1,3 +1,4 @@
+
 const username = localStorage.getItem('username'); //takes the username from the login page
 const id = localStorage.getItem('id');
 //alert("working")
@@ -212,3 +213,4 @@ function queryObjectToString(query) {
     let arrOfQuesryStrings = properties.map(prop => prop+"="+query[prop]);
     return(arrOfQuesryStrings.join('&'));
  }
+

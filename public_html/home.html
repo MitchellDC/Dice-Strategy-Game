@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title> 330 Project Home Page </title>
+	    <link rel="stylesheet" href="css/home.css">
+    </head>
+
+    <body id = "homepage">
+        <div class="flex">
+            <h2 class="header" id="player"> Welcome Player! </h2>
+            <div id="home" onclick="toHome()">Home</div>
+            <div id="rules" onclick="toRules()">Rulesets</div>
+            <div id="signout" onclick="toLogin()">Sign Out</div>
+        </div style="overflow:scroll">
+        <h1 class="title"> <u>GAMES</u> </h1>
+
+
+
+	<div class="rules" id="noGames" style="height:5%;color:white;border:black;width:25%;margin-bottom:-35px;"><b>No Active Games</b></div>
+        <table class="background" id="gameTable">
+            <tr class="list">
+                <td class="details"><b>Opponent</b></td>
+                <td class="details"><b>Ruleset</b></td>
+                <td class="details"><b>Turn</b></td>
+            </tr>
+
+	<!--
+            <tr class="scroll">
+                <td class="ongoing" id="list" onclick="toGame()">Demo</td>
+                <td class="details">Risk</td>
+                <td class="details">6</td>
+            </tr>
+            <tr class="scroll">
+                <td class="ongoing" id="list" onclick="toGame()">Demo</td>
+                <td class="details">Standard</td>
+                <td class="details">13</td>
+            </tr> -->
+        </table>
+
+        <button class="new" onclick="createGame()"><b>Create Game</b></button>
+
+        <div class="popup" id="popup1">
+            <div class="overlay"></div>
+            <div class="content">
+                <div class="close" onclick="createGame()">&times;</div>
+                <div class="flex-create">
+                    <div> <b>Opponent:</b> </div>
+                    <div><b>Ruleset:</b> </div>
+                </div>
+                <div class="flex-inputs">
+                    <input type="text" id="newGame" placeholder="opponent username">
+                    <select id="ruleset">
+                        <option value="0">select ruleset</option>
+                        <option value="1">Risk</option>
+                    </select>
+                    <img class="arrow" src="css/images/arrow.webp" onclick="toNewGame()">
+                </div>
+            </div>
+            
+        <h2 class="title"><u>HOW TO PLAY</u></h2>
+        <div class="rules">
+            <p class="instructions"> The infinite dice game is a player vs player game that   </p>
+        </div>
+    </body>
+     <script src='js/home.js'></script>
+</html>

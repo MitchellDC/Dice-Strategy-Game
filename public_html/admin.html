@@ -1,0 +1,197 @@
+<html>
+    <head>
+        <title> 330 Project Home Page </title>
+        <link rel = 'stylesheet' href = 'css/admin.css'>
+        <script src="js/admin.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+
+    <body style="background-image: url(css/images/adminPageBackground.png)">
+        <div class="header">
+            <h1> Admin </h1> 
+            <button type="button" class="btn btn-outline-primary" id="signout">Signout</button>
+        </div>
+
+        <div class="modal" id="mymodal" >
+            <div class="modal-content" id="content">
+                <span class="close">&times;</span>
+                <p>Standard Ruleset
+                    <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#stModal">Edit</button>
+                    <div class="modal" id="stModal">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Powerups</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                
+                                <div class="modal-body">
+                                    <!-- recursionAttacks -> +2 Shield  -->
+                                    <input type="checkbox" class="form-check-input" id="recursionAttacks" name="recursionAttacks">
+                                    <label  for="recursionAttacks">recursion -> Every turn, do damage twice</label>
+                                    <br>
+                                    <input type="checkbox" class="form-check-input" id="nonEthicalHacking" name="nonEthicalHacking">
+                                    <label  for="nonEthicalHacking">nonEthicalHacking -> Every turn, lower enemy defense by 4</label> 
+                                    <br>
+                                    <input type="checkbox" class="form-check-input" id="tryCatching" name="tryCatching">
+                                    <label  for="tryCatching">tryCatch -> Upon death, revive with 5 health</label> 
+                                    <br>
+                                    <input type="checkbox" class="form-check-input" id="antiMalwareThreshold" name="antiMalwareThreshold">
+                                    <label  for="antiMalwareThreshold">antiMalware -> Every turn, minimum defense is 4</label> 
+                                </div>
+
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Disadvantages</h4>
+                                </div>
+                                <div class="modal-body"> 
+                                    <input type="checkbox" class="form-check-input" id="syntaxError" name="syntaxError">
+                                    <label  for="syntaxError">syntaxError -> Once, lose 5 health</label> 
+                                    <br>
+                                    <input type="checkbox" class="form-check-input" id="ransomware" name="ransomware">
+                                    <label  for="ransomware">ransomware -> Once, 50% chance to lose 10 health</label> 
+                                    <br>
+                                    <input type="checkbox" class="form-check-input" id="lowBattery" name="lowBattery">
+                                    <label  for="lowBattery">lowBattery -> Every turn, lose 2 health</label> 
+                                    <br>
+                                    <input type="checkbox" class="form-check-input" id="blueScreen" name="blueScreen">
+                                    <label  for="blueScreen">blueScreen -> Once, cannot attack or defend</label> 
+                                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </p>
+                <p>Risk Ruleset
+                    <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#riModal">Edit</button>
+                    <div class="modal" id="riModal">
+                        <div class="modal-dialog modal-md">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Powerups</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                
+                                <div class="modal-body">
+                                    firewall -> +10 Attact
+                                    <br>
+                                    systemUpgrade -> +5 Shield 
+                                    <br>
+                                    reboot -> +2 Health
+                                    <br>
+                                    recharge -> +3 Shield
+                                </div>
+
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Disadvantages</h4>
+                                </div>
+                                <div class="modal-body">
+                                    computerVirus -> -10 Attack 
+                                    <br>
+                                    Wbu Me?? -> -5 Shield 
+                                    <br>
+                                    Closed Brain -> -12 Attack 
+                                    <br>
+                                    Vacationing -> -15 Shield 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </p>
+                <p>Chaos Ruleset
+                    <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#chModal">Edit</button>
+                    <div class="modal" id="chModal">
+                        <div class="modal-dialog modal-md">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Powerups</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                
+                                <div class="modal-body">
+                                    Beat Elahi in ping pong -> +20 Shield 
+                                    <br>
+                                    Yahoo.com -> +20 Attack 
+                                    <br>
+                                    China -> +5 Health
+                                    <br>
+                                    Pass ICPC Problem -> Wins Game
+                                </div>
+
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Disadvantages</h4>
+                                </div>
+                                <div class="modal-body">
+                                    Mitchell -> -50 Attack 
+                                    <br>
+                                    Uhhhhh -> -20 Shield 
+                                    <br>
+                                    Seesi lags -> -15 Attack 
+                                    <br>
+                                    YOU MISS MY CLASS!! -> Game Over  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </p>
+                
+            </div>
+        </div>
+
+
+        <div class="modal" id="createmodal" >
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Create your Ruleset!</h4>
+                    </div>
+                        <div class="modal-body">
+                            <form action="">
+                                <label for="Rulename">Ruleset Name</label>
+                                <br>
+                                <input type="text" name="Rulename" id="Rulename">
+                                <br>
+                                <br>
+                                <label for="health">Choose Health Status:</label>
+                                <select name="health" id="health">
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                    <option value="30">30</option>
+                                    <option value="35">35</option>
+                                    <option value="40">40</option>
+                                    <option value="45">45</option>
+                                    <option value="50">50</option>
+                                </select>
+                                <br>
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Pick your Powerups!</h4>
+                                </div>
+                                <input type="checkbox" class="form-check-input" id="recursionAttacks" name="recursionAttacks">
+                                <label  for="recursionAttacks">recursion -> Every turn, do damage twice</label>
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="nonEthicalHacking" name="nonEthicalHacking">
+                                <label  for="nonEthicalHacking">nonEthicalHacking -> Every turn, lower enemy defense by 4</label> 
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="tryCatching" name="tryCatching">
+                                <label  for="tryCatching">tryCatch -> Upon death, revive with 5 health</label> 
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="antiMalwareThreshold" name="antiMalwareThreshold">
+                                <label  for="antiMalwareThreshold">antiMalware -> Every turn, minimum defense is 4</label> 
+                                <br>
+                                <input type="submit" name="createform" id="createform" class="btn btn-primary mt-3">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-outline-dark text-light" id="create" onclick="createPopup()">Create Ruleset</button>
+        <button class="btn btn-outline-dark text-light" id="edit" onclick="editPopup()">Edit Ruleset</button>
+
+</html>
