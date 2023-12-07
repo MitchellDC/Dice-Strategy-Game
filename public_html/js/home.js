@@ -38,15 +38,9 @@ function showRules() {
     rules = JSON.parse(this.responseText)
     console.log("rules: " + rules)
 
-<<<<<<< HEAD
         let dropdown = document.getElementById("rulesets")
 	console.log(dropdown)
-=======
-    
-    let dropdown = document.getElementById("rulesets")
 
-        console.log(drop)
->>>>>>> 15de3a4d4212b83168f932b46d028df5c2f7934b
         for (rule in rules) {
 
             console.log("rule: " + rule)
