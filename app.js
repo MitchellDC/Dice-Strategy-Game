@@ -36,7 +36,7 @@ function createGame(qu,res){
 					if(result.length!=0){
 						let player2Id = result[0].Player_ID
 						console.log("opponent found")
-						conn.query("INSERT INTO Game (Player1_ID,Player2_ID) VALUES ("+player1Id+","+player2Id+");",function(err,result){
+						conn.query("INSERT INTO Game (Player1_ID,Player2_ID,Rule_ID) VALUES ("+player1Id+","+player2Id+","+qu.ruleid+");",function(err,result){
 						if(err){
 							console.log(err);
 						}
@@ -44,6 +44,7 @@ function createGame(qu,res){
 							conn.query("UPDATE Game SET Player1_uname = (SELECT Username FROM Player WHERE Player_ID = Game.Player1_ID),"+
 							" Player2_uname = (SELECT Username FROM Player WHERE Player_ID = Game.Player2_ID),"+
 							" turn = (SELECT Username FROM Player WHERE Player_ID = Game.Player1_ID)"+
+							" Rule_Name = (SELECT Ruleset_name FROM Rule WHERE Rule_ID=Game.Rule_ID)"+
 							"WHERE Game_ID = (SELECT LAST_INSERT_ID());", function(err,result){
 							if(err){console.log(err)}
 							else{
