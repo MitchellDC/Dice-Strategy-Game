@@ -35,11 +35,18 @@ function showRules() {
 	xmlhttp.onerror = function(){alert("Error!")};
 	xmlhttp.onload = function(){
 
-        rules = JSON.parse(this.responseText)
-        console.log("rules: " + rules)
+    rules = JSON.parse(this.responseText)
+    console.log("rules: " + rules)
 
+<<<<<<< HEAD
         let dropdown = document.getElementById("rulesets")
 	console.log(dropdown)
+=======
+    
+    let dropdown = document.getElementById("rulesets")
+
+        console.log(drop)
+>>>>>>> 15de3a4d4212b83168f932b46d028df5c2f7934b
         for (rule in rules) {
 
             console.log("rule: " + rule)
@@ -67,7 +74,7 @@ function showRules() {
 	xmlhttp.send();
 }
 
-showRules()
+
 
 
 function showGames(){
@@ -153,6 +160,7 @@ showGames();
 
 function createGame() {
 	document.getElementById("popup1").classList.toggle("active")
+    showRules()
 
 }
 
