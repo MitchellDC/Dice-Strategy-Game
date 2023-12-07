@@ -37,13 +37,20 @@ function showRules() {
 
         rules = JSON.parse(this.responseText)
         console.log("rules: " + rules)
+
+        let dropdown = document.getElementById("rulesets")
         for (rule in rules) {
+
             console.log("rule: " + rule)
-            let dropdown = document.getElementById("rulesets")
+            
             let newOption = document.createElement("ruleset")
 
             newOption.value = rules[rule].Rule_ID
             newOption.text = rules[rule].Ruleset_name
+
+            dropdown.add(newOption)
+
+            console.log()
 
 
 
