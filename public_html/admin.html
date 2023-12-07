@@ -8,7 +8,10 @@
     </head>
 
     <body style="background-image: url(css/images/adminPageBackground.png)">
-        <h1 class="header"> Admin </h1>
+        <div class="header">
+            <h1> Admin </h1> 
+            <button type="button" class="btn btn-outline-primary" id="signout">Signout</button>
+        </div>
 
         <div class="modal" id="mymodal" >
             <div class="modal-content" id="content">
@@ -139,6 +142,55 @@
                 
             </div>
         </div>
+
+
+        <div class="modal" id="createmodal" >
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Create your Ruleset!</h4>
+                    </div>
+                        <div class="modal-body">
+                            <form action="">
+                                <label for="Rulename">Ruleset Name</label>
+                                <br>
+                                <input type="text" name="Rulename" id="Rulename">
+                                <br>
+                                <br>
+                                <label for="health">Choose Health Status:</label>
+                                <select name="health" id="health">
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                    <option value="30">30</option>
+                                    <option value="35">35</option>
+                                    <option value="40">40</option>
+                                    <option value="45">45</option>
+                                    <option value="50">50</option>
+                                </select>
+                                <br>
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Pick your Powerups!</h4>
+                                </div>
+                                <input type="checkbox" class="form-check-input" id="recursionAttacks" name="recursionAttacks">
+                                <label  for="recursionAttacks">recursion -> Every turn, do damage twice</label>
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="nonEthicalHacking" name="nonEthicalHacking">
+                                <label  for="nonEthicalHacking">nonEthicalHacking -> Every turn, lower enemy defense by 4</label> 
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="tryCatching" name="tryCatching">
+                                <label  for="tryCatching">tryCatch -> Upon death, revive with 5 health</label> 
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="antiMalwareThreshold" name="antiMalwareThreshold">
+                                <label  for="antiMalwareThreshold">antiMalware -> Every turn, minimum defense is 4</label> 
+                                <br>
+                                <input type="submit" name="createform" id="createform" class="btn btn-primary mt-3">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <button class="btn btn-outline-dark text-light" id="create" onclick="createPopup()">Create Ruleset</button>
         <button class="btn btn-outline-dark text-light" id="edit" onclick="editPopup()">Edit Ruleset</button>
 
