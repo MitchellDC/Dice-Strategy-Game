@@ -417,11 +417,14 @@ function healthChange() {
 
 	// check if the total number of turns is divisible by 3 and not equal to 0
 	if (totalTurns % 3 == 0 && totalTurns != 0){
+		// if true pass powerup
 		alert("Select A Powerup 😎")
 		selectPower()
 	}
 
+	// check if the total number of turns is divisible by 5 and not equal to 0
 	if (totalTurns % 5 == 0 && totalTurns != 0){
+		// if true pass debuff
 		alert("You got a random disadvantage ☠️")
 		getDebuff()
 	}
