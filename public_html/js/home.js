@@ -160,8 +160,8 @@ function createGame() {
 }
 
 function toNewGame(){
-    	let newOpp = document.getElementById("newGame").value.toLowerCase();
-    	let ruleset = document.getElementById("rulesets").value
+    let newOpp = document.getElementById("newGame").value.toLowerCase();
+    let ruleset = document.getElementById("rulesets").value
 
 	if(!newOpp){ alert("Specify your opponent's name")}
 	else if(ruleset==0){alert("Choose a ruleset!")}
@@ -181,12 +181,13 @@ function toNewGame(){
 						location.reload(); //refreshes page when game is created
 					}
 					else if(ids.player2ID==0){ //returns 0 if the typed in username is not in the database
+
 						alert("Opponent not found!");
 						document.getElementById("newGame").value=""; // clears the input value of opponent username
 					}
 				}
 			}
-			xmlhttp.open("GET","http://104.196.1.169/creategame?"+queryObjectToString({uname:username,opp:newOpp}));
+			xmlhttp.open("GET","http://104.196.1.169/creategame?"+queryObjectToString({uname:username,opp:newOpp, ruleid:ruleset}));
 			xmlhttp.send();
 		}
 		else{
