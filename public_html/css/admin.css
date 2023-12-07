@@ -11,34 +11,61 @@ body {
 
 
 
-body .header {
+.header {
+    display: flex;
     width: 100%;
-    text-align: center;
+    align-items: center;
+    justify-content: center;
     font-family: 'Courier New', Courier, monospace;
     color: white;
     background-color:#562567;
     box-sizing: border-box;
+
+}
+
+@media only screen and (max-width: 560px) {
+    body .flex-container {
+        display: flex;
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: center;
+        align-items: center;
+        flex-wrap:wrap;
+        height: 550px;
+        width: 550px;
+    }
+    
+    .flex-container button {
+        width: 50%;
+        height: 30%;
+        font-size: xx-large;
+        margin: 5px;
+    }
+    .header {
+        display: flex;
+        width: 110%;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Courier New', Courier, monospace;
+        color: white;
+        background-color:#562567;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.header #signout {
+    position: absolute;
+    right: 0;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 
-
-
-body #create {
-    /* height: 10%;
-    width: 22%;
-    margin-left: 15%;
-    margin-top: 13%;
-    font-size: 1rem;
-    text-align: center;
-    cursor: pointer;
-    background-color: transparent;
-    color: white;
-    border: 1px solid white;
-    font-family: 'Courier New', Courier, monospace;
-    height: 10%;
-    width: 22%;    
-    margin-left: 15%;
-    font-size: 100px */
+/* body #create {
     margin-top: 13%;
     margin-left: 18%;
     font-size: 4rem;
@@ -48,22 +75,10 @@ body #create {
 
 
 body #edit {
-    /* height: 10%;
-    width: 20%;
-    margin-left: 28%;
-    margin-top: 13%;
-    font-size: 1rem;
-    text-align: center;
-    cursor: pointer;
-    background-color: transparent;
-    color: white;
-    border: 1px solid white;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 4rem; */
     margin-top: 13%;
     margin-left: 10%;
     font-size: 4rem;   
-}
+} */
 
 #mymodal {
     display: none;
@@ -73,7 +88,13 @@ body #edit {
 
 }
 
-
+#createmodal {
+    display: none;
+    position: fixed;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+ 
+}
 
 body div #content {
     width: 50%;
@@ -88,17 +109,29 @@ body div #content {
     font-size: large;
 
 }
-/* 
-body div .modal-content button {
-    float: right;
-    font-size: large;
-} */
-
 
 #content button {
     float: right;
 }
 
+body .flex-container {
+    display: flex;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: center;
+    height: 550px;
+    width: 550px;
+}
+
+.flex-container button {
+    width: 50%;
+    height: 30%;
+    font-size: xx-large;
+    margin: 20px;
+}
 
 .close {
     color: #aaaaaa;

@@ -8,7 +8,10 @@
     </head>
 
     <body style="background-image: url(css/images/adminPageBackground.png)">
-        <h1 class="header"> Admin </h1>
+        <div class="header">
+            <h1> Admin </h1> 
+            <button type="button" class="btn btn-outline-primary" id="signout">Signout</button>
+        </div>
 
         <div class="modal" id="mymodal" >
             <div class="modal-content" id="content">
@@ -139,7 +142,114 @@
                 
             </div>
         </div>
-        <button class="btn btn-outline-dark text-light" id="create" onclick="createPopup()">Create Ruleset</button>
-        <button class="btn btn-outline-dark text-light" id="edit" onclick="editPopup()">Edit Ruleset</button>
 
+
+        <div class="modal" id="createmodal" >
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Create your Ruleset!</h4>
+                    </div>
+                        <div class="modal-body">
+                            <form action="">
+                                <label for="Rulename">Ruleset Name</label>
+                                <br>
+                                <input type="text" name="Rulename" id="Rulename">
+                                <br>
+                                <br>
+                                <label for="health">Choose Health Status:</label>
+                                <select name="health" id="health">
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                    <option value="30">30</option>
+                                    <option value="35">35</option>
+                                    <option value="40">40</option>
+                                    <option value="45">45</option>
+                                    <option value="50">50</option>
+                                </select>
+                                <br>
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Pick your Powerups!</h4>
+                                </div>
+                                <input type="checkbox" class="form-check-input" id="antiMalware" name="antiMalware">
+                                <label  for="antiMalware">antiMalware -> Minimum defense is 4</label>
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="ciphertext" name="ciphertext">
+                                <label  for="ciphertext">ciphertext -> Enemy can't see your attack value</label> 
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="firewall" name="firewall">
+                                <label  for="firewall">firewall -> Become immune for one turn</label> 
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="nonEthicalHacking" name="antiMalwareThreshold">
+                                <label  for="nonEthicalHacking">nonEthicalHacking -> Enemy loses 4 defense each turn</label> 
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="reboot" name="reboot">
+                                <label  for="reboot">reboot -> Restore health to maximum next turn</label> 
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="powerOutlet" name="powerOutlet">
+                                <label  for="powerOutlet">powerOutlet -> Every turn, gain 2 health</label> 
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="recursion" name="recursion">
+                                <label  for="nonEthicalHacking">recursion -> Damage dealt becomes value of an extra attack</label> 
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="securitySpecialist" name="securitySpecialist">
+                                <label  for="securitySpecialist">securitySpecialist -> Every turn, gain 2 extra defense</label> 
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="tryCatch" name="tryCatch">
+                                <label  for="tryCatch">tryCatch -> Next death, revive with 5 health. Works once</label> 
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="windowsUpdate" name="windowsUpdate">
+                                <label  for="windowsUpdate">windowsUpdate -> Add 1 attack, defense, and health each turn</label> 
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="fullStack" name="fullStack">
+                                <label  for="fullStack">fullStack -> Set attack and defense to 6 next turn</label> 
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="infiniteLoop" name="infiniteLoop">
+                                <label  for="infiniteLoop">infiniteLoop -> Defend for 1 forever</label> 
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="bug" name="bug">
+                                <label  for="bug">bug -> Sometimes, attack or defense is 0</label> 
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="typeCast" name="antiMalwareThreshold">
+                                <label  for="typeCast">typeCast -> Heal instead of hurting next turn</label> 
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="binarySearch" name="binarySearch">
+                                <label  for="binarySearch">binarySearch -> Halve opponent's health next turn</label> 
+                                <br>
+                                
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Pick your Debuffs!</h4>
+                                </div>
+                                <input type="checkbox" class="form-check-input" id="lowBattery" name="lowBattery">
+                                <label  for="lowBattery">lowBattery -> Every turn, lose 2 health</label> 
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="blueScreen" name="blueScreen">
+                                <label  for="blueScreen">blueScreen -> Cannot attack or defend next turn</label> 
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="slowComputer" name="slowComputer">
+                                <label  for="slowComputer">slowComputer -> Cannot attack for two turns</label> 
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="computerVirus" name="computerVirus">
+                                <label  for="computerVirus">computerVirus -> Cannot defend for two turns</label> 
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="ransomware" name="ransomware">
+                                <label  for="ransomware">ransomware -> 50% chance to lose 10 health next turn</label> 
+                                <br>
+                                <input type="checkbox" class="form-check-input" id="syntaxError" name="syntaxError">
+                                <label for="syntaxError">syntaxError -> Lose 5 health next turn</label> 
+                                <br>
+                                <input type="submit" name="createform" id="createform" class="btn btn-primary mt-3">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-container">
+            <button class="btn btn-outline-dark text-light" id="create" onclick="createPopup()">Create Ruleset</button>
+            <button class="btn btn-outline-dark text-light" id="edit" onclick="editPopup()">Delete Ruleset</button>
+        </div>
+
+    </body>
 </html>
