@@ -39,6 +39,7 @@ function showRules() {
         console.log("rules: " + rules)
 
         let dropdown = document.getElementById("rulesets")
+	console.log(dropdown)
         for (rule in rules) {
 
             console.log("rule: " + rule)
@@ -48,6 +49,7 @@ function showRules() {
             newOption.value = rules[rule].Rule_ID
             newOption.text = rules[rule].Ruleset_name
 
+	console.log(newOption)
             dropdown.add(newOption)
 
             console.log()
