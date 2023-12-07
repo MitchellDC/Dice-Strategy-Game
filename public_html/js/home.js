@@ -161,7 +161,7 @@ function createGame() {
 
 function toNewGame(){
     	let newOpp = document.getElementById("newGame").value.toLowerCase();
-    	let ruleset = document.getElementById("ruleset").value
+    	let ruleset = document.getElementById("rulesets").value
 
 	if(!newOpp){ alert("Specify your opponent's name")}
 	else if(ruleset==0){alert("Choose a ruleset!")}
