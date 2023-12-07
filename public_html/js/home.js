@@ -26,6 +26,40 @@ function toRules() {
     document.getElementById("rules").onclick = function () { location.href = "rulesets.html"}
 }
 
+function showRules() {
+    
+    
+    console.log("in showRules")
+
+    let xmlhttp = new XMLHttpRequest()
+	xmlhttp.onerror = function(){alert("Error!")};
+	xmlhttp.onload = function(){
+
+        rules = JSON.parse(this.responseText)
+        console.log("rules: " + rules)
+        for (rule in rules) {
+            console.log("rule: " + rule)
+            let dropdown = document.getElementById("rulesets")
+            let newOption = document.createElement("ruleset")
+
+            newOption.value = rules[rule].Rule_ID
+            newOption.text = rules[rule].Ruleset_name
+
+
+
+        }
+
+
+    }
+
+    //let rulesetElement = document.getElementById("ruleset")
+    
+	xmlhttp.open("GET","http://104.196.1.169/rules");
+	xmlhttp.send();
+}
+
+showRules()
+
 
 function showGames(){
 	// takes the game table from the html
@@ -211,5 +245,4 @@ function queryObjectToString(query) {
     let properties = Object.keys(query);
     let arrOfQuesryStrings = properties.map(prop => prop+"="+query[prop]);
     return(arrOfQuesryStrings.join('&'));
-}
-
+ }
