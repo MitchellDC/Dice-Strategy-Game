@@ -55,6 +55,24 @@ let debuffs1 = {
 
 }
 
+let debuffNames = {
+	syntaxError: "Syntax Error",
+	lowBattery: "Low Battery",
+	blueScreen: "Blue Screen",
+	computerVirus: "Computer Virus",
+	slowComputer: "Slow Computer",
+	ransomware: "Ransomware"
+}
+
+let debuffDesc = {
+	syntaxError: "Once, lose 5 health",
+    lowBattery: "Every turn, lose 2 health",
+    blueScreen: "Once, cannot attack or defend",
+    computerVirus: "Two turns, cannot defend",
+    slowComputer: "Two turns, cannot attack",
+    ransomware:  "Once, 50% chance to lose 10 health"
+}
+
 
 
 let debuffs2 = {
@@ -106,24 +124,6 @@ let powerupDescription = {
 	firewall: "Once, become immune"
 }
 
-// get array of powerup keys
-let powerupKeys = Object.keys(powerups1)
-
-// get random key from array of powerup keys
-let randomPowerupKey = powerupKeys[Math.floor(Math.random() * powerupKeys.length)]
-
-// get corresponding powerup from key location and change name to user friendly name (SEE selectPower FOR DETAILS)
-let randomPowerupNames = powerupNames[randomPowerupKey]
-
-// get corresponding powerup description from key location and display under powerup name
-let randomPowerupDesc = powerupDescription[randomPowerupKey]
-
-// get another random powerup
-let powerupKeys2 = Object.keys(powerups1)
-let randomPowerupKey2 = powerupKeys2[Math.floor(Math.random() * powerupKeys2.length)]
-let randomPowerupNames2 = powerupNames[randomPowerupKey2]
-let randomPowerupDesc2 = powerupDescription[randomPowerupKey2]
-
 let powerups2 = {
     recursion: false,
     nonEthicalHacking: false,
@@ -174,21 +174,56 @@ function refreshButtons(){
 
 }
 
-document.getElementById("select").classList.toggle("active")
-document.getElementById("select2").classList.toggle("active")
-// two random powerups selected from array of keys
-document.getElementById("rpower1").innerHTML = randomPowerupNames
-document.getElementById("pdesc").innerHTML = randomPowerupDesc
-document.getElementById("rpower2").innerHTML = randomPowerupNames2
-document.getElementById("pdesc2").innerHTML = randomPowerupDesc2
-
 // every three turns select from 2 powerups
-function selectPower(){
-	// check if the total number of turns is divisible by 3 and not equal to 0
-	if (totalTurns % 3 == 0 && totalTurns != 0){
-		// if the condition is true, toggle the popups
-		alert("Select A Powerup!")
+function selectPower(powerNum){
+
+	// get array of powerup keys
+let powerupKeys = Object.keys(powerups1)
+
+// get random key from array of powerup keys
+let randomPowerupKey = powerupKeys[Math.floor(Math.random() * powerupKeys.length)]
+
+// get corresponding powerup from key location and change name to user friendly name (SEE selectPower FOR DETAILS)
+let randomPowerupNames = powerupNames[randomPowerupKey]
+
+// get corresponding powerup description from key location and display under powerup name
+let randomPowerupDesc = powerupDescription[randomPowerupKey]
+
+// get another random powerup
+let powerupKeys2 = Object.keys(powerups1)
+let randomPowerupKey2 = powerupKeys2[Math.floor(Math.random() * powerupKeys2.length)]
+let randomPowerupNames2 = powerupNames[randomPowerupKey2]
+let randomPowerupDesc2 = powerupDescription[randomPowerupKey2]
+
+	// if the condition is true, toggle the popups
+	document.getElementById("select").classList.toggle("active")
+	document.getElementById("select2").classList.toggle("active")
+	// two random powerups selected from array of keys
+	document.getElementById("rpower1").innerHTML = randomPowerupNames
+	document.getElementById("pdesc").innerHTML = randomPowerupDesc
+	document.getElementById("rpower2").innerHTML = randomPowerupNames2
+	document.getElementById("pdesc2").innerHTML = randomPowerupDesc2
+
+	// set the selected power-up to true based on the powerNum
+	if (powerNum === 1) {
+		// set the value for power-up 1 to true
+		randomPowerupKey = true;
+	} else if (powerNum === 2) {
+		// set the value for power-up 2 to true
+		randomPowerupKey2 = true;
 	}
+}
+
+function getDebuff(){
+
+	let debuffKeys = Object.keys(debuffs1)
+	let randomDebuffKey = debuffKeys[Math.floor(Math.random() * debuffKeys.length)]
+	let randomDebuffName = debuffNames[randomDebuffKey]
+	let randomDebuffDesc = debuffDesc[randomDebuffKey]
+
+	document.getElementById("debuff").classList.toggle("active")
+	document.getElementById("rdebuff").innerHTML = randomDebuffName
+	document.getElementById("ddesc").innerHTML = randomDebuffDesc
 }
 
 // returns image of dice to question marks after a battle
@@ -379,7 +414,17 @@ function healthChange() {
 
 	totalTurns = totalTurns + 1;
 	document.getElementById("round").innerHTML = ("Round: " + (totalTurns))
-	selectPower()
+
+	// check if the total number of turns is divisible by 3 and not equal to 0
+	if (totalTurns % 3 == 0 && totalTurns != 0){
+		alert("Select A Powerup 😎")
+		selectPower()
+	}
+
+	if (totalTurns % 5 == 0 && totalTurns != 0){
+		alert("You got a random disadvantage ☠️")
+		getDebuff()
+	}
 }
 
 // updates powerup arrays
