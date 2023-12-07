@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7c8cef3a146094cf4fca192e7c3610b2ed2492c4
 const username = localStorage.getItem('username'); //takes the username from the login page
 const id = localStorage.getItem('id');
 //alert("working")
@@ -215,4 +219,8 @@ function queryObjectToString(query) {
  }
 =======
  }
+<<<<<<< HEAD
 >>>>>>> 80020896420ebc6e002479414c3adb679de8984b
+=======
+
+>>>>>>> 7c8cef3a146094cf4fca192e7c3610b2ed2492c4
