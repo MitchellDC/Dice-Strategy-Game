@@ -1,4 +1,3 @@
-
 const username = localStorage.getItem('username'); //takes the username from the login page
 const id = localStorage.getItem('id');
 //alert("working")
@@ -26,6 +25,50 @@ function toLogin(){
 function toRules() {
     document.getElementById("rules").onclick = function () { location.href = "rulesets.html"}
 }
+
+function showRules() {
+    
+    
+    console.log("in showRules")
+
+    let xmlhttp = new XMLHttpRequest()
+	xmlhttp.onerror = function(){alert("Error!")};
+	xmlhttp.onload = function(){
+
+    rules = JSON.parse(this.responseText)
+    console.log("rules: " + rules)
+
+    
+    let dropdown = document.getElementById("rulesets")
+
+        console.log(drop)
+        for (rule in rules) {
+
+            console.log("rule: " + rule)
+            
+            let newOption = document.createElement("ruleset")
+
+            newOption.value = rules[rule].Rule_ID
+            newOption.text = rules[rule].Ruleset_name
+
+            dropdown.add(newOption)
+
+            console.log()
+
+
+
+        }
+
+
+    }
+
+    //let rulesetElement = document.getElementById("ruleset")
+    
+	xmlhttp.open("GET","http://104.196.1.169/rules");
+	xmlhttp.send();
+}
+
+
 
 
 function showGames(){
@@ -111,6 +154,7 @@ showGames();
 
 function createGame() {
 	document.getElementById("popup1").classList.toggle("active")
+    showRules()
 
 }
 
@@ -213,4 +257,3 @@ function queryObjectToString(query) {
     let arrOfQuesryStrings = properties.map(prop => prop+"="+query[prop]);
     return(arrOfQuesryStrings.join('&'));
  }
-

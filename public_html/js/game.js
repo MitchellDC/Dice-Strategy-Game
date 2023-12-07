@@ -28,17 +28,26 @@ let username1 = null
 let username2 = null
 
 // db get all of these values every turn (GET)
+<<<<<<< HEAD
+let maxHealth = 20 // ADMIN changes this
+=======
 
 let maxHealth = 20 // ADMIN changes this
 
+>>>>>>> 7c8cef3a146094cf4fca192e7c3610b2ed2492c4
 let attackNum1 = 0 // db player1Attack
 let defenseNum1 = 0 // db player1Defense
 let attackNum2 = 0 // db player2Attack
 let defenseNum2 = 0 // db player2Defense
+<<<<<<< HEAD
+let health1 = maxHealth; // db player1Health
+let health2 = maxHealth; // db player2Health
+=======
 
 let health1 = maxHealth; // db player1Health
 let health2 = maxHealth; // db player2Health
 
+>>>>>>> 7c8cef3a146094cf4fca192e7c3610b2ed2492c4
 let totalTurns = 0;
 
 
@@ -48,7 +57,10 @@ let turn = ""; // db key "turn" with value of player's username
 	turn = 1 -> player 2's turn
 */
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 7c8cef3a146094cf4fca192e7c3610b2ed2492c4
 
 // debuffs objects
 let debuffs1 = {
@@ -127,8 +139,11 @@ document.getElementById("p2Health").innerHTML = health2;
 document.getElementById("rollButtonId").style.display = "block"; // shows button
 document.getElementById("rollButtonId2").style.display = "none"; // hides button
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 7c8cef3a146094cf4fca192e7c3610b2ed2492c4
 function getGame(){
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("Error!")};
@@ -153,9 +168,13 @@ function getGame(){
 			defenseNum1=resp[0].Player1_defense; // takes the defensenum of player 1
 
 			attackNum2=resp[0].Player2_attack; //takes the attack dice value of player 2
+<<<<<<< HEAD
+            defenseNum2=resp[0].Player2_defense; // takes the defense dice value of player 2
+=======
 
       defenseNum2=resp[0].Player2_defense; // takes the defense dice value of player 2
 
+>>>>>>> 7c8cef3a146094cf4fca192e7c3610b2ed2492c4
 
 			if(attackNum1>0) //checks if player 1 has rolled his dice, makes diceReady1 true if so
 			{
@@ -195,18 +214,26 @@ function getGame(){
 
 			}
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 7c8cef3a146094cf4fca192e7c3610b2ed2492c4
 			document.getElementById("p1Health").innerHTML = health1;
         		document.getElementById("p2Health").innerHTML = health2;
 			document.getElementById("instructionsId").innerHTML = "Roll dice "+turn;
 		}
 	}
 
+<<<<<<< HEAD
+    //sends get request to the server of the game data
+	xmlhttp.open("GET","http://35.231.124.196/game?"+queryObjectToString({gameId:gameID})); 
+=======
 
     //sends get request to the server of the game data
 	xmlhttp.open("GET","http://35.231.124.196/game?"+queryObjectToString({gameId:gameID})); 
 
+>>>>>>> 7c8cef3a146094cf4fca192e7c3610b2ed2492c4
 	xmlhttp.send();
 }
 getGame()
@@ -252,15 +279,23 @@ function rollAttack() {
 	}
 	else{
 		attackNum2 = Math.floor(Math.random() * 6) + 1;
+<<<<<<< HEAD
+        atkDiceId2.src = `css/images/dd${attackNum2}.jpeg`; 
+    }
+=======
 
         atkDiceId2.src = `css/images/dd${attackNum2}.jpeg`; 
     }
 
+>>>>>>> 7c8cef3a146094cf4fca192e7c3610b2ed2492c4
 }
 
 // front-end calculations
 function healthChange(){
+<<<<<<< HEAD
+=======
 
+>>>>>>> 7c8cef3a146094cf4fca192e7c3610b2ed2492c4
 
     // blue screen = once, cannot attack or defend
     if (debuffs1.blueScreen) {
@@ -402,7 +437,10 @@ function healthChange(){
 		health1 = health1-change1
 	}
 	if (change2>0) {
+<<<<<<< HEAD
+=======
 
+>>>>>>> 7c8cef3a146094cf4fca192e7c3610b2ed2492c4
 		health2 = health2-change2
 	}
 
@@ -653,19 +691,28 @@ function playerAction(){
 					player1Attack: attackNum1,
 					player1Defense: defenseNum1,
 					player2Attack: attackNum2,
+<<<<<<< HEAD
+                    player2Defense: defenseNum2,
+=======
 
           player2Defense: defenseNum2,
 
+>>>>>>> 7c8cef3a146094cf4fca192e7c3610b2ed2492c4
 					turn: username2,
 					gameId: gameID,
 					totalturns: totalTurns
 				}
 
 				xhr.onload = function(){
+<<<<<<< HEAD
+                    console.log(this.responseText)
+                }
+=======
 
                     console.log(this.responseText)
                 }
 
+>>>>>>> 7c8cef3a146094cf4fca192e7c3610b2ed2492c4
 
 				xhr.open("POST","http://35.231.124.196/updategame1?"+queryObjectToString(updated));
 				//xhr.setRequestHeader('Content-type', 'application/json');
@@ -691,7 +738,10 @@ function playerAction(){
 				*/
 				let xhr = new XMLHttpRequest();
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 7c8cef3a146094cf4fca192e7c3610b2ed2492c4
                 let updated = {
                     player1Health: health1,
                     player2Health: health2,
@@ -710,8 +760,11 @@ function playerAction(){
                     console.log(this.responseText)
                 }
                 xhr.send();
+<<<<<<< HEAD
+=======
                 xhr.send();
 
+>>>>>>> 7c8cef3a146094cf4fca192e7c3610b2ed2492c4
 			}
 		}
 
@@ -723,7 +776,10 @@ function playerAction(){
 			document.getElementById("p1Health").innerHTML = 0;
 			document.getElementById("p2Health").innerHTML = 0;
 		}
+<<<<<<< HEAD
+=======
 
+>>>>>>> 7c8cef3a146094cf4fca192e7c3610b2ed2492c4
 		else if (health1<=0) {
 		
             // tryCatch = upon death, revive player with 5 hp
@@ -751,7 +807,10 @@ function playerAction(){
                 document.getElementById("instructionsId").innerHTML = "Player 1 wins!" // replace with username
                 document.getElementById("p2Health").innerHTML = 0;
             }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 7c8cef3a146094cf4fca192e7c3610b2ed2492c4
 		}
 		else{
 			stage = 1;
@@ -765,8 +824,11 @@ function playerAction(){
 
 }
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 7c8cef3a146094cf4fca192e7c3610b2ed2492c4
 //for onclick function that brings the user back home
 function backHome(){
 	localStorage.removeItem('gameID');
@@ -774,8 +836,11 @@ function backHome(){
 
 };
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 7c8cef3a146094cf4fca192e7c3610b2ed2492c4
 function queryObjectToString(query) {
     let properties = Object.keys(query);
     let arrOfQuesryStrings = properties.map(prop => prop+"="+query[prop]);
