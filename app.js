@@ -12,6 +12,8 @@ const conn = mysql.createConnection({
         database: 'Project',
 });
 
+
+
 function createGame(qu,res){
 	if(!qu)
 	{
@@ -346,6 +348,27 @@ const sendFile = function(req,res){
         });
 }
 
+function rules(res){
+	if(!qu){
+                res.writeHead(404,{'Content-Type': 'text/plain'});
+                res.write('Error 404: resource not found.');
+                res.end();
+	}
+	else{
+		res.writeHead(200,{'Content-Type':'application/json'});
+		conn.query("SELECT * FROM Rule;",function(err,result){
+			if(err){
+				console.log(err);
+			}
+			else{
+				res.write(JSON.stringify(result))
+				res.end();
+			}
+		});
+	}
+
+}
+
 const main = function(req, res){
 
         let parsedURL = url.parse(req.url,true);
@@ -374,6 +397,12 @@ const main = function(req, res){
 	else if(parsedURL.pathname=="/getuser"){
                 return getUser(parsedURL.query,res);
         }
+	else if(parsedURL.pathname=="/rules"){
+                return rules(parsedURL.query,res);
+        }	
+	else if(parsedURL.pathname=="/rule"){
+		return getRule(parsedURL.query,res);
+	}	
 	else
         {
                 return sendFile(req,res);
