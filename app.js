@@ -349,23 +349,18 @@ const sendFile = function(req,res){
 }
 
 function rules(res){
-	if(!qu){
-                res.writeHead(404,{'Content-Type': 'text/plain'});
-                res.write('Error 404: resource not found.');
-                res.end();
-	}
-	else{
-		res.writeHead(200,{'Content-Type':'application/json'});
-		conn.query("SELECT * FROM Rule;",function(err,result){
-			if(err){
-				console.log(err);
-			}
-			else{
-				res.write(JSON.stringify(result))
-				res.end();
-			}
-		});
-	}
+
+    res.writeHead(200,{'Content-Type':'application/json'});
+    conn.query("SELECT * FROM Rule;",function(err,result){
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.write(JSON.stringify(result))
+            res.end();
+        }
+    });
+	
 
 }
 
