@@ -393,7 +393,7 @@ const main = function(req, res){
                 return getUser(parsedURL.query,res);
         }
 	else if(parsedURL.pathname=="/rules"){
-                return rules(parsedURL.query,res);
+                return rules(res);
         }	
 	else if(parsedURL.pathname=="/rule"){
 		return getRule(parsedURL.query,res);
