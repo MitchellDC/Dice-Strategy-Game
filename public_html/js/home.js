@@ -35,13 +35,13 @@ function showRules() {
 	xmlhttp.onerror = function(){alert("Error!")};
 	xmlhttp.onload = function(){
 
-    rules = JSON.parse(this.responseText)
+    let rules = JSON.parse(this.responseText)
     console.log("rules: " + rules)
 
         let dropdown = document.getElementById("rulesets")
 	console.log(dropdown)
 
-        for (rule in rules) {
+        for (let rule in rules) {
 
             console.log("rule: " + rule)
             
