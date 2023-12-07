@@ -112,7 +112,7 @@ let powerupNames = {
 }
 
 // powerup description
-let powerupDescription = {
+let powerupDesc = {
 	recursion: "Every turn, do damage twice",
 	nonEthicalHacking: "Every turn, lower enemy defense by 4",
 	tryCatch: "Upon death, revive with 5 health",
@@ -187,13 +187,13 @@ let randomPowerupKey = powerupKeys[Math.floor(Math.random() * powerupKeys.length
 let randomPowerupNames = powerupNames[randomPowerupKey]
 
 // get corresponding powerup description from key location and display under powerup name
-let randomPowerupDesc = powerupDescription[randomPowerupKey]
+let randomPowerupDesc = powerupDesc[randomPowerupKey]
 
 // get another random powerup
 let powerupKeys2 = Object.keys(powerups1)
 let randomPowerupKey2 = powerupKeys2[Math.floor(Math.random() * powerupKeys2.length)]
 let randomPowerupNames2 = powerupNames[randomPowerupKey2]
-let randomPowerupDesc2 = powerupDescription[randomPowerupKey2]
+let randomPowerupDesc2 = powerupDesc[randomPowerupKey2]
 
 	// if the condition is true, toggle the popups
 	document.getElementById("select").classList.toggle("active")
@@ -214,16 +214,33 @@ let randomPowerupDesc2 = powerupDescription[randomPowerupKey2]
 	}
 }
 
-function getDebuff(){
+function selectDebuff(debuffNum){
 
+	// Same thing but debuffs
 	let debuffKeys = Object.keys(debuffs1)
 	let randomDebuffKey = debuffKeys[Math.floor(Math.random() * debuffKeys.length)]
 	let randomDebuffName = debuffNames[randomDebuffKey]
 	let randomDebuffDesc = debuffDesc[randomDebuffKey]
+	let debuffKeys2 = Object.keys(debuffs1)
+	let randomDebuffKey2 = debuffKeys2[Math.floor(Math.random() * debuffKeys2.length)]
+	let randomDebuffName2 = debuffNames[randomDebuffKey2]
+	let randomDebuffDesc2 = debuffDesc[randomDebuffKey2]
 
-	document.getElementById("debuff").classList.toggle("active")
-	document.getElementById("rdebuff").innerHTML = randomDebuffName
-	document.getElementById("ddesc").innerHTML = randomDebuffDesc
+	document.getElementById("debuff1").classList.toggle("active")
+	document.getElementById("rdebuff1").innerHTML = randomDebuffName
+	document.getElementById("ddesc1").innerHTML = randomDebuffDesc
+	document.getElementById("debuff2").classList.toggle("active")
+	document.getElementById("rdebuff2").innerHTML = randomDebuffName2
+	document.getElementById("ddesc2").innerHTML = randomDebuffDesc2
+
+	// set the selected debuff to true based on the powerNum
+	if (debuffNum === 1) {
+		// set the value for debuff 1 to true
+		randomDebuffKey = true;
+	} else if (debuffNum === 2) {
+		// set the value for debuff 2 to true
+		randomDebuffKey2 = true;
+	}
 }
 
 // returns image of dice to question marks after a battle
@@ -426,7 +443,7 @@ function healthChange() {
 	if (totalTurns % 5 == 0 && totalTurns != 0){
 		// if true pass debuff
 		alert("You got a random disadvantage ☠️")
-		getDebuff()
+		selectDebuff()
 	}
 }
 
