@@ -211,4 +211,8 @@ function queryObjectToString(query) {
     let properties = Object.keys(query);
     let arrOfQuesryStrings = properties.map(prop => prop+"="+query[prop]);
     return(arrOfQuesryStrings.join('&'));
+<<<<<<< HEAD
  }
+=======
+ }
+>>>>>>> 80020896420ebc6e002479414c3adb679de8984b
