@@ -389,13 +389,13 @@ function createRule(qu,res){
 						   "antiMalware, securitySpecialist, windowsUpdate, syntaxError, "+
 						   "ransomware, lowBattery, blueScreen, slowComputer, computerVirus, "+
 						   "infiniteLoop, bug, typeCast, binarySearch) "+
-						   "VALUES ("+qu.rulename+", "+qu.health+", "+qu.firewall+", "+qu.ciphertext+", "+
+						   "VALUES ("+qu.ruleName+", "+qu.health+", "+qu.firewall+", "+qu.ciphertext+", "+
 						   qu.fullStack+", "+qu.reboot+", "+qu.powerOutlet+", "+qu.recursion+", "+ 
 						   qu.nonEthicalHacking+", "+qu.tryCatch+", "+qu.antiMalware+", "+
 						   qu.securitySpecialist+", "+qu.windowsUpdate+", "+qu.syntaxError+", "+
 						   qu.ransomware+", "+qu.lowBattery+", "+qu.blueScreen+", "+
 						   qu.slowComputer+", "+qu.computerVirus+", "+qu.infiniteLoop+", "+
-						   qu.bug+", "+qu.typeCast+", "+qu.binarySearch+";",function(err,result){
+						   qu.bug+", "+qu.typeCast+", "+qu.binarySearch+");",function(err,result){
 						if(err){
 							console.log(err)
 						}
