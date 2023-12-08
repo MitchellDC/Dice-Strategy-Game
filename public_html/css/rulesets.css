@@ -69,14 +69,14 @@ body {
 
 .ruleTable {
     width: 70%;
-    height: 10%;
+    height: 20%;
     background-color: #0bafd4;
     background-position: center;
     background-size: cover;
     margin: auto;
     font-size: xx-large;
     overflow-y:auto;
-    max-height:10%;
+    max-height:20%;
 }
 
 .list {
