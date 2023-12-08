@@ -36,14 +36,47 @@ body {
     color:aqua;
 }
 
+.title {
+    text-align: center;
+    color: #fff;
+    font-size: 5rem;
+}
+
+.rules {
+    background-image: url('images/homeTableBackground.png');
+    padding-top: 1px;
+    text-align: center;
+    margin: auto;
+    width: 45rem;
+    height: 30rem;
+    border-radius: 5%;
+    border: 1px solid #fff;
+    font-size: xx-large;
+}
+
+
+.details {
+    width: 5%;
+    font-size: xx-large;
+    text-align: center;
+    color: whitesmoke;
+}
+
+.details:hover {
+    cursor: pointer;
+    color:#0bafd4;
+}
+
 .background {
-    width: 60%;
-    height: 40%;
+    width: 70%;
+    height: 10%;
     background-color: #000;
     background-position: center;
     background-size: cover;
-    margin-left: 14%;
+    margin: auto;
     font-size: xx-large;
+    overflow-y:auto;
+    max-height:10%;
 }
 
 .list {
@@ -51,39 +84,7 @@ body {
     background-color: #074d5c;
 }
 
-.r-titles {
-    width: 5%;
-    font-size: 5rem;
-    text-align: center;
-    color: whitesmoke;
-}
-
-.rules {
-    line-height: 3rem;
-    width: 5%;
-    font-size: x-large;
-    text-align: center;
-    color: #fff;
-}
-
-.info {
-    background-image: url('images/homeTableBackground.png');
-    background-size: cover;
-}
-
-h2 {
-    color: #ffffff;
-}
-
-.view {
-    cursor: pointer;
-}
-
-.view:hover {
-    color:#550bd4;
-}
-
-.popup .overlay {
+.rulePopup .overlay {
     position: fixed;
     top: 0px;
     left: 0px;
@@ -94,7 +95,7 @@ h2 {
     display: none;
 }
 
-.popup .content {
+.rulePopup .content {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -111,7 +112,7 @@ h2 {
 
 }
 
-.popup .close {
+.rulePopup .close {
     position: absolute;
     right: 20px;
     top: 20px;
@@ -127,22 +128,25 @@ h2 {
     border-radius: 50%;
 }
 
-.popup.active .overlay {
+.rulePopup.active .overlay {
     display:block;
 }
 
-.popup.active .content {
+.rulePopup.active .content {
     transition: all 300ms ease-in-out;
     transform: translate(-50%, -50%) scale(1);
 }
 
-.p-title {
+.r-title {
     color: #fff;
-    font-size: xx-large;
+    font-size: x-large;
 }
 
 .p-list {
     color: #fff;
-    font-size: x-large;
-    padding-top: 5%;
+    font-size: large;
+}
+
+.listPowers {
+    
 }
