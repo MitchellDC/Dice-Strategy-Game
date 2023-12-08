@@ -179,3 +179,9 @@ function deleteRule(ruleID){
 	xml.open("GET","http://104.196.1.169/deleterule?"+queryObjectToString({ruleid:ruleID}));
 	xml.send()
 }
+
+function queryObjectToString(query) {
+    let properties = Object.keys(query);
+    let arrOfQuesryStrings = properties.map(prop => prop+"="+query[prop]);
+    return(arrOfQuesryStrings.join('&'));
+ }
