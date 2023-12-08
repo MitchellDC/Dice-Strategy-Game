@@ -32,10 +32,11 @@ function displayRulesets(){
 			if(resp.length>0){
 				document.getElementById("noRulesets").style.display="none"; // hides the table that says no rulesets if there are no active rulesets
 				let column = 0
+				let newRow = ruleTable.insertRow(); // new row is made
                 for(Rule in resp){ // every ruleset in the response is taken
                     if (column == 4) {
                         column = 0
-                        newRow = ruleTable.insertRow(); // new row is made
+						newRow
                     }
 
 					ruleColumn = newRow.insertCell(column); // variable for the second column of the new row
@@ -56,7 +57,14 @@ function displayRulesets(){
 
 					// anonymous function where opponent is different at each iteration of the loop
 
-                        column += column
+					(function (ruleID) {
+						ruleColumn.addEventListener("click", function () {
+							 alert(ruleID);
+							document.getElementById("ruleset").classList.toggle("active")
+						});
+					})(ruleID)
+
+                    column += column
 				}
 			}
 			else{
