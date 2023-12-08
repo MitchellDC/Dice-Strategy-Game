@@ -23,41 +23,20 @@
                             <div class="modal-content">
 
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Powerups</h4>
+                                    <h4 class="modal-title" id="checking">Are you sure you want to delete ruleset?</h4>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                 </div>
                                 
                                 <div class="modal-body">
                                     <!-- recursionAttacks -> +2 Shield  -->
-                                    <!-- <input type="checkbox" class="form-check-input" id="recursionAttacks" name="recursionAttacks">
-                                    <label  for="recursionAttacks">recursion -> Every turn, do damage twice</label>
-                                    <br>
-                                    <input type="checkbox" class="form-check-input" id="nonEthicalHacking" name="nonEthicalHacking">
-                                    <label  for="nonEthicalHacking">nonEthicalHacking -> Every turn, lower enemy defense by 4</label> 
-                                    <br>
-                                    <input type="checkbox" class="form-check-input" id="tryCatching" name="tryCatching">
-                                    <label  for="tryCatching">tryCatch -> Upon death, revive with 5 health</label> 
-                                    <br>
-                                    <input type="checkbox" class="form-check-input" id="antiMalwareThreshold" name="antiMalwareThreshold">
-                                    <label  for="antiMalwareThreshold">antiMalware -> Every turn, minimum defense is 4</label>  -->
-                                </div>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <td><button class="btn btn-link" id="deleteSt" onclick="delete_Ruleset()">Yes</button></td>
+                                            </tr>
+                                        </thead>
+                                    </table>
 
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Disadvantages</h4>
-                                </div>
-                                <div class="modal-body"> 
-                                    <!-- <input type="checkbox" class="form-check-input" id="syntaxError" name="syntaxError">
-                                    <label  for="syntaxError">syntaxError -> Once, lose 5 health</label> 
-                                    <br>
-                                    <input type="checkbox" class="form-check-input" id="ransomware" name="ransomware">
-                                    <label  for="ransomware">ransomware -> Once, 50% chance to lose 10 health</label> 
-                                    <br>
-                                    <input type="checkbox" class="form-check-input" id="lowBattery" name="lowBattery">
-                                    <label  for="lowBattery">lowBattery -> Every turn, lose 2 health</label> 
-                                    <br>
-                                    <input type="checkbox" class="form-check-input" id="blueScreen" name="blueScreen">
-                                    <label  for="blueScreen">blueScreen -> Once, cannot attack or defend</label> 
-                                    <button type="submit" class="btn btn-primary mt-3">Submit</button> -->
                                 </div>
                             </div>
                         </div>
@@ -154,7 +133,7 @@
                                 <form action="">
                                     <label for="Rulename">Ruleset Name</label>
                                     <br>
-                                    <input type="text" name="Rulename" id="ruleName">
+                                    <input type="text" name="Rulename" id="Rulename">
                                     <br>
                                     <br>
                                     <label for="health">Choose Health Status:</label>
@@ -180,7 +159,7 @@
                                     <input type="checkbox" class="form-check-input" id="firewall" name="firewall">
                                     <label  for="firewall">firewall -> Become immune for one turn</label> 
                                     <br>
-                                    <input type="checkbox" class="form-check-input" id="nonEthicalHacking" name="nonEthicalHacking">
+                                    <input type="checkbox" class="form-check-input" id="nonEthicalHacking" name="antiMalwareThreshold">
                                     <label  for="nonEthicalHacking">nonEthicalHacking -> Enemy loses 4 defense each turn</label> 
                                     <br>
                                     <input type="checkbox" class="form-check-input" id="reboot" name="reboot">
@@ -190,7 +169,7 @@
                                     <label  for="powerOutlet">powerOutlet -> Every turn, gain 2 health</label> 
                                     <br>
                                     <input type="checkbox" class="form-check-input" id="recursion" name="recursion">
-                                    <label  for="recursion">recursion -> Damage dealt becomes value of an extra attack</label> 
+                                    <label  for="nonEthicalHacking">recursion -> Damage dealt becomes value of an extra attack</label> 
                                     <br>
                                     <input type="checkbox" class="form-check-input" id="securitySpecialist" name="securitySpecialist">
                                     <label  for="securitySpecialist">securitySpecialist -> Every turn, gain 2 extra defense</label> 
@@ -204,13 +183,7 @@
                                     <input type="checkbox" class="form-check-input" id="fullStack" name="fullStack">
                                     <label  for="fullStack">fullStack -> Set attack and defense to 6 next turn</label> 
                                     <br>
-                                    <input type="checkbox" class="form-check-input" id="infiniteLoop" name="infiniteLoop">
-                                    <label  for="infiniteLoop">infiniteLoop -> Defend for 1 forever</label> 
-                                    <br>
-                                    <input type="checkbox" class="form-check-input" id="bug" name="bug">
-                                    <label  for="bug">bug -> Sometimes, attack or defense is 0</label> 
-                                    <br>
-                                    <input type="checkbox" class="form-check-input" id="typeCast" name="typeCast">
+                                    <input type="checkbox" class="form-check-input" id="typeCast" name="antiMalwareThreshold">
                                     <label  for="typeCast">typeCast -> Heal instead of hurting next turn</label> 
                                     <br>
                                     <input type="checkbox" class="form-check-input" id="binarySearch" name="binarySearch">
@@ -220,6 +193,12 @@
                                     <div class="modal-header">
                                         <h4 class="modal-title">Pick your Debuffs!</h4>
                                     </div>
+                                    <input type="checkbox" class="form-check-input" id="bug" name="bug">
+                                    <label  for="bug">bug -> Sometimes, attack or defense is 0</label> 
+                                    <br>
+                                    <input type="checkbox" class="form-check-input" id="infiniteLoop" name="infiniteLoop">
+                                    <label  for="infiniteLoop">infiniteLoop -> Defend for 1 forever</label> 
+                                    <br>
                                     <input type="checkbox" class="form-check-input" id="lowBattery" name="lowBattery">
                                     <label  for="lowBattery">lowBattery -> Every turn, lose 2 health</label> 
                                     <br>
