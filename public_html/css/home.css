@@ -67,6 +67,7 @@ body {
     border-radius: 5%;
     border: 1px solid #fff;
     font-size: xx-large;
+    padding-bottom: -7px;
 }
 
 .instructions {
@@ -117,6 +118,14 @@ body {
     color: #fff;
     font-size: 5rem;
     margin-bottom: -5px;
+}
+
+.howToPlayTitle {
+    text-align: center;
+    color: #fff;
+    font-size: 5rem;
+    margin-bottom: -5px;
+    margin-top: -7px;
 }
 
 .details {
