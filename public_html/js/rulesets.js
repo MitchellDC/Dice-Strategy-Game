@@ -11,7 +11,7 @@ function toRules() {
 }
 
 function showRules() {
-    document.getElementById("ruleset").classList.toggle("active")
+    document.getElementById("rulePopup").classList.toggle("active")
 }
 
 
@@ -59,8 +59,8 @@ function displayRulesets(){
 
 					(function (ruleID) {
 						newRow.addEventListener("click", function () {
-						alert(ruleID);
-						document.getElementById("ruleset").classList.toggle("active")
+						alert(ruleID)
+						document.getElementById("rulePopup").classList.toggle("active")
 						});
 					})(ruleID)
 
