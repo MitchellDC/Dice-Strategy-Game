@@ -428,6 +428,28 @@ function getRule(qu,res){
     });	
 }
 
+function deleteRule(qu,res){
+	if(!qu){
+		res.writeHead(404,{'Content-Type':'text/plain'});
+		res.write("Error!")
+		res.end();
+	}
+	else{
+		res.writeHead(200,{'Content-Type':'text/plain'});
+		conn.query("DELETE FROM Rule WHERE Rule_ID="+qu.ruleid+";",function(err,result){
+			if(err)
+			{
+				console.log(err);
+			}
+			else{
+				res.write("deleted");
+				res.end();
+			}
+		})
+	}
+	
+}
+
 const main = function(req, res){
 
         let parsedURL = url.parse(req.url,true);
@@ -464,6 +486,9 @@ const main = function(req, res){
 	}
 	else if(parsedURL.pathname=="/createrule"){
 		return createRule(parsedURL.query,res);
+	}
+	else if(parsedURL.pathname=="/deleterule"){
+		return deleteRule(parsedURL.query,res);
 	}
 	else
         {
