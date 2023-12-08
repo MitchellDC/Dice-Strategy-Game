@@ -41,7 +41,7 @@ function displayRulesets(){
 					console.log("ruletable: " + ruleTable)
 					console.log(newRow)
 
-					ruleColumn = newRow.insertCell(column); // variable for the second column of the new row
+					ruleColumn = newRow.insertCell(0); // variable for the second column of the new row
 
 					ruleColumn.innerHTML = resp[Rule].Ruleset_name //displays the ruleset (will change once the rulesets are applied)
 
