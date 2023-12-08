@@ -35,21 +35,18 @@ function displayRulesets(){
 			if(resp.length>0){
 				document.getElementById("noRulesets").style.display="none"; // hides the table that says no rulesets if there are no active rulesets
 				console.log("ruletable: " + ruleTable)
-                for(Rule in resp){ // every ruleset in the response is taken
-                    
-					newRow = ruleTable.insertRow(); // new row is made
-					console.log("ruletable: " + ruleTable)
-					console.log(newRow)
 
-					ruleColumn = newRow.insertCell(0); // variable for the second column of the new row
+				for(let i = 0; i < resp.length; i++) {
+					
+					newRow = ruleTable.insertRow() // maybe i+1
 
-					ruleColumn.innerHTML = resp[Rule].Ruleset_name //displays the ruleset (will change once the rulesets are applied)
+					// variable for the second column of the new row
 
-					ruleColumn.classList.add("details"); //assigns class to the columns
-					ruleColumn.id = ruleID; //assigns id to the first column
+					newRow.innerHTML = resp[i].Ruleset_name //displays the ruleset (will change once the rulesets are applied)
+					newRow.classList.add("details"); //assigns class to the columns
 					//alert(resp[game].Game_ID)
-					let ruleID = resp[Rule].Rule_ID;
-
+					let ruleID = resp[i].Rule_ID;
+					newRow.id = ruleID; //assigns id to the first column
 
 					/*
 					oppColumn.addEventListener("click", function(){
@@ -68,6 +65,8 @@ function displayRulesets(){
 					})(ruleID)
 
 				}
+
+					
 			}
 			else{
 				document.getElementById("noRules").style.display="block"; //another table that says no active rulesets if there are no rulesets made
