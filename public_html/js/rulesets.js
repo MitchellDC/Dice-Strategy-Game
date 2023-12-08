@@ -81,3 +81,22 @@ function displayRulesets(){
 	xmlhttp.send();
 }
 displayRulesets();
+
+function displayHealth() {
+
+	let health = document.getElementById("health")
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.onerror = function(){alert("Error!")};
+	xmlhttp.onload = function(){
+		if(this.status!=200){alert("Error!")}
+		else{
+
+			let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
+			console.log("resp: "+ resp)
+			health.innerHTML = resp.InitialHealth
+		}
+	}
+	xmlhttp.open("GET","http://104.196.1.169/rules");
+	xmlhttp.send();
+}
+displayHealth();
