@@ -40,6 +40,8 @@ body {
     text-align: center;
     color: #fff;
     font-size: 5rem;
+    text-decoration: underline;
+    font-weight: bold;
 }
 
 .rules {
