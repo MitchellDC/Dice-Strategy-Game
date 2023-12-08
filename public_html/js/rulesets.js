@@ -30,7 +30,7 @@ function displayRulesets(){
 			let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
 			console.log(resp)
 			if(resp.length>0){
-				document.getElementById("noRules").style.display="none"; // hides the table that says no rulesets if there are no active rulesets
+				document.getElementById("noRulesets").style.display="none"; // hides the table that says no rulesets if there are no active rulesets
 				let column = 0
                 for(Rule in resp){ // every ruleset in the response is taken
                     if (column == 4) {
