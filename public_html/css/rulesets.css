@@ -67,10 +67,10 @@ body {
     color:#0bafd4;
 }
 
-.background {
+.ruleTable {
     width: 70%;
     height: 10%;
-    background-color: #000;
+    background-color: #0bafd4;
     background-position: center;
     background-size: cover;
     margin: auto;
