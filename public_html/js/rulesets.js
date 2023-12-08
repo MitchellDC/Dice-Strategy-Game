@@ -107,6 +107,7 @@ function displayPowers() {
 
 		let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
 		for(let Rule in resp){
+			console.log("in loop")
 
 			let powers = document.createElement("div")
 
