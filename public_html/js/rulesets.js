@@ -21,7 +21,7 @@ function displayRulesets(){
 	// takes the rulesets table from the html
 	let ruleTable = document.getElementById("ruleTable");
 	newRow = ruleTable.insertRow(); // new row is made
-    console.log("ruletable: "+ ruleTable)
+   	console.log("ruletable: "+ ruleTable)
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("Error!")};
 	xmlhttp.onload = function(){
@@ -36,7 +36,7 @@ function displayRulesets(){
                 for(Rule in resp){ // every ruleset in the response is taken
                     if (column == 4) {
                         column = 0
-						newRow
+			newRow
                     }
 
 					ruleColumn = newRow.insertCell(column); // variable for the second column of the new row
