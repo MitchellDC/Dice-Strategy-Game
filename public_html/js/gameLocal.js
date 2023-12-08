@@ -322,11 +322,6 @@ function addDebuffRight() {
 
 }
 
-function generateAndDisplayRandomPowerup() {
-
-
-}
-
 // returns text of button to "ROLL" after a player ends turn
 function refreshButtons(){
 	document.getElementById("rollButtonId").innerHTML = "ROLL"
