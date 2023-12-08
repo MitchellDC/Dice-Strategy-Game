@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title> Ruleset Page </title>
@@ -12,32 +13,17 @@
             <div id="rules" onclick="toRules()">Rulesets</div>
             <div id="signout" onclick="toLogin()">Sign Out</div>
         </div>
-        <br><br>
-        <h1 class="title"> <u>ACTIVE RULESETS</u> </h1>
 
 
-        <p class="rules" id="noRulesets" style="height:40px;color:white;border:black"><b>No Active Rulesets</b></p>
-        <table class="ruleTable" id="ruleTable">
+        <h1 class="title">ACTIVE RULESETS</h1>
+
+        <div class="rules" id="noRulesets">No Active Rulesets</div>
+
+        <table class = "ruleTable" id = "ruleTable">
             <tr>
                 <td>Rulesets</td>
             </tr>
-           
-
+        
         </table>
-
-        <div class="rulePopup" id="ruleset">
-            <div class="overlay"></div>
-            <div class="content">
-                <div class="close" onclick="showRules()">&times;</div>
-                    <div class="r-title"><b><u>Ruleset_Name</u></b></div>
-                    <div class="listPowers">
-                        <div class="p-list"><b>Pillow and blanket</b> -> +2 Shield</div>
-                        <div class="p-list"><b>Go to Wells Fargo</b> -> +1 Attack</div>
-                        <div class="p-list"><b>USE BRAIN</b> -> +3 Shield</div>
-                        <div class="p-list"><b>More labs more learning</b> -> +2 Attack</div>
-                        <div class="p-list"><b>Hey!</b> -> +1 Shield</div>
-                    </div>
-            </div>
-        </div>  
     </body>
 </html>
