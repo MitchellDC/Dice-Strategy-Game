@@ -65,7 +65,20 @@ body {
 }
 
 
+
 /* body #create {
+=======
+.header #signout {
+    position: absolute;
+    right: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 10px;
+}
+
+
+body #create {
+>>>>>>> 2ae8bebf7212d3d590650360b7aabdf5322c3c0a
     margin-top: 13%;
     margin-left: 18%;
     font-size: 4rem;
@@ -132,6 +145,7 @@ body .flex-container {
     font-size: xx-large;
     margin: 20px;
 }
+
 
 .close {
     color: #aaaaaa;

@@ -99,7 +99,7 @@ function extra(obj){
 	}
 	else{
 		alert("Account Successfully Created!");
-		window.open("http://35.231.124.196/login.html","_self");
+		window.open("http://104.196.1.169/login.html","_self");
 	}
 }
 
@@ -121,7 +121,7 @@ const sendAJAX = function(){
         		}
         		else{
                 		alert("Account Successfully Created!");
-                		window.open("http://35.231.124.196/login.html","_self");
+                		window.open("http://104.196.1.169/login.html","_self");
         		}
 		}
 		else{ //NOTHING WAS FILLED IN
@@ -129,7 +129,7 @@ const sendAJAX = function(){
 			}
 		}
 	let hashValue = hashFunction(pword.value)
-	xmlhttp.open("GET","http://35.231.124.196/signup?"+queryObjectToString({email:email.value.toLowerCase(),uname:uname.value.toLowerCase(),pword:hashValue}));
+	xmlhttp.open("GET","http://104.196.1.169/signup?"+queryObjectToString({email:email.value.toLowerCase(),uname:uname.value.toLowerCase(),pword:hashValue}));
 	xmlhttp.send();
 }
 
@@ -182,8 +182,6 @@ const allFilled = function(){ //function that checks if every textbox was filled
 
 document.getElementById("button").addEventListener("click",allFilled); // CREATE ACCOUNT BUTTON
 document.getElementById("lbutton").addEventListener("click",function() { //MOVING TO LOGIN PAGE WITHOUT NEEDING TO SIGN IN
-				window.open("http://35.231.124.196/login.html","_self");
+				window.open("http://104.196.1.169/login.html","_self");
 					});
 document.getElementById("result").innerHTML = "Create your account!";
-
-

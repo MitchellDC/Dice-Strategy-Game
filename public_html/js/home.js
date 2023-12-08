@@ -5,7 +5,7 @@ const id = localStorage.getItem('id');
 if(username == null){ //goes back to the login page if user did not log in
 	// alert("you are being redirected to the login page");
 	document.getElementById('homepage').style.display='none';
-	window.open("http://35.231.124.196/login.html","_self");
+	window.open("http://104.196.1.169/login.html","_self");
 }
 else{ //displays username on the heading if the user logged in
 	document.getElementById('homepage').style.display='block';
@@ -25,6 +25,50 @@ function toLogin(){
 function toRules() {
     document.getElementById("rules").onclick = function () { location.href = "rulesets.html"}
 }
+
+function showRules() {
+    
+    
+    console.log("in showRules")
+
+    let xmlhttp = new XMLHttpRequest()
+	xmlhttp.onerror = function(){alert("Error!")};
+	xmlhttp.onload = function(){
+
+    rules = JSON.parse(this.responseText)
+    console.log("rules: " + rules)
+
+    
+    let dropdown = document.getElementById("rulesets")
+
+        console.log(drop)
+        for (rule in rules) {
+
+            console.log("rule: " + rule)
+            
+            let newOption = document.createElement("ruleset")
+
+            newOption.value = rules[rule].Rule_ID
+            newOption.text = rules[rule].Ruleset_name
+
+            dropdown.add(newOption)
+
+            console.log()
+
+
+
+        }
+
+
+    }
+
+    //let rulesetElement = document.getElementById("ruleset")
+    
+	xmlhttp.open("GET","http://104.196.1.169/rules");
+	xmlhttp.send();
+}
+
+
 
 
 function showGames(){
@@ -100,7 +144,7 @@ function showGames(){
 		}
 
 	}
-	xmlhttp.open("GET","http://35.231.124.196/games?"+queryObjectToString({id:id}));
+	xmlhttp.open("GET","http://104.196.1.169/games?"+queryObjectToString({id:id}));
 	xmlhttp.send();
 
 
@@ -110,6 +154,7 @@ showGames();
 
 function createGame() {
 	document.getElementById("popup1").classList.toggle("active")
+    showRules()
 
 }
 
@@ -140,7 +185,7 @@ function toNewGame(){
 					}
 				}
 			}
-			xmlhttp.open("GET","http://35.231.124.196/creategame?"+queryObjectToString({uname:username,opp:newOpp}));
+			xmlhttp.open("GET","http://104.196.1.169/creategame?"+queryObjectToString({uname:username,opp:newOpp}));
 			xmlhttp.send();
 		}
 		else{
@@ -172,7 +217,7 @@ function toNewGame(){
                     clearFields();
                 } else { // if username exists
                     alert("Creating game...")
-                    window.location.href("http://35.231.124.196/game.html","_self");
+                    window.location.href("http://104.196.1.169/game.html","_self");
                 }
             }
         } else {
@@ -180,7 +225,7 @@ function toNewGame(){
         }
     }*/
 
-//xmlhttp.open("GET","http://35.231.124.196/home?"+queryObjectToString({uname:uname.value}));
+//xmlhttp.open("GET","http://104.196.1.169/home?"+queryObjectToString({uname:uname.value}));
 //xmlhttp.send();
 
 
@@ -188,7 +233,7 @@ function toNewGame(){
 function toGame(opp){
 	location.href = "game.html";
 	console.log(opp);
-	//window.open("http://35.231.124.196/game.html");
+	//window.open("http://104.196.1.169/game.html");
     //document.getElementById("list").onclick = function() { location.href = "game.html"}
 }
 
