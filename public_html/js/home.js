@@ -68,7 +68,7 @@ function showRules() {
 	xmlhttp.open("GET","http://104.196.1.169/rules");
 	xmlhttp.send();
 }
-
+showRules();
 
 
 
@@ -156,7 +156,6 @@ showGames();
 
 function createGame() {
 	document.getElementById("popup1").classList.toggle("active")
-    showRules()
 
 }
 
