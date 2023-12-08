@@ -15,7 +15,7 @@
 
 
 
-	<p class="rules" id="noGames" style="height:40px;color:white;border:black"><b>No Active Games</b></p>
+	<div class="rules" id="noGames" style="height:5%;color:white;border:black;width:25%;margin-bottom:-35px;"><b>No Active Games</b></div>
         <table class="background" id="gameTable">
             <tr class="list">
                 <td class="details"><b>Opponent</b></td>
@@ -48,9 +48,8 @@
                 </div>
                 <div class="flex-inputs">
                     <input type="text" id="newGame" placeholder="opponent username">
-                    <select id="ruleset">
+                    <select id="rulesets">
                         <option value="0">select ruleset</option>
-                        <option value="1">Risk</option>
                     </select>
                     <img class="arrow" src="css/images/arrow.webp" onclick="toNewGame()">
                 </div>

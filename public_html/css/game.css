@@ -7,34 +7,53 @@
 
 .title {
     width: 100%;
-    background-color: rgb(194, 159, 159);
-    font-style: bold;
+    /*background-color: rgb(194, 159, 159);*/
     font-size: 40pt;
+    font-weight: bold;
     text-align: center;
     box-sizing: border-box;
     font-family: 'Courier New', Courier, monospace;
+    color:white;
+    margin-bottom: -10px;
 
 }
 
 body {
-    background-image: url('images/gamebg.png');
+
+    background-image: url('images/black.jpg');
     background-repeat: no-repeat;
-    background-attachment: fixed;
     background-size: cover;
+
     margin: 0;
     padding: 0;
 }
 .instructions {
     width: 100%;
     height: auto;
-    background-color: rgb(159, 171, 194);
+    
+    border-bottom: 1mm solid;
     font-family: 'Courier New', Courier, monospace;
-    font-style: bold;
+    font-weight: bold;
     font-size: 20pt;
     text-align: center;
-
+    color:white;
+    margin-top: 10px;
+    margin-right: 20px;
+    
+    /*background-color: rgb(159, 171, 194);*/
 }
 
+.turn {
+
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 20pt;
+    width: 20%;
+    margin-bottom: -52px;
+    color:white;
+    margin-left: 15px;
+
+}
 /* PLAYER start */
 
 /*entire player side*/
@@ -46,15 +65,6 @@ body {
     display: inline-block;
 }
 
-body div .playerHealth {
-    width: 60%;
-    margin-top: 20px;
-    margin-left: 16%;
-    margin-right: 24%;
-    height: 60px;
-    text-align: center;
-    font-size: 40pt;
-}
 
 .playerFace {
     width: 60%;
@@ -76,7 +86,11 @@ body div .playerHealth {
 .playerDice {
     width: 20%;
     margin-top: -25px;
+<<<<<<< HEAD
     margin-right: 0%;
+=======
+    margin-right: 10px;
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
     height: 450px;
     
     float: right;
@@ -115,6 +129,7 @@ body div .playerHealth {
     margin-top: 25px;
     margin-bottom: 25px;
     height: 75px;
+    font-family: 'Courier New', Courier, monospace;
    
     
 }
@@ -124,7 +139,7 @@ body div .playerHealth {
     right: 0;
     margin-top: 20px;
     margin-right: 10px;
-    color: black;
+    color:rgb(200, 200, 200)
 }
 /* button itself */
 /* .rollButton {
@@ -139,7 +154,11 @@ body div .playerHealth {
 
 } */
 
+<<<<<<< HEAD
  /* Powerup selection - Every 3 turns */
+=======
+/* Powerup selection - Every 3 turns */
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
 
  /* powerup1 - select */
  .popup .overlay {
@@ -148,7 +167,11 @@ body div .playerHealth {
     left: 0px;
     width: 100%;
     height: 100%;
+<<<<<<< HEAD
     background: rgba(0,0,0,0.7);
+=======
+    background: rgba(0,0,0,0.5);
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
     z-index: 1;
     display: none;
 }
@@ -156,6 +179,7 @@ body div .playerHealth {
 .popup .content {
     position: absolute;
     top: 50%;
+<<<<<<< HEAD
     left: 50%;
     background:#0bafd4;
     border: 2px solid #fff;
@@ -167,6 +191,44 @@ body div .playerHealth {
     padding: 20px;
     box-sizing: border-box;
     border-radius: 5%;
+=======
+    left: 51%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 35%;
+    height: 45%;
+
+    background:#5e8f67;
+    border: 5px solid #ffffff;
+    z-index: 1;
+    text-align: center;
+    padding: 0px;
+    box-sizing: border-box;
+    border-radius: 15%;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 16pt;
+
+}
+
+.pdescAll {
+    margin-bottom: -30px;
+    color: rgb(25, 25, 25);
+    margin-top: -20px;
+
+}
+.ritemAll {
+    color:white;
+    font-weight: 0;
+    font-size: 35pt;
+    margin-top: 10px;
+
+}
+.confirmAll {
+    font-weight: bold;
+    border-width: 3px;
+    border-color: black;
+    border-style: solid;
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
 
 }
 
@@ -176,7 +238,11 @@ body div .playerHealth {
 
 .popup.active .content {
     transition: all 300ms ease-in-out;
+<<<<<<< HEAD
     transform: translate(15%, -50%) scale(1);
+=======
+    transform: translate(-125%, -50%) scale(1);
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
 }
 
 /* powerup2 - for selection */
@@ -186,7 +252,11 @@ body div .playerHealth {
     left: 0px;
     width: 100%;
     height: 100%;
+<<<<<<< HEAD
     background: rgba(0,0,0,0.7);
+=======
+    background: rgba(0,0,0,0.5);
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
     z-index: 1;
     display: none;
 }
@@ -194,6 +264,7 @@ body div .playerHealth {
 .popup2 .content {
     position: absolute;
     top: 50%;
+<<<<<<< HEAD
     left: 50%;
     background:#0bafd4;
     border: 2px solid #fff;
@@ -205,17 +276,42 @@ body div .playerHealth {
     padding: 20px;
     box-sizing: border-box;
     border-radius: 5%;
+=======
+    left: 52%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 35%;
+    height: 45%;
+
+    background:#5e8f67;
+    border: 5px solid #ffffff;
+    z-index: 1;
+    text-align: center;
+    padding: 0px;
+    box-sizing: border-box;
+    border-radius: 15%;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 16pt;
+    
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
 
 }
 
 .popup2.active .content {
     transition: all 300ms ease-in-out;
+<<<<<<< HEAD
     transform: translate(-125%, -50%) scale(1);
 }
 
 /* Player Debuffs 
     Debuff 1
 */
+=======
+    transform: translate(15%, -50%) scale(1);
+}
+
+/* Player Debuffs */
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
 
 .popup3 .overlay {
     position: fixed;
@@ -223,14 +319,23 @@ body div .playerHealth {
     left: 0px;
     width: 100%;
     height: 100%;
+<<<<<<< HEAD
     background: rgba(0,0,0,0.7);
     z-index: 1;
     display: none;
+=======
+    background: rgba(0,0,0,0.5);
+    z-index: 1;
+    display: none;
+
+    
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
 }
 
 .popup3 .content {
     position: absolute;
     top: 50%;
+<<<<<<< HEAD
     left: 50%;
     background:#0bafd4;
     border: 2px solid #fff;
@@ -242,6 +347,23 @@ body div .playerHealth {
     padding: 20px;
     box-sizing: border-box;
     border-radius: 5%;
+=======
+    left: 51%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 35%;
+    height: 45%;
+
+    background:#a56f6f;
+    border: 5px solid #ffffff;
+    z-index: 1;
+    text-align: center;
+    padding: 0px;
+    box-sizing: border-box;
+    border-radius: 15%;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 16pt;
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
 
 }
 
@@ -254,15 +376,22 @@ body div .playerHealth {
     transform: translate(-125%, -50%) scale(1);
 }
 
+<<<<<<< HEAD
 /* Debuff 2 */
 
+=======
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
 .popup4 .overlay {
     position: fixed;
     top: 0px;
     left: 0px;
     width: 100%;
     height: 100%;
+<<<<<<< HEAD
     background: rgba(0,0,0,0.7);
+=======
+    background: rgba(0,0,0,0.5);
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
     z-index: 1;
     display: none;
 }
@@ -270,6 +399,7 @@ body div .playerHealth {
 .popup4 .content {
     position: absolute;
     top: 50%;
+<<<<<<< HEAD
     left: 50%;
     background:#0bafd4;
     border: 2px solid #fff;
@@ -281,6 +411,24 @@ body div .playerHealth {
     padding: 20px;
     box-sizing: border-box;
     border-radius: 5%;
+=======
+    left: 52%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 35%;
+    height: 45%;
+
+    
+    background:#a56f6f;
+    border: 5px solid #ffffff;
+    z-index: 1;
+    text-align: center;
+    padding: 0px;
+    box-sizing: border-box;
+    border-radius: 15%;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 16pt;
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
 
 }
 
@@ -294,6 +442,8 @@ body div .playerHealth {
 #rollButtonId {
 
     width: 100%;
+    font-size: 20pt;
+
 }
 
 .center {
@@ -311,6 +461,7 @@ body div .playerHealth {
     margin-top: 25px;
     margin-bottom: 50px;
     height: 150px;
+    align-items: center;
 
 }
 
@@ -339,12 +490,20 @@ body div .playerHealth {
 #rollButtonId2{
 
     width: 100%;
+    font-size: 20pt;
+
+   
+
 }
 .enemy {
     width: 45%;
     height: 550px;
 
     margin-top: 0px;
+<<<<<<< HEAD
+=======
+    font-family: 'Courier New', Courier, monospace;
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
     float: right;
 
 }
@@ -357,21 +516,24 @@ body div .playerHealth {
 
     text-align: center;
     font-weight: bold;
-    font-size: 40pt;
+    font-size: 35pt;
+    color: rgb(0,200,0);
 
 }
 
+
 .playerHealth {
-    width: 60%;
-    margin-top: 20px;
-    margin-left: 16%;
-    margin-right: 24%;
+    width: 100%;
+    margin-top:20px;
+    
     height: 60px;
-
-
     text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(0,200,0);
     font-weight: bold;
-    font-size: 60pt;
+    font-size: 35pt;
+    z-index: 100;
+
 }
 
 .enemyFace {
@@ -391,6 +553,10 @@ body div .playerHealth {
 .enemyDice {
     width: 20%;
     margin-top: -25px;
+<<<<<<< HEAD
+=======
+    margin-left: 10px;
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
 
     height: 450px;
     float: left;
@@ -430,6 +596,7 @@ body div .playerHealth {
     margin-top: 25px;
     margin-bottom: 25px;
     height: 75px;
+<<<<<<< HEAD
 
 }
 
@@ -491,6 +658,89 @@ body div .playerHealth {
     text-decoration: underline;
     color: rgb(0, 0, 0);
 
+=======
+
+}
+
+/* ENEMY end */
+
+.parentPowerups {
+    height: 600px;
+    width: 99%;
+    margin-top: -10px;
+
+    
+    margin-left: 5px;
+    margin-right: 5px;
+    display: inline-block;
+    
+
+}
+
+.playerPowerups {
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+
+    width: 49%;
+    height: 100%;
+    float: left;
+    margin-left: 4px;
+    margin-right: 8px;
+
+}
+
+.playerPowerupsTable {
+    text-align: left;
+    font-size: 20pt;
+    font-weight:bold;
+    font-family: 'Courier New', Courier, monospace;
+    width: 100%;
+
+    color: rgb(126, 126, 126);
+
+    margin-left: 15px;
+    margin-top: 0px;
+
+}
+
+.enemyPowerupsTable {
+    text-align: left;
+    font-size: 20pt;
+    font-weight:bold;
+    font-family: 'Courier New', Courier, monospace;
+    width: 100%;
+
+    color: rgb(126, 126, 126);
+
+    margin-left: 15px;
+    margin-right: 100px;
+    margin-top: 0px;
+    
+
+}
+
+.playerPowerupsTable td {
+    text-align: left;
+
+
+}
+
+.enemyPowerupsTable td {
+    text-align: left;
+
+}
+
+.tableTopName {
+    text-decoration: underline;
+    color: white;
+    font-size: 35pt;
+    
+}
+.tableDesc {
+    text-decoration: underline;
+
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
 }
 
 .enemyPowerups {
@@ -499,9 +749,15 @@ body div .playerHealth {
     float: right;
     padding-left: 10px;
 
+<<<<<<< HEAD
     border-color: black;
     border-style: solid;
     border-width: 4px;
+=======
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
 
     font-size: 20pt;
     font-weight:bold;
