@@ -20,7 +20,7 @@ function displayRulesets(){
 
 	// takes the rulesets table from the html
 	let ruleTable = document.getElementById("ruleTable");
-
+    console.log("ruletable: "+ ruleTable)
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("Error!")};
 	xmlhttp.onload = function(){
