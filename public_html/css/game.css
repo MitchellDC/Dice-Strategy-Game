@@ -526,11 +526,12 @@ body {
     font-size: 20pt;
     font-weight:bold;
     font-family: 'Courier New', Courier, monospace;
-    width: 100%;
+    width: 98%;
 
     color: rgb(126, 126, 126);
 
     margin-left: 15px;
+    margin-right: 15px;
     margin-top: 0px;
 
 }
