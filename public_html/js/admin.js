@@ -146,11 +146,7 @@ function showRules(){
 
 			
 			(function (ruleid) {
-				col2.addEventListener("click", function () {
-					 //alert(gameID);
-					 alert(ruleid+" will be deleted")
-
-				});
+				col2.addEventListener("click", deleteRule(ruleid));
 			})(ruleid)
 
 
@@ -165,3 +161,21 @@ function showRules(){
 
 }
 showRules();
+
+function deleteRule(ruleID){
+	alert("Rule "+ruleID+" will be deleted")
+	let xml = new XMLHttpRequest();
+	xml.onerror=function(){}
+
+	xml.onload=function(){
+		if(this.responseText=="deleted")
+		{
+			alert("Rule successfully deleted");
+		}
+	}
+
+
+
+	xml.open("GET","http://104.196.1.169/deleterule?"+queryObjectToString({ruleid:ruleID}));
+	xml.send()
+}
