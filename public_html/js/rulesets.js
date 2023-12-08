@@ -15,8 +15,11 @@ function showRules() {
 }
 
 
-function displayRulesets(){
+let ruleTable = document.getElementById("ruleTable");
+console.log("outsideRuletable: "+ ruleTable)
 
+
+function displayRulesets(){
 
 	// takes the rulesets table from the html
 	let ruleTable = document.getElementById("ruleTable");
