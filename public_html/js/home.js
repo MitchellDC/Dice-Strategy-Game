@@ -126,13 +126,14 @@ function showGames(){
 
 					// anonymous function where opponent is different at each iteration of the loop
 
-					(function (gameID) {
+					(function (gameID,ruleID) {
         					oppColumn.addEventListener("click", function () {
      							//alert(gameID);
+							localStorage.setItem('ruleID', ruleID);
 							localStorage.setItem('gameID', gameID);
             						location.href = "game.html";
         					});
-    					})(gameID)
+    					})(gameID,ruleID)
 
 				}
 			}
