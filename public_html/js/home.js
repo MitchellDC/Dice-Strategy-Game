@@ -76,6 +76,7 @@ function showGames(){
 	// takes the game table from the html
 	let gameTable = document.getElementById("gameTable");
 
+	console.log("gameTable after assignment: " +gameTable)
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("Error!")};
 	xmlhttp.onload = function(){
