@@ -1,11 +1,11 @@
-function toHome() {
+function toHome() { 
     document.getElementById("home").onclick = function () { location.href = "home.html"}
 }
 
 function toLogin(){
     document.getElementById("signout").onclick = function() { location.href = "login.html"}
 }
-
+ 
 function toRules() {
     document.getElementById("rules").onclick = function () { location.href = "rulesets.html"}
 }
@@ -31,12 +31,11 @@ function displayRulesets(){
 			console.log(resp)
 			if(resp.length>0){
 				document.getElementById("noRulesets").style.display="none"; // hides the table that says no rulesets if there are no active rulesets
-				newRow = ruleTable.insertRow(); // new row is made
-				console.log(ruleTable)
+				console.log("ruletable: " + ruleTable)
                 for(Rule in resp){ // every ruleset in the response is taken
                     
-					newRow
-					console.log("ruletable" + ruleTable)
+					newRow = ruleTable.insertRow(); // new row is made
+					console.log("ruletable: " + ruleTable)
 					console.log(newRow)
 
 					ruleColumn = newRow.insertCell(column); // variable for the second column of the new row
