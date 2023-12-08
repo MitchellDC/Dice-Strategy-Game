@@ -90,7 +90,6 @@ function displayHealth() {
 	xmlhttp.onload = function(){
 
 		let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
-		console.log("health: "+ InitialHealth)
 		for(let Rule in resp){
 			health.innerHTML = resp[Rule].InitialHealth
 		}
