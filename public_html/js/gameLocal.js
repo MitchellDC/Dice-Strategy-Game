@@ -4,32 +4,60 @@
 // make code for if player loads in game and it isn't their turn
 /* end goals and notes */
 
+
+
+// powerups balancing
+recursionAttacks = 2
+hackValue = 3
+tryCatchValue = 5
+antiMalwareThreshold = 4
+powerOutletValue = 2
+cyberSecurityValue = 3
+fullStackValue = 8
+windowsUpdateValue = 1
+
+// debuffs balancing
+syntaxErrorValue = 5
+ransomwareValue = 15
+lowBatteryValue = 2
+infiniteLoopValue = 1
+bugChance = 0.2 // if Math.random() is below this number, attack or defense will be 0
+
+// powerups & debuffs counters
+slowComputerCount1 = 2
+computerVirusCount1 = 2
+
+slowComputerCount2 = 2
+computerVirusCount2 = 2
+
+firewallCount = 2
+
 let descriptions = {
 
 	// powerups 
-	antiMalware: "Make defense at least 4 each turn", // tested
-	ciphertext: "Enemy can't see your attack value",
-	cyberSecurity: "Every turn, gain 3 extra defense", // tested
-	firewall: "Become immune for one turn", // tested
-	hack: "Enemy loses 4 defense each turn", // tested
-	powerOutlet: "Every turn, gain 2 health", // tested
-	reboot: "Restore health to maximum next turn", // tested
-	recursion: "Damage dealt becomes value of an extra attack", // tested
-	tryCatch: "Avoid death once", // tested
-	windowsUpdate: "+1 attack, defense, and health each turn", // tested
-	fullStack: "Set attack and defense to 8 next turn", // tested
-	typeCast: "Heal instead of hurting next turn", // tested
-	binarySearch: "Halve opponent's health next turn", // tested
+	antiMalware: `Make defense at least ${antiMalwareThreshold} each turn`,
+	ciphertext: "Enemy can't see your attack value", // need test
+	cyberSecurity: `Every turn, gain ${cyberSecurityValue} extra defense`,
+	firewall: `Become immune for ${firewallCount} turns`, // need test
+	hack: `Enemy loses ${hackValue} defense each turn`,
+	powerOutlet: `Every turn, gain ${powerOutletValue} health`,
+	reboot: "Restore health to maximum next turn",
+	recursion: "Damage dealt becomes value of an extra attack",
+	tryCatch: "Avoid death once",
+	windowsUpdate: `+${windowsUpdateValue} attack, defense, and health each turn`,
+	fullStack: `Set attack and defense to ${fullStackValue} next turn`,
+	typeCast: "Heal instead of hurting next turn",
+	binarySearch: "Halve opponent's health next turn",
 	
 	// debuffs
-	lowBattery: "Every turn, lose 2 health", // tested
-	blueScreen: "Cannot attack or defend next turn", // tested
-	computerVirus: "Cannot defend for two turns", // tested
-	ransomware: "50% chance to lose 15 health next turn",
-	slowComputer: "Cannot attack for two turns", // tested
-	syntaxError: "Lose 5 health next turn", // tested
-	infiniteLoop: "Defend for 1 forever", // tested
-	bug: "Sometimes, attack or defense is 0" // tested
+	lowBattery: `Every turn, lose ${lowBatteryValue} health`,
+	blueScreen: "Cannot attack or defend next turn", 
+	computerVirus: `Cannot defend for ${computerVirusCount1} turns`, 
+	ransomware: `50% chance to lose ${ransomwareValue} health next turn`,
+	slowComputer: `Cannot attack for ${slowComputerCount1} turns`, 
+	syntaxError: `Lose ${syntaxErrorValue} health next turn`, 
+	infiniteLoop: `Defend for ${infiniteLoopValue} forever`, 
+	bug: "Sometimes, attack or defense is 0" 
 
 }
 
@@ -123,9 +151,6 @@ powerups1 = {
 
 }*/
 
-
-
-
 let player1CurrentItems = []
 let powerups1 = {
 	recursion: false, // every turn, do damage twice 
@@ -148,12 +173,13 @@ let powerups1 = {
 let debuffs1 = {
     syntaxError: false, // once, lose 5 health
     lowBattery: false, // every turn, lose 2 health
+	/*
     blueScreen: false, // once, cannot attack or defend
     computerVirus: false, // two turns, cannot defend
     slowComputer: false, // two turns, cannot attack
     ransomware: false, // once, 50% chance to lose 15 health
 	infiniteLoop: false, // defend for 1 forever
-	bug: false // sometimes, attack or defense is 0
+	bug: false // sometimes, attack or defense is 0 */
 
 }
 
@@ -217,7 +243,7 @@ let totalTurns = 0;
 let randomPowerupKey1
 let randomPowerupKey2
 powerupFreq = 1
-debuffFreq = 5
+debuffFreq = 1
 
 let turn = ""; // db key "turn" with value of player's username
 /*
@@ -227,28 +253,7 @@ let turn = ""; // db key "turn" with value of player's username
 
 document.getElementById("rollButtonId2").style.display = "none";
 
-// debuffs balancing
-syntaxErrorValue = 5
-ransomwareValue = 15
-lowBatteryValue = 2
-bugChance = 0.2 // if Math.random() is below this number, attack or defense will be 0
 
-// powerups balancing
-recursionAttacks = 2
-hackValue = 4
-tryCatchValue = 5
-antiMalwareThreshold = 4
-powerOutletValue = 2
-rebootValue = maxHealth
-cyberSecurityValue = 3
-fullStackValue = 8
-
-// powerups & debuffs counters
-slowComputerCount1 = 2
-computerVirusCount1 = 2
-
-slowComputerCount2 = 2
-computerVirusCount2 = 2
 
 /* front-end only, is true when a player's dice are completely rolled and ready for battle
 is true after ending turn */
@@ -686,7 +691,6 @@ function healthChange() {
 			// cannot be the same
 			if (randomPowerupKey1 == randomPowerupKey2) {
 				unique = false
-				console.log("duplicate")
 			}	
 			else
 				unique = true
@@ -694,14 +698,12 @@ function healthChange() {
 			// player doesn't have either option
 			if (player1CurrentItems.includes(randomPowerupKey1)) {
 				alreadyHasLeft = true
-				console.log("has left")
 			}
 			else 
 				alreadyHasLeft = false
 	
 			if (player1CurrentItems.includes(randomPowerupKey2)) {
 				alreadyHasRight = true
-				console.log("has right")
 			}
 			else 
 				alreadyHasRight = false
@@ -733,6 +735,52 @@ function healthChange() {
 		debuffKeys = Object.keys(debuffs1)
 		randomDebuffKey1 = debuffKeys[Math.floor(Math.random() * debuffKeys.length)]
 		randomDebuffKey2 = debuffKeys[Math.floor(Math.random() * debuffKeys.length)]
+
+		let uniqueDebuff = true
+		let alreadyHasLeftDebuff = false
+		let alreadyHasRightDebuff = false
+		let triesDebuff = 0
+
+		if (randomDebuffKey1 == randomDebuffKey2)
+			uniqueDebuff = false
+
+		if (player1CurrentItems.includes(randomDebuffKey1))
+			alreadyHasLeftDebuff = true
+
+		if (player1CurrentItems.includes(randomDebuffKey2))
+			alreadyHasRightDebuff = true
+
+		/* ensure validity of popups (cannot be the same, and player doesn't have either option)
+		will try 30 times until exiting */
+		while (!uniqueDebuff || alreadyHasLeftDebuff || alreadyHasRightDebuff && (triesDebuff < 500)) {
+			randomDebuffKey1 = debuffKeys[Math.floor(Math.random() * debuffKeys.length)]
+			randomDebuffKey2 = debuffKeys[Math.floor(Math.random() * debuffKeys.length)]
+
+			// cannot be the same
+			if (randomDebuffKey1 == randomDebuffKey2) {
+				uniqueDebuff = false
+			}	
+			else
+				uniqueDebuff = true
+	
+			// player doesn't have either option
+			if (player1CurrentItems.includes(randomDebuffKey1)) {
+				alreadyHasLeftDebuff = true
+			}
+			else 
+				alreadyHasLeftDebuff = false
+	
+			if (player1CurrentItems.includes(randomDebuffKey2)) {
+				alreadyHasRightDebuff = true
+			}
+			else 
+				alreadyHasRightDebuff = false
+
+				triesDebuff += 1
+			if (triesDebuff >= 500)
+				console.log("exit debuff loop after " +triesDebuff+ " tries")
+		}
+
 
 		// if the condition is true, toggle the popups
 		document.getElementById("debuff1").classList.toggle("active")
