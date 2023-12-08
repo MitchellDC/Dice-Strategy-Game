@@ -6,7 +6,7 @@
 
 let descriptions = {
 
-	// powerups
+	// powerups 
 	antiMalware: "Make defense at least 4 each turn", // tested
 	ciphertext: "Enemy can't see your attack value",
 	cyberSecurity: "Every turn, gain 3 extra defense", // tested
@@ -128,6 +128,16 @@ powerups1 = {
 
 let player1CurrentItems = []
 let powerups1 = {
+	recursion: false, // every turn, do damage twice 
+    hack: false, // every turn, lower enemy defense by 4
+    tryCatch: false, // upon death, revive with 5 health
+    antiMalware: false, // every turn, minimum defense is 4
+    reboot: false, // once, restore all health
+    powerOutlet: false, // every turn, gain 2 health
+    cyberSecurity: false, // every turn, gain 2 defense
+    windowsUpdate: false, // every turn, gain 1 attack, 1 defense, 1 health
+    firewall: false, // once, become immune
+	fullStack: false, // once, make attack and defense both 8
 	typeCast: false, // heal instead of hurting next turn
 	ciphertext: false, // hide attack from enemy
 	binarySearch: false // halve opponent's health next turn
@@ -206,8 +216,8 @@ let totalTurns = 0;
 
 let randomPowerupKey1
 let randomPowerupKey2
-powerupFreq = 2
-debuffFreq = 1
+powerupFreq = 1
+debuffFreq = 5
 
 let turn = ""; // db key "turn" with value of player's username
 /*
@@ -244,6 +254,8 @@ computerVirusCount2 = 2
 is true after ending turn */
 let diceReady1 = false; 
 let diceReady2 = false;
+
+// add event listeners to the popup "SELECET" buttons
 document.getElementById("confirm1").addEventListener("click", addPowerupLeft)
 document.getElementById("confirm2").addEventListener("click", addPowerupRight)
 document.getElementById("confirm3").addEventListener("click", addDebuffLeft)
@@ -254,14 +266,13 @@ document.getElementById("confirm4").addEventListener("click", addDebuffRight)
 document.getElementById("p1Health").innerHTML = "Proppa (" + health1 + "/" + maxHealth + ")";
 document.getElementById("p2Health").innerHTML = "Frost (" + health2 + "/" + maxHealth + ")";
 
+
+// display initial powerups (should be none by default)
 updatePowerups(1)
 updatePowerups(2)
-//updatePowerups(player2Powerups, 2)
-//updatePowerups(player2Debuffs, 2)
-console.log("updatedPowerups at start")
 
-// activated once they click on powerup pop-up button
-// "powerup1" means they selected the powerup on the right
+/* addPowerupLeft activated once they click on powerup pop-up button
+for the left powerup */
 function addPowerupLeft() {
 	// makes random powerup true if they click on it
 	powerups1[randomPowerupKey1] = true
@@ -276,6 +287,7 @@ function addPowerupLeft() {
 
 }
 
+// same as function above, but for the right
 function addPowerupRight() {
 	powerups1[randomPowerupKey2] = true
 	document.getElementById("select").classList.toggle("active")
@@ -285,9 +297,8 @@ function addPowerupRight() {
 
 }
 
-// activated once they click on powerup pop-up button
-// "powerup1" means they selected the powerup on the right
-
+/* addDebuffLeft activated once they click on debuff pop-up button
+for the left debuff */
 function addDebuffLeft() {
 	debuffs1[randomDebuffKey1] = true
 	document.getElementById("debuff1").classList.toggle("active")
@@ -306,16 +317,9 @@ function addDebuffRight() {
 
 }
 
-function selectDebuff() {
+function generateAndDisplayRandomPowerup() {
 
-	let debuffKeys = Object.keys(debuffs1)
-	let randomDebuffKey = debuffKeys[Math.floor(Math.random() * debuffKeys.length)]
-	let randomDebuffName = debuffNames[randomDebuffKey]
-	let randomDebuffDesc = debuffDesc[randomDebuffKey]
 
-	document.getElementById("debuff").classList.toggle("active")
-	document.getElementById("rdebuff").innerHTML = randomDebuffName
-	document.getElementById("ddesc").innerHTML = randomDebuffDesc
 }
 
 // returns text of button to "ROLL" after a player ends turn
@@ -549,12 +553,12 @@ function itemCalculationsAfter() {
 
 	// binary search = reduce opponents health by half
 	if (powerups1.binarySearch) {
-		health2 = health2 / 2
+		health2 = Math.round(health2 / 2)
 		change2 = 0
 		powerups1.binarySearch = false
 	}
 	if (powerups2.binarySearch) {
-		health1 = health1 / 2
+		health1 = Math.round(health2 / 2)
 		change1 = 0
 		powerups2.binarySearch = false
 	}
@@ -647,17 +651,69 @@ function healthChange() {
 	updatePowerups(2)
 	//document.getElementById("round").innerHTML = ("Round: " + (totalTurns))
 
-	// check if the total number of turns is divisible by 3 and not equal to 0
-	if (totalTurns % powerupFreq == 1 && totalTurns != 0){
+	/* SELECT POWERUP code
+	check if the total number of turns is divisible by 3 and not equal to 0*/
+	if (totalTurns % powerupFreq == 0 && totalTurns != 0){
 		// if true pass powerup
-		alert("Select A Powerup 😎")
+		alert("Select a powerup :)")
 
 		// get 2 random powerups
 		powerupKeys = Object.keys(powerups1)
 		randomPowerupKey1 = powerupKeys[Math.floor(Math.random() * powerupKeys.length)]
 		randomPowerupKey2 = powerupKeys[Math.floor(Math.random() * powerupKeys.length)]
+		
+		// initialize variables to check validity
+		let unique = true
+		let alreadyHasLeft = false
+		let alreadyHasRight = false
+		let tries = 0
+
+		if (randomPowerupKey1 == randomPowerupKey2)
+			unique = false
+
+		if (player1CurrentItems.includes(randomPowerupKey1))
+			alreadyHasLeft = true
+
+		if (player1CurrentItems.includes(randomPowerupKey2))
+			alreadyHasRight = true
+
+		/* ensure validity of popups (cannot be the same, and player doesn't have either option)
+		will try 30 times until exiting */
+		while (!unique || alreadyHasLeft || alreadyHasRight && (tries < 500)) {
+			randomPowerupKey1 = powerupKeys[Math.floor(Math.random() * powerupKeys.length)]
+			randomPowerupKey2 = powerupKeys[Math.floor(Math.random() * powerupKeys.length)]
+
+			// cannot be the same
+			if (randomPowerupKey1 == randomPowerupKey2) {
+				unique = false
+				console.log("duplicate")
+			}	
+			else
+				unique = true
+	
+			// player doesn't have either option
+			if (player1CurrentItems.includes(randomPowerupKey1)) {
+				alreadyHasLeft = true
+				console.log("has left")
+			}
+			else 
+				alreadyHasLeft = false
+	
+			if (player1CurrentItems.includes(randomPowerupKey2)) {
+				alreadyHasRight = true
+				console.log("has right")
+			}
+			else 
+				alreadyHasRight = false
+
+			tries += 1
+			if (tries >= 50)
+				console.log("exit loop after " +tries+ " tries")
+		}
 
 		// if the condition is true, toggle the popups
+		// have to do this here to prevent async
+	
 		document.getElementById("select").classList.toggle("active")
 		document.getElementById("select2").classList.toggle("active")
 	
@@ -667,16 +723,11 @@ function healthChange() {
 		document.getElementById("rpower2").innerHTML = randomPowerupKey2
 		document.getElementById("pdesc2").innerHTML = descriptions[randomPowerupKey2]
 
-		// waits for response before proceeding //
-	
-		// set the selected power-up to true based on the powerNum
-	
 	}
-
 	// check if the total number of turns is divisible by 5 and not equal to 0
 	if (totalTurns % debuffFreq == 0 && totalTurns != 0){
 		// if true pass debuff
-		alert("Select a debuff ☠️")
+		alert("Select a debuff :(")
 
 		// get 2 random debuffs
 		debuffKeys = Object.keys(debuffs1)
