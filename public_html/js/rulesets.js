@@ -31,7 +31,7 @@ function displayRulesets(){
 		else{
 
 			let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
-			console.log("resp: "+resp)
+			console.log("resp: "+ resp)
 			if(resp.length>0){
 				document.getElementById("noRulesets").style.display="none"; // hides the table that says no rulesets if there are no active rulesets
 				console.log("ruletable: " + ruleTable)
@@ -45,10 +45,11 @@ function displayRulesets(){
 
 					ruleColumn.innerHTML = resp[Rule].Ruleset_name //displays the ruleset (will change once the rulesets are applied)
 
-                    let ruleID = resp[Rule].Rule_ID;
 					ruleColumn.classList.add("details"); //assigns class to the columns
 					ruleColumn.id = ruleID; //assigns id to the first column
 					//alert(resp[game].Game_ID)
+					let ruleID = resp[Rule].Rule_ID;
+
 
 					/*
 					oppColumn.addEventListener("click", function(){
@@ -70,7 +71,7 @@ function displayRulesets(){
 			}
 			else{
 				document.getElementById("noRules").style.display="block"; //another table that says no active rulesets if there are no rulesets made
-				document.getElementById("noRules").innerHTML="<b>NO ACTIVE RULESETS</b>"
+				//document.getElementById("noRules").innerHTML="<b>NO ACTIVE RULESETS</b>"
 				ruleTable.style.display='none'; //table is hidden if there are no active rulesets
 			}
 
