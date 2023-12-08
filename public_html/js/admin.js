@@ -14,7 +14,7 @@ function editPopup() {
 
 function createPopup() {
 	let modal = document.getElementById("createmodal"); 
-	let span = document.getElementsByClassName("close");
+	let span = document.getElementsByClassName("create_close");
 	modal.style.display = "block";
 	span[0].onclick = function() {
 		modal.style.display = "none";

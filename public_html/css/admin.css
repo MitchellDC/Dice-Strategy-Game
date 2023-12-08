@@ -67,7 +67,7 @@ body {
 
 
 /* body #create {
-=======
+
 .header #signout {
     position: absolute;
     right: 0;
@@ -78,7 +78,6 @@ body {
 
 
 body #create {
->>>>>>> 2ae8bebf7212d3d590650360b7aabdf5322c3c0a
     margin-top: 13%;
     margin-left: 18%;
     font-size: 4rem;
@@ -156,6 +155,21 @@ body .flex-container {
 
 .close:hover,
 .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.create_close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.create_close:hover,
+.create_close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
