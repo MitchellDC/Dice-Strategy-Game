@@ -91,7 +91,8 @@ function displayHealth() {
 
 		let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
 		for(let Rule in resp){
-			health.innerHTML = resp[Rule].InitialHealth
+			health.classList.add("p-list");
+			health.innerHTML = ("Initial Health: " + resp[Rule].InitialHealth);
 		}
 	}
 	xmlhttp.open("GET","http://104.196.1.169/rules");
