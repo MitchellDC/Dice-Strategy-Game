@@ -364,9 +364,50 @@ function rules(res){
 
 function createRule(qu,res){	
 	console.log(qu)
-	res.writeHead(200,{'Content-Type':'text/plain'});
-	res.write("found")
-	res.end();
+	if(!qu){
+		res.writeHead(404,{'Content-Type':'text/plain'});
+		res.write("Error!")
+		res.end();
+	}
+	conn.query("SELECT Ruleset_name FROM Rule WHERE Ruleset_name='"+qu.ruleName+"';",function(err,result){
+		if(err) // checks if Ruleset name already exists in the rule table
+	  	{
+		  console.log(err);
+		}
+		else{
+			res.writeHead(200,{'Content-Type':'text/plain'});
+			if(result.length==0){ //ruleset name already exists
+				res.write("found")
+				res.end();
+			}
+			else{ // if username is not found ruleset is created 
+				conn.query("INSERT INTO Rule (Ruleset_name, InitialHealth, firewall, ciphertext, "+
+					   "fullStack, reboot, recursion, nonEthicalHacking, tryCatch, "+
+					   "antiMalware, securitySpecialist, windowsUpdate, syntaxError, "+
+					   "ransomware, lowBattery, blueScreen, slowComputer, computerVirus, "+
+					   "infiniteLoop, bug, typeCast, binarySearch) "+
+					   "VALUES ("+qu.rulename+", "+qu.health+", "+qu.firewall+", "+qu.ciphertext+", "+
+					   qu.fullStack+", "+qu.reboot+", "+qu.recursion+", "+ 
+					   qu.nonEthicalHacking+", "+qu.tryCatch+", "+qu.antiMalware+", "+
+					   qu.securitySpecialist+", "+qu.windowsUpdate+", "+qu.syntaxError+", "+
+					   qu.ransomware+", "+qu.lowBattery+", "+qu.blueScreen+", "+
+					   qu.slowComputer+", "+qu.computerVirus+", "+qu.infiniteLoop+", "+
+					   qu.bug+", "+qu.typeCast+", "+qu.binarySearch+";",function(err,result){
+					if(err){
+						console.log(err)
+					}
+					else{
+						console.log("ruleset created")
+						res.write("created")
+						res.end();
+					}
+					
+						}
+					  );
+			}
+		}
+	});
+
 }
 
 
