@@ -70,7 +70,7 @@ body {
 .background {
     width: 70%;
     height: 10%;
-    background-color: #000;
+    background-color: #a94040;
     background-position: center;
     background-size: cover;
     margin: auto;
@@ -147,6 +147,3 @@ body {
     font-size: large;
 }
 
-.listPowers {
-    
-}
