@@ -43,8 +43,10 @@ function createGame(qu,res){
 						else{
 							conn.query("UPDATE Game SET Player1_uname = (SELECT Username FROM Player WHERE Player_ID = Game.Player1_ID),"+
 							" Player2_uname = (SELECT Username FROM Player WHERE Player_ID = Game.Player2_ID),"+
-							" turn = (SELECT Username FROM Player WHERE Player_ID = Game.Player1_ID)"+
-							" Rule_Name = (SELECT Ruleset_name FROM Rule WHERE Rule_ID=Game.Rule_ID)"+
+							" turn = (SELECT Username FROM Player WHERE Player_ID = Game.Player1_ID), "+
+							" Rule_Name = (SELECT Ruleset_name FROM Rule WHERE Rule_ID=Game.Rule_ID), "+
+							" Player1_Health = (SELECT InitialHealth FROM Rule WHERE Rule_ID=Game.Rule_ID), "+
+							" Player2_Health = (SELECT InitialHealth FROM Rule WHERE Rule_ID=Game.Rule_ID) "+
 							" WHERE Game_ID = (SELECT LAST_INSERT_ID());", function(err,result){
 							if(err){console.log(err)}
 							else{
@@ -383,12 +385,12 @@ function createRule(qu,res){
 				}
 				else{ // if username is not found ruleset is created 
 					conn.query("INSERT INTO Rule (Ruleset_name, InitialHealth, firewall, ciphertext, "+
-						   "fullStack, reboot, recursion, nonEthicalHacking, tryCatch, "+
+						   "fullStack, reboot, recharge, recursion, nonEthicalHacking, tryCatch, "+
 						   "antiMalware, securitySpecialist, windowsUpdate, syntaxError, "+
 						   "ransomware, lowBattery, blueScreen, slowComputer, computerVirus, "+
 						   "infiniteLoop, bug, typeCast, binarySearch) "+
 						   "VALUES ("+qu.rulename+", "+qu.health+", "+qu.firewall+", "+qu.ciphertext+", "+
-						   qu.fullStack+", "+qu.reboot+", "+qu.recursion+", "+ 
+						   qu.fullStack+", "+qu.reboot+", "+qu.powerOutlet+", "+qu.recursion+", "+ 
 						   qu.nonEthicalHacking+", "+qu.tryCatch+", "+qu.antiMalware+", "+
 						   qu.securitySpecialist+", "+qu.windowsUpdate+", "+qu.syntaxError+", "+
 						   qu.ransomware+", "+qu.lowBattery+", "+qu.blueScreen+", "+
@@ -403,8 +405,8 @@ function createRule(qu,res){
 							res.end();
 						}
 						
-							}
-						  );
+					}
+					);
 				}
 			}
 		});
