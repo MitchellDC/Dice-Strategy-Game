@@ -45,7 +45,7 @@ function createGame(qu,res){
 							" Player2_uname = (SELECT Username FROM Player WHERE Player_ID = Game.Player2_ID),"+
 							" turn = (SELECT Username FROM Player WHERE Player_ID = Game.Player1_ID)"+
 							" Rule_Name = (SELECT Ruleset_name FROM Rule WHERE Rule_ID=Game.Rule_ID)"+
-							"WHERE Game_ID = (SELECT LAST_INSERT_ID());", function(err,result){
+							" WHERE Game_ID = (SELECT LAST_INSERT_ID());", function(err,result){
 							if(err){console.log(err)}
 							else{
 								console.log("game created");
