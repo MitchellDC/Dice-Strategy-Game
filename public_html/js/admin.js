@@ -120,7 +120,7 @@ function signout() {
 
 function showRules(){
 	let xml = new XMLHttpRequest();
-	let rules = document.getElementByClassName("checkboxes");
+
 	xml.onerror=function(){alert("Error in Showing Active Rulesets")}
 	xml.onload=function(){
 		let resp = JSON.parse(this.responseText);
