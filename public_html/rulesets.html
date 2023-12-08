@@ -1,43 +1,80 @@
-<html>
-    <head>
-        <title> Ruleset Page </title>
-        <link rel = 'stylesheet' href = 'css/rulesets.css'>
-        <script src="js/rulesets.js"></script>
-    </head>
+function toHome() { 
+    document.getElementById("home").onclick = function () { location.href = "home.html"}
+}
 
-    <body>
-        <div class="flex">
-            <h2 class="header">Ruleset Page</h2>
-            <div id="home" onclick="toHome()">Home</div>
-            <div id="rules" onclick="toRules()">Rulesets</div>
-            <div id="signout" onclick="toLogin()">Sign Out</div>
-        </div>
-        <br><br>
-        <h1 class="title"> <u>ACTIVE RULESETS</u> </h1>
+function toLogin(){
+    document.getElementById("signout").onclick = function() { location.href = "login.html"}
+}
+ 
+function toRules() {
+    document.getElementById("rules").onclick = function () { location.href = "rulesets.html"}
+}
+
+function showRules() {
+    document.getElementById("ruleset").classList.toggle("active")
+}
 
 
-        <p class="rules" id="noRulesets" style="height:40px;color:white;border:black"><b>No Active Rulesets</b></p>
-        <table class="background" id="ruleTable">
-            <tr>
-                <td>Rulesets</td>
-            </tr>
-           
+function displayRulesets(){
 
-        </table>
 
-        <div class="rulePopup" id="ruleset">
-            <div class="overlay"></div>
-            <div class="content">
-                <div class="close" onclick="showRules()">&times;</div>
-                    <div class="r-title"><b><u>Ruleset_Name</u></b></div>
-                    <div class="listPowers">
-                        <div class="p-list"><b>Pillow and blanket</b> -> +2 Shield</div>
-                        <div class="p-list"><b>Go to Wells Fargo</b> -> +1 Attack</div>
-                        <div class="p-list"><b>USE BRAIN</b> -> +3 Shield</div>
-                        <div class="p-list"><b>More labs more learning</b> -> +2 Attack</div>
-                        <div class="p-list"><b>Hey!</b> -> +1 Shield</div>
-                    </div>
-            </div>
-        </div>  
-    </body>
-</html>
+	// takes the rulesets table from the html
+	let ruleTable = document.getElementById("ruleTable");
+    console.log("ruletable: "+ ruleTable)
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.onerror = function(){alert("Error!")};
+	xmlhttp.onload = function(){
+		if(this.status!=200){alert("Error!")}
+		else{
+
+			let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
+			console.log(resp)
+			if(resp.length>0){
+				document.getElementById("noRulesets").style.display="none"; // hides the table that says no rulesets if there are no active rulesets
+				console.log("ruletable: " + ruleTable)
+                for(Rule in resp){ // every ruleset in the response is taken
+                    
+					newRow = ruleTable.insertRow(); // new row is made
+					console.log("ruletable: " + ruleTable)
+					console.log(newRow)
+
+					ruleColumn = newRow.insertCell(column); // variable for the second column of the new row
+
+					ruleColumn.innerHTML = resp[Rule].Ruleset_name //displays the ruleset (will change once the rulesets are applied)
+
+                    let ruleID = resp[Rule].Rule_ID;
+					ruleColumn.classList.add("details"); //assigns class to the columns
+					ruleColumn.id = ruleID; //assigns id to the first column
+					//alert(resp[game].Game_ID)
+
+					/*
+					oppColumn.addEventListener("click", function(){
+						alert(opponent);
+						location.href="game.html";
+					}); //brings user to the game if the opponent's username is clicked*/
+
+
+					// anonymous function where opponent is different at each iteration of the loop
+
+					(function (ruleID) {
+						ruleColumn.addEventListener("click", function () {
+							 alert(ruleID);
+							document.getElementById("ruleset").classList.toggle("active")
+						});
+					})(ruleID)
+
+				}
+			}
+			else{
+				document.getElementById("noRules").style.display="block"; //another table that says no active rulesets if there are no rulesets made
+				document.getElementById("noRules").innerHTML="<b>NO ACTIVE RULESETS</b>"
+				ruleTable.style.display='none'; //table is hidden if there are no active rulesets
+			}
+
+		}
+
+	}
+	xmlhttp.open("GET","http://104.196.1.169/rules");
+	xmlhttp.send();
+}
+displayRulesets();
