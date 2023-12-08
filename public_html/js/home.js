@@ -48,7 +48,7 @@ function showRules() {
             let newOption = document.createElement("option")
 
             newOption.value = rules[rule].Rule_ID
-            newOption.text = rules[rule].Rule_name
+            newOption.text = rules[rule].Ruleset_name
 
 
 	        console.log(newOption)
