@@ -10,6 +10,7 @@ body {
 }
 
 
+
 .header {
     display: flex;
     width: 100%;
@@ -144,6 +145,15 @@ body .flex-container {
     margin: 20px;
 }
 
+.modal-body #deleteSt {
+    float: left;
+    font-size: larger;
+}
+
+.modal-header #checking {
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .close {
     color: #aaaaaa;
@@ -165,6 +175,7 @@ body .flex-container {
     float: right;
     font-size: 28px;
     font-weight: bold;
+    padding-left: 10px;
 }
 
 .create_close:hover,
