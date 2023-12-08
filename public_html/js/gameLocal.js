@@ -36,28 +36,29 @@ let descriptions = {
 
 	// powerups 
 	antiMalware: `Make defense at least ${antiMalwareThreshold} each turn`,
+	binarySearch: "Halve opponent's health next turn",
 	ciphertext: "Enemy can't see your attack value", // need test
 	cyberSecurity: `Every turn, gain ${cyberSecurityValue} extra defense`,
 	firewall: `Become immune for ${firewallCount} turns`, // need test
+	fullStack: `Set attack and defense to ${fullStackValue} next turn`,
 	hack: `Enemy loses ${hackValue} defense each turn`,
 	powerOutlet: `Every turn, gain ${powerOutletValue} health`,
 	reboot: "Restore health to maximum next turn",
 	recursion: "Damage dealt becomes value of an extra attack",
 	tryCatch: "Avoid death once",
-	windowsUpdate: `+${windowsUpdateValue} attack, defense, and health each turn`,
-	fullStack: `Set attack and defense to ${fullStackValue} next turn`,
 	typeCast: "Heal instead of hurting next turn",
-	binarySearch: "Halve opponent's health next turn",
+	windowsUpdate: `+${windowsUpdateValue} attack, defense, and health each turn`,
+	
 	
 	// debuffs
-	lowBattery: `Every turn, lose ${lowBatteryValue} health`,
 	blueScreen: "Cannot attack or defend next turn", 
-	computerVirus: `Cannot defend for ${computerVirusCount1} turns`, 
+	bug: "Sometimes, attack or defense is 0",
+	computerVirus: `Cannot defend for ${computerVirusCount1} turns`,
+	infiniteLoop: `Defend for ${infiniteLoopValue} forever`, 
+	lowBattery: `Every turn, lose ${lowBatteryValue} health`,
 	ransomware: `50% chance to lose ${ransomwareValue} health next turn`,
 	slowComputer: `Cannot attack for ${slowComputerCount1} turns`, 
-	syntaxError: `Lose ${syntaxErrorValue} health next turn`, 
-	infiniteLoop: `Defend for ${infiniteLoopValue} forever`, 
-	bug: "Sometimes, attack or defense is 0" 
+	syntaxError: `Lose ${syntaxErrorValue} health next turn`
 
 }
 
