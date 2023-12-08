@@ -124,7 +124,7 @@ function showRules(){
 	xml.onerror=function(){alert("Error in Showing Active Rulesets")}
 	xml.onload=function(){
 		let resp = JSON.parse(this.responseText);
-	
+		console.log(resp);
 		/*
 		let resp = [{Rule_ID:0, Ruleset_name:"rule1"}, {Rule_ID:1, Ruleset_name:"rule2"},
 					{Rule_ID:2, Ruleset_name:"rule3"}]
@@ -139,8 +139,8 @@ function showRules(){
 
 
 			ruleid = resp[rule].Rule_ID;
-			col1.innerHTML=ruleid;
-			col2.innerHTML=resp[rule].Ruleset_name;
+			col1.innerHTML=resp[rule].Ruleset_name;
+			col2.innerHTML="Delete";
 
 			col2.classList.add("col2");
 
@@ -148,7 +148,7 @@ function showRules(){
 			(function (ruleid) {
 				col2.addEventListener("click", function () {
 					 //alert(gameID);
-					 alert(ruleid)
+					 alert(ruleid+" will be deleted")
 
 				});
 			})(ruleid)
