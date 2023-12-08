@@ -14,11 +14,6 @@ function showRules() {
     document.getElementById("rulePopup").classList.toggle("active")
 }
 
-
-let ruleTable = document.getElementById("ruleTable");
-console.log("outsideRuletable: "+ ruleTable)
-
-
 function displayRulesets(){
 
 	// takes the rulesets table from the html
@@ -82,20 +77,57 @@ function displayRulesets(){
 }
 displayRulesets();
 
-function displayHealth() {
 
-	let health = document.getElementById("health")
+
+function displayHealth() { // to display initial health in rulesets popup
+
+	let health = document.getElementById("health") // get id from div in popup
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("Error!")};
 	xmlhttp.onload = function(){
 
 		let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
 		for(let Rule in resp){
-			health.classList.add("p-list");
-			health.innerHTML = ("Initial Health: " + resp[Rule].InitialHealth);
+			health.classList.add("r-titles"); // add class to div
+			health.innerHTML = ("Initial Health: " + resp[Rule].InitialHealth); // display initial health from database table
 		}
 	}
 	xmlhttp.open("GET","http://104.196.1.169/rules");
 	xmlhttp.send();
 }
 displayHealth();
+
+
+function displayPowers() {
+
+	let createPowers = document.getElementById("powers")
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.onerror = function(){alert("Error!")};
+	xmlhttp.onload = function(){
+
+		let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
+		for(let Rule in resp){
+
+			let powers = document.createElement("div")
+
+			if(resp[Rule].antiMalware == true){
+				createPowers.appendChild(powers)
+				console.log("antiMalware true")
+				powers.innerHTML = (resp[Rule].antiMalware);
+			}
+			if(resp[Rule].binarySearch == true){
+				createPowers.appendChild(powers)
+				console.log("binarySearch true")
+				powers.innerHTML = (resp[Rule].binarySearch);
+			}
+			if(resp[Rule].ciphertext == true){
+				createPowers.appendChild(powers)
+				console.log("ciphertext true")
+				powers.innerHTML = (resp[Rule].ciphertext);
+			}
+		}
+	}
+	xmlhttp.open("GET","http://104.196.1.169/rules");
+	xmlhttp.send();
+}
+displayPowers();
