@@ -59,7 +59,7 @@ body {
 
 .rules {
     background-image: url('images/homeTableBackground.png');
-    padding-top: 1px;
+    padding-top: 0px;
     text-align: center;
     margin: auto;
     width: 45rem;
@@ -70,6 +70,7 @@ body {
 }
 
 .instructions {
+    font-size:18pt;
     font-size: x-large;
     color: white;
     text-align: left;
