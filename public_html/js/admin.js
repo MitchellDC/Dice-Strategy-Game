@@ -62,7 +62,7 @@ function createPopup() {
 			xml.onerror=function(){alert("Create Error")}
 			xml.onload=function(){
 				let resp = JSON.parse(this.responseText);
-				console.log(resp);
+				console.log(resp)
 
 			}
 			let rules = {
@@ -91,17 +91,18 @@ function createPopup() {
 				health:health
 			}
 
-			xml.open("GET","http://104.196.1.169/createrule?"+queryObjectToString(rules)););
+			xml.open("GET","http://104.196.1.169/createrule?"+queryObjectToString(rules));
 			xml.send();
 
 
-		});
 		}
+		
 		else{
 			alert("Type In Ruleset Name!")
 			document.getElementById("ruleName").value="";
 
 		}
+	});
 }
 
 
