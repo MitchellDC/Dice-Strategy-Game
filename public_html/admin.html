@@ -16,109 +16,18 @@
         <div class="modal" id="mymodal" >
             <div class="modal-content" id="content">
                 <span class="close" data-bs-dismiss="modal">&times;</span>
-                <p>Standard Ruleset
-                    <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#stModal">Delete</button>
-                    <div class="modal" id="stModal">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-
-                                <div class="modal-header">
-                                    <h4 class="modal-title" id="checking">Are you sure you want to delete ruleset?</h4>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                </div>
-                                
-                                <div class="modal-body">
-                                    <!-- recursionAttacks -> +2 Shield  -->
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <td><button class="btn btn-link" id="deleteSt" onclick="delete_Ruleset()">Yes</button></td>
-                                            </tr>
-                                        </thead>
-                                    </table>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </p>
-                <p>Risk Ruleset
-                    <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#riModal">Delete</button>
-                    <div class="modal" id="riModal">
-                        <div class="modal-dialog modal-md">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Powerups</h4>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>                                </div>
-                                
-                                <div class="modal-body">
-                                    firewall -> +10 Attact
-                                    <br>
-                                    systemUpgrade -> +5 Shield 
-                                    <br>
-                                    reboot -> +2 Health
-                                    <br>
-                                    recharge -> +3 Shield
-                                </div>
-
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Disadvantages</h4>
-                                </div>
-                                <div class="modal-body">
-                                    computerVirus -> -10 Attack 
-                                    <br>
-                                    Wbu Me?? -> -5 Shield 
-                                    <br>
-                                    Closed Brain -> -12 Attack 
-                                    <br>
-                                    Vacationing -> -15 Shield 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </p>
-                <p>Chaos Ruleset
-                    <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#chModal">Delete</button>
-                    <div class="modal" id="chModal">
-                        <div class="modal-dialog modal-md">
-                            <div class="modal-content">
-
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Powerups</h4>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                </div>
-                                
-                                <div class="modal-body">
-                                    Beat Elahi in ping pong -> +20 Shield 
-                                    <br>
-                                    Yahoo.com -> +20 Attack 
-                                    <br>
-                                    China -> +5 Health
-                                    <br>
-                                    Pass ICPC Problem -> Wins Game
-                                </div>
-
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Disadvantages</h4>
-                                </div>
-                                <div class="modal-body">
-                                    Mitchell -> -50 Attack 
-                                    <br>
-                                    Uhhhhh -> -20 Shield 
-                                    <br>
-                                    Seesi lags -> -15 Attack 
-                                    <br>
-                                    YOU MISS MY CLASS!! -> Game Over  
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </p>
-                
+                <table class="table table-bordered" id="ruleTable">
+                    <thead>
+                        <th>Are you sure you want to delete ruleset?</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><button class="btn btn-link" id="deleteSt" onclick="delete_Ruleset()">Something</button></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </div>
+      </div>
 
 
 
