@@ -65,10 +65,10 @@ const gameID = localStorage.getItem('gameID');
 
 function getGame(){
 	let xmlhttp = new XMLHttpRequest();
-	xmlhttp.onerror = function(){alert("Error!")};
+	xmlhttp.onerror = function(){alert("AJAX Error!")};
 	xmlhttp.onload = function(){
 		if(this.status!=200){
-			alert("Error!");
+			alert("Server Error!");
 		}
 		else{
 			let resp = JSON.parse(this.responseText); //takes response from the server of the game data
@@ -104,6 +104,7 @@ function getGame(){
 	xmlhttp.open("GET","http://104.196.1.169/game?"+queryObjectToString({gameId:gameID})); 
 	xmlhttp.send();
 }
+getGame()
 
 function queryObjectToString(query) {
     let properties = Object.keys(query);
@@ -173,13 +174,12 @@ let powerups1 = {
 let debuffs1 = {
     syntaxError: false, // once, lose 5 health
     lowBattery: false, // every turn, lose 2 health
-	/*
     blueScreen: false, // once, cannot attack or defend
     computerVirus: false, // two turns, cannot defend
     slowComputer: false, // two turns, cannot attack
     ransomware: false, // once, 50% chance to lose 15 health
 	infiniteLoop: false, // defend for 1 forever
-	bug: false // sometimes, attack or defense is 0 */
+	bug: false // sometimes, attack or defense is 0 
 
 }
 
@@ -268,8 +268,8 @@ document.getElementById("confirm4").addEventListener("click", addDebuffRight)
 
 
 // display health initially
-document.getElementById("p1Health").innerHTML = "Proppa (" + health1 + "/" + maxHealth + ")";
-document.getElementById("p2Health").innerHTML = "Frost (" + health2 + "/" + maxHealth + ")";
+document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
+document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
 
 
 // display initial powerups (should be none by default)
@@ -639,8 +639,8 @@ function healthChange() {
 	}
 
 	// display health
-	document.getElementById("p1Health").innerHTML = "Proppa (" + health1 + "/" + maxHealth + ")";
-	document.getElementById("p2Health").innerHTML = "Frost (" + health2 + "/" + maxHealth + ")";
+	document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
+	document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
 
 	//update powerups after battle
 	totalTurns = totalTurns + 1;
