@@ -33,18 +33,101 @@ let descriptions = {
 
 }
 
+const gameID = localStorage.getItem('gameID');
+
+function getGame(){
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.onerror = function(){alert("Error!")};
+	xmlhttp.onload = function(){
+		if(this.status!=200){
+			alert("Error!");
+		}
+		else{
+			let resp = JSON.parse(this.responseText); //takes response from the server of the game data
+			console.log(resp);
+			username1=resp[0].Player1_uname; //takes username of player 1
+			username2=resp[0].Player2_uname; //takes username of player2
+
+			health1=resp[0].Player1_Health; //takes health of player1
+			health2=resp[0].Player2_Health; //takes health of player2 // MIGHT BE DIFFERENT
+
+			turn=resp[0].turn; //takes who's turn 
+			totalTurns=resp[0].totalturns; //takes the number of turns in the game
+
+			attackNum1=resp[0].Player1_attack; //takes the attacknum of player 1
+			defenseNum1=resp[0].Player1_defense; // takes the defensenum of player 1
+
+			attackNum2=resp[0].Player2_attack; //takes the attack dice value of player 2
+            defenseNum2=resp[0].Player2_defense; // takes the defense dice value of player 2
+
+			rulesetID = resp[0].Rule_ID;
+
+			if(attackNum1>0) //checks if player 1 has rolled his dice, makes diceReady1 true if so
+			{
+				diceReady1=true;
+			}
+			if(attackNum2>0) //checks if player 2 has rolled his dice, makes diceReady2 true if so
+			{
+				diceReady2=true;
+			}
+		}
+	}
+
+	xmlhttp.open("GET","http://104.196.1.169/game?"+queryObjectToString({gameId:gameID})); 
+	xmlhttp.send();
+}
+
+function queryObjectToString(query) {
+    let properties = Object.keys(query);
+    let arrOfQuesryStrings = properties.map(prop => prop+"="+query[prop]);
+    return(arrOfQuesryStrings.join('&'));
+ }
+
+function initRuleset() {
+	let xmlhttp = new XMLHttpRequest()
+	xmlhttp.onerror = function() {alert("init ruleset Ajax error!")}
+	xmlhttp.onload = function() {
+		if (this.status != 200) {
+			alert("Server Error")
+		}
+		else {
+			let resp = JSON.parse(this.responseText)
+			//ruleset = resp[0].
+
+		}
+	}
+
+		xmlhttp.open("GET", "http://104.196.1.169/rule?"+ queryObjectToString({ruleId:rulesetID}))
+		xmlhttp.send()
+
+	
+}
+
+
+
+/*
+
+if recurion == true in database
+	powerupsEnabled.push(recursion)
+
+powerupsEnabled = [recursion, hack, tryCatch]
+
+for item in powerupsEnabled:
+	powerups1.item = false
+
+
+powerups1 = {
+	recursion: false,
+	hack: false,
+	tryCatch: false
+
+}*/
+
+
+
+
 let player1CurrentItems = []
 let powerups1 = {
-    recursion: false, // every turn, do damage twice 
-    hack: false, // every turn, lower enemy defense by 4
-    tryCatch: false, // upon death, revive with 5 health
-    antiMalware: false, // every turn, minimum defense is 4
-    reboot: false, // once, restore all health
-    powerOutlet: false, // every turn, gain 2 health
-    cyberSecurity: false, // every turn, gain 2 defense
-    windowsUpdate: false, // every turn, gain 1 attack, 1 defense, 1 health
-    firewall: false, // once, become immune
-	fullStack: false, // once, make attack and defense both 8
 	typeCast: false, // heal instead of hurting next turn
 	ciphertext: false, // hide attack from enemy
 	binarySearch: false // halve opponent's health next turn
@@ -66,7 +149,7 @@ let debuffs1 = {
 
 let player2CurrentItems = []
 let powerups2 = {
-    recursion: false, // every turn, do damage twice 
+	recursion: false, // every turn, do damage twice 
     hack: false, // every turn, lower enemy defense by 4
     tryCatch: false, // upon death, revive with 5 health
     antiMalware: false, // every turn, minimum defense is 4
@@ -557,6 +640,7 @@ function healthChange() {
 
 	//update powerups after battle
 	totalTurns = totalTurns + 1;
+	document.getElementById("turn").innerHTML = "turn: " +totalTurns
 	console.log("turn: " + totalTurns)
 
 	updatePowerups(1)
@@ -721,8 +805,6 @@ function updatePowerups(player) {
 		}
 
 	}*/
-
-
 
 
 // lets player 1 select dice if appropriate
