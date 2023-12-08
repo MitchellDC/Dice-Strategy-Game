@@ -1,153 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+    <head>
+        <title> 330 Project Home Page </title>
+	    <link rel="stylesheet" href="css/home.css">
+    </head>
 
-<head>
-    <link rel="stylesheet" href="css/game.css">
-    
-    <title>ZERO ONE</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <body id = "homepage">
+        <div class="flex">
+            <h2 class="header" id="player"> Welcome Player! </h2>
+            <div id="home" onclick="toHome()">Home</div>
+            <div id="rules" onclick="toRules()">Rulesets</div>
+            <div id="signout" onclick="toLogin()">Sign Out</div>
+        </div style="overflow:scroll">
+        <h1 class="title"> <u>GAMES</u> </h1>
 
-</head>
 
-<body>
 
-    <div class = "title">
-        Zero One
-        <button class="btn btn-outline-success btn-lg" id="BackHome">Back Home</button>
-    </div>
+	<div class="rules" id="noGames" style="height:5%;color:white;border:black;width:25%;margin-bottom:-35px;"><b>No Active Games</b></div>
+        <table class="background" id="gameTable">
+            <tr class="list">
+                <td class="details"><b>Opponent</b></td>
+                <td class="details"><b>Ruleset</b></td>
+                <td class="details"><b>Turn</b></td>
+            </tr>
 
-    <div class = "turn" id = "turn">
-        turn: 0
-    </div>
-
-    <div class = "instructions" id = "instructionsId">
-        
-    </div>
-
-    <div class = "player">
-        
-        <div class = "playerHealth" id="p1Health">
-            
-        </div>
-
-        <div class = "playerFace">
-            <img src = "css/images/zeroEmoji.jpg" class = "playerFaceImage"> </img>
-        </div>
-
-        <div class = "playerDice">
-            <div class = "playerDefenseDice">
-                <img src = "css/images/dd0.jpeg" id = "defenseDiceId" class = "playerDefenseDiceImage"> </img>
-            </div>
-            <div class = "playerAttackDice">
-                <img src = "css/images/dd0.jpeg" id = "attackDiceId" class = "playerAttackDiceImage"> </img>
-            </div>
-
-            <div class = "playerButton">
-                <button type="button" class="btn btn-outline-success btn-lg" id="rollButtonId"> ROLL </button>
-            </div>
-        </div>
-
-    </div>
-
-    <div class = "enemy">
-        <div class = "enemyHealth" id="p2Health">
-            
-        </div>
-
-        <div class = "enemyFace">
-            <img src = "css/images/oneEmoji.jpg" class = "enemyFaceImage"> </img>
-        </div>
-
-        <div class = "enemyDice">
-            <div class = "enemyDefenseDice">
-                <img src = "css/images/dd0.jpeg" class = "enemyDefenseDiceImage" id="defenseDiceId2"> </img>
-            </div>
-            <div class = "enemyAttackDice">
-                <img src = "css/images/dd0.jpeg" class = "enemyAttackDiceImage" id="attackDiceId2"> </img>
-            </div>
-            <div class = "enemyButton">
-                <button type="button" class="btn btn-outline-success btn-lg" id="rollButtonId2"> ROLL </button>
-            </div>
-
-        </div>
-    </div>
-
-    <div class = "center">
-        <div class = "defenseIcon">
-            <img src = "css/images/shield2.png" class = "defenseIconImage">
-
-        </div>
-
-        <div class = "attackIcon">
-            <img src = "css/images/sword2.png" class = "attackIconImage">
-        </div>
-    </div>  
-
-    <div class = "parentPowerups">
-        
-        <div class = "playerPowerups">
-        
-        <table class = "playerPowerupsTable" id = "playerPowerupsTable">
-            <tr class = "tableTopRow"> <td colspan = "1" class = "tableTopName"> playerZero\Items</td> <td class = "tableDuration"> </td> </tr>
-
+	<!--
+            <tr class="scroll">
+                <td class="ongoing" id="list" onclick="toGame()">Demo</td>
+                <td class="details">Risk</td>
+                <td class="details">6</td>
+            </tr>
+            <tr class="scroll">
+                <td class="ongoing" id="list" onclick="toGame()">Demo</td>
+                <td class="details">Standard</td>
+                <td class="details">13</td>
+            </tr> -->
         </table>
-        </div>
 
-        <div class = "enemyPowerups">
-        
-            <table class = "enemyPowerupsTable" id = "enemyPowerupsTable">
-                <tr class = "tableTopRow"> <td colspan = "1" class = "tableTopName"> playerOne\Items </td> <td class = "tableDuration"> </td> </tr>
-    
-            </table>
+        <button class="new" onclick="createGame()"><b>Create Game</b></button>
+
+        <div class="popup" id="popup1">
+            <div class="overlay"></div>
+            <div class="content">
+                <div class="close" onclick="createGame()">&times;</div>
+                <div class="flex-create">
+                    <div> <b>Opponent:</b> </div>
+                    <div><b>Ruleset:</b> </div>
+                </div>
+                <div class="flex-inputs">
+                    <input type="text" id="newGame" placeholder="opponent username">
+                    <select id="rulesets">
+                        <option value="0">select ruleset</option>
+                    </select>
+                    <img class="arrow" src="css/images/arrow.webp" onclick="toNewGame()">
+                </div>
             </div>
-
-    </div>
-
-    <div class="popup" id="select">
-        <div class="overlay"></div>
-        <div class="content">
-            <h1 class = "ritemAll" id="rpower1"></h1>
-            <br>
-            <div class = "pdescAll" id="pdesc"></div>
-            <br><br>
-            <button class = "confirmAll" id="confirm1">Select</button>
+            
+        <h2 class="title"><u>HOW TO PLAY</u></h2>
+        <div class="rules">
+            <ul class="instructions">
+                <li>test1  </li>
+                <li>  test2</li>
+                <li> tst23 </li>
+            </ul>
         </div>
-    </div>
-
-    <div class="popup2" id="select2">
-        <div class="overlay"></div>
-        <div class="content">
-            <h1 class = "ritemAll" id="rpower2"></h1>
-            <br>
-            <div class = "pdescAll" id="pdesc2"></div>
-            <br><br>
-            <button class = "confirmAll" id="confirm2">Select</button>
-        </div>
-    </div>
-
-    <div class="popup3" id="debuff1">
-        <div class="overlay"></div>
-        <div class="content">
-            <h1 class = "ritemAll" id="rdebuff1" style="color: #fff;"></h1>
-            <br>
-            <div class = "pdescAll" id="ddesc"></div>
-            <br><br>
-            <button class = "confirmAll" id="confirm3">Select</button>
-        </div>
-    </div>
-
-    <div class="popup4" id="debuff2">
-        <div class="overlay"></div>
-        <div class="content">
-            <h1 class = "ritemAll" id="rdebuff2" style="color: #fff;"></h1>
-            <br>
-            <div class = "pdescAll" id="ddesc2"></div>
-            <br><br>
-            <button class = "confirmAll" id="confirm4">Select</button>
-        </div>
-    </div>
-
-    <script src= "js/gameLocal.js"> </script>
-
-</body>
+    </body>
+     <script src='js/home.js'></script>
 </html>
