@@ -78,6 +78,10 @@
         padding-right: 25px;
     }
 
+    .bullet {
+        margin-left:5px;
+    }
+
     .background {
         width: 70%;
         height: 10%;
