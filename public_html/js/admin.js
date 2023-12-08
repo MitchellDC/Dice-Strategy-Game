@@ -63,6 +63,22 @@ function createPopup() {
 			xml.onload=function(){
 				let resp = JSON.parse(this.responseText);
 				console.log(resp)
+				if(this.status==200){
+					let resp = this.responseText;
+					console.log(resp)
+					if(resp=="found"){
+						alert("Choose another ruleset name!");
+						document.getElementById("ruleName").value="";
+					}
+					else if(resp=="created"){
+						alert("Ruleset Created!");
+						location.reload();
+					}
+				}
+				else{
+					alert("Error in creating ruleset")
+				}
+				
 
 			}
 			let rules = {
