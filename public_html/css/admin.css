@@ -138,6 +138,15 @@ body .flex-container {
     width: 550px;
 }
 
+table td.col2{
+    color: blue;
+    text-decoration: underline;
+}
+
+table td.col2:hover {
+    cursor: pointer;
+}
+
 .flex-container button {
     width: 50%;
     height: 30%;
