@@ -28,7 +28,8 @@ function displayRulesets(){
 		else{
 
 			let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
-			console.log(resp)
+
+			console.log("resp: "+resp)
 			if(resp.length>0){
 				document.getElementById("noRulesets").style.display="none"; // hides the table that says no rulesets if there are no active rulesets
 				console.log("ruletable: " + ruleTable)
