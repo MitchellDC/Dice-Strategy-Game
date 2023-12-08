@@ -379,7 +379,7 @@ function createRule(qu,res){
 			}
 			else{
 				res.writeHead(200,{'Content-Type':'text/plain'});
-				if(result.length==0){ //ruleset name already exists
+				if(result.length!=0){ //ruleset name already exists
 					res.write("found")
 					res.end();
 				}
