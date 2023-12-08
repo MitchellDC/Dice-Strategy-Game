@@ -207,7 +207,7 @@ let totalTurns = 0;
 let randomPowerupKey1
 let randomPowerupKey2
 powerupFreq = 2
-debuffFreq = 4
+debuffFreq = 1
 
 let turn = ""; // db key "turn" with value of player's username
 /*
