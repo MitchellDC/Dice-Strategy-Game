@@ -58,9 +58,9 @@ function displayRulesets(){
 					// anonymous function where opponent is different at each iteration of the loop
 
 					(function (ruleID) {
-						ruleColumn.addEventListener("click", function () {
-							 alert(ruleID);
-							document.getElementById("ruleset").classList.toggle("active")
+						newRow.addEventListener("click", function () {
+						alert(ruleID);
+						document.getElementById("ruleset").classList.toggle("active")
 						});
 					})(ruleID)
 
