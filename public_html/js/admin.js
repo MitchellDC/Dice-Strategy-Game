@@ -61,8 +61,19 @@ function createPopup() {
 			let xml = new XMLHttpRequest();
 			xml.onerror=function(){alert("Create Error")}
 			xml.onload=function(){
-				let resp = JSON.parse(this.responseText);
+				let resp = this.responseText;
 				console.log(resp)
+
+				if(resp=="found"){
+					alert("Rule name already exits")
+					document.getElementById("health").value="";
+				}
+				else if(resp=="created"){
+					alert("Ruleset Successfully Created");
+					location.reload;
+				}
+				alert("Ruleset Successfully Created");
+				location.reload();
 
 			}
 			let rules = {
