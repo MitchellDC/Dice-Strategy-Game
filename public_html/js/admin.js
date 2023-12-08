@@ -61,22 +61,8 @@ function createPopup() {
 			let xml = new XMLHttpRequest();
 			xml.onerror=function(){alert("Create Error")}
 			xml.onload=function(){
-				if(this.status==200){
-					let resp = this.responseText;
-					console.log(resp)
-					if(resp=="found"){
-						alert("Choose another ruleset name!");
-						document.getElementById("ruleName").value="";
-					}
-					else if(resp=="created"){
-						alert("Ruleset Created!");
-						location.reload();
-					}
-				}
-				else{
-					alert("Error in creating ruleset")
-				}
-					
+				let resp = JSON.parse(this.responseText);
+				console.log(resp)
 
 			}
 			let rules = {
@@ -131,8 +117,51 @@ function signout() {
 	location.href = "login.html"; 
 }
 
-function queryObjectToString(query) {
-    let properties = Object.keys(query);
-    let arrOfQuesryStrings = properties.map(prop => prop+"="+query[prop]);
-    return(arrOfQuesryStrings.join('&'));
- }
+
+function showRules(){
+	let xml = new XMLHttpRequest();
+	let rules = document.getElementByClassName("checkboxes");
+	xml.onerror=function(){alert("Error in Showing Active Rulesets")}
+	xml.onload=function(){
+		let resp = JSON.parse(this.responseText);
+	
+		/*
+		let resp = [{Rule_ID:0, Ruleset_name:"rule1"}, {Rule_ID:1, Ruleset_name:"rule2"},
+					{Rule_ID:2, Ruleset_name:"rule3"}]
+		//let rules = document.getElementById("rules");*/
+		let rules = document.getElementById("rules");
+
+		for(rule in resp){
+			newRow = rules.insertRow();
+
+			col1=newRow.insertCell(0);
+			col2=newRow.insertCell(1);
+
+
+			ruleid = resp[rule].Rule_ID;
+			col1.innerHTML=ruleid;
+			col2.innerHTML=resp[rule].Ruleset_name;
+
+			col2.classList.add("col2");
+
+			
+			(function (ruleid) {
+				col2.addEventListener("click", function () {
+					 //alert(gameID);
+					 alert(ruleid)
+
+				});
+			})(ruleid)
+
+
+
+		}
+
+
+		
+	}
+	xml.open("GET","http://104.196.1.169/rules");
+	xml.send()
+
+}
+showRules();
