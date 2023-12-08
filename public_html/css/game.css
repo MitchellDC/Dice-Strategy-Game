@@ -159,7 +159,7 @@ body {
     left: 0px;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.5);
     z-index: 1;
     display: none;
 }
@@ -167,18 +167,42 @@ body {
 .popup .content {
     position: absolute;
     top: 50%;
-    left: 50%;
-    background:#0bafd4;
-    border: 2px solid #fff;
+    left: 51%;
     transform: translate(-50%, -50%) scale(0);
-    width: 30%;
-    height: 40%;
+    width: 35%;
+    height: 45%;
+
+    background:#5e8f67;
+    border: 5px solid #ffffff;
     z-index: 1;
     text-align: center;
-    padding: 20px;
+    padding: 0px;
     box-sizing: border-box;
-    border-radius: 5%;
+    border-radius: 15%;
     font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 16pt;
+
+}
+
+.pdescAll {
+    margin-bottom: -30px;
+    color: rgb(25, 25, 25);
+    margin-top: -20px;
+
+}
+.ritemAll {
+    color:white;
+    font-weight: 0;
+    font-size: 35pt;
+    margin-top: 10px;
+
+}
+.confirmAll {
+    font-weight: bold;
+    border-width: 3px;
+    border-color: black;
+    border-style: solid;
 
 }
 
@@ -198,7 +222,7 @@ body {
     left: 0px;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.5);
     z-index: 1;
     display: none;
 }
@@ -206,17 +230,22 @@ body {
 .popup2 .content {
     position: absolute;
     top: 50%;
-    left: 50%;
-    background:#0bafd4;
-    border: 2px solid #fff;
+    left: 52%;
     transform: translate(-50%, -50%) scale(0);
-    width: 30%;
-    height: 40%;
+    width: 35%;
+    height: 45%;
+
+    background:#5e8f67;
+    border: 5px solid #ffffff;
     z-index: 1;
     text-align: center;
-    padding: 20px;
+    padding: 0px;
     box-sizing: border-box;
-    border-radius: 5%;
+    border-radius: 15%;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 16pt;
+    
 
 }
 
@@ -233,25 +262,31 @@ body {
     left: 0px;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.5);
     z-index: 1;
     display: none;
+
+    
 }
 
 .popup3 .content {
     position: absolute;
     top: 50%;
-    left: 50%;
-    background:#5a3737;
-    border: 2px solid #fff;
+    left: 51%;
     transform: translate(-50%, -50%) scale(0);
-    width: 30%;
-    height: 40%;
+    width: 35%;
+    height: 45%;
+
+    background:#a56f6f;
+    border: 5px solid #ffffff;
     z-index: 1;
     text-align: center;
-    padding: 20px;
+    padding: 0px;
     box-sizing: border-box;
-    border-radius: 5%;
+    border-radius: 15%;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 16pt;
 
 }
 
@@ -270,7 +305,7 @@ body {
     left: 0px;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.5);
     z-index: 1;
     display: none;
 }
@@ -278,17 +313,22 @@ body {
 .popup4 .content {
     position: absolute;
     top: 50%;
-    left: 50%;
-    background:#5a3737;
-    border: 2px solid #fff;
+    left: 52%;
     transform: translate(-50%, -50%) scale(0);
-    width: 30%;
-    height: 40%;
+    width: 35%;
+    height: 45%;
+
+    
+    background:#a56f6f;
+    border: 5px solid #ffffff;
     z-index: 1;
     text-align: center;
-    padding: 20px;
+    padding: 0px;
     box-sizing: border-box;
-    border-radius: 5%;
+    border-radius: 15%;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 16pt;
 
 }
 
