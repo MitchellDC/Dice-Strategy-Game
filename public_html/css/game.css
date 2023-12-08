@@ -30,7 +30,7 @@ body {
 .instructions {
     width: 100%;
     height: auto;
-    /*background-color: rgb(159, 171, 194);*/
+    
     border-bottom: 1mm solid;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
@@ -38,10 +38,22 @@ body {
     text-align: center;
     color:white;
     margin-top: 10px;
+    margin-right: 20px;
     
-
+    /*background-color: rgb(159, 171, 194);*/
 }
 
+.turn {
+
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 20pt;
+    width: 20%;
+    margin-bottom: -52px;
+    color:white;
+    margin-left: 15px;
+
+}
 /* PLAYER start */
 
 /*entire player side*/
