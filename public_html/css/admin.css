@@ -145,6 +145,17 @@ body .flex-container {
     margin: 20px;
 }
 
+#ruleTable th {
+    text-align: center;
+}
+
+#ruleTable td {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 .modal-body #deleteSt {
     float: left;
     font-size: larger;
