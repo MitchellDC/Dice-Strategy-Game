@@ -61,19 +61,8 @@ function createPopup() {
 			let xml = new XMLHttpRequest();
 			xml.onerror=function(){alert("Create Error")}
 			xml.onload=function(){
-				let resp = this.responseText;
+				let resp = JSON.parse(this.responseText);
 				console.log(resp)
-
-				if(resp=="found"){
-					alert("Rule name already exits")
-					document.getElementById("health").value="";
-				}
-				else if(resp=="created"){
-					alert("Ruleset Successfully Created");
-					location.reload;
-				}
-				alert("Ruleset Successfully Created");
-				location.reload();
 
 			}
 			let rules = {
@@ -157,8 +146,10 @@ function showRules(){
 
 			
 			(function (ruleid) {
-				col2.addEventListener("click", deleteRule(ruleid));
-			})(ruleid)
+				col2.addEventListener("click", function () {
+					deleteRule(ruleid);
+				});
+			})(ruleid);
 
 
 
@@ -179,6 +170,8 @@ function deleteRule(ruleID){
 	xml.onerror=function(){}
 
 	xml.onload=function(){
+		let resp = this.responseText();
+		console.log(resp);
 		if(this.responseText=="deleted")
 		{
 			alert("Rule successfully deleted");
