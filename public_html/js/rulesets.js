@@ -20,8 +20,7 @@ function displayRulesets(){
 
 	// takes the rulesets table from the html
 	let ruleTable = document.getElementById("ruleTable");
-	newRow = ruleTable.insertRow(); // new row is made
-   	console.log("ruletable: "+ ruleTable)
+    console.log("ruletable: "+ ruleTable)
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("Error!")};
 	xmlhttp.onload = function(){
@@ -32,12 +31,13 @@ function displayRulesets(){
 			console.log(resp)
 			if(resp.length>0){
 				document.getElementById("noRulesets").style.display="none"; // hides the table that says no rulesets if there are no active rulesets
-				let column = 0
+				newRow = ruleTable.insertRow(); // new row is made
+				console.log(ruleTable)
                 for(Rule in resp){ // every ruleset in the response is taken
-                    if (column == 4) {
-                        column = 0
-			newRow
-                    }
+                    
+					newRow
+					console.log("ruletable" + ruleTable)
+					console.log(newRow)
 
 					ruleColumn = newRow.insertCell(column); // variable for the second column of the new row
 
@@ -64,7 +64,6 @@ function displayRulesets(){
 						});
 					})(ruleID)
 
-                    column += column
 				}
 			}
 			else{
