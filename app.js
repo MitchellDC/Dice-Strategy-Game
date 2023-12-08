@@ -369,6 +369,20 @@ function createRule(qu,res){
 	res.end();
 }
 
+
+function getRule(qu,res){
+    res.writeHead(200,{'Content-Type':'application/json'});
+    conn.query("SELECT * FROM Rule WHERE Rule_ID="+qu.ruleID+";",function(err,result){
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.write(JSON.stringify(result))
+            res.end();
+        }
+    });	
+}
+
 const main = function(req, res){
 
         let parsedURL = url.parse(req.url,true);
