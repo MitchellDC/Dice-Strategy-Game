@@ -350,7 +350,6 @@ const sendFile = function(req,res){
 }
 
 function rules(res){
-
     res.writeHead(200,{'Content-Type':'application/json'});
     conn.query("SELECT * FROM Rule;",function(err,result){
         if(err){
@@ -360,9 +359,14 @@ function rules(res){
             res.write(JSON.stringify(result))
             res.end();
         }
-    });
-	
+    });	
+}
 
+function createRule(qu,res){	
+	console.log(qu)
+	res.writeHead(200,{'Content-Type':'text/plain'});
+	res.write("found")
+	res.end();
 }
 
 const main = function(req, res){
@@ -398,7 +402,10 @@ const main = function(req, res){
         }	
 	else if(parsedURL.pathname=="/rule"){
 		return getRule(parsedURL.query,res);
-	}	
+	}
+	else if(parsedURL.pathname=="/createrule"){
+		return createRule(parsedURL.query,res);
+	}
 	else
         {
                 return sendFile(req,res);
