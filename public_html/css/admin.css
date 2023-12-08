@@ -10,7 +10,6 @@ body {
 }
 
 
-
 .header {
     display: flex;
     width: 100%;
@@ -20,7 +19,53 @@ body {
     color: white;
     background-color:#562567;
     box-sizing: border-box;
+
 }
+
+@media only screen and (max-width: 560px) {
+    body .flex-container {
+        display: flex;
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: center;
+        align-items: center;
+        flex-wrap:wrap;
+        height: 550px;
+        width: 550px;
+    }
+    
+    .flex-container button {
+        width: 50%;
+        height: 30%;
+        font-size: xx-large;
+        margin: 5px;
+    }
+    .header {
+        display: flex;
+        width: 110%;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Courier New', Courier, monospace;
+        color: white;
+        background-color:#562567;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.header #signout {
+    position: absolute;
+    right: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+
+
+/* body #create {
 
 .header #signout {
     position: absolute;
@@ -44,7 +89,7 @@ body #edit {
     margin-top: 13%;
     margin-left: 10%;
     font-size: 4rem;   
-}
+} */
 
 #mymodal {
     display: none;
@@ -80,6 +125,24 @@ body div #content {
     float: right;
 }
 
+body .flex-container {
+    display: flex;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: center;
+    height: 550px;
+    width: 550px;
+}
+
+.flex-container button {
+    width: 50%;
+    height: 30%;
+    font-size: xx-large;
+    margin: 20px;
+}
 
 
 .close {
@@ -91,6 +154,21 @@ body div #content {
 
 .close:hover,
 .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.create_close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.create_close:hover,
+.create_close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
