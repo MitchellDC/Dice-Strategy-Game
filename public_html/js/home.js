@@ -97,6 +97,7 @@ function showGames(){
 					}
 					//let opponent = getUser(opponentId);
 					//alert("opponent");
+					console.log("gameTable: " + gameTable)
 					newRow = gameTable.insertRow(); // new row is made
 
 					newRow.classList.add("scroll"); // class 'scroll' is assigned to the new row
