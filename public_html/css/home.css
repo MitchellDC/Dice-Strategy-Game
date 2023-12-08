@@ -72,6 +72,7 @@ body {
 .instructions {
     font-size: x-large;
     color: white;
+    text-align: left;
 }
 
 .background {
