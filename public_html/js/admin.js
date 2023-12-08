@@ -61,16 +61,18 @@ function createPopup() {
 			let xml = new XMLHttpRequest();
 			xml.onerror=function(){alert("Create Error")}
 			xml.onload=function(){
-				if(this.status==200)
+				if(this.status==200){
 					let resp = this.responseText;
 					console.log(resp)
 					if(resp=="found"){
 						alert("Choose another ruleset name!");
 						document.getElementById("ruleName").value="";
 					}
-					else if(res=="creted")
+					else if(resp=="created"){
 						alert("Ruleset Created!");
 						location.reload();
+					}
+				}
 				else{
 					alert("Error in creating ruleset")
 				}
