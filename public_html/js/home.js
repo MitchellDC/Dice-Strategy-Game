@@ -106,7 +106,7 @@ function showGames(){
 
 					//alert("opponent: "+opponent);
 					oppColumn.innerHTML = opponent; // labels the first column of the first row as the user name of the opponent
-					ruleColumn.innerHTML = resp[game].Ruleset_name; //displays the ruleset (will change once the rulesets are applied)
+					ruleColumn.innerHTML = resp[game].Rule_Name; //displays the ruleset (will change once the rulesets are applied)
 					turnColumn.innerHTML = resp[game].totalturns; //displays the number of turns in the game, taken from the server
 
 					oppColumn.classList.add("ongoing"); //assigns class to the first column
