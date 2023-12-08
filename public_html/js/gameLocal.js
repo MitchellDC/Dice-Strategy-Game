@@ -33,9 +33,7 @@ let descriptions = {
 
 }
 
-
 const gameID = localStorage.getItem('gameID');
-
 
 function getGame(){
 	let xmlhttp = new XMLHttpRequest();
@@ -86,10 +84,7 @@ function queryObjectToString(query) {
  }
 
 function initRuleset() {
-	let ruleID = localStorage.getItem('ruleID'); 
 	let xmlhttp = new XMLHttpRequest()
-
-	let enabledItems=[];
 	xmlhttp.onerror = function() {alert("init ruleset Ajax error!")}
 	xmlhttp.onload = function() {
 		if (this.status != 200) {
@@ -97,16 +92,12 @@ function initRuleset() {
 		}
 		else {
 			let resp = JSON.parse(this.responseText)
-
-			for(item in resp){
-				console.log(item);
-			}
 			//ruleset = resp[0].
 
 		}
 	}
 
-		xmlhttp.open("GET", "http://104.196.1.169/rule?"+ queryObjectToString({ruleID:ruleID}))
+		xmlhttp.open("GET", "http://104.196.1.169/rule?"+ queryObjectToString({ruleId:rulesetID}))
 		xmlhttp.send()
 
 	
@@ -131,6 +122,7 @@ powerups1 = {
 	tryCatch: false
 
 }*/
+
 
 
 
@@ -648,6 +640,7 @@ function healthChange() {
 
 	//update powerups after battle
 	totalTurns = totalTurns + 1;
+	document.getElementById("turn").innerHTML = "turn: " +totalTurns
 	console.log("turn: " + totalTurns)
 
 	updatePowerups(1)
