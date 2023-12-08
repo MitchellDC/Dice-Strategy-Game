@@ -32,7 +32,7 @@ function displayRulesets(){
 			if(resp.length>0){
 				document.getElementById("noRulesets").style.display="none"; // hides the table that says no rulesets if there are no active rulesets
 				let column = 0
-				let newRow = ruleTable.insertRow(); // new row is made
+				newRow = ruleTable.insertRow(); // new row is made
                 for(Rule in resp){ // every ruleset in the response is taken
                     if (column == 4) {
                         column = 0
