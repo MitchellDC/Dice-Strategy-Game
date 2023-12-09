@@ -63,6 +63,12 @@ let descriptions = {
 const gameID = localStorage.getItem('gameID');
 const user = localStorage.getItem('username')
 let enabledPowerups
+let health1
+let health2
+let maxHealth
+let username1
+let username2
+
 console.log("initialized enabled powerups")
 
 function getGameState(){
@@ -79,7 +85,8 @@ function getGameState(){
 			username1=resp[0].Player1_uname; //takes username of player 1
 			username2=resp[0].Player2_uname; //takes username of player2
 
-			maxHealth=resp[0].Player1_Health; //takes health of player1
+			health1=resp[0].Player1_Health;
+			health2=resp[0].Player2_Health; //takes health of player1
 
 			turn=resp[0].turn; //takes who's turn 
 			totalTurns=resp[0].totalturns; //takes the number of turns in the game
@@ -91,7 +98,7 @@ function getGameState(){
             defenseNum2=resp[0].Player2_defense; // takes the defense dice value of player 2
 
 			rulesetID = resp[0].Rule_ID;
-			console.log(rulesetID)
+			
 
 			if(attackNum1>0)  // MAYBE NEED TO CHANGE
 			{
@@ -103,7 +110,7 @@ function getGameState(){
 			}
 					
 			if (totalTurns == 0) {
-				
+				maxHealth = resp[0].Player1_Health;
 				initializeRule()
 			}
 		}
@@ -117,6 +124,11 @@ function getGameState(){
 // should only run when turns = 0
 function initializeRule() {
 	enabledPowerups = []
+
+	// initial
+	document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
+	document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
+
 	console.log("made enabledPowerups empty")
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("AJAX Error!")};
@@ -243,19 +255,17 @@ let atkDiceId2 = document.getElementById("attackDiceId2")
 let selected = null
 
 // db get once at the start of the game (GET) 
-let username1 = null 
-let username2 = null
 
 // db get all of these values every turn (GET)
-let maxHealth = 30 // ADMIN changes this
+
 let attackNum1 // db player1Attack
 let defenseNum1 // db player1Defense
 let attackNum2 // db player2Attack
 let defenseNum2 // db player2Defense
 let change1
 let change2
-let health1 = maxHealth; // db player1Health
-let health2 = maxHealth; // db player2Health
+health1 = maxHealth; // db player1Health
+health2 = maxHealth; // db player2Health
 let totalTurns = 0;
 
 let randomPowerupKey1
@@ -284,8 +294,7 @@ document.getElementById("confirm4").addEventListener("click", addDebuffRight)
 
 
 // display health initially
-document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
-document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
+
 
 
 // display initial powerups (should be none by default)
