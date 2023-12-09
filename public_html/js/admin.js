@@ -180,7 +180,7 @@ function showRules(){
 showRules();
 
 function deleteRule(ruleID){
-	alert("Rule "+ruleID+" will be deleted")
+
 	let xml = new XMLHttpRequest();
 	xml.onerror=function(){}
 
