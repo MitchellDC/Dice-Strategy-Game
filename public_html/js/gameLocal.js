@@ -128,10 +128,14 @@ function initializeRule() {
 			ruleKeys = Object.keys(ruleJSON)
 			ruleLength = Object.keys(ruleJSON).length
 
+			console.log(ruleKeys)
+			console.log(ruleLength)
+
 			// adds all enabled powerups to "enabledPowerups" array
 			for(let i = 3; i < ruleLength; i++) {
-
+				console.log("in for loop")
 				if (ruleJSON[ruleKeys[i]]) {
+					console.log("in condition")
 					enabledPowerups.push(ruleKeys[i])
 					console.log("pushed: " + ruleKeys[i])
 				}
