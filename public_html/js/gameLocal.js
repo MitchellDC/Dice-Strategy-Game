@@ -1024,6 +1024,7 @@ function playerAction(){
 		
 		rollAttack();
 		rollDefense();
+		console.log(enabledPowerups)
 
 		document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Re-roll one die (or skip)"
 		document.getElementById("rollButtonId").innerHTML = "SKIP"
