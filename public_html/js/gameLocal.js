@@ -91,6 +91,7 @@ function getGameState(){
             defenseNum2=resp[0].Player2_defense; // takes the defense dice value of player 2
 
 			rulesetID = resp[0].Rule_ID;
+			console.log(rulesetID)
 
 			if(attackNum1>0)  // MAYBE NEED TO CHANGE
 			{
@@ -102,6 +103,7 @@ function getGameState(){
 			}
 					
 			if (totalTurns == 0) {
+				
 				initializeRule()
 			}
 		}
