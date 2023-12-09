@@ -74,6 +74,7 @@ function getGameState(){
 		}
 		else{
 			let resp = JSON.parse(this.responseText); //takes response from the server of the game data
+			
 			console.log(resp);
 			username1=resp[0].Player1_uname; //takes username of player 1
 			username2=resp[0].Player2_uname; //takes username of player2
@@ -123,7 +124,7 @@ function initializeRule() {
 		}
 		else{
 			let ruleJSON = JSON.parse(this.responseText); //takes response from the server of the game data
-			
+			console.log("ruleJSON: " + ruleJSON)
 			ruleKeys = Object.keys(ruleJSON)
 			ruleLength = Object.keys(ruleJSON).length
 
