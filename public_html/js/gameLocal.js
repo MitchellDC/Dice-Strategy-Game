@@ -28,6 +28,7 @@ computerVirusCount1 = 2
 slowComputerCount2 = 2
 computerVirusCount2 = 2
 
+
 firewallCount = 2
 
 let descriptions = {
@@ -61,7 +62,7 @@ let descriptions = {
 
 const gameID = localStorage.getItem('gameID');
 const user = localStorage.getItem('username')
-
+let enabledPowerups
 
 function getGameState(){
 	let xmlhttp = new XMLHttpRequest();
@@ -111,7 +112,7 @@ function getGameState(){
 
 // should only run when turns = 0
 function initializeRule() {
-	let enabledPowerups = []
+	enabledPowerups = []
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("AJAX Error!")};
 	xmlhttp.onload = function(){
@@ -346,7 +347,7 @@ function refreshDice(){
 
 // defense dice roll logic and updates pic
 function rollDefense() {
-	if(turn==0){
+	if(turn==username1){
 		defenseNum1 = Math.floor(Math.random() * 6) + 1;
 		dfsDiceId.src = `css/images/dd${defenseNum1}.jpeg`
 	}
@@ -358,7 +359,7 @@ function rollDefense() {
 }
 // attack dice roll logic and updates pic
 function rollAttack() {
-	if(turn==0){
+	if(turn==username1){
 		attackNum1 = Math.floor(Math.random() * 6) + 1;
 		atkDiceId.src = `css/images/dd${attackNum1}.jpeg`;
     }
@@ -906,7 +907,7 @@ function updatePowerups(player) {
 function allowSelection() {
 	// attack dice player 1
 	atkDiceId.addEventListener("click", function() {
-		if(turn==0 && stage!=1 && stage!=4 ){ 
+		if(turn==username1 && stage!=1 && stage!=4 ){ 
 			if(stage==2) {
 				// can deselect
 				if(selected==atkDiceId){
@@ -931,7 +932,7 @@ function allowSelection() {
 	})
 	// defense dice player 1
 	dfsDiceId.addEventListener("click", function() {
-		if(turn==0 && stage!=1 && stage!=4 ){
+		if(turn==username1 && stage!=1 && stage!=4 ){
 			if(stage==2){
 				// can deselect
 				if(selected==dfsDiceId){
@@ -960,7 +961,7 @@ function allowSelection() {
 function allowSelection2(){
 	// player 2 attack dice
 	atkDiceId2.addEventListener("click", function() {
-		if(turn==1 && stage!=1 && stage!=4){
+		if(turn==username2 && stage!=1 && stage!=4){
 			if(stage==2){
 				// can deselect 
 				if(selected==atkDiceId2){
@@ -984,7 +985,7 @@ function allowSelection2(){
 	})
 	// player 2 defense dice
 	dfsDiceId2.addEventListener("click", function() {
-		if(turn==1 && stage!=1 && stage!=4){
+		if(turn==username2 && stage!=1 && stage!=4){
 			if(stage==2){
 				// can deselect 
 				if(selected==dfsDiceId2){
@@ -1070,7 +1071,7 @@ function playerAction(){
 		}
 		else{
 			// player 1's turn
-			if(turn==0){
+			if(turn==username1){
 				if (selected == atkDiceId) {
 					attackNum1+=2
 					atkDiceId.src = `css/images/dd${attackNum1}.jpeg`
@@ -1120,7 +1121,7 @@ function playerAction(){
 		// battle not ready
 		else{
 			// player 1's turn
-			if(turn==0){
+			if(turn==username1){
 				//alert("player 2's turn now") // change to pop-up
 				
 				document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Roll dice Player 2"
