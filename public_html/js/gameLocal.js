@@ -127,10 +127,11 @@ function initializeRule() {
 		else{
 			let ruleJSON = JSON.parse(this.responseText); //takes response from the server of the game data
 			console.log("ruleJSON: " + ruleJSON)
-			console.log(ruleJSON)
+			ruleObj = ruleJSON[0]
+			console.log(ruleObj)
 			
-			ruleKeys = Object.keys(ruleJSON[0])
-			ruleLength = Object.keys(ruleJSON[0]).length
+			ruleKeys = Object.keys()
+			ruleLength = Object.keys(ruleObj).length
 
 			console.log(ruleKeys)
 			console.log(ruleLength)
@@ -138,7 +139,7 @@ function initializeRule() {
 			// adds all enabled powerups to "enabledPowerups" array
 			for(let i = 3; i < ruleLength; i++) {
 				console.log("in for loop")
-				if (ruleJSON[ruleKeys[i]]) {
+				if (ruleObj[ruleKeys[i]]) {
 					console.log("in condition")
 					enabledPowerups.push(ruleKeys[i])
 					console.log("pushed: " + ruleKeys[i])
