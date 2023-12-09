@@ -4,8 +4,6 @@
 // make code for if player loads in game and it isn't their turn
 /* end goals and notes */
 
-
-
 // powerups balancing
 recursionAttacks = 2
 hackValue = 3
@@ -33,7 +31,6 @@ computerVirusCount2 = 2
 firewallCount = 2
 
 let descriptions = {
-
 	// powerups 
 	antiMalware: `Make defense at least ${antiMalwareThreshold} each turn`,
 	binarySearch: "Halve opponent's health next turn",
@@ -63,8 +60,10 @@ let descriptions = {
 }
 
 const gameID = localStorage.getItem('gameID');
+const user = localStorage.getItem('username')
 
-function getGame(){
+
+function getGameState(){
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("AJAX Error!")};
 	xmlhttp.onload = function(){
@@ -77,8 +76,7 @@ function getGame(){
 			username1=resp[0].Player1_uname; //takes username of player 1
 			username2=resp[0].Player2_uname; //takes username of player2
 
-			health1=resp[0].Player1_Health; //takes health of player1
-			health2=resp[0].Player2_Health; //takes health of player2 // MIGHT BE DIFFERENT
+			maxHealth=resp[0].Player1_Health; //takes health of player1
 
 			turn=resp[0].turn; //takes who's turn 
 			totalTurns=resp[0].totalturns; //takes the number of turns in the game
@@ -91,7 +89,7 @@ function getGame(){
 
 			rulesetID = resp[0].Rule_ID;
 
-			if(attackNum1>0) //checks if player 1 has rolled his dice, makes diceReady1 true if so
+			if(attackNum1>0)  // MAYBE NEED TO CHANGE
 			{
 				diceReady1=true;
 			}
@@ -99,40 +97,54 @@ function getGame(){
 			{
 				diceReady2=true;
 			}
+					
+			if (totalTurns == 0) {
+				initializeRule()
+			}
 		}
+
 	}
 
 	xmlhttp.open("GET","http://104.196.1.169/game?"+queryObjectToString({gameId:gameID})); 
 	xmlhttp.send();
 }
-getGame()
+
+// should only run when turns = 0
+function initializeRule() {
+	let enabledPowerups = []
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.onerror = function(){alert("AJAX Error!")};
+	xmlhttp.onload = function(){
+		if(this.status!=200){
+			alert("Server Error!");
+		}
+		else{
+			let ruleJSON = JSON.parse(this.responseText); //takes response from the server of the game data
+			
+			ruleKeys = Object.keys(ruleJSON)
+			ruleLength = Object.keys(ruleJSON).length
+
+			// adds all enabled powerups to "enabledPowerups" array
+			for(let i = 3; i < ruleLength; i++) {
+
+				if (ruleJSON[ruleKeys[i]]) {
+					enabledPowerups.push(ruleKeys[i])
+				}
+			}
+		}
+	}	
+
+	xmlhttp.open("GET","http://104.196.1.169/rule?"+queryObjectToString({ruleID:rulesetID})); 
+	xmlhttp.send();
+}
+
+getGameState()
 
 function queryObjectToString(query) {
     let properties = Object.keys(query);
     let arrOfQuesryStrings = properties.map(prop => prop+"="+query[prop]);
     return(arrOfQuesryStrings.join('&'));
  }
-
-function initRuleset() {
-	let xmlhttp = new XMLHttpRequest()
-	xmlhttp.onerror = function() {alert("init ruleset Ajax error!")}
-	xmlhttp.onload = function() {
-		if (this.status != 200) {
-			alert("Server Error")
-		}
-		else {
-			let resp = JSON.parse(this.responseText)
-			//ruleset = resp[0].
-
-		}
-	}
-
-		xmlhttp.open("GET", "http://104.196.1.169/rule?"+ queryObjectToString({ruleId:rulesetID}))
-		xmlhttp.send()
-
-	
-}
-
 
 
 /*
@@ -154,20 +166,10 @@ powerups1 = {
 }*/
 
 let player1CurrentItems = []
+
+
 let powerups1 = {
-	recursion: false, // every turn, do damage twice 
-    hack: false, // every turn, lower enemy defense by 4
-    tryCatch: false, // upon death, revive with 5 health
-    antiMalware: false, // every turn, minimum defense is 4
-    reboot: false, // once, restore all health
-    powerOutlet: false, // every turn, gain 2 health
-    cyberSecurity: false, // every turn, gain 2 defense
-    windowsUpdate: false, // every turn, gain 1 attack, 1 defense, 1 health
-    firewall: false, // once, become immune
-	fullStack: false, // once, make attack and defense both 8
-	typeCast: false, // heal instead of hurting next turn
-	ciphertext: false, // hide attack from enemy
-	binarySearch: false // halve opponent's health next turn
+
 
 }
 
@@ -253,8 +255,6 @@ let turn = ""; // db key "turn" with value of player's username
 */
 
 document.getElementById("rollButtonId2").style.display = "none";
-
-
 
 /* front-end only, is true when a player's dice are completely rolled and ready for battle
 is true after ending turn */
