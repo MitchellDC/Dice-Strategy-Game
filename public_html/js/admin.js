@@ -185,11 +185,12 @@ function deleteRule(ruleID){
 	xml.onerror=function(){}
 
 	xml.onload=function(){
-		let resp = this.responseText();
+		let resp = this.responseText;
 		console.log(resp);
 		if(this.responseText=="deleted")
 		{
 			alert("Rule successfully deleted");
+			location.reload();
 		}
 	}
 
