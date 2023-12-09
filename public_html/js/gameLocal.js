@@ -128,8 +128,9 @@ function initializeRule() {
 			let ruleJSON = JSON.parse(this.responseText); //takes response from the server of the game data
 			console.log("ruleJSON: " + ruleJSON)
 			console.log(ruleJSON)
-			ruleKeys = Object.keys(ruleJSON)
-			ruleLength = Object.keys(ruleJSON).length
+			
+			ruleKeys = Object.keys(ruleJSON[0])
+			ruleLength = Object.keys(ruleJSON[0]).length
 
 			console.log(ruleKeys)
 			console.log(ruleLength)
