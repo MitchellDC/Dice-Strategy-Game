@@ -130,7 +130,7 @@ function initializeRule() {
 			ruleObj = ruleJSON[0]
 			console.log(ruleObj)
 			
-			ruleKeys = Object.keys()
+			ruleKeys = Object.keys(ruleObj)
 			ruleLength = Object.keys(ruleObj).length
 
 			console.log(ruleKeys)
