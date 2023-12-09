@@ -63,6 +63,7 @@ let descriptions = {
 const gameID = localStorage.getItem('gameID');
 const user = localStorage.getItem('username')
 let enabledPowerups
+console.log("initialized enabled powerups")
 
 function getGameState(){
 	let xmlhttp = new XMLHttpRequest();
@@ -113,6 +114,7 @@ function getGameState(){
 // should only run when turns = 0
 function initializeRule() {
 	enabledPowerups = []
+	console.log("made enabledPowerups empty")
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("AJAX Error!")};
 	xmlhttp.onload = function(){
@@ -130,6 +132,7 @@ function initializeRule() {
 
 				if (ruleJSON[ruleKeys[i]]) {
 					enabledPowerups.push(ruleKeys[i])
+					console.log("pushed: " + ruleKeys[i])
 				}
 			}
 		}
