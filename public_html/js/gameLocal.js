@@ -145,6 +145,7 @@ function initializeRule() {
 		}
 	}	
 
+	console.log("http://104.196.1.169/rule?"+queryObjectToString({ruleID:rulesetID}))
 	xmlhttp.open("GET","http://104.196.1.169/rule?"+queryObjectToString({ruleID:rulesetID})); 
 	xmlhttp.send();
 }
