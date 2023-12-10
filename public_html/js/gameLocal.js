@@ -98,6 +98,8 @@ function getGameState(){
 
 			rulesetID = resp[0].Rule_ID;
 
+
+			}
 			// display instructions and turn count
 			document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Roll dice " + turn
 			document.getElementById("turn").innerHTML = "turn: " +totalTurns
@@ -141,11 +143,11 @@ function getGameState(){
 				diceReady2 = true
 			}
 
-			initializeRule()
+			initializeRule(resp)
 			getMaxHealth()
 
 		}
-	}
+	
 	xmlhttp.open("GET","http://104.196.1.169/game?"+queryObjectToString({gameId:gameID})); 
 	xmlhttp.send();
 }
@@ -173,7 +175,7 @@ function getMaxHealth() {
 
 }
 // should only run when turns = 0
-function initializeRule() {
+function initializeRule(resp) {
 	enabledPowerups = []
 	enabledDebuffs = []
 
@@ -189,12 +191,11 @@ function initializeRule() {
 		}
 		else{
 			let ruleJSON = JSON.parse(this.responseText); //takes response from the server of the game data
-
 			ruleObj = ruleJSON[0]
-
 			ruleKeys = Object.keys(ruleObj)
 			ruleLength = Object.keys(ruleObj).length
 
+			// CREATES ENABLED ITEMS
 			// adds all enabled powerups to "enabledPowerups" array (16 = number of powerups + 3)
 			for(let i = 3; i < 16; i++) {
 				if (ruleObj[ruleKeys[i]]) {
@@ -209,7 +210,8 @@ function initializeRule() {
 				}
 			}
 
-			populateItems(enabledPowerups, enabledDebuffs)
+			populateItems(enabledPowerups, enabledDebuffs, resp)
+			
 		}
 	}	
 
@@ -225,19 +227,21 @@ let powerups2 = {}
 let debuffs1 = {}
 let debuffs2 = {}
 
-function populateItems(enabledPowerups, enabledDebuffs) {
+function populateItems(enabledPowerups, enabledDebuffs, resp) {
 	console.log(enabledPowerups)
 	console.log(enabledDebuffs)
+	console.log(resp[0])
 
 	for (let i = 0; i < enabledPowerups.length; i++){
-		powerups1[enabledPowerups[i]] = false
-		powerups2[enabledPowerups[i]] = false
+		tmp = toString(enabledPowerups[i] + "1")
+		console.log("tmp: " + tmp)
+		if (resp[0].arg == true) {
+			console.log("tmp sliced: " + tmp.slice(0, -1))
+			powerups1[tmp.slice(0, -1)] = true
+			console.log("added" + tmp.slice(0, -1) + "to powerups1" )
+			console.log(powerups1)
+		}
 	}
-	for (let i = 0; i < enabledDebuffs.length; i++){
-		debuffs1[enabledDebuffs[i]] = false
-		debuffs2[enabledDebuffs[i]] = false
-	}
-
 }
 
 function queryObjectToString(query) {
