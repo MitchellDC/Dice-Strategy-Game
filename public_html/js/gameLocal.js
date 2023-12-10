@@ -28,7 +28,6 @@ computerVirusCount1 = 2
 slowComputerCount2 = 2
 computerVirusCount2 = 2
 
-
 firewallCount = 2
 
 let descriptions = {
@@ -46,7 +45,6 @@ let descriptions = {
 	tryCatch: "Avoid death once",
 	typeCast: "Heal instead of hurting next turn",
 	windowsUpdate: `+${windowsUpdateValue} attack, defense, and health each turn`,
-	
 	
 	// debuffs
 	blueScreen: "Cannot attack or defend next turn", 
@@ -133,7 +131,7 @@ function getGameState(){
 				//browser gets refreshed every 5 seconds if it is not user's turn
 				setInterval(() => {
 					location.reload();
-				}, 999999); // change back to 5000
+				}, 9999999); // change back to 5000
 			}
 			
 			if (dfsDiceId.src != `http://104.196.1.169/css/images/dd0.jpeg`) {
@@ -144,45 +142,18 @@ function getGameState(){
 				diceReady2 = true
 			}
 
-
-			getMaxHealth()
-
 		}
 	
 	xmlhttp.open("GET","http://104.196.1.169/game?"+queryObjectToString({gameId:gameID})); 
 	xmlhttp.send();
 }
 
-// get and displays max health
-function getMaxHealth() {
-	let xmlhttp = new XMLHttpRequest();
-	xmlhttp.onerror = function(){alert("AJAX Error!")};
-	xmlhttp.onload = function(){
-		if(this.status!=200) {
-			alert("Server Error!");
-		}
-	
-		else {
-			let ruleJSON = JSON.parse(this.responseText); //takes response from the server of the game data
-			maxHealth = ruleJSON[0].InitialHealth
-			document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
-			document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
-			
-		}
-	}	
 
-	xmlhttp.open("GET","http://104.196.1.169/rule?"+queryObjectToString({ruleID:rulesetID})); 
-	xmlhttp.send();
-
-}
-// should only run when turns = 0
+// CREATES AND POPULATES enabledPowerups and enabledDebuffs
+// also displays initial health
 function initializeRule(resp) {
 	enabledPowerups = []
 	enabledDebuffs = []
-
-	// initial
-	document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
-	document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
 
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("AJAX Error!")};
@@ -195,8 +166,7 @@ function initializeRule(resp) {
 			ruleObj = ruleJSON[0]
 			ruleKeys = Object.keys(ruleObj)
 			ruleLength = Object.keys(ruleObj).length
-
-			// CREATES ENABLED ITEMS
+			
 			// adds all enabled powerups to "enabledPowerups" array (16 = number of powerups + 3)
 			for(let i = 3; i < 16; i++) {
 				if (ruleObj[ruleKeys[i]]) {
@@ -210,42 +180,125 @@ function initializeRule(resp) {
 					enabledDebuffs.push(ruleKeys[i])
 				}
 			}
+			// display initial health
+			maxHealth = ruleJSON[0].InitialHealth
+			document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
+			document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
 
 			populateItems(enabledPowerups, enabledDebuffs, resp)
 			
 		}
 	}	
 
-
 	xmlhttp.open("GET","http://104.196.1.169/rule?"+queryObjectToString({ruleID:rulesetID})); 
 	xmlhttp.send();
 }
 
-getGameState()
 
 let powerups1 = {}
 let powerups2 = {}
 let debuffs1 = {}
 let debuffs2 = {}
 
+getGameState()
+
+
 function populateItems(enabledPowerups, enabledDebuffs, resp) {
 	console.log(enabledPowerups)
 	console.log(enabledDebuffs)
 	console.log(resp[0])
 
-	for (let i = 0; i < enabledPowerups.length; i++){
-
-		tmp = "recursion1"
-		console.log(resp[0].recursion1)
-		console.log(resp[0].tmp)
-
-		if (resp[0].enabledPowerups[i] == true) {
-			console.log("tmp sliced: " + tmp.slice(0, -1))
-			powerups[tmp.slice(0, -1)] = true
-			console.log("added" + tmp.slice(0, -1) + "to powerups1" )
-			console.log(powerups1)
-		}
+	// every turn, set client side equal to game table in database
+	if (enabledPowerups.includes(antiMalware)) {
+		powerups1[antiMalware] = (resp[0].antiMalware1) ? true : false
+		powerups2[antiMalware] = (resp[0].antiMalware2) ? true : false
 	}
+	if (enabledPowerups.includes(binarySearch)) {
+		powerups1[binarySearch] = (resp[0].binarySearch1) ? true : false
+		powerups2[binarySearch] = (resp[0].binarySearch2) ? true : false
+	}
+	if (enabledPowerups.includes(ciphertext)) {
+		powerups1[ciphertext] = (resp[0].ciphertext1) ? true : false
+		powerups2[ciphertext] = (resp[0].ciphertext2) ? true : false
+	}
+	if (enabledPowerups.includes(cyberSecurity)) {
+		powerups1[cyberSecurity] = (resp[0].cyberSecurity1) ? true : false
+		powerups2[cyberSecurity] = (resp[0].cyberSecurity2) ? true : false
+	}
+	if (enabledPowerups.includes(firewall)) {
+		powerups1[firewall] = (resp[0].firewall1) ? true : false
+		powerups2[firewall] = (resp[0].firewall2) ? true : false
+	}
+	if (enabledPowerups.includes(fullStack)) {
+		powerups1[fullStack] = (resp[0].fullStack1) ? true : false
+		powerups2[fullStack] = (resp[0].fullStack2) ? true : false
+	}
+	if (enabledPowerups.includes(hack)) {
+		powerups1[hack] = (resp[0].hack1) ? true : false
+		powerups2[hack] = (resp[0].hack2) ? true : false
+	}
+	if (enabledPowerups.includes(powerOutlet)) {
+		powerups1[powerOutlet] = (resp[0].powerOutlet1) ? true : false
+		powerups2[powerOutlet] = (resp[0].powerOutlet2) ? true : false
+	}
+	if (enabledPowerups.includes(reboot)) {
+		powerups1[reboot] = (resp[0].reboot1) ? true : false
+		powerups2[reboot] = (resp[0].reboot2) ? true : false
+	}
+	if (enabledPowerups.includes(recursion)) {
+		powerups1[recursion] = (resp[0].recursion1) ? true : false
+		powerups2[recursion] = (resp[0].recursion2) ? true : false
+	}
+	if (enabledPowerups.includes(tryCatch)) {
+		powerups1[tryCatch] = (resp[0].tryCatch1) ? true : false
+		powerups2[tryCatch] = (resp[0].tryCatch2) ? true : false
+	}
+	if (enabledPowerups.includes(typeCast)) {
+		powerups1[typeCast] = (resp[0].typeCast1) ? true : false
+		powerups2[typeCast] = (resp[0].typeCast2) ? true : false
+	}
+	if (enabledPowerups.includes(windowsUpdate)) {
+		powerups1[windowsUpdate] = (resp[0].windowsUpdate1) ? true : false
+		powerups2[windowsUpdate] = (resp[0].windowsUpdate2) ? true : false
+	}
+	// debuffs
+	if (enabledDebuffs.includes(blueScreen)) {
+		debuffs1[blueScreen] = (resp[0].blueScreen1) ? true : false
+		debuffs2[blueScreen] = (resp[0].blueScreen2) ? true : false
+	}
+	if (enabledDebuffs.includes(bug)) {
+		debuffs1[bug] = (resp[0].bug1) ? true : false
+		debuffs2[bug] = (resp[0].bug2) ? true : false
+	}
+	if (enabledDebuffs.includes(computerVirus)) {
+		debuffs1[computerVirus] = (resp[0].computerVirus1) ? true : false
+		debuffs2[computerVirus] = (resp[0].computerVirus2) ? true : false
+	}
+	if (enabledDebuffs.includes(infiniteLoop)) {
+		debuffs1[infiniteLoop] = (resp[0].infiniteLoop1) ? true : false
+		debuffs2[infiniteLoop] = (resp[0].infiniteLoop2) ? true : false
+	}
+	if (enabledDebuffs.includes(lowBattery)) {
+		debuffs1[lowBattery] = (resp[0].lowBattery1) ? true : false
+		debuffs2[lowBattery] = (resp[0].lowBattery2) ? true : false
+	}
+	if (enabledDebuffs.includes(ransomware)) {
+		debuffs1[ransomware] = (resp[0].ransomware1) ? true : false
+		debuffs2[ransomware] = (resp[0].ransomware2) ? true : false
+	}
+	if (enabledDebuffs.includes(slowComputer)) {
+		debuffs1[slowComputer] = (resp[0].slowComputer1) ? true : false
+		debuffs2[slowComputer] = (resp[0].slowComputer2) ? true : false
+	}
+	if (enabledDebuffs.includes(syntaxError)) {
+		debuffs1[syntaxError] = (resp[0].syntaxError1) ? true : false
+		debuffs2[syntaxError] = (resp[0].syntaxError2) ? true : false
+	}
+
+	console.log(powerups1)
+	console.log(powerups2)
+	console.log(debuffs1)
+	console.log(debuffs2)
 }
 
 function queryObjectToString(query) {
@@ -306,80 +359,88 @@ document.getElementById("confirm2").addEventListener("click", addPowerupRight)
 document.getElementById("confirm3").addEventListener("click", addDebuffLeft)
 document.getElementById("confirm4").addEventListener("click", addDebuffRight)
 
-// display initial powerups (should be none by default)
-updatePowerups(1)
-updatePowerups(2)
 
-/* addPowerupLeft activated once they click on powerup pop-up button
-for the left powerup */
 function addPowerupLeft() {
-	// makes random powerup true if they click on it
-
-	if (turn == username1) {
-		powerups1[randomPowerupKey1] = true
-	}
-	else {
-		powerups2[randomPowerupKey1] = true
-	}
-
-	// pop-up disappears
-	document.getElementById("select").classList.toggle("active")
-	document.getElementById("select2").classList.toggle("active")
-
-	// add powerup to table
-	updatePowerups(1)
-	updatePowerups(2)
+	addItem(1)
 
 }
 
-// same as function above, but for the right
 function addPowerupRight() {
-
-	if (turn == username1) {
-		powerups1[randomPowerupKey2] = true
-	}
-	else {
-		powerups2[randomPowerupKey2] = true
-	}
-	document.getElementById("select").classList.toggle("active")
-	document.getElementById("select2").classList.toggle("active")
-	updatePowerups(1)
-	updatePowerups(2)
-
+	addItem(2)
 }
 
-/* addDebuffLeft activated once they click on debuff pop-up button
-for the left debuff */
 function addDebuffLeft() {
-
-	if (turn == username1) { 
-		debuffs1[randomDebuffKey1] = true
-	}
-	else {
-		debuffs2[randomDebuffKey1] = true
-	}
-
-	document.getElementById("debuff1").classList.toggle("active")
-	document.getElementById("debuff2").classList.toggle("active")
-	updatePowerups(1)
-	updatePowerups(2)
+	addItem(3)
 
 }
 
 function addDebuffRight() {
-	if (turn == username1) {
-		debuffs1[randomDebuffKey2] = true
-	}
-	else {
-		debuffs2[randomDebuffKey2] = true
-	}
-
-	document.getElementById("debuff1").classList.toggle("active")
-	document.getElementById("debuff2").classList.toggle("active")
-	updatePowerups(1)
-	updatePowerups(2)
+	addItem(4)
 
 }
+// display initial powerups (should be none by default)
+updatePowerups()
+
+
+
+function addItem(selected) {
+	// powerup on left
+	if (selected == 1) {
+		if (turn == username1) {
+			powerups1[randomPowerupKey1] = true
+		}
+		else {
+			powerups2[randomPowerupKey2] = true
+
+		}
+		
+		document.getElementById("select").classList.toggle("active")
+		document.getElementById("select2").classList.toggle("active")
+	}
+
+	// powerup on right
+	if (selected == 2) {
+
+		if (turn == username1) {
+			powerups1[randomPowerupKey1] = true
+		}
+		else {
+			powerups2[randomPowerupKey2] = true
+
+		}
+
+		document.getElementById("select").classList.toggle("active")
+		document.getElementById("select2").classList.toggle("active")
+	}
+
+	// debuff on left
+	if (selected == 3) {
+
+		if (turn == username1) {
+			debuffs1[randomDebuffKey2] = true
+		}
+		else {
+			debuffs2[randomDebuffKey2] = true
+		}
+		document.getElementById("debuff1").classList.toggle("active")
+		document.getElementById("debuff2").classList.toggle("active")
+	}
+
+	// debuff on right
+	if (selected == 4) {
+		if (turn == username1) {
+			debuffs1[randomDebuffKey2] = true
+		}
+		else {
+			debuffs2[randomDebuffKey2] = true
+		}
+
+		document.getElementById("debuff1").classList.toggle("active")
+		document.getElementById("debuff2").classList.toggle("active")
+	}
+
+}
+
 
 // returns text of button to "ROLL" after a player ends turn
 function refreshButtons(){
@@ -701,10 +762,10 @@ function healthChange() {
 	document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
 	document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
 
-	//update powerups after battle
+	// update powerups after battle
 	totalTurns = totalTurns + 1;
-	updatePowerups(1)
-	updatePowerups(2)
+	updatePowerups()
+
 	//document.getElementById("round").innerHTML = ("Round: " + (totalTurns))
 
 	/* SELECT POWERUP code
@@ -849,85 +910,80 @@ function healthChange() {
 // updates powerup arrays
 // is called after every battle and once during start of game
 // clears all rows of powerups and rebuilds based on what is still true
-function updatePowerups(player) {
+function updatePowerups() {
 
 	console.log(powerups1)
 	console.log(powerups2)
 	console.log(debuffs1)
 	console.log(debuffs2)
 
-	if (player == 1) {
-		// clear all rows of powerup table
-		for (let i = 0; i < player1CurrentItems.length; i++) {
-			playerPowerupsTable.deleteRow(-1)
-		}
-		
-		// clears current powerups array
-		player1CurrentItems = []
-		
-		// iterate through all powerups, if true, add back to current powerups
-		// this essentially filters out the values that turned false
-		for (let field in powerups1) {
 
-			if (powerups1[field]) {
-				player1CurrentItems.push(field)
-			}
-
-		}
-		for (let field in debuffs1) {
-			if (debuffs1[field]) {
-				player1CurrentItems.push(field)
-			}
-
-		}
-		
-		// display the true values in the table again
-		for (let i = 0; i < player1CurrentItems.length; i++) {
-			newRow = playerPowerupsTable.insertRow();
-			nameColumn = newRow.insertCell(0)
-			nameColumn.innerHTML = (player1CurrentItems[i] + "> " + descriptions[player1CurrentItems[i]])
-		}
+	// clear all rows of powerup table
+	for (let i = 0; i < player1CurrentItems.length; i++) {
+		playerPowerupsTable.deleteRow(-1)
 	}
-	else if (player == 2) {
-		// clear all rows of powerup table
-		for (let i = 0; i < player2CurrentItems.length; i++) {
-			enemyPowerupsTable.deleteRow(-1)
-		}
-		
-		// clears current powerups array
-		player2CurrentItems = []
-		
-		// iterate through all powerups, if true, add back to current powerups
-		// this essentially filters out the values that turned false
-		for (let field in powerups2) {
+	
+	// clears current powerups array
+	player1CurrentItems = []
+	
+	// iterate through all powerups, if true, add back to current powerups
+	// this essentially filters out the values that turned false
+	for (let field in powerups1) {
 
-			if (powerups2[field]) {
-				player2CurrentItems.push(field)
-			}
+		if (powerups1[field]) {
+			player1CurrentItems.push(field)
+		}
 
+	}
+	for (let field in debuffs1) {
+		if (debuffs1[field]) {
+			player1CurrentItems.push(field)
 		}
-		for (let field in debuffs2) {
-			if (debuffs2[field]) {
-				player2CurrentItems.push(field)
-			}
 
-		}
-		
-		// display the true values in the table again
-		for (let i = 0; i < player2CurrentItems.length; i++) {
-			newRow = enemyPowerupsTable.insertRow();
-			nameColumn = newRow.insertCell(0)
-		
-			nameColumn.innerHTML = (player2CurrentItems[i] + "> " + descriptions[player2CurrentItems[i]])
-		}
+	}
+	
+	// display the true values in the table again
+	for (let i = 0; i < player1CurrentItems.length; i++) {
+		newRow = playerPowerupsTable.insertRow();
+		nameColumn = newRow.insertCell(0)
+		nameColumn.innerHTML = (player1CurrentItems[i] + "> " + descriptions[player1CurrentItems[i]])
 	}
 
+
+	// clear all rows of powerup table
+	for (let i = 0; i < player2CurrentItems.length; i++) {
+		enemyPowerupsTable.deleteRow(-1)
+	}
+	
+	// clears current powerups array
+	player2CurrentItems = []
+	
+	// iterate through all powerups, if true, add back to current powerups
+	// this essentially filters out the values that turned false
+	for (let field in powerups2) {
+
+		if (powerups2[field]) {
+			player2CurrentItems.push(field)
+		}
+
+	}
+	for (let field in debuffs2) {
+		if (debuffs2[field]) {
+			player2CurrentItems.push(field)
+		}
+
+	}
+	
+	// display the true values in the table again
+	for (let i = 0; i < player2CurrentItems.length; i++) {
+		newRow = enemyPowerupsTable.insertRow();
+		nameColumn = newRow.insertCell(0)
+	
+		nameColumn.innerHTML = (player2CurrentItems[i] + "> " + descriptions[player2CurrentItems[i]])
+	}
 
 
 }
-
-
-
 
 	// html display
 	/*
@@ -1186,33 +1242,9 @@ function playerAction(){
 				document.getElementById("rollButtonId2").style.display = "none";
 				document.getElementById("rollButtonId2").innerHTML = "ROLL"
 				document.getElementById("turn").innerHTML = "turn: " + totalTurns
-				let xhr = new XMLHttpRequest();
-				let updated = {
-					player1Health: health1,
-					player2Health: health2,
-					player1Attack: attackNum1,
-					player1Defense: defenseNum1,
-					player2Attack: attackNum2,
-                    player2Defense: defenseNum2,
-					turn: turn,
-					gameId: gameID,
-					totalturns: totalTurns
-					// also do all powerups
-				}
-
-				xhr.onerror = function() {
-					console.log("ajax error")
-				}
-				xhr.onload = function(){
-                    console.log(this.responseText)
-                }
-
-				xhr.open("POST","http://104.196.1.169/updategame1?"+queryObjectToString(updated));
-				//xhr.setRequestHeader('Content-type', 'application/json');
-				xhr.send();
-
 				
 			}
+			
 			// ending player 2's turn
 			else{
 
@@ -1221,33 +1253,79 @@ function playerAction(){
 				document.getElementById("rollButtonId").style.display = "none";
 				document.getElementById("rollButtonId2").style.display = "none";
 				document.getElementById("rollButtonId").innerHTML = "ROLL"
-
-				let xhr = new XMLHttpRequest();
-				let updated = {
-					player1Health: health1,
-					player2Health: health2,
-					player1Attack: attackNum1,
-					player1Defense: defenseNum1,
-					player2Attack: attackNum2,
-                    player2Defense: defenseNum2,
-					turn: turn,
-					gameId: gameID,
-					totalturns: totalTurns
-					// also do all powerups
-				}
-
-				xhr.onerror = function() {
-					console.log("ajax error")
-				}
-				xhr.onload = function(){
-                    console.log(this.responseText)
-                }
-
-				xhr.open("POST","http://104.196.1.169/updategame2?"+queryObjectToString(updated));
-				//xhr.setRequestHeader('Content-type', 'application/json');
-				xhr.send();
+				document.getElementById("turn").innerHTML = "turn: " + totalTurns
 
 			}
+
+			let xhr = new XMLHttpRequest();
+			let updated = {
+				player1Health: health1,
+				player2Health: health2,
+				player1Attack: attackNum1,
+				player1Defense: defenseNum1,
+				player2Attack: attackNum2,
+				player2Defense: defenseNum2,
+				turn: turn,
+				gameId: gameID,
+				totalturns: totalTurns,
+				antiMalware1: powerups1[antiMalware], // powerups start
+				antiMalware2: powerups2[antiMalware],
+				binarySearch1: powerups1[binarySearch],
+				binarySearch2: powerups2[binarySearch],
+				ciphertext1: powerups1[ciphertext],
+				ciphertext2: powerups2[ciphertext],
+				cyberSecurity1: powerups1[cyberSecurity],
+				cyberSecurity2: powerups2[cyberSecurity],
+				firewall1: powerups1[firewall],
+				firewall2: powerups2[firewall],
+				fullStack1: powerups1[fullStack],
+				fullStack2: powerups2[fullStack],
+				hack1: powerups1[hack],
+				hack2: powerups2[hack],
+				powerOutlet1: powerups1[powerOutlet],
+				powerOutlet2: powerups2[powerOutlet],
+				reboot1: powerups1[reboot],
+				reboot2: powerups2[reboot],
+				recursion1: powerups1[recursion],
+				recursion2: powerups2[recursion],
+				tryCatch1: powerups1[tryCatch],
+				tryCatch2: powerups2[tryCatch],
+				typeCast1: powerups1[typeCast],
+				typeCast2: powerups2[typeCast],
+				windowsUpdate1: powerups1[windowsUpdate],
+				windowsUpdate2: powerups2[windowsUpdate],
+				blueScreen1: debuffs1[blueScreen], // debuffs start
+				blueScreen2: debuffs2[blueScreen],
+				bug1: debuffs1[bug],
+				bug2: debuffs2[bug],
+				computerVirus1: debuffs1[computerVirus],
+				computerVirus2: debuffs2[computerVirus],
+				infiniteLoop1: debuffs1[infiniteLoop],
+				infiniteLoop2: debuffs2[infiniteLoop],
+				lowBattery1: debuffs1[lowBattery],
+				lowBattery2: debuffs2[lowBattery],
+				ransomware1: debuffs1[ransomware],
+				ransomware2: debuffs2[ransomware],
+				slowComputer1: debuffs1[slowComputer],
+				slowComputer2: debuffs2[slowComputer],
+				syntaxError1: debuffs1[syntaxError],
+				syntaxError2: debuffs2[syntaxError]
+				
+				// hypothesis: if not in powerups1, will return null to DB
+				// also do all powerups
+			}
+
+			xhr.onerror = function() {
+				console.log("ajax error")
+			}
+			xhr.onload = function(){
+				console.log(this.responseText)
+			}
+
+			xhr.open("POST","http://104.196.1.169/updategame1?"+queryObjectToString(updated));
+			//xhr.setRequestHeader('Content-type', 'application/json');
+			xhr.send();
+
 		}
 
 		// if game ends
