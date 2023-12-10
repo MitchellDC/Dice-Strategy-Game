@@ -236,6 +236,7 @@ function populateItems(enabledPowerups, enabledDebuffs, resp) {
 
 	for (let i = 0; i < enabledPowerups.length; i++){
 		console.log(enabledPowerups[i])
+		console.log(toString(enabledPowerups[i]))
 		tmp = toString(enabledPowerups[i] + "1")
 		console.log(tmp)
 		if (resp[0].arg == true) {
