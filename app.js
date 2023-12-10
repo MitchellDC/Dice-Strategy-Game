@@ -143,6 +143,11 @@ function updateGame2(qu,res){
                 res.end();
         }
         else{
+		console.log(qu);
+		res.writeHead(200,{'Content-Type': 'text/plain'});
+		res.write("updated second");
+		res.end();		
+		/*
                 res.writeHead(200, {'Content-Type': 'text/plain'});
                 conn.query("UPDATE Game SET Player1_Health="+qu.player1Health+","+
                         " Player2_Health="+qu.player2Health+","+
@@ -160,7 +165,7 @@ function updateGame2(qu,res){
                                 res.write("updated");
                                 res.end();
                         }
-                });
+                });*/
         }
 }
 
