@@ -100,6 +100,8 @@ function getGameState(){
 			rulesetID = resp[0].Rule_ID;
 
 			// hide and show buttons buttons
+			document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Roll dice " + turn
+
 			if (turn == user) { 
 				// current player has control
 				if(turn==username1){ //shows player 1 button if the user in a device is player 2
@@ -1168,46 +1170,30 @@ function playerAction(){
 			refreshDice()
 			diceReady1 = false
 			diceReady2 = false
-			document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Roll dice Player "+(turn+1) // need database (username)
+			document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Roll dice " + turn // need database (username)
 			
 		}
 		// battle not ready
 		else{
-			// player 1's turn
+			// ending player 1's turn
 			if(turn==username1){
-				//alert("player 2's turn now") // change to pop-up
-				
-				document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Roll dice Player 2"
+
+				turn = username2
+				document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Roll dice " + username2
 				document.getElementById("rollButtonId").style.display = "none";
-				document.getElementById("rollButtonId2").style.display = "block";
+				document.getElementById("rollButtonId2").style.display = "none";
 				document.getElementById("rollButtonId2").innerHTML = "ROLL"
-				turn = 1
-				// player 1 ends their turn
-				/* db update the following values (PUT)
-					player1Health 
-					player2Health
-					player1Attack
-					player1Defense
-					turn = *opponent user name*
-				*/
-			}
-			// player 2's turn
-			else{
-				//alert("player 1's turn now")  // change to pop-up
 				
-				document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Roll dice Player 1"
-				document.getElementById("rollButtonId").style.display = "block";
+			}
+			// ending player 2's turn
+			else{
+
+				turn = username1
+				document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Roll dice " + username1
+				document.getElementById("rollButtonId").style.display = "none";
 				document.getElementById("rollButtonId2").style.display = "none";
 				document.getElementById("rollButtonId").innerHTML = "ROLL"
-				turn = 0
-				// player 2 ends their turn
-				/* db update the following values (PUT)
-					player1Health 
-					player2Health
-					player2Attack
-					player2Defense
-					turn = *opponent user name*
-				*/
+
 			}
 		}
 
@@ -1258,4 +1244,4 @@ allowSelection2();
 document.getElementById("rollButtonId").addEventListener("click",playerAction)
 document.getElementById("rollButtonId2").addEventListener("click",playerAction)
 
-document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Roll dice Player 1" // db username
+ // db username
