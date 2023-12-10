@@ -57,7 +57,7 @@ else
 					{
 						//Successful Login
 						alert("Successful Login!");
-						localStorage.setItem('username', uname.value); //made username in localstorage for access 
+						localStorage.setItem('username', uname.value.toLowerCase()); //made username in localstorage for access 
 												   //of the variable in the homepage
 						localStorage.setItem('id', resObj.id);
 						if(resObj.is_admin==1)
