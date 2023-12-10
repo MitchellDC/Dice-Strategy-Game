@@ -297,8 +297,8 @@ let totalTurns = 0;
 
 let randomPowerupKey1
 let randomPowerupKey2
-powerupFreq = 1
-debuffFreq = 1
+powerupFreq = 3
+debuffFreq = 5
 
 let turn = ""; // db key "turn" with value of player's username
 /*
@@ -706,7 +706,7 @@ function healthChange() {
 
 	/* SELECT POWERUP code
 	check if the total number of turns is divisible by 3 and not equal to 0*/
-	if (totalTurns % powerupFreq == 0 && totalTurns != 0){
+	if (totalTurns % powerupFreq == 0 && (totalTurns != 0)){
 		// if true pass powerup
 		alert("Select a powerup :)")
 
