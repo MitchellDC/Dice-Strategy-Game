@@ -107,7 +107,7 @@ function updateGame1(qu,res){
 			" fullStack1="+qu.fullStack1+", " +
 			" fullStack2="+qu.fullStack2+", " +
 			" hack1="+qu.hack1+", " +
-			" hack2='"+qu.hack2+", " +
+			" hack2="+qu.hack2+", " +
 			" powerOutlet1="+qu.powerOutlet1+", " +
 			" powerOutlet2="+qu.powerOutlet2+", " +
 			" reboot1="+qu.reboot1+", " +
@@ -135,10 +135,10 @@ function updateGame1(qu,res){
 			" slowComputer1="+qu.slowComputer1+", " + 
 			" slowComputer2="+qu.slowComputer2+", " +
 			" syntaxError1="+qu.syntaxError1+", " +
-			" syntaxError2="+qu.syntaxError2+", " +
+			" syntaxError2="+qu.syntaxError2+" " +
 			   " WHERE Game_ID="+qu.gameId+";",function(err,result){
 			if(err){
-				console.log(err);
+				console.log("error");
 			}
 			else{
 				console.log(qu);
