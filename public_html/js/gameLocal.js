@@ -976,7 +976,7 @@ function allowSelection() {
 				selected = atkDiceId
 				dfsDiceId.style.border = "0px"
 				atkDiceId.style.border = "5px solid #00aa00"
-				document.getElementById("rollButtonId").innerHTML = "+2"
+
            	}
 	      }
 	})
@@ -1002,7 +1002,7 @@ function allowSelection() {
 				selected = dfsDiceId
 				dfsDiceId.style.border = "5px solid #00aa00"
 				atkDiceId.style.border = "0px"
-				document.getElementById("rollButtonId").innerHTML = "+2"
+
 			}
 		}
 	})
@@ -1031,7 +1031,7 @@ function allowSelection2(){
 				selected = atkDiceId2
 				dfsDiceId2.style.border = "0px"
 				atkDiceId2.style.border = "3px solid #00aa00"
-				document.getElementById("rollButtonId").innerHTML = "+2"
+
 			}
 		}
 	})
@@ -1056,7 +1056,7 @@ function allowSelection2(){
 				selected = dfsDiceId2
 				dfsDiceId2.style.border = "3px solid #00aa00"
 				atkDiceId2.style.border = "0px"
-				document.getElementById("rollButtonId").innerHTML = "+2"
+
 			}
 		}
 	})
@@ -1089,7 +1089,7 @@ function playerAction(){
 
 	// stage 2 = select one dice to re-roll
 	else if (stage == 2) {
-		if(turn == 0){
+		if(turn == username1){
 			if (selected == dfsDiceId) {
 				rollDefense()
 				dfsDiceId.style.border = "0px"
