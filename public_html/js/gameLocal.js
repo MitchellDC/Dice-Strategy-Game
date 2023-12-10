@@ -69,7 +69,6 @@ let maxHealth
 let username1
 let username2
 
-console.log("initialized enabled powerups")
 
 function getGameState(){
 	let xmlhttp = new XMLHttpRequest();
@@ -80,8 +79,7 @@ function getGameState(){
 		}
 		else{
 			let resp = JSON.parse(this.responseText); //takes response from the server of the game data
-			
-			console.log(resp);
+
 			username1=resp[0].Player1_uname; //takes username of player 1
 			username2=resp[0].Player2_uname; //takes username of player2
 
@@ -132,9 +130,9 @@ function getGameState(){
 			}
 
 			if (dfsDiceId2.src != `http://104.196.1.169/css/images/dd0.jpeg`) {
-				console.log(dfsDiceId2.src)
+
 				diceReady2 = true
-				console.log("dice ready2 made true")
+
 
 			}
 
@@ -158,7 +156,6 @@ function initializeRule() {
 	document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
 	document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
 
-	console.log("made enabledPowerups empty")
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("AJAX Error!")};
 	xmlhttp.onload = function(){
@@ -167,29 +164,27 @@ function initializeRule() {
 		}
 		else{
 			let ruleJSON = JSON.parse(this.responseText); //takes response from the server of the game data
-			console.log("ruleJSON: " + ruleJSON)
+
 			ruleObj = ruleJSON[0]
-			console.log(ruleObj)
+
 			
 			ruleKeys = Object.keys(ruleObj)
 			ruleLength = Object.keys(ruleObj).length
 
-			console.log(ruleKeys)
-			console.log(ruleLength)
 
 			// adds all enabled powerups to "enabledPowerups" array
 			for(let i = 3; i < ruleLength; i++) {
-				console.log("in for loop")
+
 				if (ruleObj[ruleKeys[i]]) {
-					console.log("in condition")
+
 					enabledPowerups.push(ruleKeys[i])
-					console.log("pushed: " + ruleKeys[i])
+
 				}
 			}
 		}
 	}	
 
-	console.log("http://104.196.1.169/rule?"+queryObjectToString({ruleID:rulesetID}))
+
 	xmlhttp.open("GET","http://104.196.1.169/rule?"+queryObjectToString({ruleID:rulesetID})); 
 	xmlhttp.send();
 }
@@ -314,7 +309,7 @@ document.getElementById("rollButtonId2").style.display = "none";
 is true after ending turn */
 let diceReady1 = false; 
 let diceReady2 = false;
-console.log("dice ready2 made false")
+
 
 // add event listeners to the popup "SELECET" buttons
 document.getElementById("confirm1").addEventListener("click", addPowerupLeft)
@@ -471,7 +466,6 @@ function itemCalculationsBefore() {
     // reboot = once, restore all health
     if (powerups1.reboot) {
         health1 = maxHealth
-		console.log("reboot used: "+ health1)
 		powerups1.reboot = false
 
     }
@@ -701,7 +695,6 @@ function healthChange() {
 	//update powerups after battle
 	totalTurns = totalTurns + 1;
 	document.getElementById("turn").innerHTML = "turn: " +totalTurns
-	console.log("turn: " + totalTurns)
 
 	updatePowerups(1)
 	updatePowerups(2)
@@ -920,15 +913,7 @@ function updatePowerups(player) {
 
 
 }
-	/*
-	player1CurrentDebuffs = []
-	for (let field in debuffs1) {
-		console.log("field: " + field + " " + debuffs1[field])
-		if (debuffs1[field] == true) {
-			player1CurrentPowerups.push(field)
-		}
 
-	}
 
 
 
@@ -1083,7 +1068,6 @@ function playerAction(){
 		
 		rollAttack();
 		rollDefense();
-		console.log(enabledPowerups)
 
 		document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Re-roll one die (or skip)"
 		document.getElementById("rollButtonId").innerHTML = "SKIP"
@@ -1157,7 +1141,6 @@ function playerAction(){
 					dfsDiceId2.style.border = "0px"
 				}
 				diceReady2 = true
-				console.log("dice ready2 made true")
 				document.getElementById("rollButtonId2").innerHTML = "END"
 			}
 			stage = 4
@@ -1168,8 +1151,6 @@ function playerAction(){
 	// stage 4 = after player ends turn
 	else if (stage == 4){
 
-		console.log("1: " + diceReady1)
-		console.log("2: " + diceReady2)
 		// checks if battle ready
 		if(diceReady1 && diceReady2){
 			healthChange()
@@ -1190,6 +1171,32 @@ function playerAction(){
 				document.getElementById("rollButtonId").style.display = "none";
 				document.getElementById("rollButtonId2").style.display = "none";
 				document.getElementById("rollButtonId2").innerHTML = "ROLL"
+
+				let xhr = new XMLHttpRequest();
+				let updated = {
+					player1Health: health1,
+					player2Health: health2,
+					player1Attack: attackNum1,
+					player1Defense: defenseNum1,
+					player2Attack: attackNum2,
+                    player2Defense: defenseNum2,
+					turn: username2,
+					gameId: gameID,
+					totalturns: totalTurns
+					// also do all powerups
+				}
+
+				xhr.onerror = function() {
+					console.log("ajax error")
+				}
+				xhr.onload = function(){
+                    console.log(this.responseText)
+                }
+
+				xhr.open("POST","http://104.196.1.169/updategame1?"+queryObjectToString(updated));
+				//xhr.setRequestHeader('Content-type', 'application/json');
+				xhr.send();
+
 				
 			}
 			// ending player 2's turn
@@ -1217,7 +1224,6 @@ function playerAction(){
 		else if(health1<=0)
 		{
 
-			console.log("player2wins")
 			hideButtons();
 			alert("Player 2 wins!") // replace with username and make pop-up
 			document.getElementById("instructionsId").innerHTML = "Player 2 wins!" // replace with username
@@ -1246,7 +1252,6 @@ function playerAction(){
 
 allowSelection();
 allowSelection2();
-
 
 document.getElementById("rollButtonId").addEventListener("click",playerAction)
 document.getElementById("rollButtonId2").addEventListener("click",playerAction)
