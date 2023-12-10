@@ -213,9 +213,17 @@ function populateItems(enabledPowerups, enabledDebuffs, resp) {
 		powerups1["antiMalware"] = (resp[0].antiMalware1) ? true : false
 		powerups2["antiMalware"] = (resp[0].antiMalware2) ? true : false
 	}
+	else {
+		powerups1["antiMalware"] = null
+		powerups2["antiMalware"] = null
+	}
 	if (enabledPowerups.includes("binarySearch")) {
 		powerups1["binarySearch"] = (resp[0].binarySearch1) ? true : false
 		powerups2["binarySearch"] = (resp[0].binarySearch2) ? true : false
+	}
+	else {
+		powerups1["binarySearch"] = null
+		powerups2["binarySearch"] = null
 	}
 	if (enabledPowerups.includes('ciphertext')) {
 		powerups1['ciphertext'] = (resp[0].ciphertext1) ? true : false
