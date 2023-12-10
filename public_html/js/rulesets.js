@@ -143,6 +143,7 @@ function displayDisadvantages() {
 			disadvantageTypes.forEach(disadvantageType =>{
 				if(resp[Rule][disadvantageType] == true){
 					disadvantages.innerHTML += disadvantageType;
+					console.log(disadvantageType)
 				}
 			})
 
