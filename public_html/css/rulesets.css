@@ -152,3 +152,8 @@ body {
     font-size: x-large;
 }
 
+.flex-rules {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
