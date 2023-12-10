@@ -71,6 +71,22 @@ let username1
 let username2
 
 
+powerups1 = {
+
+
+
+}
+
+
+powerups = {
+	recursion1: false,
+	recursion2: true,
+	hack1: false,
+	hack2: false,
+
+
+}
+
 function getGameState(){
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("AJAX Error!")};
@@ -235,16 +251,14 @@ function populateItems(enabledPowerups, enabledDebuffs, resp) {
 	console.log(resp[0])
 
 	for (let i = 0; i < enabledPowerups.length; i++){
-		tmp = (enabledPowerups[i] + "1").toString()
-		console.log(tmp)
-		console.log(typeof tmp)
-		console.log(typeof resp[0])
-		console.log(typeof resp[0].recursion1)
-		console.log(resp[0].tmp)
+
+		tmp = "recursion1"
 		console.log(resp[0].recursion1)
-		if (resp[0].tmp == true) {
+		console.log(resp[0].tmp)
+
+		if (resp[0].enabledPowerups[i] == true) {
 			console.log("tmp sliced: " + tmp.slice(0, -1))
-			powerups1[tmp.slice(0, -1)] = true
+			powerups[tmp.slice(0, -1)] = true
 			console.log("added" + tmp.slice(0, -1) + "to powerups1" )
 			console.log(powerups1)
 		}
