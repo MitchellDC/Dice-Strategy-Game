@@ -112,20 +112,20 @@ function displayPowers() {
 			let powers = document.createElement("div")
 
 			if(resp[Rule].antiMalware == true){
-				createPowers.appendChild(powers)
 				console.log("antiMalware true")
-				powers.innerHTML = (resp[Rule].antiMalware);
+				powers.innerHTML += "antiMalware";
 			}
 			if(resp[Rule].binarySearch == true){
-				createPowers.appendChild(powers)
 				console.log("binarySearch true")
-				powers.innerHTML = (resp[Rule].binarySearch);
+				powers.innerHTML += "binarySearch";
 			}
 			if(resp[Rule].ciphertext == true){
-				createPowers.appendChild(powers)
 				console.log("ciphertext true")
-				powers.innerHTML = (resp[Rule].ciphertext);
+				powers.innerHTML += "ciphertext";
 			}
+
+			// append divs to container inside popup 
+			createPowers.appendChild(powers)
 		}
 	}
 	xmlhttp.open("GET","http://104.196.1.169/rules");
