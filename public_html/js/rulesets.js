@@ -140,5 +140,3 @@ function displayPowers() {
 	xmlhttp.send();
 }
 displayPowers();
-=======
->>>>>>> 8af57a7269395ef882d1e9955b0f7ebcef74dcf3
