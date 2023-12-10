@@ -101,27 +101,25 @@ displayHealth();
 function displayPowers() {
 
 	let createPowers = document.getElementById("powers")
-	let powers = document.createElement("div")
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("Error!")};
 	xmlhttp.onload = function(){
 
 		let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
 		for(let Rule in resp){
+
+			let powers = document.createElement("div")
+			let powerTypes = ["antiMalware", "binarySearch", "ciphertext"]
+
+			powerTypes.forEach(powerType =>{
+				if(resp[Rule][powerType] == true){
+					powers.innerHTML += powerType;
+				}
+			})
+
 			// append divs to container inside popup 
 			createPowers.appendChild(powers)
 		}
-
-		if(resp[Rule].antiMalware == true){
-			powers.innerHTML += "antiMalware";
-		}
-		if(resp[Rule].binarySearch == true){
-			powers.innerHTML += "binarySearch";
-		}
-		if(resp[Rule].ciphertext == true){
-			powers.innerHTML += "ciphertext";
-		}
-
 	}
 	xmlhttp.open("GET","http://104.196.1.169/rules");
 	xmlhttp.send();
@@ -132,27 +130,25 @@ displayPowers();
 function displayDisadvantages() {
 
 	let createDisadvantages = document.getElementById("disadvantages")
-	let disadvantages = document.createElement("div")
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("Error!")};
 	xmlhttp.onload = function(){
 
 		let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
 		for(let Rule in resp){
+
+			let disadvantages = document.createElement("div")
+			let disadvantageTypes = ["blueScreen", "bug", "computerVirus"]
+
+			disadvantageTypes.forEach(disadvantageType =>{
+				if(resp[Rule][disadvantageType] == true){
+					disadvantages.innerHTML += disadvantageType;
+				}
+			})
+
 			// append divs to container inside popup 
 			createDisadvantages.appendChild(powers)
 		}
-
-		if(resp[Rule].blueScreen == true){
-			disadvantages.innerHTML += "blueScreen";
-		}
-		if(resp[Rule].bug == true){
-			disadvantages.innerHTML += "bug";
-		}
-		if(resp[Rule].computerVirus == true){
-			disadvantages.innerHTML += "computerVirus";
-		}
-
 	}
 	xmlhttp.open("GET","http://104.196.1.169/rules");
 	xmlhttp.send();
