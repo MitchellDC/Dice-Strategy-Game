@@ -209,7 +209,7 @@ function populateItems(enabledPowerups, enabledDebuffs, resp) {
 	console.log(resp[0])
 
 	// every turn, set client side equal to game table in database
-	if (enabledPowerups.includes(antiMalware)) {
+	if (enabledPowerups.includes("antiMalware")) {
 		powerups1[antiMalware] = (resp[0].antiMalware1) ? true : false
 		powerups2[antiMalware] = (resp[0].antiMalware2) ? true : false
 	}
