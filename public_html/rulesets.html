@@ -1,8 +1,11 @@
+<!DOCTYPE html>
 <html>
     <head>
+        
         <title> Ruleset Page </title>
         <link rel = 'stylesheet' href = 'css/rulesets.css'>
-        <script src="js/rulesets.js"></script>
+        
+        
     </head>
 
     <body>
@@ -12,6 +15,7 @@
             <div id="rules" onclick="toRules()">Rulesets</div>
             <div id="signout" onclick="toLogin()">Sign Out</div>
         </div>
+<<<<<<< HEAD
         <br><br>
         <h1 class="title"> <u>ACTIVE RULESETS</u> </h1>
 
@@ -40,7 +44,33 @@
                 </div>
             </div>
 
+=======
+
+        <h1 class="title">ACTIVE RULESETS</h1>
+
+        <table class = "ruleTable" id = "ruleTable">
+            <tr class="list">
+                <td>Rulesets</td>
+            </tr>
+>>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
         </table>
-        
+
+        <div class="rules" id="noRulesets">No Active Rulesets</div>
+
+
+        <div class="rulePopup" id="rulePopup">
+            <div class="overlay"></div>
+            <div class="content">
+                <div class="close" onclick="showRules()">&times;</div>
+                    <div class="popupTitle"><b><u>Ruleset Name</u></b></div>
+                    <br>
+                    <div class="r-titles" id="health"></div>
+                    <div class="flex-rules">
+                        <div class="r-titles" id="powers">Powers</div>
+                    </div>
+            </div>
+        </div> 
+
     </body>
+    <script src="js/rulesets.js"></script>
 </html>

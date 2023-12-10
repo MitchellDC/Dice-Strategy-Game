@@ -13,9 +13,7 @@
         </div style="overflow:scroll">
         <h1 class="title"> <u>GAMES</u> </h1>
 
-
-
-	<p class="rules" id="noGames" style="height:40px;color:white;border:black"><b>No Active Games</b></p>
+	<div class="rules" id="noGames" style="height:5%;color:white;border:black;width:25%;margin-bottom:-35px;"><b>No Active Games</b></div>
         <table class="background" id="gameTable">
             <tr class="list">
                 <td class="details"><b>Opponent</b></td>
@@ -48,18 +46,32 @@
                 </div>
                 <div class="flex-inputs">
                     <input type="text" id="newGame" placeholder="opponent username">
-                    <select id="ruleset">
+                    <select id="rulesets">
                         <option value="0">select ruleset</option>
-                        <option value="1">Risk</option>
                     </select>
                     <img class="arrow" src="css/images/arrow.webp" onclick="toNewGame()">
                 </div>
             </div>
             
-        <h2 class="title"><u>HOW TO PLAY</u></h2>
+        <h2 class="howToPlayTitle"><u>HOW TO PLAY</u></h2>
         <div class="rules">
-            <p class="instructions"> The infinite dice game is a player vs player game that   </p>
+            <ul class="instructions">
+                <li>Every turn
+                    <ul>
+                        <li class= "bullet">Roll the dice</li>
+                        <li class= "bullet">Select one die to re-roll</li>
+                        <li class= "bullet">Select one die to +2</li>
+                        <br>
+                    </ul>
+                </li>
+                <li>After both players roll the dice, each player loses health equal to the enemy's attack minus the player's defense</li>
+                <br>
+                <li>Occasionally, select from a choice between 2 power-ups or debuffs which can help or hinder you. </li>
+                <br>
+                <li>To win, make your opponent's health reach zero.</li>
+            </ul>
         </div>
+        <br>
     </body>
      <script src='js/home.js'></script>
 </html>

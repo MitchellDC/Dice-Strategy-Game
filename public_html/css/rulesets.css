@@ -67,16 +67,27 @@ body {
     color:#0bafd4;
 }
 
+<<<<<<< HEAD
 .background {
     width: 70%;
     height: 10%;
     background-color: #000;
+=======
+.ruleTable {
+    width: 70%;
+    height: 20%;
+    background-color: #0bafd4;
+>>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
     background-position: center;
     background-size: cover;
     margin: auto;
     font-size: xx-large;
     overflow-y:auto;
+<<<<<<< HEAD
     max-height:10%;
+=======
+    max-height:20%;
+>>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
 }
 
 .list {
@@ -137,16 +148,31 @@ body {
     transform: translate(-50%, -50%) scale(1);
 }
 
+<<<<<<< HEAD
 .r-title {
+=======
+.popupTitle {
+>>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
     color: #fff;
     font-size: x-large;
 }
 
-.p-list {
+.r-list {
     color: #fff;
+    font-size: large;
+}
+
+.r-titles {
+    color: #fff;
+<<<<<<< HEAD
     font-size: large;
 }
 
 .listPowers {
     
 }
+=======
+    font-size: x-large;
+}
+
+>>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
