@@ -352,7 +352,7 @@ function populateItems(enabledPowerups, enabledDebuffs, resp) {
 	}
 	else{
 		debuffs1['lowBattery'] = null
-		debuffss2['lowBattery'] = null
+		debuffs2['lowBattery'] = null
 	}
 	if (enabledDebuffs.includes('ransomware')) {
 		debuffs1['ransomware'] = (resp[0].ransomware1) ? true : false
@@ -360,7 +360,7 @@ function populateItems(enabledPowerups, enabledDebuffs, resp) {
 	}
 	else{
 		debuffs1['ransomware'] = null
-		debuffss2['ransomware'] = null
+		debuffs2['ransomware'] = null
 	}
 	if (enabledDebuffs.includes('slowComputer')) {
 		debuffs1['slowComputer'] = (resp[0].slowComputer1) ? true : false
@@ -368,7 +368,7 @@ function populateItems(enabledPowerups, enabledDebuffs, resp) {
 	}
 	else{
 		debuffs1['slowComputer'] = null
-		debuffss2['slowComputer'] = null
+		debuffs2['slowComputer'] = null
 	}
 	if (enabledDebuffs.includes('syntaxError')) {
 		debuffs1['syntaxError'] = (resp[0].syntaxError1) ? true : false
