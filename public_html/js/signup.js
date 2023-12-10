@@ -84,24 +84,6 @@ function clearPasswords(){
 	}
 
 
-function extra(obj){
-	if(obj.email=="found")
-	{
-		alert("Account with your email already exists!");
-		document.getElementById("result").innerHTML = "Account with your email already exists!";
-		clearFields();
-	}
-	else if(obj.uname=="found")
-	{
-		alert("Account with your username already exists!");
-		document.getElementById("result").innerHTML = "Account with your username already exists!";
-		clearFields();
-	}
-	else{
-		alert("Account Successfully Created!");
-		window.open("http://104.196.1.169/login.html","_self");
-	}
-}
 
 const sendAJAX = function(){
 	let xmlhttp = new XMLHttpRequest();
@@ -134,7 +116,7 @@ const sendAJAX = function(){
 }
 
 function checkInputs(){ //making sure every input is valid before sending data to the server
-        let checkEmail = validEmail(email.value);
+    let checkEmail = validEmail(email.value);
 	if(checkEmail) //checks if email is valid
 	{
 		let checkUname = validUname(uname.value);
