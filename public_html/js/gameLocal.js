@@ -133,6 +133,7 @@ function getGameState(){
 
 			if (dfsDiceId2.src != `css/images/dd0.jpeg`) {
 				diceReady2 = true
+				console.log("dice ready2 made true")
 
 			}
 
@@ -312,6 +313,7 @@ document.getElementById("rollButtonId2").style.display = "none";
 is true after ending turn */
 let diceReady1 = false; 
 let diceReady2 = false;
+console.log("dice ready2 made false")
 
 // add event listeners to the popup "SELECET" buttons
 document.getElementById("confirm1").addEventListener("click", addPowerupLeft)
@@ -1138,6 +1140,7 @@ function playerAction(){
 					dfsDiceId.style.border = "0px"
 				}
 				diceReady1 = true
+
 				document.getElementById("rollButtonId").innerHTML = "END"
 			}
 			// player 2's turn
@@ -1153,6 +1156,7 @@ function playerAction(){
 					dfsDiceId2.style.border = "0px"
 				}
 				diceReady2 = true
+				console.log("dice ready2 made true")
 				document.getElementById("rollButtonId2").innerHTML = "END"
 			}
 			stage = 4
