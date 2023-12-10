@@ -164,7 +164,8 @@ function getMaxHealth() {
 	
 		else {
 			let ruleJSON = JSON.parse(this.responseText); //takes response from the server of the game data
-			maxHealth = ruleJSON[0].initializeHealth
+			maxHealth = ruleJSON[0].InitialHealth
+			console.log(maxHealth)
 			document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
 			document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
 			
