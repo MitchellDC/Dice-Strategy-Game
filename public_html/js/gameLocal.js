@@ -232,8 +232,8 @@ let powerups1 = []
 function populateItems(enabledPowerups) {
 	console.log(enabledPowerups)
 
-	for (item in enabledPowerups){
-		powerups1.push(item)
+	for (let i = 0; i< enabledPowerups.length; i++){
+		powerups1.push(enabledPowerups[i])
 
 	}
 
