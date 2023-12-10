@@ -243,6 +243,9 @@ powerups1 = {
 
 }*/
 
+console.log(enabledPowerups)
+
+
 let player1CurrentItems = []
 
 let powerups1 = {
