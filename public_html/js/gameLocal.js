@@ -1178,6 +1178,8 @@ function playerAction(){
     }
 	// stage 4 = after player ends turn
 	else if (stage == 4){
+		// display new turns
+		document.getElementById("turn").innerHTML = "turn: " + totalTurns
 
 		// checks if battle ready
 		if(diceReady1 && diceReady2){
@@ -1199,7 +1201,7 @@ function playerAction(){
 				document.getElementById("rollButtonId").style.display = "none";
 				document.getElementById("rollButtonId2").style.display = "none";
 				document.getElementById("rollButtonId2").innerHTML = "ROLL"
-
+				document.getElementById("turn").innerHTML = "turn: " + totalTurns
 				let xhr = new XMLHttpRequest();
 				let updated = {
 					player1Health: health1,
