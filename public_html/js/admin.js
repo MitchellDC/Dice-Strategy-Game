@@ -33,7 +33,7 @@ function createPopup() {
 		let antiMalware = document.getElementById("antiMalware").checked;	
 		let ciphertext = document.getElementById("ciphertext").checked;
 		let firewall = document.getElementById("firewall").checked;
-		let nonEthicalHacking = document.getElementById("nonEthicalHacking").checked;
+		let hack = document.getElementById("hack").checked;
 		let reboot = document.getElementById("reboot").checked;
 		let powerOutlet = document.getElementById("powerOutlet").checked;
 		let recursion = document.getElementById("recursion").checked;
@@ -84,7 +84,7 @@ function createPopup() {
 				antiMalware:antiMalware,
 				ciphertext:ciphertext,
 				firewall:firewall,
-				nonEthicalHacking:nonEthicalHacking, 
+				hack:hack, 
 				reboot:reboot,
 				powerOutlet:powerOutlet,
 				recursion:recursion, 
