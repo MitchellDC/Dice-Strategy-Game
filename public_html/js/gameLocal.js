@@ -1288,7 +1288,7 @@ function playerAction(){
 				reboot2: powerups2['reboot'],
 				recursion1: powerups1['recursion'],
 				recursion2: powerups2['recursion'],
-				tryCatch1: powerups1[tryCatch],
+				tryCatch1: powerups1['tryCatch'],
 				tryCatch2: powerups2['tryCatch'],
 				typeCast1: powerups1['typeCast'],
 				typeCast2: powerups2['typeCast'],
