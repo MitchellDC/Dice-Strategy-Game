@@ -229,78 +229,154 @@ function populateItems(enabledPowerups, enabledDebuffs, resp) {
 		powerups1['ciphertext'] = (resp[0].ciphertext1) ? true : false
 		powerups2['ciphertext'] = (resp[0].ciphertext2) ? true : false
 	}
+	else {
+		powerups1["ciphertext"] = null
+		powerups2["ciphertext"] = null
+	}
 	if (enabledPowerups.includes('cyberSecurity')) {
 		powerups1['cyberSecurity'] = (resp[0].cyberSecurity1) ? true : false
 		powerups2['cyberSecurity'] = (resp[0].cyberSecurity2) ? true : false
+	}
+	else {
+		powerups1["cyberSecurity"] = null
+		powerups2["cyberSecurity"] = null
 	}
 	if (enabledPowerups.includes('firewall')) {
 		powerups1['firewall'] = (resp[0].firewall1) ? true : false
 		powerups2['firewall'] = (resp[0].firewall2) ? true : false
 	}
+	else {
+		powerups1["firewall"] = null
+		powerups2["firewall"] = null
+	}
 	if (enabledPowerups.includes('fullStack')) {
 		powerups1['fullStack'] = (resp[0].fullStack1) ? true : false
 		powerups2['fullStack'] = (resp[0].fullStack2) ? true : false
+	}
+	else {
+		powerups1["fullStack"] = null
+		powerups2["fullStack"] = null
 	}
 	if (enabledPowerups.includes('hack')) {
 		powerups1['hack'] = (resp[0].hack1) ? true : false
 		powerups2['hack'] = (resp[0].hack2) ? true : false
 	}
+	else {
+		powerups1["hack"] = null
+		powerups2["hack"] = null
+	}
 	if (enabledPowerups.includes('powerOutlet')) {
 		powerups1['powerOutlet'] = (resp[0].powerOutlet1) ? true : false
 		powerups2['powerOutlet'] = (resp[0].powerOutlet2) ? true : false
+	}
+	else {
+		powerups1["powerOutlet"] = null
+		powerups2["powerOutlet"] = null
 	}
 	if (enabledPowerups.includes('reboot')) {
 		powerups1['reboot'] = (resp[0].reboot1) ? true : false
 		powerups2['reboot'] = (resp[0].reboot2) ? true : false
 	}
+	else {
+		powerups1["reboot"] = null
+		powerups2["reboot"] = null
+	}
 	if (enabledPowerups.includes('recursion')) {
 		powerups1['recursion'] = (resp[0].recursion1) ? true : false
 		powerups2['recursion'] = (resp[0].recursion2) ? true : false
+	}
+	else {
+		powerups1["recursion"] = null
+		powerups2["recursion"] = null
 	}
 	if (enabledPowerups.includes('tryCatch')) {
 		powerups1['tryCatch'] = (resp[0].tryCatch1) ? true : false
 		powerups2['tryCatch'] = (resp[0].tryCatch2) ? true : false
 	}
+	else {
+		powerups1["tryCatch"] = null
+		powerups2["tryCatch"] = null
+	}
 	if (enabledPowerups.includes('typeCast')) {
 		powerups1['typeCast'] = (resp[0].typeCast1) ? true : false
 		powerups2['typeCast'] = (resp[0].typeCast2) ? true : false
 	}
+	else {
+		powerups1["typeCast"] = null
+		powerups2["typeCast"] = null
+	}
 	if (enabledPowerups.includes('windowsUpdate')) {
 		powerups1['windowsUpdate'] = (resp[0].windowsUpdate1) ? true : false
 		powerups2['windowsUpdate'] = (resp[0].windowsUpdate2) ? true : false
+	}
+	else {
+		powerups1["windowsUpdate"] = null
+		powerups2["windowsUpdate"] = null
 	}
 	// debuffs
 	if (enabledDebuffs.includes('blueScreen')) {
 		debuffs1['blueScreen'] = (resp[0].blueScreen1) ? true : false
 		debuffs2['blueScreen'] = (resp[0].blueScreen2) ? true : false
 	}
+	else {
+		debuffs1["blueScreen"] = null
+		debuffs2["blueScreen"] = null
+	}
 	if (enabledDebuffs.includes('bug')) {
 		debuffs1['bug'] = (resp[0].bug1) ? true : false
 		debuffs2['bug'] = (resp[0].bug2) ? true : false
+	}
+	else {
+		debuffs1["bug"] = null
+		debuffs2["bug"] = null
 	}
 	if (enabledDebuffs.includes('computerVirus')) {
 		debuffs1['computerVirus'] = (resp[0].computerVirus1) ? true : false
 		debuffs2['computerVirus'] = (resp[0].computerVirus2) ? true : false
 	}
+	else {
+		debuffs1["computerVirus"] = null
+		debuffs2["computerVirus"] = null
+	}
 	if (enabledDebuffs.includes('infiniteLoop')) {
 		debuffs1['infiniteLoop'] = (resp[0].infiniteLoop1) ? true : false
 		debuffs2['infiniteLoop'] = (resp[0].infiniteLoop2) ? true : false
+	}
+	else{
+		debuffs1['infiniteLoop'] = null
+		debuffss2['infiniteLoop'] = null
 	}
 	if (enabledDebuffs.includes('lowBattery')) {
 		debuffs1['lowBattery'] = (resp[0].lowBattery1) ? true : false
 		debuffs2['lowBattery'] = (resp[0].lowBattery2) ? true : false
 	}
+	else{
+		debuffs1['lowBattery'] = null
+		debuffss2['lowBattery'] = null
+	}
 	if (enabledDebuffs.includes('ransomware')) {
 		debuffs1['ransomware'] = (resp[0].ransomware1) ? true : false
 		debuffs2['ransomware'] = (resp[0].ransomware2) ? true : false
+	}
+	else{
+		debuffs1['ransomware'] = null
+		debuffss2['ransomware'] = null
 	}
 	if (enabledDebuffs.includes('slowComputer')) {
 		debuffs1['slowComputer'] = (resp[0].slowComputer1) ? true : false
 		debuffs2['slowComputer'] = (resp[0].slowComputer2) ? true : false
 	}
+	else{
+		debuffs1['slowComputer'] = null
+		debuffss2['slowComputer'] = null
+	}
 	if (enabledDebuffs.includes('syntaxError')) {
 		debuffs1['syntaxError'] = (resp[0].syntaxError1) ? true : false
 		debuffs2['syntaxError'] = (resp[0].syntaxError2) ? true : false
+	}
+	else {
+		debuffs1["syntaxError"] = null
+		debuffs2["syntaxError"] = null
 	}
 
 	console.log(powerups1)
