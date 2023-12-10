@@ -1268,8 +1268,8 @@ function playerAction(){
 				turn: turn,
 				gameId: gameID,
 				totalturns: totalTurns,
-				antiMalware1: powerups1[antiMalware], // powerups start
-				antiMalware2: powerups2[antiMalware],
+				antiMalware1: powerups1["antiMalware"], // powerups start
+				antiMalware2: powerups2["antiMalware"],
 				binarySearch1: powerups1[binarySearch],
 				binarySearch2: powerups2[binarySearch],
 				ciphertext1: powerups1[ciphertext],
