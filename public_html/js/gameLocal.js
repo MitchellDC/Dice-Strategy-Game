@@ -1186,7 +1186,7 @@ function playerAction(){
 					player1Defense: defenseNum1,
 					player2Attack: attackNum2,
                     player2Defense: defenseNum2,
-					turn: username2,
+					turn: turn,
 					gameId: gameID,
 					totalturns: totalTurns
 					// also do all powerups
@@ -1213,6 +1213,31 @@ function playerAction(){
 				document.getElementById("rollButtonId").style.display = "none";
 				document.getElementById("rollButtonId2").style.display = "none";
 				document.getElementById("rollButtonId").innerHTML = "ROLL"
+
+				let xhr = new XMLHttpRequest();
+				let updated = {
+					player1Health: health1,
+					player2Health: health2,
+					player1Attack: attackNum1,
+					player1Defense: defenseNum1,
+					player2Attack: attackNum2,
+                    player2Defense: defenseNum2,
+					turn: turn,
+					gameId: gameID,
+					totalturns: totalTurns
+					// also do all powerups
+				}
+
+				xhr.onerror = function() {
+					console.log("ajax error")
+				}
+				xhr.onload = function(){
+                    console.log(this.responseText)
+                }
+
+				xhr.open("POST","http://104.196.1.169/updategame2?"+queryObjectToString(updated));
+				//xhr.setRequestHeader('Content-type', 'application/json');
+				xhr.send();
 
 			}
 		}
