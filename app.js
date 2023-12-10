@@ -79,6 +79,7 @@ function createGame(qu,res){
 }
 
 function updateGame1(qu,res){
+	console.log(qu)
 	if(!qu){
 		res.writeHead(404,{'Content-Type': 'text/plain'});
                 res.write('Error 404: resource not found.');
@@ -398,14 +399,14 @@ function createRule(qu,res){
 				}
 				else{ // if username is not found ruleset is created 
 					conn.query("INSERT INTO Rule (Ruleset_name, InitialHealth, firewall, ciphertext, "+
-						   "fullStack, reboot, powerOutlet, recursion, hack, tryCatch, "+
-						   "antiMalware, cyberSecurity, windowsUpdate, syntaxError, "+
+						   "fullStack, reboot, recharge, recursion, nonEthicalHacking, tryCatch, "+
+						   "antiMalware, securitySpecialist, windowsUpdate, syntaxError, "+
 						   "ransomware, lowBattery, blueScreen, slowComputer, computerVirus, "+
 						   "infiniteLoop, bug, typeCast, binarySearch) "+
 						   "VALUES ('"+qu.ruleName+"', "+qu.health+", "+qu.firewall+", "+qu.ciphertext+", "+
 						   qu.fullStack+", "+qu.reboot+", "+qu.powerOutlet+", "+qu.recursion+", "+ 
-						   qu.hack+", "+qu.tryCatch+", "+qu.antiMalware+", "+
-						   qu.cyberSecurity+", "+qu.windowsUpdate+", "+qu.syntaxError+", "+
+						   qu.nonEthicalHacking+", "+qu.tryCatch+", "+qu.antiMalware+", "+
+						   qu.securitySpecialist+", "+qu.windowsUpdate+", "+qu.syntaxError+", "+
 						   qu.ransomware+", "+qu.lowBattery+", "+qu.blueScreen+", "+
 						   qu.slowComputer+", "+qu.computerVirus+", "+qu.infiniteLoop+", "+
 						   qu.bug+", "+qu.typeCast+", "+qu.binarySearch+");",function(err,result){
