@@ -228,27 +228,19 @@ function queryObjectToString(query) {
 
 let player1CurrentItems = []
 
+let powerups1 = []
 function populateItems(enabledPowerups) {
 	console.log(enabledPowerups)
 
+	for (item in enabledPowerups){
+		powerups1.push(item)
+
+	}
+
+	console.log(powerups1)
 
 }
-let powerups1 = {
-	recursion: false, // every turn, do damage twice 
-    hack: false, // every turn, lower enemy defense by 4
-    tryCatch: false, // upon death, revive with 5 health
-    antiMalware: false, // every turn, minimum defense is 4
-    reboot: false, // once, restore all health
-    powerOutlet: false, // every turn, gain 2 health
-    cyberSecurity: false, // every turn, gain 2 defense
-    windowsUpdate: false, // every turn, gain 1 attack, 1 defense, 1 health
-    firewall: false, // once, become immune
-	fullStack: false, // once, make attack and defense both 8
-	typeCast: false, // heal instead of hurting next turn
-	ciphertext: false, // hide attack from enemy
-	binarySearch: false // halve opponent's health next turn
 
-}
 
 // debuffs objects
 let debuffs1 = {
