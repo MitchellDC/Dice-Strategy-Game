@@ -14,6 +14,14 @@ function showRules() {
     document.getElementById("rulePopup").classList.toggle("active")
 }
 
+<<<<<<< HEAD
+=======
+
+let ruleTable = document.getElementById("ruleTable");
+console.log("outsideRuletable: "+ ruleTable)
+
+
+>>>>>>> 8af57a7269395ef882d1e9955b0f7ebcef74dcf3
 function displayRulesets(){
 
 	// takes the rulesets table from the html
@@ -76,6 +84,7 @@ function displayRulesets(){
 	xmlhttp.send();
 }
 displayRulesets();
+<<<<<<< HEAD
 
 
 
@@ -132,3 +141,5 @@ function displayPowers() {
 	xmlhttp.send();
 }
 displayPowers();
+=======
+>>>>>>> 8af57a7269395ef882d1e9955b0f7ebcef74dcf3
