@@ -37,7 +37,7 @@ function createPopup() {
 		let reboot = document.getElementById("reboot").checked;
 		let powerOutlet = document.getElementById("powerOutlet").checked;
 		let recursion = document.getElementById("recursion").checked;
-		let securitySpecialist = document.getElementById("securitySpecialist").checked;
+		let cyberSecurity = document.getElementById("cyberSecurity").checked;
 		let tryCatch = document.getElementById("tryCatch").checked;
 		let windowsUpdate = document.getElementById("windowsUpdate").checked;
 		let fullStack = document.getElementById("fullStack").checked;
@@ -88,7 +88,7 @@ function createPopup() {
 				reboot:reboot,
 				powerOutlet:powerOutlet,
 				recursion:recursion, 
-				securitySpecialist:securitySpecialist, 
+				cyberSecurity:cyberSecurity, 
 				tryCatch:tryCatch, 
 				windowsUpdate:windowsUpdate,
 				fullStack:fullStack, 
