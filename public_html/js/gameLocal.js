@@ -78,7 +78,7 @@ function getGameState(){
 		if(this.status!=200){
 			alert("Server Error!");
 		}
-		else{
+		else {
 			let resp = JSON.parse(this.responseText); //takes response from the server of the game data
 
 			username1=resp[0].Player1_uname; //takes username of player 1
@@ -98,6 +98,8 @@ function getGameState(){
 
 			rulesetID = resp[0].Rule_ID;
 
+			console.log(resp)
+			initializeRule(resp)
 
 			}
 			// display instructions and turn count
@@ -143,7 +145,7 @@ function getGameState(){
 				diceReady2 = true
 			}
 
-			initializeRule(resp)
+
 			getMaxHealth()
 
 		}
