@@ -63,6 +63,7 @@ let descriptions = {
 const gameID = localStorage.getItem('gameID');
 const user = localStorage.getItem('username')
 let enabledPowerups
+let enabledDebuffs
 let health1
 let health2
 let maxHealth
@@ -178,6 +179,7 @@ function getMaxHealth() {
 // should only run when turns = 0
 function initializeRule() {
 	enabledPowerups = []
+	enabledDebuffs = []
 
 	// initial
 	document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
@@ -197,16 +199,21 @@ function initializeRule() {
 			ruleKeys = Object.keys(ruleObj)
 			ruleLength = Object.keys(ruleObj).length
 
-			// adds all enabled powerups to "enabledPowerups" array
-			for(let i = 3; i < ruleLength; i++) {
-
+			// adds all enabled powerups to "enabledPowerups" array (16 = number of powerups + 3)
+			for(let i = 3; i < 16; i++) {
 				if (ruleObj[ruleKeys[i]]) {
-
 					enabledPowerups.push(ruleKeys[i])
 				}
 			}
 
-			populateItems(enabledPowerups)
+			// enabled debuffs
+			for(let i = 16; i < ruleLength; i++) {
+				if (ruleObj[ruleKeys[i]]) {
+					enabledDebuffs.push(ruleKeys[i])
+				}
+			}
+
+			populateItems(enabledPowerups, enabledDebuffs)
 		}
 	}	
 
@@ -217,6 +224,30 @@ function initializeRule() {
 
 getGameState()
 
+let powerups1 = {}
+let powerups2 = {}
+let debuffs1 = {}
+let debuffs2 = {}
+
+function populateItems(enabledPowerups, enabledDebuffs) {
+	console.log(enabledPowerups)
+	console.log(enabledDebuffs)
+
+	for (let i = 0; i < enabledPowerups.length; i++){
+		powerups1[enabledPowerups[i]] = false
+		powerups2[enabledPowerups[i]] = false
+	}
+	for (let i = 0; i < enabledDebuffs.length; i++){
+		debuffs1[enabledDebuffs[i]] = false
+		debuffs2[enabledDebuffs[i]] = false
+	}
+
+	console.log(powerups1)
+	console.log(powerups2)
+	console.log(powerups1)
+	console.log(powerups2)
+
+}
 
 function queryObjectToString(query) {
     let properties = Object.keys(query);
@@ -224,65 +255,9 @@ function queryObjectToString(query) {
     return(arrOfQuesryStrings.join('&'));
  }
 
-
-
-let player1CurrentItems = []
-
-let powerups1 = {}
-function populateItems(enabledPowerups) {
-	console.log(enabledPowerups)
-
-	for (let i = 0; i< enabledPowerups.length; i++){
-		powerups1[enabledPowerups[i]] = false
-		powerups2[enabledPowerups[i]] = false
-
-	}
-
-	console.log(powerups1)
-	console.log(powerups2)
-
-}
-
-
 // debuffs objects
-let debuffs1 = {
-    syntaxError: false, // once, lose 5 health
-    lowBattery: false, // every turn, lose 2 health
-    blueScreen: false, // once, cannot attack or defend
-    computerVirus: false, // two turns, cannot defend
-    slowComputer: false, // two turns, cannot attack
-    ransomware: false, // once, 50% chance to lose 15 health
-	infiniteLoop: false, // defend for 1 forever
-	bug: false // sometimes, attack or defense is 0 
-
-}
-
+let player1CurrentItems = []
 let player2CurrentItems = []
-let powerups2 = {
-	recursion: false, // every turn, do damage twice 
-    hack: false, // every turn, lower enemy defense by 4
-    tryCatch: false, // upon death, revive with 5 health
-    antiMalware: false, // every turn, minimum defense is 4
-    reboot: false, // once, restore all health
-    powerOutlet: false, // every turn, gain 2 health
-    cyberSecurity: false, // every turn, gain 2 defense
-    windowsUpdate: false, // every turn, gain 1 attack, 1 defense, 1 health
-    firewall: false, // once, become immune
-	fullStack: false, // once, make attack and defense both 8
-	typeCast: false, // heal instead of hurting next turn
-	ciphertext: false, // hide attack from enemy
-	binarySearch: false // halve opponent's health next turn
-}
-
-let debuffs2 = {
-    syntaxError: false,
-    lowBattery: false,
-    blueScreen: false,
-    computerVirus: false,
-    slowComputer: false,
-    ransomware: false
-
-}
 
 let stage = 1 // tracks order, front-end only
 /*
@@ -1295,11 +1270,18 @@ function playerAction(){
 		*/
     }
 
+
+}
+
+function backHome() {
+	window.open("http://104.196.1.169/home.html","_self");
+
 }
 
 allowSelection();
 allowSelection2();
 
+document.getElementById("BackHome").addEventListener("click", backHome)
 document.getElementById("rollButtonId").addEventListener("click",playerAction)
 document.getElementById("rollButtonId2").addEventListener("click",playerAction)
 
