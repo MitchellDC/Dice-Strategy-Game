@@ -107,25 +107,59 @@ function displayPowers() {
 
 		let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
 		for(let Rule in resp){
-			console.log("in loop")
 
 			let powers = document.createElement("div")
 
 			if(resp[Rule].antiMalware == true){
-				console.log("antiMalware true")
+				console.log("antiMalware: " + resp[Rule].antiMalware)
 				powers.innerHTML += "antiMalware";
 			}
 			if(resp[Rule].binarySearch == true){
-				console.log("binarySearch true")
+				console.log("binarySearch: " + resp[Rule].binarySearch)
 				powers.innerHTML += "binarySearch";
 			}
 			if(resp[Rule].ciphertext == true){
-				console.log("ciphertext true")
+				console.log("ciphertext: " + resp[Rule].ciphertext)
 				powers.innerHTML += "ciphertext";
 			}
 
 			// append divs to container inside popup 
 			createPowers.appendChild(powers)
+		}
+	}
+	xmlhttp.open("GET","http://104.196.1.169/rules");
+	xmlhttp.send();
+}
+displayPowers();
+
+
+function displayDisadvantages() {
+
+	let createDisadvantages = document.getElementById("disadvantages")
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.onerror = function(){alert("Error!")};
+	xmlhttp.onload = function(){
+
+		let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
+		for(let Rule in resp){
+
+			let disadvantages = document.createElement("div")
+
+			if(resp[Rule].blueScreen == true){
+				console.log("blueScreen: " + resp[Rule].blueScreen)
+				disadvantages.innerHTML += "blueScreen";
+			}
+			if(resp[Rule].bug == true){
+				console.log("bug: " + resp[Rule].bug)
+				disadvantages.innerHTML += "bug";
+			}
+			if(resp[Rule].computerVirus == true){
+				console.log("computerVirus: " + resp[Rule].computerVirus)
+				disadvantages.innerHTML += "computerVirus";
+			}
+
+			// append divs to container inside popup 
+			createDisadvantages.appendChild(powers)
 		}
 	}
 	xmlhttp.open("GET","http://104.196.1.169/rules");
