@@ -344,7 +344,7 @@ function populateItems(enabledPowerups, enabledDebuffs, resp) {
 	}
 	else{
 		debuffs1['infiniteLoop'] = null
-		debuffss2['infiniteLoop'] = null
+		debuffs2['infiniteLoop'] = null
 	}
 	if (enabledDebuffs.includes('lowBattery')) {
 		debuffs1['lowBattery'] = (resp[0].lowBattery1) ? true : false
