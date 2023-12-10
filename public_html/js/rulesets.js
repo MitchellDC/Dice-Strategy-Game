@@ -14,14 +14,6 @@ function showRules() {
     document.getElementById("rulePopup").classList.toggle("active")
 }
 
-<<<<<<< HEAD
-=======
-
-let ruleTable = document.getElementById("ruleTable");
-console.log("outsideRuletable: "+ ruleTable)
-
-
->>>>>>> 8af57a7269395ef882d1e9955b0f7ebcef74dcf3
 function displayRulesets(){
 
 	// takes the rulesets table from the html
@@ -80,7 +72,7 @@ function displayRulesets(){
 		}
 
 	}
-	xmlhttp.open("GET","http://104.196.1.169/rules");
+	xmlhttp.open("GET","http://104.196.28.244/rules");
 	xmlhttp.send();
 }
 displayRulesets();
@@ -100,7 +92,7 @@ function displayHealth() { // to display initial health in rulesets popup
 			health.innerHTML = ("Initial Health: " + resp[Rule].InitialHealth); // display initial health from database table
 		}
 	}
-	xmlhttp.open("GET","http://104.196.1.169/rules");
+	xmlhttp.open("GET","http://104.196.28.244/rules");
 	xmlhttp.send();
 }
 displayHealth();
@@ -136,7 +128,7 @@ function displayPowers() {
 			createPowers.appendChild(powers)
 		}
 	}
-	xmlhttp.open("GET","http://104.196.1.169/rules");
+	xmlhttp.open("GET","http://104.196.28.244/rules");
 	xmlhttp.send();
 }
 displayPowers();
