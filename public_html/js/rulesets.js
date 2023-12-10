@@ -110,16 +110,18 @@ function displayPowers() {
 
 			let powers = document.createElement("div")
 
+			console.log("antiMalware: " + resp[Rule].antiMalware) // testing true and false, if 0 then false, if 1 then true
+			console.log("binarySearch: " + resp[Rule].binarySearch)
+			console.log("ciphertext: " + resp[Rule].ciphertext)
+
+
 			if(resp[Rule].antiMalware == true){
-				console.log("antiMalware: " + resp[Rule].antiMalware)
 				powers.innerHTML += "antiMalware";
 			}
 			if(resp[Rule].binarySearch == true){
-				console.log("binarySearch: " + resp[Rule].binarySearch)
 				powers.innerHTML += "binarySearch";
 			}
 			if(resp[Rule].ciphertext == true){
-				console.log("ciphertext: " + resp[Rule].ciphertext)
 				powers.innerHTML += "ciphertext";
 			}
 
@@ -144,17 +146,18 @@ function displayDisadvantages() {
 		for(let Rule in resp){
 
 			let disadvantages = document.createElement("div")
+			console.log("blueScreen: " + resp[Rule].blueScreen)
+			console.log("bug: " + resp[Rule].bug)
+			console.log("computerVirus: " + resp[Rule].computerVirus)
+
 
 			if(resp[Rule].blueScreen == true){
-				console.log("blueScreen: " + resp[Rule].blueScreen)
 				disadvantages.innerHTML += "blueScreen";
 			}
 			if(resp[Rule].bug == true){
-				console.log("bug: " + resp[Rule].bug)
 				disadvantages.innerHTML += "bug";
 			}
 			if(resp[Rule].computerVirus == true){
-				console.log("computerVirus: " + resp[Rule].computerVirus)
 				disadvantages.innerHTML += "computerVirus";
 			}
 
@@ -165,4 +168,4 @@ function displayDisadvantages() {
 	xmlhttp.open("GET","http://104.196.1.169/rules");
 	xmlhttp.send();
 }
-displayPowers();
+displayDisadvantages();
