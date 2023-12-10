@@ -84,7 +84,6 @@ function displayRulesets(){
 	xmlhttp.send();
 }
 displayRulesets();
-<<<<<<< HEAD
 
 
 
