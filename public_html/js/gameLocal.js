@@ -242,11 +242,6 @@ function populateItems(enabledPowerups, enabledDebuffs) {
 		debuffs2[enabledDebuffs[i]] = false
 	}
 
-	console.log(powerups1)
-	console.log(powerups2)
-	console.log(powerups1)
-	console.log(powerups2)
-
 }
 
 function queryObjectToString(query) {
@@ -273,18 +268,14 @@ let dfsDiceId2 = document.getElementById("defenseDiceId2")
 let atkDiceId2 = document.getElementById("attackDiceId2")
 let selected = null
 
-// db get once at the start of the game (GET) 
-
-// db get all of these values every turn (GET)
-
-let attackNum1 // db player1Attack
-let defenseNum1 // db player1Defense
-let attackNum2 // db player2Attack
-let defenseNum2 // db player2Defense
+let attackNum1
+let defenseNum1
+let attackNum2
+let defenseNum2
 let change1
 let change2
-health1 = maxHealth; // db player1Health
-health2 = maxHealth; // db player2Health
+health1 = maxHealth;
+health2 = maxHealth;
 let totalTurns = 0;
 
 let randomPowerupKey1
@@ -305,17 +296,11 @@ is true after ending turn */
 let diceReady1 = false; 
 let diceReady2 = false;
 
-
 // add event listeners to the popup "SELECET" buttons
 document.getElementById("confirm1").addEventListener("click", addPowerupLeft)
 document.getElementById("confirm2").addEventListener("click", addPowerupRight)
 document.getElementById("confirm3").addEventListener("click", addDebuffLeft)
 document.getElementById("confirm4").addEventListener("click", addDebuffRight)
-
-
-// display health initially
-
-
 
 // display initial powerups (should be none by default)
 updatePowerups(1)
@@ -325,7 +310,13 @@ updatePowerups(2)
 for the left powerup */
 function addPowerupLeft() {
 	// makes random powerup true if they click on it
-	powerups1[randomPowerupKey1] = true
+
+	if (turn == username1) {
+		powerups1[randomPowerupKey1] = true
+	}
+	else {
+		powerups2[randomPowerupKey1] = true
+	}
 
 	// pop-up disappears
 	document.getElementById("select").classList.toggle("active")
@@ -339,7 +330,13 @@ function addPowerupLeft() {
 
 // same as function above, but for the right
 function addPowerupRight() {
-	powerups1[randomPowerupKey2] = true
+
+	if (turn == username1) {
+		powerups1[randomPowerupKey2] = true
+	}
+	else {
+		powerups2[randomPowerupKey2] = true
+	}
 	document.getElementById("select").classList.toggle("active")
 	document.getElementById("select2").classList.toggle("active")
 	updatePowerups(1)
@@ -350,7 +347,14 @@ function addPowerupRight() {
 /* addDebuffLeft activated once they click on debuff pop-up button
 for the left debuff */
 function addDebuffLeft() {
-	debuffs1[randomDebuffKey1] = true
+
+	if (turn == username1) { 
+		debuffs1[randomDebuffKey1] = true
+	}
+	else {
+		debuffs2[randomDebuffKey1] = true
+	}
+
 	document.getElementById("debuff1").classList.toggle("active")
 	document.getElementById("debuff2").classList.toggle("active")
 	updatePowerups(1)
@@ -359,7 +363,13 @@ function addDebuffLeft() {
 }
 
 function addDebuffRight() {
-	debuffs1[randomDebuffKey2] = true
+	if (turn == username1) {
+		debuffs1[randomDebuffKey2] = true
+	}
+	else {
+		debuffs2[randomDebuffKey2] = true
+	}
+
 	document.getElementById("debuff1").classList.toggle("active")
 	document.getElementById("debuff2").classList.toggle("active")
 	updatePowerups(1)
@@ -690,7 +700,6 @@ function healthChange() {
 	//update powerups after battle
 	totalTurns = totalTurns + 1;
 
-
 	updatePowerups(1)
 	updatePowerups(2)
 	//document.getElementById("round").innerHTML = ("Round: " + (totalTurns))
@@ -834,10 +843,17 @@ function healthChange() {
 	}
 }
 
+
+
 // updates powerup arrays
 // is called after every battle and once during start of game
 // clears all rows of powerups and rebuilds based on what is still true
 function updatePowerups(player) {
+
+	console.log(powerups1)
+	console.log(powerups2)
+	console.log(debuffs1)
+	console.log(debuffs2)
 
 	if (player == 1) {
 		// clear all rows of powerup table
