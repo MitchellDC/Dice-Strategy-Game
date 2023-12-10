@@ -141,13 +141,9 @@ function getGameState(){
 				diceReady2 = true
 			}
 
-			if (totalTurns == 0) {
-				maxHealth = resp[0].Player1_Health; // maybe need to change
-				initializeRule()
-			}
-			else {
-				getMaxHealth()
-			}
+			initializeRule()
+			getMaxHealth()
+
 		}
 	}
 	xmlhttp.open("GET","http://104.196.1.169/game?"+queryObjectToString({gameId:gameID})); 
@@ -679,7 +675,7 @@ function itemCalculationsAfter() {
 function healthChange() {
 
 	itemCalculationsBefore()
-    
+
 	change1 = attackNum2 - defenseNum1
 	change2 = attackNum1 - defenseNum2
 
@@ -699,7 +695,6 @@ function healthChange() {
 
 	//update powerups after battle
 	totalTurns = totalTurns + 1;
-
 	updatePowerups(1)
 	updatePowerups(2)
 	//document.getElementById("round").innerHTML = ("Round: " + (totalTurns))
@@ -842,8 +837,6 @@ function healthChange() {
 
 	}
 }
-
-
 
 // updates powerup arrays
 // is called after every battle and once during start of game
