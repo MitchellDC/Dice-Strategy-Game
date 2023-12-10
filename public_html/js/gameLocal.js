@@ -69,7 +69,6 @@ let maxHealth
 let username1
 let username2
 
-console.log(enabledPowerups)
 
 function getGameState(){
 	let xmlhttp = new XMLHttpRequest();
@@ -195,10 +194,8 @@ function initializeRule() {
 
 			ruleObj = ruleJSON[0]
 
-			
 			ruleKeys = Object.keys(ruleObj)
 			ruleLength = Object.keys(ruleObj).length
-
 
 			// adds all enabled powerups to "enabledPowerups" array
 			for(let i = 3; i < ruleLength; i++) {
@@ -206,13 +203,13 @@ function initializeRule() {
 				if (ruleObj[ruleKeys[i]]) {
 
 					enabledPowerups.push(ruleKeys[i])
-
 				}
 			}
+
+			populateItems(enabledPowerups)
 		}
-		
 	}	
-	console.log(enabledPowerups)
+
 
 	xmlhttp.open("GET","http://104.196.1.169/rule?"+queryObjectToString({ruleID:rulesetID})); 
 	xmlhttp.send();
@@ -220,36 +217,22 @@ function initializeRule() {
 
 getGameState()
 
+
 function queryObjectToString(query) {
     let properties = Object.keys(query);
     let arrOfQuesryStrings = properties.map(prop => prop+"="+query[prop]);
     return(arrOfQuesryStrings.join('&'));
  }
 
- console.log(enabledPowerups)
-/*
-
-if recurion == true in database
-	powerupsEnabled.push(recursion)
-
-powerupsEnabled = [recursion, hack, tryCatch]
-
-for item in powerupsEnabled:
-	powerups1.item = false
-
-
-powerups1 = {
-	recursion: false,
-	hack: false,
-	tryCatch: false
-
-}*/
-
-
 
 
 let player1CurrentItems = []
 
+function populateItems(enabledPowerups) {
+	console.log(enabledPowerups)
+
+
+}
 let powerups1 = {
 	recursion: false, // every turn, do damage twice 
     hack: false, // every turn, lower enemy defense by 4
