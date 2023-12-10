@@ -132,6 +132,7 @@ function getGameState(){
 			}
 
 			if (dfsDiceId2.src != `css/images/dd0.jpeg`) {
+				console.log(dfsDiceId2.src)
 				diceReady2 = true
 				console.log("dice ready2 made true")
 
