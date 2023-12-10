@@ -213,86 +213,86 @@ function populateItems(enabledPowerups, enabledDebuffs, resp) {
 		powerups1["antiMalware"] = (resp[0].antiMalware1) ? true : false
 		powerups2["antiMalware"] = (resp[0].antiMalware2) ? true : false
 	}
-	if (enabledPowerups.includes(binarySearch)) {
-		powerups1[binarySearch] = (resp[0].binarySearch1) ? true : false
-		powerups2[binarySearch] = (resp[0].binarySearch2) ? true : false
+	if (enabledPowerups.includes("binarySearch")) {
+		powerups1["binarySearch"] = (resp[0].binarySearch1) ? true : false
+		powerups2["binarySearch"] = (resp[0].binarySearch2) ? true : false
 	}
-	if (enabledPowerups.includes(ciphertext)) {
-		powerups1[ciphertext] = (resp[0].ciphertext1) ? true : false
-		powerups2[ciphertext] = (resp[0].ciphertext2) ? true : false
+	if (enabledPowerups.includes('ciphertext')) {
+		powerups1['ciphertext'] = (resp[0].ciphertext1) ? true : false
+		powerups2['ciphertext'] = (resp[0].ciphertext2) ? true : false
 	}
-	if (enabledPowerups.includes(cyberSecurity)) {
-		powerups1[cyberSecurity] = (resp[0].cyberSecurity1) ? true : false
-		powerups2[cyberSecurity] = (resp[0].cyberSecurity2) ? true : false
+	if (enabledPowerups.includes('cyberSecurity')) {
+		powerups1['cyberSecurity'] = (resp[0].cyberSecurity1) ? true : false
+		powerups2['cyberSecurity'] = (resp[0].cyberSecurity2) ? true : false
 	}
-	if (enabledPowerups.includes(firewall)) {
-		powerups1[firewall] = (resp[0].firewall1) ? true : false
-		powerups2[firewall] = (resp[0].firewall2) ? true : false
+	if (enabledPowerups.includes('firewall')) {
+		powerups1['firewall'] = (resp[0].firewall1) ? true : false
+		powerups2['firewall'] = (resp[0].firewall2) ? true : false
 	}
-	if (enabledPowerups.includes(fullStack)) {
-		powerups1[fullStack] = (resp[0].fullStack1) ? true : false
-		powerups2[fullStack] = (resp[0].fullStack2) ? true : false
+	if (enabledPowerups.includes('fullStack')) {
+		powerups1['fullStack'] = (resp[0].fullStack1) ? true : false
+		powerups2['fullStack'] = (resp[0].fullStack2) ? true : false
 	}
-	if (enabledPowerups.includes(hack)) {
-		powerups1[hack] = (resp[0].hack1) ? true : false
-		powerups2[hack] = (resp[0].hack2) ? true : false
+	if (enabledPowerups.includes('hack')) {
+		powerups1['hack'] = (resp[0].hack1) ? true : false
+		powerups2['hack'] = (resp[0].hack2) ? true : false
 	}
-	if (enabledPowerups.includes(powerOutlet)) {
-		powerups1[powerOutlet] = (resp[0].powerOutlet1) ? true : false
-		powerups2[powerOutlet] = (resp[0].powerOutlet2) ? true : false
+	if (enabledPowerups.includes('powerOutlet')) {
+		powerups1['powerOutlet'] = (resp[0].powerOutlet1) ? true : false
+		powerups2['powerOutlet'] = (resp[0].powerOutlet2) ? true : false
 	}
-	if (enabledPowerups.includes(reboot)) {
-		powerups1[reboot] = (resp[0].reboot1) ? true : false
-		powerups2[reboot] = (resp[0].reboot2) ? true : false
+	if (enabledPowerups.includes('reboot')) {
+		powerups1['reboot'] = (resp[0].reboot1) ? true : false
+		powerups2['reboot'] = (resp[0].reboot2) ? true : false
 	}
-	if (enabledPowerups.includes(recursion)) {
-		powerups1[recursion] = (resp[0].recursion1) ? true : false
-		powerups2[recursion] = (resp[0].recursion2) ? true : false
+	if (enabledPowerups.includes('recursion')) {
+		powerups1['recursion'] = (resp[0].recursion1) ? true : false
+		powerups2['recursion'] = (resp[0].recursion2) ? true : false
 	}
-	if (enabledPowerups.includes(tryCatch)) {
-		powerups1[tryCatch] = (resp[0].tryCatch1) ? true : false
-		powerups2[tryCatch] = (resp[0].tryCatch2) ? true : false
+	if (enabledPowerups.includes('tryCatch')) {
+		powerups1['tryCatch'] = (resp[0].tryCatch1) ? true : false
+		powerups2['tryCatch'] = (resp[0].tryCatch2) ? true : false
 	}
-	if (enabledPowerups.includes(typeCast)) {
-		powerups1[typeCast] = (resp[0].typeCast1) ? true : false
-		powerups2[typeCast] = (resp[0].typeCast2) ? true : false
+	if (enabledPowerups.includes('typeCast')) {
+		powerups1['typeCast'] = (resp[0].typeCast1) ? true : false
+		powerups2['typeCast'] = (resp[0].typeCast2) ? true : false
 	}
-	if (enabledPowerups.includes(windowsUpdate)) {
-		powerups1[windowsUpdate] = (resp[0].windowsUpdate1) ? true : false
-		powerups2[windowsUpdate] = (resp[0].windowsUpdate2) ? true : false
+	if (enabledPowerups.includes('windowsUpdate')) {
+		powerups1['windowsUpdate'] = (resp[0].windowsUpdate1) ? true : false
+		powerups2['windowsUpdate'] = (resp[0].windowsUpdate2) ? true : false
 	}
 	// debuffs
-	if (enabledDebuffs.includes(blueScreen)) {
-		debuffs1[blueScreen] = (resp[0].blueScreen1) ? true : false
-		debuffs2[blueScreen] = (resp[0].blueScreen2) ? true : false
+	if (enabledDebuffs.includes('blueScreen')) {
+		debuffs1['blueScreen'] = (resp[0].blueScreen1) ? true : false
+		debuffs2['blueScreen'] = (resp[0].blueScreen2) ? true : false
 	}
-	if (enabledDebuffs.includes(bug)) {
-		debuffs1[bug] = (resp[0].bug1) ? true : false
-		debuffs2[bug] = (resp[0].bug2) ? true : false
+	if (enabledDebuffs.includes('bug')) {
+		debuffs1['bug'] = (resp[0].bug1) ? true : false
+		debuffs2['bug'] = (resp[0].bug2) ? true : false
 	}
-	if (enabledDebuffs.includes(computerVirus)) {
-		debuffs1[computerVirus] = (resp[0].computerVirus1) ? true : false
-		debuffs2[computerVirus] = (resp[0].computerVirus2) ? true : false
+	if (enabledDebuffs.includes('computerVirus')) {
+		debuffs1['computerVirus'] = (resp[0].computerVirus1) ? true : false
+		debuffs2['computerVirus'] = (resp[0].computerVirus2) ? true : false
 	}
-	if (enabledDebuffs.includes(infiniteLoop)) {
-		debuffs1[infiniteLoop] = (resp[0].infiniteLoop1) ? true : false
-		debuffs2[infiniteLoop] = (resp[0].infiniteLoop2) ? true : false
+	if (enabledDebuffs.includes('infiniteLoop')) {
+		debuffs1['infiniteLoop'] = (resp[0].infiniteLoop1) ? true : false
+		debuffs2['infiniteLoop'] = (resp[0].infiniteLoop2) ? true : false
 	}
-	if (enabledDebuffs.includes(lowBattery)) {
-		debuffs1[lowBattery] = (resp[0].lowBattery1) ? true : false
-		debuffs2[lowBattery] = (resp[0].lowBattery2) ? true : false
+	if (enabledDebuffs.includes('lowBattery')) {
+		debuffs1['lowBattery'] = (resp[0].lowBattery1) ? true : false
+		debuffs2['lowBattery'] = (resp[0].lowBattery2) ? true : false
 	}
-	if (enabledDebuffs.includes(ransomware)) {
-		debuffs1[ransomware] = (resp[0].ransomware1) ? true : false
-		debuffs2[ransomware] = (resp[0].ransomware2) ? true : false
+	if (enabledDebuffs.includes('ransomware')) {
+		debuffs1['ransomware'] = (resp[0].ransomware1) ? true : false
+		debuffs2['ransomware'] = (resp[0].ransomware2) ? true : false
 	}
-	if (enabledDebuffs.includes(slowComputer)) {
-		debuffs1[slowComputer] = (resp[0].slowComputer1) ? true : false
-		debuffs2[slowComputer] = (resp[0].slowComputer2) ? true : false
+	if (enabledDebuffs.includes('slowComputer')) {
+		debuffs1['slowComputer'] = (resp[0].slowComputer1) ? true : false
+		debuffs2['slowComputer'] = (resp[0].slowComputer2) ? true : false
 	}
-	if (enabledDebuffs.includes(syntaxError)) {
-		debuffs1[syntaxError] = (resp[0].syntaxError1) ? true : false
-		debuffs2[syntaxError] = (resp[0].syntaxError2) ? true : false
+	if (enabledDebuffs.includes('syntaxError')) {
+		debuffs1['syntaxError'] = (resp[0].syntaxError1) ? true : false
+		debuffs2['syntaxError'] = (resp[0].syntaxError2) ? true : false
 	}
 
 	console.log(powerups1)
@@ -1270,46 +1270,46 @@ function playerAction(){
 				totalturns: totalTurns,
 				antiMalware1: powerups1["antiMalware"], // powerups start
 				antiMalware2: powerups2["antiMalware"],
-				binarySearch1: powerups1[binarySearch],
-				binarySearch2: powerups2[binarySearch],
-				ciphertext1: powerups1[ciphertext],
-				ciphertext2: powerups2[ciphertext],
-				cyberSecurity1: powerups1[cyberSecurity],
-				cyberSecurity2: powerups2[cyberSecurity],
-				firewall1: powerups1[firewall],
-				firewall2: powerups2[firewall],
-				fullStack1: powerups1[fullStack],
-				fullStack2: powerups2[fullStack],
-				hack1: powerups1[hack],
-				hack2: powerups2[hack],
-				powerOutlet1: powerups1[powerOutlet],
-				powerOutlet2: powerups2[powerOutlet],
-				reboot1: powerups1[reboot],
-				reboot2: powerups2[reboot],
-				recursion1: powerups1[recursion],
-				recursion2: powerups2[recursion],
+				binarySearch1: powerups1['binarySearch'],
+				binarySearch2: powerups2['binarySearch'],
+				ciphertext1: powerups1['ciphertext'],
+				ciphertext2: powerups2['ciphertext'],
+				cyberSecurity1: powerups1['cyberSecurity'],
+				cyberSecurity2: powerups2['cyberSecurity'],
+				firewall1: powerups1['firewall'],
+				firewall2: powerups2['firewall'],
+				fullStack1: powerups1['fullStack'],
+				fullStack2: powerups2['fullStack'],
+				hack1: powerups1['hack'],
+				hack2: powerups2['hack'],
+				powerOutlet1: powerups1['powerOutlet'],
+				powerOutlet2: powerups2['powerOutlet'],
+				reboot1: powerups1['reboot'],
+				reboot2: powerups2['reboot'],
+				recursion1: powerups1['recursion'],
+				recursion2: powerups2['recursion'],
 				tryCatch1: powerups1[tryCatch],
-				tryCatch2: powerups2[tryCatch],
-				typeCast1: powerups1[typeCast],
-				typeCast2: powerups2[typeCast],
-				windowsUpdate1: powerups1[windowsUpdate],
-				windowsUpdate2: powerups2[windowsUpdate],
-				blueScreen1: debuffs1[blueScreen], // debuffs start
-				blueScreen2: debuffs2[blueScreen],
-				bug1: debuffs1[bug],
-				bug2: debuffs2[bug],
-				computerVirus1: debuffs1[computerVirus],
-				computerVirus2: debuffs2[computerVirus],
-				infiniteLoop1: debuffs1[infiniteLoop],
-				infiniteLoop2: debuffs2[infiniteLoop],
-				lowBattery1: debuffs1[lowBattery],
-				lowBattery2: debuffs2[lowBattery],
-				ransomware1: debuffs1[ransomware],
-				ransomware2: debuffs2[ransomware],
-				slowComputer1: debuffs1[slowComputer],
-				slowComputer2: debuffs2[slowComputer],
-				syntaxError1: debuffs1[syntaxError],
-				syntaxError2: debuffs2[syntaxError]
+				tryCatch2: powerups2['tryCatch'],
+				typeCast1: powerups1['typeCast'],
+				typeCast2: powerups2['typeCast'],
+				windowsUpdate1: powerups1['windowsUpdate'],
+				windowsUpdate2: powerups2['windowsUpdate'],
+				blueScreen1: debuffs1['blueScreen'], // debuffs start
+				blueScreen2: debuffs2['blueScreen'],
+				bug1: debuffs1['bug'],
+				bug2: debuffs2['bug'],
+				computerVirus1: debuffs1['computerVirus'],
+				computerVirus2: debuffs2['computerVirus'],
+				infiniteLoop1: debuffs1['infiniteLoop'],
+				infiniteLoop2: debuffs2['infiniteLoop'],
+				lowBattery1: debuffs1['lowBattery'],
+				lowBattery2: debuffs2['lowBattery'],
+				ransomware1: debuffs1['ransomware'],
+				ransomware2: debuffs2['ransomware'],
+				slowComputer1: debuffs1['slowComputer'],
+				slowComputer2: debuffs2['slowComputer'],
+				syntaxError1: debuffs1['syntaxError'],
+				syntaxError2: debuffs2['syntaxError']
 				
 				// hypothesis: if not in powerups1, will return null to DB
 				// also do all powerups
