@@ -97,8 +97,9 @@ function getGameState(){
 
 			rulesetID = resp[0].Rule_ID;
 
-			// hide and show buttons buttons
+			// display instructions and turn count
 			document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Roll dice " + turn
+			document.getElementById("turn").innerHTML = "turn: " +totalTurns
 
 			// update dice images
 			atkDiceId.src = "css/images/dd"+attackNum1+".jpeg"
@@ -106,7 +107,7 @@ function getGameState(){
 			atkDiceId2.src = "css/images/dd"+attackNum2+".jpeg"
 			dfsDiceId2.src = "css/images/dd"+defenseNum2+".jpeg"
 
-
+			// hide and show buttons buttons
 			if (turn == user) { 
 				// current player has control
 				if(turn==username1){ //shows player 1 button if the user in a device is player 2
@@ -133,27 +134,47 @@ function getGameState(){
 			
 			if (dfsDiceId.src != `http://104.196.1.169/css/images/dd0.jpeg`) {
 				diceReady1 = true
-
 			}
 
 			if (dfsDiceId2.src != `http://104.196.1.169/css/images/dd0.jpeg`) {
 				diceReady2 = true
-
-
 			}
 
 			if (totalTurns == 0) {
 				maxHealth = resp[0].Player1_Health; // maybe need to change
 				initializeRule()
 			}
+			else {
+				getMaxHealth()
+			}
 		}
-
 	}
-
 	xmlhttp.open("GET","http://104.196.1.169/game?"+queryObjectToString({gameId:gameID})); 
 	xmlhttp.send();
 }
 
+// get and displays max health
+function getMaxHealth() {
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.onerror = function(){alert("AJAX Error!")};
+	xmlhttp.onload = function(){
+		if(this.status!=200) {
+			alert("Server Error!");
+		}
+	
+		else {
+			let ruleJSON = JSON.parse(this.responseText); //takes response from the server of the game data
+			maxHealth = ruleJSON[0].initializeHealth
+			document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
+			document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
+			
+		}
+	}	
+
+	xmlhttp.open("GET","http://104.196.1.169/rule?"+queryObjectToString({ruleID:rulesetID})); 
+	xmlhttp.send();
+
+}
 // should only run when turns = 0
 function initializeRule() {
 	enabledPowerups = []
@@ -700,7 +721,7 @@ function healthChange() {
 
 	//update powerups after battle
 	totalTurns = totalTurns + 1;
-	document.getElementById("turn").innerHTML = "turn: " +totalTurns
+
 
 	updatePowerups(1)
 	updatePowerups(2)
