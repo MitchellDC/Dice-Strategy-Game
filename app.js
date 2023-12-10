@@ -138,7 +138,7 @@ function updateGame1(qu,res){
 			" syntaxError2="+qu.syntaxError2+", " +
 			   " WHERE Game_ID="+qu.gameId+";",function(err,result){
 			if(err){
-				console.log("error");
+				console.log(err);
 			}
 			else{
 				console.log(qu);
