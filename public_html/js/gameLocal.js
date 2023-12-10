@@ -1163,6 +1163,8 @@ function playerAction(){
 	// stage 4 = after player ends turn
 	else if (stage == 4){
 
+		console.log("1: " + diceReady1)
+		console.log("2: " + diceReady2)
 		// checks if battle ready
 		if(diceReady1 && diceReady2){
 			healthChange()
