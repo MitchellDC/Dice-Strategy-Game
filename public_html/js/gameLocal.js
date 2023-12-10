@@ -98,19 +98,44 @@ function getGameState(){
             defenseNum2=resp[0].Player2_defense; // takes the defense dice value of player 2
 
 			rulesetID = resp[0].Rule_ID;
-			
 
-			if(attackNum1>0)  // MAYBE NEED TO CHANGE
-			{
-				diceReady1=true;
+			// hide and show buttons buttons
+			if (turn == user) { 
+				// current player has control
+				if(turn==username1){ //shows player 1 button if the user in a device is player 2
+					document.getElementById("rollButtonId").style.display = "block";
+					document.getElementById("rollButtonId2").style.display = "none";
+				}
+				else{ //shows player 2 button if the user is player 2
+					document.getElementById("rollButtonId").style.display = "none";
+					document.getElementById("rollButtonId2").style.display = "block";
+				}
+
 			}
-			if(attackNum2>0) //checks if player 2 has rolled his dice, makes diceReady2 true if so
-			{
-				diceReady2=true;
+			// player sees no buttons
+			else { 
+				//hides buttons if it is not user's turn
+				document.getElementById("rollButtonId").style.display = "none";
+				document.getElementById("rollButtonId2").style.display = "none";
+
+				//browser gets refreshed every 5 seconds if it is not user's turn
+				setInterval(() => {
+					location.reload();
+				}, 5000);
 			}
-					
+			
+			if (dfsDiceId.src != `css/images/dd0.jpeg`) {
+				diceReady1 = true
+
+			}
+
+			if (dfsDiceId2.src != `css/images/dd0.jpeg`) {
+				diceReady2 = true
+
+			}
+
 			if (totalTurns == 0) {
-				maxHealth = resp[0].Player1_Health;
+				maxHealth = resp[0].Player1_Health; // maybe need to change
 				initializeRule()
 			}
 		}
@@ -373,6 +398,7 @@ function rollDefense() {
 	if(turn==username1){
 		defenseNum1 = Math.floor(Math.random() * 6) + 1;
 		dfsDiceId.src = `css/images/dd${defenseNum1}.jpeg`
+		
 	}
 	else{
 		defenseNum2 = Math.floor(Math.random() * 6) + 1;
