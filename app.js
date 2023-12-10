@@ -79,35 +79,6 @@ function createGame(qu,res){
 }
 
 function updateGame1(qu,res){
-
-	/*
-	const path = url.parse(req.url).pathname;
-	let body = '';
-
-	req.on('data', data =>{body+=data});
-
-	req.on('end', () => {
-		const quObj = querystring.parse(body);
-		console.log(quObj);
-		//console.log(queryObj.player1Health);
-	res.writeHead(200, {'Content-Type': 'text/plain'});
-        conn.query("UPDATE Game SET Player1_Health="+quObj.player1Health+","+
-                        " Player2_Health="+quObj.player2Health+","+
-                        " Player1_attack="+quObj.player1Attack+","+
-                        " Player1_defense="+quObj.player1Defense+","+
-                        " totalturns="+quObj.totalturns+","+
-                        " turn='"+quObj.turn+"' WHERE Game_ID="+quObj.gameId+";",function(err,result){
-                        if(err){
-                                console.log(err);
-                        }
-                        else{
-                                console.log(quObj);
-                                res.write("updated");
-                                res.end();
-                        }
-                });
-	});*/
-
 	if(!qu){
 		res.writeHead(404,{'Content-Type': 'text/plain'});
                 res.write('Error 404: resource not found.');
@@ -122,7 +93,49 @@ function updateGame1(qu,res){
 			" Player1_attack="+qu.player1Attack+","+
 			" Player1_defense="+qu.player1Defense+","+
 			" totalturns="+qu.totalturns+","+
-			" turn='"+qu.turn+"' WHERE Game_ID="+qu.gameId+";",function(err,result){
+			" antiMalware1="+qu.antiMalware1+" " +
+			" antiMalware2="+qu.antiMalware2+" " +
+			" binarySearch1="+qu.binarySearch1+" " +
+			" binarySearch2="+qu.binarySearch2+" " + 
+			" ciphertext1="+qu.ciphertext1+" " +
+			" ciphertext2="+qu.ciphertext2+" " +
+			" cyberSecurity1= "+qu.cyberSecurity1+" " +
+			" cyberSecurity2= "+qu.cyberSecurity2+" "+
+			" firewall1='"+qu.turn+"' " +
+			" firewall2='"+qu.turn+"' " +
+			" fullStack1='"+qu.turn+"' " +
+			" fullStack2='"+qu.turn+"' " +
+			" hack1='"+qu.turn+"' " +
+			" hack2='"+qu.turn+"' " +
+			" powerOutlet1='"+qu.turn+"' " +
+			" powerOutlet2='"+qu.turn+"' " +
+			" reboot1='"+qu.turn+"' " +
+			" reboot2='"+qu.turn+"' " +
+			" recursion1='"+qu.turn+"' " +
+			" recursion2='"+qu.turn+"' " +
+			" tryCatch1='"+qu.turn+"' " +
+			" tryCatch2='"+qu.turn+"' " +
+			" typeCast1='"+qu.turn+"' " + 
+			" typeCast2='"+qu.turn+"' " + 
+			" windowsUpdate1='"+qu.turn+"' " + 
+			" windowsUpdate2='"+qu.turn+"' " + 
+			" blueScreen1='"+qu.turn+"' " + 
+			" blueScreen2='"+qu.turn+"' " + 
+			" bug1='"+qu.turn+"' " + 
+			" bug2='"+qu.turn+"' " + 
+			" computerVirus1='"+qu.turn+"' " + 
+			" computerVirus2='"+qu.turn+"' " + 
+			" infiniteLoop1='"+qu.turn+"' " + 
+			" infiniteLoop2='"+qu.turn+"' " + 
+			" lowBattery1='"+qu.turn+"' " + 
+			" lowBattery2='"+qu.turn+"' " + 
+			" ransomware1='"+qu.turn+"' " + 
+			" ransomware2='"+qu.turn+"' " + 
+			" slowComputer1='"+qu.turn+"' " + 
+			" slowComputer2='"+qu.turn+"' " +
+			" syntaxError1='"+qu.turn+"' " +
+			" syntaxError2='"+qu.turn+"' " +
+			   " WHERE Game_ID="+qu.gameId+";",function(err,result){
 			if(err){
 				console.log("error");
 			}
