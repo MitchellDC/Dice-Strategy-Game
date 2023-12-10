@@ -70,23 +70,6 @@ let maxHealth
 let username1
 let username2
 
-
-powerups1 = {
-
-
-
-}
-
-
-powerups = {
-	recursion1: false,
-	recursion2: true,
-	hack1: false,
-	hack2: false,
-
-
-}
-
 function getGameState(){
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("AJAX Error!")};
