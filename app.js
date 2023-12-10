@@ -136,19 +136,14 @@ function updateGame1(qu,res){
 }
 
 function updateGame2(qu,res){
-	console.log(qu)
         if(!qu){
                 res.writeHead(404,{'Content-Type': 'text/plain'});
                 res.write('Error 404: resource not found.');
                 res.end();
         }
         else{
-		console.log(qu);
+
 		res.writeHead(200,{'Content-Type': 'text/plain'});
-		res.write("updated second");
-		res.end();		
-		/*
-                res.writeHead(200, {'Content-Type': 'text/plain'});
                 conn.query("UPDATE Game SET Player1_Health="+qu.player1Health+","+
                         " Player2_Health="+qu.player2Health+","+
 			" Player1_attack="+qu.player1Attack+", "+
@@ -162,10 +157,10 @@ function updateGame2(qu,res){
                         }
                         else{
 				console.log(qu);
-                                res.write("updated");
+                                res.write("updated second");
                                 res.end();
                         }
-                });*/
+                });
         }
 }
 
