@@ -238,6 +238,7 @@ function populateItems(enabledPowerups, enabledDebuffs, resp) {
 		tmp = (enabledPowerups[i] + "1").toString()
 		console.log(tmp)
 		console.log(resp[0].tmp)
+		console.log(resp[0].recursion1)
 		if (resp[0].tmp == true) {
 			console.log("tmp sliced: " + tmp.slice(0, -1))
 			powerups1[tmp.slice(0, -1)] = true
