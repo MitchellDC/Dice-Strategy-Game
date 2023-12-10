@@ -126,12 +126,12 @@ function getGameState(){
 				}, 5000);
 			}
 			
-			if (dfsDiceId.src != `css/images/dd0.jpeg`) {
+			if (dfsDiceId.src != `http://104.196.1.169/css/images/dd0.jpeg`) {
 				diceReady1 = true
 
 			}
 
-			if (dfsDiceId2.src != `css/images/dd0.jpeg`) {
+			if (dfsDiceId2.src != `http://104.196.1.169/css/images/dd0.jpeg`) {
 				console.log(dfsDiceId2.src)
 				diceReady2 = true
 				console.log("dice ready2 made true")
