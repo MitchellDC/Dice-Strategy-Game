@@ -228,16 +228,18 @@ function queryObjectToString(query) {
 
 let player1CurrentItems = []
 
-let powerups1 = []
+let powerups1 = {}
 function populateItems(enabledPowerups) {
 	console.log(enabledPowerups)
 
 	for (let i = 0; i< enabledPowerups.length; i++){
-		powerups1.push(enabledPowerups[i])
+		powerups1[enabledPowerups[i]] = false
+		powerups2[enabledPowerups[i]] = false
 
 	}
 
 	console.log(powerups1)
+	console.log(powerups2)
 
 }
 
