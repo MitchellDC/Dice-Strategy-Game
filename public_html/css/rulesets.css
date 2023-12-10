@@ -67,16 +67,16 @@ body {
     color:#0bafd4;
 }
 
-.background {
+.ruleTable {
     width: 70%;
-    height: 10%;
-    background-color: #000;
+    height: 20%;
+    background-color: #0bafd4;
     background-position: center;
     background-size: cover;
     margin: auto;
     font-size: xx-large;
     overflow-y:auto;
-    max-height:10%;
+    max-height:20%;
 }
 
 .list {
@@ -137,20 +137,18 @@ body {
     transform: translate(-50%, -50%) scale(1);
 }
 
-.r-title {
+.popupTitle {
     color: #fff;
-    font-size: x-large;
+    font-size: xx-large;
 }
 
-.p-list {
+.r-list {
     color: #fff;
     font-size: large;
 }
 
-.listPowers {
-    
-<<<<<<< HEAD
+.r-titles {
+    color: #fff;
+    font-size: x-large;
 }
-=======
-}
->>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
+

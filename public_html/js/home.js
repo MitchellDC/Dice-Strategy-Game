@@ -75,7 +75,8 @@ showRules();
 function showGames(){
 	// takes the game table from the html
 	let gameTable = document.getElementById("gameTable");
-
+	console.log("gameTable after assignment: " +gameTable)
+	
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("Error!")};
 	xmlhttp.onload = function(){
@@ -97,6 +98,7 @@ function showGames(){
 					}
 					//let opponent = getUser(opponentId);
 					//alert("opponent");
+					console.log("gameTable: " + gameTable)
 					newRow = gameTable.insertRow(); // new row is made
 
 					newRow.classList.add("scroll"); // class 'scroll' is assigned to the new row
