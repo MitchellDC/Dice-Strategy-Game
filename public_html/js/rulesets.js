@@ -114,6 +114,7 @@ function displayPowers() {
 			powerTypes.forEach(powerType =>{
 				if(resp[Rule][powerType] == true){
 					powers.innerHTML += powerType;
+					console.log(powerType)
 				}
 			})
 
@@ -143,7 +144,6 @@ function displayDisadvantages() {
 			disadvantageTypes.forEach(disadvantageType =>{
 				if(resp[Rule][disadvantageType] == true){
 					disadvantages.innerHTML += disadvantageType;
-					console.log(disadvantageType)
 				}
 			})
 
