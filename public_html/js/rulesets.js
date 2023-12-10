@@ -101,33 +101,27 @@ displayHealth();
 function displayPowers() {
 
 	let createPowers = document.getElementById("powers")
+	let powers = document.createElement("div")
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("Error!")};
 	xmlhttp.onload = function(){
 
 		let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
 		for(let Rule in resp){
-
-			let powers = document.createElement("div")
-
-			console.log("antiMalware: " + resp[Rule].antiMalware) // testing true and false, if 0 then false, if 1 then true
-			console.log("binarySearch: " + resp[Rule].binarySearch)
-			console.log("ciphertext: " + resp[Rule].ciphertext)
-
-
-			if(resp[Rule].antiMalware == true){
-				powers.innerHTML += "antiMalware";
-			}
-			if(resp[Rule].binarySearch == true){
-				powers.innerHTML += "binarySearch";
-			}
-			if(resp[Rule].ciphertext == true){
-				powers.innerHTML += "ciphertext";
-			}
-
 			// append divs to container inside popup 
 			createPowers.appendChild(powers)
 		}
+
+		if(resp[Rule].antiMalware == true){
+			powers.innerHTML += "antiMalware";
+		}
+		if(resp[Rule].binarySearch == true){
+			powers.innerHTML += "binarySearch";
+		}
+		if(resp[Rule].ciphertext == true){
+			powers.innerHTML += "ciphertext";
+		}
+
 	}
 	xmlhttp.open("GET","http://104.196.1.169/rules");
 	xmlhttp.send();
@@ -138,32 +132,27 @@ displayPowers();
 function displayDisadvantages() {
 
 	let createDisadvantages = document.getElementById("disadvantages")
+	let disadvantages = document.createElement("div")
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("Error!")};
 	xmlhttp.onload = function(){
 
 		let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
 		for(let Rule in resp){
-
-			let disadvantages = document.createElement("div")
-			console.log("blueScreen: " + resp[Rule].blueScreen)
-			console.log("bug: " + resp[Rule].bug)
-			console.log("computerVirus: " + resp[Rule].computerVirus)
-
-
-			if(resp[Rule].blueScreen == true){
-				disadvantages.innerHTML += "blueScreen";
-			}
-			if(resp[Rule].bug == true){
-				disadvantages.innerHTML += "bug";
-			}
-			if(resp[Rule].computerVirus == true){
-				disadvantages.innerHTML += "computerVirus";
-			}
-
 			// append divs to container inside popup 
 			createDisadvantages.appendChild(powers)
 		}
+
+		if(resp[Rule].blueScreen == true){
+			disadvantages.innerHTML += "blueScreen";
+		}
+		if(resp[Rule].bug == true){
+			disadvantages.innerHTML += "bug";
+		}
+		if(resp[Rule].computerVirus == true){
+			disadvantages.innerHTML += "computerVirus";
+		}
+
 	}
 	xmlhttp.open("GET","http://104.196.1.169/rules");
 	xmlhttp.send();
