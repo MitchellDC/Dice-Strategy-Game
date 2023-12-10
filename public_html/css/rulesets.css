@@ -68,6 +68,7 @@ body {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .background {
     width: 70%;
     height: 10%;
@@ -78,16 +79,26 @@ body {
     height: 20%;
     background-color: #0bafd4;
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+.ruleTable {
+    width: 70%;
+    height: 20%;
+    background-color: #0bafd4;
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
     background-position: center;
     background-size: cover;
     margin: auto;
     font-size: xx-large;
     overflow-y:auto;
 <<<<<<< HEAD
+<<<<<<< HEAD
     max-height:10%;
 =======
     max-height:20%;
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+    max-height:20%;
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
 }
 
 .list {
@@ -149,12 +160,16 @@ body {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .r-title {
 =======
 .popupTitle {
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+.popupTitle {
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
     color: #fff;
-    font-size: x-large;
+    font-size: xx-large;
 }
 
 .r-list {
@@ -164,6 +179,7 @@ body {
 
 .r-titles {
     color: #fff;
+<<<<<<< HEAD
 <<<<<<< HEAD
     font-size: large;
 }
@@ -176,3 +192,8 @@ body {
 }
 
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+    font-size: x-large;
+}
+
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530

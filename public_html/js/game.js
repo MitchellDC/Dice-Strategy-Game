@@ -248,7 +248,11 @@ function selectPower() {
 
 
 =======
+<<<<<<< HEAD
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
 // returns text of button to "ROLL" after a player ends turn
 function refreshButtons(){
 	document.getElementById("rollButtonId").innerHTML = "ROLL"

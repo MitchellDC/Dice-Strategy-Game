@@ -1,9 +1,192 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
 /* goals and notes */
 // change dfsDiceId and atkDiceId (append1)
 // change alerts to pop-ups (player turn ends)
 // make code for if player loads in game and it isn't their turn
 /* end goals and notes */
+
+let descriptions = {
+
+	// powerups 
+	antiMalware: "Make defense at least 4 each turn", // tested
+	ciphertext: "Enemy can't see your attack value",
+	cyberSecurity: "Every turn, gain 3 extra defense", // tested
+	firewall: "Become immune for one turn", // tested
+	hack: "Enemy loses 4 defense each turn", // tested
+	powerOutlet: "Every turn, gain 2 health", // tested
+	reboot: "Restore health to maximum next turn", // tested
+	recursion: "Damage dealt becomes value of an extra attack", // tested
+	tryCatch: "Avoid death once", // tested
+	windowsUpdate: "+1 attack, defense, and health each turn", // tested
+	fullStack: "Set attack and defense to 8 next turn", // tested
+	typeCast: "Heal instead of hurting next turn", // tested
+	binarySearch: "Halve opponent's health next turn", // tested
+	
+	// debuffs
+	lowBattery: "Every turn, lose 2 health", // tested
+	blueScreen: "Cannot attack or defend next turn", // tested
+	computerVirus: "Cannot defend for two turns", // tested
+	ransomware: "50% chance to lose 15 health next turn",
+	slowComputer: "Cannot attack for two turns", // tested
+	syntaxError: "Lose 5 health next turn", // tested
+	infiniteLoop: "Defend for 1 forever", // tested
+	bug: "Sometimes, attack or defense is 0" // tested
+
+}
+
+const gameID = localStorage.getItem('gameID');
+
+function getGame(){
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.onerror = function(){alert("Error!")};
+	xmlhttp.onload = function(){
+		if(this.status!=200){
+			alert("Error!");
+		}
+		else{
+			let resp = JSON.parse(this.responseText); //takes response from the server of the game data
+			console.log(resp);
+			username1=resp[0].Player1_uname; //takes username of player 1
+			username2=resp[0].Player2_uname; //takes username of player2
+
+			health1=resp[0].Player1_Health; //takes health of player1
+			health2=resp[0].Player2_Health; //takes health of player2 // MIGHT BE DIFFERENT
+
+			turn=resp[0].turn; //takes who's turn 
+			totalTurns=resp[0].totalturns; //takes the number of turns in the game
+
+			attackNum1=resp[0].Player1_attack; //takes the attacknum of player 1
+			defenseNum1=resp[0].Player1_defense; // takes the defensenum of player 1
+
+			attackNum2=resp[0].Player2_attack; //takes the attack dice value of player 2
+            defenseNum2=resp[0].Player2_defense; // takes the defense dice value of player 2
+
+			rulesetID = resp[0].Rule_ID;
+
+			if(attackNum1>0) //checks if player 1 has rolled his dice, makes diceReady1 true if so
+			{
+				diceReady1=true;
+			}
+			if(attackNum2>0) //checks if player 2 has rolled his dice, makes diceReady2 true if so
+			{
+				diceReady2=true;
+			}
+		}
+	}
+
+	xmlhttp.open("GET","http://104.196.1.169/game?"+queryObjectToString({gameId:gameID})); 
+	xmlhttp.send();
+}
+
+function queryObjectToString(query) {
+    let properties = Object.keys(query);
+    let arrOfQuesryStrings = properties.map(prop => prop+"="+query[prop]);
+    return(arrOfQuesryStrings.join('&'));
+ }
+
+function initRuleset() {
+	let xmlhttp = new XMLHttpRequest()
+	xmlhttp.onerror = function() {alert("init ruleset Ajax error!")}
+	xmlhttp.onload = function() {
+		if (this.status != 200) {
+			alert("Server Error")
+		}
+		else {
+			let resp = JSON.parse(this.responseText)
+			//ruleset = resp[0].
+
+		}
+	}
+
+		xmlhttp.open("GET", "http://104.196.1.169/rule?"+ queryObjectToString({ruleId:rulesetID}))
+		xmlhttp.send()
+
+	
+}
+
+
+
+/*
+
+if recurion == true in database
+	powerupsEnabled.push(recursion)
+
+powerupsEnabled = [recursion, hack, tryCatch]
+
+for item in powerupsEnabled:
+	powerups1.item = false
+
+
+powerups1 = {
+	recursion: false,
+	hack: false,
+	tryCatch: false
+
+}*/
+
+
+
+
+let player1CurrentItems = []
+let powerups1 = {
+	recursion: false, // every turn, do damage twice 
+    hack: false, // every turn, lower enemy defense by 4
+    tryCatch: false, // upon death, revive with 5 health
+    antiMalware: false, // every turn, minimum defense is 4
+    reboot: false, // once, restore all health
+    powerOutlet: false, // every turn, gain 2 health
+    cyberSecurity: false, // every turn, gain 2 defense
+    windowsUpdate: false, // every turn, gain 1 attack, 1 defense, 1 health
+    firewall: false, // once, become immune
+	fullStack: false, // once, make attack and defense both 8
+	typeCast: false, // heal instead of hurting next turn
+	ciphertext: false, // hide attack from enemy
+	binarySearch: false // halve opponent's health next turn
+
+}
+
+// debuffs objects
+let debuffs1 = {
+    syntaxError: false, // once, lose 5 health
+    lowBattery: false, // every turn, lose 2 health
+    blueScreen: false, // once, cannot attack or defend
+    computerVirus: false, // two turns, cannot defend
+    slowComputer: false, // two turns, cannot attack
+    ransomware: false, // once, 50% chance to lose 15 health
+	infiniteLoop: false, // defend for 1 forever
+	bug: false // sometimes, attack or defense is 0
+
+}
+
+let player2CurrentItems = []
+let powerups2 = {
+	recursion: false, // every turn, do damage twice 
+    hack: false, // every turn, lower enemy defense by 4
+    tryCatch: false, // upon death, revive with 5 health
+    antiMalware: false, // every turn, minimum defense is 4
+    reboot: false, // once, restore all health
+    powerOutlet: false, // every turn, gain 2 health
+    cyberSecurity: false, // every turn, gain 2 defense
+    windowsUpdate: false, // every turn, gain 1 attack, 1 defense, 1 health
+    firewall: false, // once, become immune
+	fullStack: false, // once, make attack and defense both 8
+	typeCast: false, // heal instead of hurting next turn
+	ciphertext: false, // hide attack from enemy
+	binarySearch: false // halve opponent's health next turn
+}
+
+let debuffs2 = {
+    syntaxError: false,
+    lowBattery: false,
+    blueScreen: false,
+    computerVirus: false,
+    slowComputer: false,
+    ransomware: false
+
+}
 
 let stage = 1 // tracks order, front-end only
 /*
@@ -25,130 +208,44 @@ let username2 = null
 
 // db get all of these values every turn (GET)
 let maxHealth = 30 // ADMIN changes this
-let attackNum1 = 0 // db player1Attack
-let defenseNum1 = 0 // db player1Defense
-let attackNum2 = 0 // db player2Attack
-let defenseNum2 = 0 // db player2Defense
+let attackNum1 // db player1Attack
+let defenseNum1 // db player1Defense
+let attackNum2 // db player2Attack
+let defenseNum2 // db player2Defense
+let change1
+let change2
 let health1 = maxHealth; // db player1Health
 let health2 = maxHealth; // db player2Health
 let totalTurns = 0;
 
-
-let player1Powerups = []
-let player1Debuffs = []
-let player2Powerups = []
-let player2Debuffs = []
+let randomPowerupKey1
+let randomPowerupKey2
+powerupFreq = 1
+debuffFreq = 5
 
 let turn = ""; // db key "turn" with value of player's username
 /*
-	turn = 0 -> player 1's turn
-	turn = 1 -> player 2's turn
+	turn = 0> player 1's turn
+	turn = 1> player 2's turn
 */
 
-// debuffs objects
-let debuffs1 = {
-    syntaxError: false, // once, lose 5 health
-    lowBattery: false, // every turn, lose 2 health
-    blueScreen: false, // once, cannot attack or defend
-    computerVirus: false, // two turns, cannot defend
-    slowComputer: false, // two turns, cannot attack
-    ransomware: true // once, 50% chance to lose 10 health
-
-}
-
-let debuffNames = {
-	syntaxError: "Syntax Error",
-	lowBattery: "Low Battery",
-	blueScreen: "Blue Screen",
-	computerVirus: "Computer Virus",
-	slowComputer: "Slow Computer",
-	ransomware: "Ransomware"
-}
-
-let debuffDesc = {
-	syntaxError: "Once, lose 5 health",
-    lowBattery: "Every turn, lose 2 health",
-    blueScreen: "Once, cannot attack or defend",
-    computerVirus: "Two turns, cannot defend",
-    slowComputer: "Two turns, cannot attack",
-    ransomware:  "Once, 50% chance to lose 10 health"
-}
-
-
-
-let debuffs2 = {
-    syntaxError: false,
-    lowBattery: false,
-    blueScreen: false,
-    computerVirus: false,
-    slowComputer: false,
-    ransomware: false
-
-}
-
-let powerups1 = {
-    recursion: true, // every turn, do damage twice
-    nonEthicalHacking: false, // every turn, lower enemy defense by 4
-    tryCatch: false, // upon death, revive with 5 health
-    antiMalware: false, // every turn, minimum defense is 4
-    reboot: false, // once, restore all health
-    recharge: true, // every turn, gain 2 health
-    securitySpecialist: false, // every turn, gain 2 defense
-    systemUpdate: true, // every turn, gain 1 attack, 1 defense, 1 health
-    firewall: false // once, become immune
-
-}
-
-// map internal keys to user-friendly names
-let powerupNames = {
-	recursion: "Recursion",
-	nonEthicalHacking: "Non-Ethical Hacking",
-	tryCatch: "Try-Catch",
-	antiMalware: "Anti-Malware",
-	reboot: "Reboot",
-	recharge: "Recharge",
-	securitySpecialist: "Security Specialist",
-	systemUpdate: "System Update",
-	firewall: "Firewall"
-}
-
-// powerup description
-let powerupDesc = {
-	recursion: "Every turn, do damage twice",
-	nonEthicalHacking: "Every turn, lower enemy defense by 4",
-	tryCatch: "Upon death, revive with 5 health",
-	antiMalware: "Every turn, minimum defense is 4",
-	reboot: "Once, restore all health",
-	recharge: "Every turn, gain 2 health",
-	securitySpecialist: "Every turn, gain 2 defense",
-	systemUpdate: "Every turn, gain 1 attack, 1 defense, 1 health",
-	firewall: "Once, become immune"
-}
-
-let powerups2 = {
-    recursion: false,
-    nonEthicalHacking: false,
-    tryCatch: false,
-    antiMalware: false,
-    reboot: false,
-    securitySpecialist: false,
-    systemUpdate: false, 
-    firewall: false
-}
+document.getElementById("rollButtonId2").style.display = "none";
 
 // debuffs balancing
 syntaxErrorValue = 5
-ransomwareValue = 10
+ransomwareValue = 15
 lowBatteryValue = 2
+bugChance = 0.2 // if Math.random() is below this number, attack or defense will be 0
 
 // powerups balancing
 recursionAttacks = 2
-nonEthicalHackingValue = 4
+hackValue = 4
 tryCatchValue = 5
 antiMalwareThreshold = 4
-rechargeValue = 2
+powerOutletValue = 2
 rebootValue = maxHealth
-securitySpecialistValue = 4
+cyberSecurityValue = 3
+fullStackValue = 8
 
 // powerups & debuffs counters
 slowComputerCount1 = 2
@@ -162,86 +259,78 @@ is true after ending turn */
 let diceReady1 = false; 
 let diceReady2 = false;
 
-document.getElementById("round").innerHTML = ("Round: " + (totalTurns))
-document.getElementById("p1Health").innerHTML = "Proppa (" + health1 + " / " + maxHealth + ")";
-document.getElementById("p2Health").innerHTML = "Frost (" + health2 + " / " + maxHealth + ")";
-document.getElementById("rollButtonId").style.display = "block"; // shows button
-document.getElementById("rollButtonId2").style.display = "none"; // hides button
+// add event listeners to the popup "SELECET" buttons
+document.getElementById("confirm1").addEventListener("click", addPowerupLeft)
+document.getElementById("confirm2").addEventListener("click", addPowerupRight)
+document.getElementById("confirm3").addEventListener("click", addDebuffLeft)
+document.getElementById("confirm4").addEventListener("click", addDebuffRight)
+
+
+// display health initially
+document.getElementById("p1Health").innerHTML = "Proppa (" + health1 + "/" + maxHealth + ")";
+document.getElementById("p2Health").innerHTML = "Frost (" + health2 + "/" + maxHealth + ")";
+
+
+// display initial powerups (should be none by default)
+updatePowerups(1)
+updatePowerups(2)
+
+/* addPowerupLeft activated once they click on powerup pop-up button
+for the left powerup */
+function addPowerupLeft() {
+	// makes random powerup true if they click on it
+	powerups1[randomPowerupKey1] = true
+
+	// pop-up disappears
+	document.getElementById("select").classList.toggle("active")
+	document.getElementById("select2").classList.toggle("active")
+
+	// add powerup to table
+	updatePowerups(1)
+	updatePowerups(2)
+
+}
+
+// same as function above, but for the right
+function addPowerupRight() {
+	powerups1[randomPowerupKey2] = true
+	document.getElementById("select").classList.toggle("active")
+	document.getElementById("select2").classList.toggle("active")
+	updatePowerups(1)
+	updatePowerups(2)
+
+}
+
+/* addDebuffLeft activated once they click on debuff pop-up button
+for the left debuff */
+function addDebuffLeft() {
+	debuffs1[randomDebuffKey1] = true
+	document.getElementById("debuff1").classList.toggle("active")
+	document.getElementById("debuff2").classList.toggle("active")
+	updatePowerups(1)
+	updatePowerups(2)
+
+}
+
+function addDebuffRight() {
+	debuffs1[randomDebuffKey2] = true
+	document.getElementById("debuff1").classList.toggle("active")
+	document.getElementById("debuff2").classList.toggle("active")
+	updatePowerups(1)
+	updatePowerups(2)
+
+}
+
+function generateAndDisplayRandomPowerup() {
+
+
+}
 
 // returns text of button to "ROLL" after a player ends turn
 function refreshButtons(){
 	document.getElementById("rollButtonId").innerHTML = "ROLL"
     document.getElementById("rollButtonId2").innerHTML = "ROLL"
 
-}
-
-// every three turns select from 2 powerups
-function selectPower(powerNum){
-
-	// get array of powerup keys
-let powerupKeys = Object.keys(powerups1)
-
-// get random key from array of powerup keys
-let randomPowerupKey = powerupKeys[Math.floor(Math.random() * powerupKeys.length)]
-
-// get corresponding powerup from key location and change name to user friendly name (SEE selectPower FOR DETAILS)
-let randomPowerupNames = powerupNames[randomPowerupKey]
-
-// get corresponding powerup description from key location and display under powerup name
-let randomPowerupDesc = powerupDesc[randomPowerupKey]
-
-// get another random powerup
-let powerupKeys2 = Object.keys(powerups1)
-let randomPowerupKey2 = powerupKeys2[Math.floor(Math.random() * powerupKeys2.length)]
-let randomPowerupNames2 = powerupNames[randomPowerupKey2]
-let randomPowerupDesc2 = powerupDesc[randomPowerupKey2]
-
-	// if the condition is true, toggle the popups
-	document.getElementById("select").classList.toggle("active")
-	document.getElementById("select2").classList.toggle("active")
-	// two random powerups selected from array of keys
-	document.getElementById("rpower1").innerHTML = randomPowerupNames
-	document.getElementById("pdesc").innerHTML = randomPowerupDesc
-	document.getElementById("rpower2").innerHTML = randomPowerupNames2
-	document.getElementById("pdesc2").innerHTML = randomPowerupDesc2
-
-	// set the selected power-up to true based on the powerNum
-	if (powerNum === 1) {
-		// set the value for power-up 1 to true
-		randomPowerupKey = true;
-	} else if (powerNum === 2) {
-		// set the value for power-up 2 to true
-		randomPowerupKey2 = true;
-	}
-}
-
-function selectDebuff(debuffNum){
-
-	// Same thing but debuffs
-	let debuffKeys = Object.keys(debuffs1)
-	let randomDebuffKey = debuffKeys[Math.floor(Math.random() * debuffKeys.length)]
-	let randomDebuffName = debuffNames[randomDebuffKey]
-	let randomDebuffDesc = debuffDesc[randomDebuffKey]
-	let debuffKeys2 = Object.keys(debuffs1)
-	let randomDebuffKey2 = debuffKeys2[Math.floor(Math.random() * debuffKeys2.length)]
-	let randomDebuffName2 = debuffNames[randomDebuffKey2]
-	let randomDebuffDesc2 = debuffDesc[randomDebuffKey2]
-
-	document.getElementById("debuff1").classList.toggle("active")
-	document.getElementById("rdebuff1").innerHTML = randomDebuffName
-	document.getElementById("ddesc1").innerHTML = randomDebuffDesc
-	document.getElementById("debuff2").classList.toggle("active")
-	document.getElementById("rdebuff2").innerHTML = randomDebuffName2
-	document.getElementById("ddesc2").innerHTML = randomDebuffDesc2
-
-	// set the selected debuff to true based on the powerNum
-	if (debuffNum === 1) {
-		// set the value for debuff 1 to true
-		randomDebuffKey = true;
-	} else if (debuffNum === 2) {
-		// set the value for debuff 2 to true
-		randomDebuffKey2 = true;
-	}
 }
 
 // returns image of dice to question marks after a battle
@@ -282,23 +371,28 @@ function rollAttack() {
     }
 }
 
-// front-end calculations
-function healthChange() {
+function itemCalculationsBefore() {
 
-    // blue screen = once, cannot attack or defend
-    if (debuffs1.blueScreen) {
-        attackNum1 = 0
-        defenseNum1 = 0
-        debuffs1.blueScreen = false
-    }
-    if (debuffs2.blueScreen) {
-        attackNum2 = 0
-        defenseNum2 = 0
-        debuffs2.blueScreen = false
-    }
+	// infinite loop = defend for 1 forever
+	if (debuffs1.infiniteLoop) {
+		defenseNum1 = 1
+	}
+	if (debuffs2.infiniteLoop) {
+		defenseNum2 = 1
+	}
+	// full stack = make attack and defense 8 for one turn
+	if (powerups1.fullStack) {
+		attackNum1 = fullStackValue
+		defenseNum1 = fullStackValue
+		powerups1.fullStack = false
+	}
+	if (powerups2.fullStack) {
+		attackNum2 = fullStackValue
+		defenseNum2 = fullStackValue
+		powerups2.fullStack = false
+	}
 
-    // computer virus = for two turns, cannot defend (not sure if this needs database)
-    // did not implement for player 2 yet before discussion
+    // computer virus = for two turns, make defense 0
     if (debuffs1.computerVirus) {
         defenseNum1 = 0
         computerVirusCount1 -= 1
@@ -310,7 +404,7 @@ function healthChange() {
 
     }
 
-    // same comments as computer virus
+    // slow computer = for two turns, make attack 0
     if (debuffs1.slowComputer) {
         attackNum1 = 0
         slowComputerCount1 -= 1
@@ -321,19 +415,11 @@ function healthChange() {
         }
     }
 
-    // anti-maleware = every turn, minimum value of defense is 4
-    if ((powerups1.antiMalware) && (defenseNum1 < antiMalwareThreshold))  {
-        defenseNum1 = 4
-
-    }
-    if ((powerups2.antiMalware) && (defenseNum2 < antiMalwareThreshold)) {
-        defenseNum2 = 4
-
-    }
 
     // reboot = once, restore all health
     if (powerups1.reboot) {
         health1 = maxHealth
+		console.log("reboot used: "+ health1)
 		powerups1.reboot = false
 
     }
@@ -342,136 +428,438 @@ function healthChange() {
 		powerups2.reboot = false
 
     }
+	
+    // hack = every turn, lower enemy defense by 4
+    if (powerups1.hack) {
+		let diff = defenseNum2 - hackValue
+        
+		if (diff < 0) {
+			defenseNum2 = 0
+		}
+		else {
+			defenseNum2 = diff
+		}
+    }
+	if (powerups2.hack) {
+        let diff = defenseNum1 - hackValue
 
+		if (diff < 0) {
+			defenseNum1 = 0
+		}
+		else {
+			defenseNum1 = diff
+		}
+    }
+
+
+
+	// cyber security = every turn, gain 2 extra defense
+	if (powerups1.cyberSecurity) {
+		defenseNum1 += cyberSecurityValue
+	}
+	if (powerups2.cyberSecurity) {
+		defenseNum2 += cyberSecurityValue
+	}
+
+	// windows update = every turn, gain 1 attack, defense, and health
+	if (powerups1.windowsUpdate) {
+		attackNum1 += 1
+		defenseNum1 += 1
+		health1 += 1
+	}
+	if (powerups2.windowsUpdate) {
+		attackNum2 += 1
+		defenseNum2 += 1
+		health2 += 1
+	}
+
+	// bug = 25% chance to have attack and/or defense be 0
+	if (debuffs1.bug) {
+		let attackChance = Math.random()
+		let defenseChance = Math.random()
+
+		if (defenseChance <= bugChance) {
+			defenseNum1 = 0
+		}
+		if (attackChance <= bugChance) {
+			attackNum1 = 0
+		}
+
+	}
+
+	if (debuffs2.bug) {
+		let attackChance = Math.random()
+		let defenseChance = Math.random()
+
+		if (defenseChance <= bugChance) {
+			defenseNum2 = 0
+		}
+		if (attackChance <= bugChance) {
+			attackNum2 = 0
+		}
+
+	}
+
+	// anti-maleware = every turn, minimum value of defense is 4
+	if ((powerups1.antiMalware) && (defenseNum1 < antiMalwareThreshold))  {
+		defenseNum1 = 4
+
+	}
+	if ((powerups2.antiMalware) && (defenseNum2 < antiMalwareThreshold)) {
+		defenseNum2 = 4
+	}
+	
+	// blue screen, make attack/defense 0 for 1 turn
+	if (debuffs1.blueScreen) {
+		attackNum1 = 0
+		defenseNum1 = 0
+		debuffs1.blueScreen = false
+	}
+	if (debuffs2.blueScreen) {
+		attackNum2 = 0
+		defenseNum2 = 0
+		debuffs2.blueScreen = false
+	}
+}
+
+function itemCalculationsAfter() {
+	// recursion = damage dealt becomes value of an extra attack
+	if (powerups1.recursion) {
+		change2 += (change2 - defenseNum2)
+	}
+
+	if (powerups2.recursion) {
+		change1 += (change1 - defenseNum1)
+	}
+
+	// firewall = once, become immune
+	if (powerups1.firewall) {
+		change1 = 0
+		powerups1.firewall = false
+	}
+	if (powerups2.firewall) {
+		change2 = 0
+		powerups1.firewall = false
+	}
+
+	// type cast = heal for damage you would have taken
+	if (powerups1.typeCast) {
+		health1 += change1
+		change1 = 0
+		powerups1.typeCast = false
+	}
+	if (powerups2.typeCast) {
+		health2 += change2
+		change2 = 0
+		powerups2.typeCast = false
+
+	}
+
+	// binary search = reduce opponents health by half
+	if (powerups1.binarySearch) {
+		health2 = Math.round(health2 / 2)
+		change2 = 0
+		powerups1.binarySearch = false
+	}
+	if (powerups2.binarySearch) {
+		health1 = Math.round(health2 / 2)
+		change1 = 0
+		powerups2.binarySearch = false
+	}
+
+	// syntax error = once, lose 5 heatlh
+	if (debuffs1.syntaxError) {
+		health1 -= syntaxErrorValue
+		debuffs1.syntaxError = false
+	}
+	if (debuffs2.syntaxError) {
+		health2 -= syntaxErrorValue
+		debuffs2.syntaxError = false
+	}
+
+	// ransomware = once, 50% chance to lose 10 health
+	if (debuffs1.ransomware) {
+		let chance = Math.random()
+		if (chance <= 0.5) {
+			health1 -= ransomwareValue
+		}
+		debuffs1.ransomware = false
+	}
+	if (debuffs2.ransomware) {
+		let chance = Math.random()
+		if (chance <= 0.5) {
+			health2 -= ransomwareValue
+		}
+		debuffs2.ransomware = false
+	}
+
+	// low battery = every turn, lose 2 health
+	if (debuffs1.lowBattery) {
+		health1 -= lowBatteryValue
+	}
+	if (debuffs2.lowBattery) {
+		health2 -= lowBatteryValue
+	}
+
+	// power outlet = every turn, gain 2 health
+	if (powerups1.powerOutlet) {
+		health1 += powerOutletValue
+
+	}
+	if (powerups2.powerOutlet) {
+		health2 += powerOutletValue
+
+	}
+
+	// try catch = if going to die, negate attack and make health 5
+	if ((powerups1.tryCatch) && (change1 > health1)) {
+		change1 = 0
+		health1 = 5
+		powerups1.tryCatch = false
+	}
+	if ((powerups2.tryCatch) && (change2 > health2)) {
+		change2 = 0
+		health2 = 5
+		powerups1.tryCatch = false
+	}
+}
+
+// front-end calculations and powerup calculations
+function healthChange() {
+
+	itemCalculationsBefore()
+    
 	change1 = attackNum2 - defenseNum1
 	change2 = attackNum1 - defenseNum2
 
-    // recursion = every turn, do damage again
-    if (powerups1.recursion) {
-        change2 = change2 * recursionAttacks
-    }
-    if (powerups2.recursion) {
-        change1 = change1 * recursionAttacks
+	itemCalculationsAfter()
 
-    }
-
-    // Non-ethical Hacking = every turn, lower enemy defense by 4
-    if (powerups1.nonEthicalHacking) {
-        defenseNum2 -= nonEthicalHackingValue
-
-    }
-    if (powerups2.nonEthicalHacking) {
-        defenseNum1 -= nonEthicalHackingValue
-
-    }
-
-    // firewall = once, become immune
-    if (powerups1.firewall) {
-        change1 = 0
-
-    }
-	if (powerups2.firewall) {
-		change2 = 0
+	// change health
+	if(change1>0 ) {
+		health1 -= change1
+	}
+	if (change2> 0) {
+		health2 -= change2
 	}
 
-    // syntax error = once, lose 5 heatlh
-    if (debuffs1.syntaxError) {
-        health1 -= syntaxErrorValue
-        debuffs1.syntaxError = false
-    }
-    if (debuffs2.syntaxError) {
-        health2 -= syntaxErrorValue
-        debuffs2.syntaxError = false
-    }
+	// display health
+	document.getElementById("p1Health").innerHTML = "Proppa (" + health1 + "/" + maxHealth + ")";
+	document.getElementById("p2Health").innerHTML = "Frost (" + health2 + "/" + maxHealth + ")";
 
-    // ransomware = once, 50% chance to lose 10 health
-    if (debuffs1.ransomware) {
-
-        if (Math.random() <= 0.5) {
-            health1 -= ransomwareValue
-        }
-
-        debuffs1.ransomware = false
-    }
-    if (debuffs2.ransomware) {
-        if (Math.random() <= 0.5) {
-            health2 -= ransomwareValue
-        }
-
-        debuffs2.ransomware = false
-    }
-
-    // low battery = every turn, lose 2 health
-    if (debuffs1.lowBattery) {
-        health1 -= lowBatteryValue
-    }
-    if (debuffs2.lowBattery) {
-        health2 -= lowBatteryValue
-    }
-
-    // power outlet = every turn, gain 2 health
-    // if (powerups1.recharge) {
-    //     health1 += rechargeGain
-
-    // }
-    // if (powerups2.recharge) {
-    //     health2 += rechargeGain
-
-    // }
-
-	if(change1>0)
-	{   
-		health1 = health1-change1
-	}
-	if (change2>0) {
-		health2 = health2-change2
-	}
-
-	document.getElementById("p1Health").innerHTML = "Proppa (" + health1 + " / " + maxHealth + ")";
-	document.getElementById("p2Health").innerHTML = "Frost (" + health2 + " / " + maxHealth + ")";
-
+	//update powerups after battle
 	totalTurns = totalTurns + 1;
-	document.getElementById("round").innerHTML = ("Round: " + (totalTurns))
+	document.getElementById("turn").innerHTML = "turn: " +totalTurns
+	console.log("turn: " + totalTurns)
 
-	// check if the total number of turns is divisible by 3 and not equal to 0
-	if (totalTurns % 3 == 0 && totalTurns != 0){
+	updatePowerups(1)
+	updatePowerups(2)
+	//document.getElementById("round").innerHTML = ("Round: " + (totalTurns))
+
+	/* SELECT POWERUP code
+	check if the total number of turns is divisible by 3 and not equal to 0*/
+	if (totalTurns % powerupFreq == 0 && totalTurns != 0){
 		// if true pass powerup
-		alert("Select A Powerup 😎")
-		selectPower()
-	}
+		alert("Select a powerup :)")
 
+		// get 2 random powerups
+		powerupKeys = Object.keys(powerups1)
+		randomPowerupKey1 = powerupKeys[Math.floor(Math.random() * powerupKeys.length)]
+		randomPowerupKey2 = powerupKeys[Math.floor(Math.random() * powerupKeys.length)]
+		
+		// initialize variables to check validity
+		let unique = true
+		let alreadyHasLeft = false
+		let alreadyHasRight = false
+		let tries = 0
+
+		if (randomPowerupKey1 == randomPowerupKey2)
+			unique = false
+
+		if (player1CurrentItems.includes(randomPowerupKey1))
+			alreadyHasLeft = true
+
+		if (player1CurrentItems.includes(randomPowerupKey2))
+			alreadyHasRight = true
+
+		/* ensure validity of popups (cannot be the same, and player doesn't have either option)
+		will try 30 times until exiting */
+		while (!unique || alreadyHasLeft || alreadyHasRight && (tries < 500)) {
+			randomPowerupKey1 = powerupKeys[Math.floor(Math.random() * powerupKeys.length)]
+			randomPowerupKey2 = powerupKeys[Math.floor(Math.random() * powerupKeys.length)]
+
+			// cannot be the same
+			if (randomPowerupKey1 == randomPowerupKey2) {
+				unique = false
+				console.log("duplicate")
+			}	
+			else
+				unique = true
+	
+			// player doesn't have either option
+			if (player1CurrentItems.includes(randomPowerupKey1)) {
+				alreadyHasLeft = true
+				console.log("has left")
+			}
+			else 
+				alreadyHasLeft = false
+	
+			if (player1CurrentItems.includes(randomPowerupKey2)) {
+				alreadyHasRight = true
+				console.log("has right")
+			}
+			else 
+				alreadyHasRight = false
+
+			tries += 1
+			if (tries >= 50)
+				console.log("exit loop after " +tries+ " tries")
+		}
+
+		// if the condition is true, toggle the popups
+		// have to do this here to prevent async
+	
+		document.getElementById("select").classList.toggle("active")
+		document.getElementById("select2").classList.toggle("active")
+	
+		// two random powerups selected from array of keys
+		document.getElementById("rpower1").innerHTML = randomPowerupKey1
+		document.getElementById("pdesc").innerHTML = descriptions[randomPowerupKey1]
+		document.getElementById("rpower2").innerHTML = randomPowerupKey2
+		document.getElementById("pdesc2").innerHTML = descriptions[randomPowerupKey2]
+
+	}
 	// check if the total number of turns is divisible by 5 and not equal to 0
-	if (totalTurns % 5 == 0 && totalTurns != 0){
+	if (totalTurns % debuffFreq == 0 && totalTurns != 0){
 		// if true pass debuff
-		alert("You got a random disadvantage ☠️")
-		selectDebuff()
+		alert("Select a debuff :(")
+
+		// get 2 random debuffs
+		debuffKeys = Object.keys(debuffs1)
+		randomDebuffKey1 = debuffKeys[Math.floor(Math.random() * debuffKeys.length)]
+		randomDebuffKey2 = debuffKeys[Math.floor(Math.random() * debuffKeys.length)]
+
+		// if the condition is true, toggle the popups
+		document.getElementById("debuff1").classList.toggle("active")
+		document.getElementById("debuff2").classList.toggle("active")
+	
+		// two random powerups selected from array of keys
+		document.getElementById("rdebuff1").innerHTML = randomDebuffKey1
+		document.getElementById("ddesc").innerHTML = descriptions[randomDebuffKey1]
+		document.getElementById("rdebuff2").innerHTML = randomDebuffKey2
+		document.getElementById("ddesc2").innerHTML = descriptions[randomDebuffKey2]
+
 	}
 }
 
 // updates powerup arrays
-function updatePowerups(object, arr) {
+// is called after every battle and once during start of game
+// clears all rows of powerups and rebuilds based on what is still true
+function updatePowerups(player) {
 
-	for (let field in object) {
-		if (object[field]) {
-			arr.push(field)
+	if (player == 1) {
+		// clear all rows of powerup table
+		for (let i = 0; i < player1CurrentItems.length; i++) {
+			playerPowerupsTable.deleteRow(-1)
+		}
+		
+		// clears current powerups array
+		player1CurrentItems = []
+		
+		// iterate through all powerups, if true, add back to current powerups
+		// this essentially filters out the values that turned false
+		for (let field in powerups1) {
 
+			if (powerups1[field]) {
+				player1CurrentItems.push(field)
+			}
+
+		}
+		for (let field in debuffs1) {
+			if (debuffs1[field]) {
+				player1CurrentItems.push(field)
+			}
+
+		}
+		
+		// display the true values in the table again
+		for (let i = 0; i < player1CurrentItems.length; i++) {
+			newRow = playerPowerupsTable.insertRow();
+			nameColumn = newRow.insertCell(0)
+			nameColumn.innerHTML = (player1CurrentItems[i] + "> " + descriptions[player1CurrentItems[i]])
+		}
+	}
+	else if (player == 2) {
+		// clear all rows of powerup table
+		for (let i = 0; i < player2CurrentItems.length; i++) {
+			enemyPowerupsTable.deleteRow(-1)
+		}
+		
+		// clears current powerups array
+		player2CurrentItems = []
+		
+		// iterate through all powerups, if true, add back to current powerups
+		// this essentially filters out the values that turned false
+		for (let field in powerups2) {
+
+			if (powerups2[field]) {
+				player2CurrentItems.push(field)
+			}
+
+		}
+		for (let field in debuffs2) {
+			if (debuffs2[field]) {
+				player2CurrentItems.push(field)
+			}
+
+		}
+		
+		// display the true values in the table again
+		for (let i = 0; i < player2CurrentItems.length; i++) {
+			newRow = enemyPowerupsTable.insertRow();
+			nameColumn = newRow.insertCell(0)
+		
+			nameColumn.innerHTML = (player2CurrentItems[i] + "> " + descriptions[player2CurrentItems[i]])
 		}
 	}
 
-	for (let i = 0; i < arr.length; i++) {
-		newRow = playerPowerupsTable.insertRow();
-		nameColumn = newRow.insertCell(0)
-		durationColumn = newRow.insertCell(1)
-	
-		nameColumn.innerHTML = arr[i]
-		durationColumn.innerHTML = ""
-	
-	}
+
 
 }
+	/*
+	player1CurrentDebuffs = []
+	for (let field in debuffs1) {
+		console.log("field: " + field + " " + debuffs1[field])
+		if (debuffs1[field] == true) {
+			player1CurrentPowerups.push(field)
+		}
 
-updatePowerups(debuffs1, player1Debuffs)
-updatePowerups(powerups1, player1Powerups)
+	}
+
+
+
+	// html display
+	/*
+	if (player == 1) {
+		for (let i = 0; i < player1CurrentPowerups.length; i++) {
+			newRow = playerPowerupsTable.insertRow();
+			nameColumn = newRow.insertCell(0)
+			durationColumn = newRow.insertCell(1)
+		
+			nameColumn.innerHTML = (arr[i] + "> " + descriptions[arr[i]])
+			durationColumn.innerHTML = ""
+		
+		}
+	}
+	else if (player == 2) {
+		for (let i = 0; i < arr.length; i++) {
+			newRow = enemyPowerupsTable.insertRow();
+			nameColumn = newRow.insertCell(0)
+		
+			nameColumn.innerHTML = (arr[i] + "> " + descriptions[arr[i]])
+			
+		}
+
+	}*/
 
 
 // lets player 1 select dice if appropriate
@@ -490,14 +878,14 @@ function allowSelection() {
 					document.getElementById("rollButtonId").innerHTML = "RE-ROLL"
 					selected = atkDiceId
 					dfsDiceId.style.border = "0px"
-					atkDiceId.style.border = "5px solid #000000"
+					atkDiceId.style.border = "5px solid #00aa00"
 				}
 			}
 			//stage 3
 			else{
 				selected = atkDiceId
 				dfsDiceId.style.border = "0px"
-				atkDiceId.style.border = "5px solid #000000"
+				atkDiceId.style.border = "5px solid #00aa00"
            	}
 	      }
 	})
@@ -507,13 +895,13 @@ function allowSelection() {
 			if(stage==2){
 				// can deselect
 				if(selected==dfsDiceId){
-					selected.style.border="0px"
+					selected.style.border="3px"
 					selected = null
 					document.getElementById("rollButtonId").innerHTML = "SKIP"
 				}
 				else{
 					selected = dfsDiceId
-					dfsDiceId.style.border = "5px solid #000000"
+					dfsDiceId.style.border = "5px solid #00aa00"
 					atkDiceId.style.border = "0px"
 					document.getElementById("rollButtonId").innerHTML = "RE-ROLL"
 				}
@@ -521,7 +909,7 @@ function allowSelection() {
 			// stage 3
 			else{
 				selected = dfsDiceId
-				dfsDiceId.style.border = "5px solid #000000"
+				dfsDiceId.style.border = "5px solid #00aa00"
 				atkDiceId.style.border = "0px"
 			}
 		}
@@ -544,13 +932,13 @@ function allowSelection2(){
 					document.getElementById("rollButtonId2").innerHTML = "RE-ROLL"
 					selected = atkDiceId2
 					dfsDiceId2.style.border = "0px"
-					atkDiceId2.style.border = "5px solid #000000"
+					atkDiceId2.style.border = "3px solid #00aa00"
 				}
 			}
 			else{
 				selected = atkDiceId2
 				dfsDiceId2.style.border = "0px"
-				atkDiceId2.style.border = "5px solid #000000"
+				atkDiceId2.style.border = "3px solid #00aa00"
 			}
 		}
 	})
@@ -567,13 +955,13 @@ function allowSelection2(){
 				else{
 					document.getElementById("rollButtonId2").innerHTML = "RE-ROLL"
 					selected = dfsDiceId2
-					dfsDiceId2.style.border = "5px solid #000000"
+					dfsDiceId2.style.border = "3px solid #00aa00"
 					atkDiceId2.style.border = "0px"
 				}
 			}
 			else{
 				selected = dfsDiceId2
-				dfsDiceId2.style.border = "5px solid #000000"
+				dfsDiceId2.style.border = "3px solid #00aa00"
 				atkDiceId2.style.border = "0px"
 			}
 		}
@@ -593,10 +981,11 @@ function playerAction(){
 
 	// stage 1 = initial rolls
 	if (stage == 1) {
+		
 		rollAttack();
 		rollDefense();
 
-		document.getElementById("instructionsId").innerHTML = "Select one die to re-roll (or skip)"
+		document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Re-roll one die (or skip)"
 		document.getElementById("rollButtonId").innerHTML = "SKIP"
 		document.getElementById("rollButtonId2").innerHTML = "SKIP"
 
@@ -631,7 +1020,7 @@ function playerAction(){
 
 		selected = null
 		stage = 3
-        document.getElementById("instructionsId").innerHTML = "Select one die to +2"
+        document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Select one die to +2"
     }
 	// stage 3 = select one dice to +2
     else if (stage == 3) {
@@ -670,7 +1059,7 @@ function playerAction(){
 				document.getElementById("rollButtonId2").innerHTML = "END"
 			}
 			stage = 4
-			document.getElementById("instructionsId").innerHTML = "End turn"
+			document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> End turn..."
 		}
 			selected = null
     }
@@ -684,15 +1073,16 @@ function playerAction(){
 			refreshDice()
 			diceReady1 = false
 			diceReady2 = false
-			document.getElementById("instructionsId").innerHTML = "Roll dice Player "+(turn+1) // need database (username)
+			document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Roll dice Player "+(turn+1) // need database (username)
+			
 		}
 		// battle not ready
 		else{
 			// player 1's turn
 			if(turn==0){
-				alert("player 2's turn now") // change to pop-up
+				//alert("player 2's turn now") // change to pop-up
 				
-				document.getElementById("instructionsId").innerHTML = "Roll dice Player 2"
+				document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Roll dice Player 2"
 				document.getElementById("rollButtonId").style.display = "none";
 				document.getElementById("rollButtonId2").style.display = "block";
 				document.getElementById("rollButtonId2").innerHTML = "ROLL"
@@ -708,9 +1098,9 @@ function playerAction(){
 			}
 			// player 2's turn
 			else{
-				alert("player 1's turn now")  // change to pop-up
+				//alert("player 1's turn now")  // change to pop-up
 				
-				document.getElementById("instructionsId").innerHTML = "Roll dice Player 1"
+				document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Roll dice Player 1"
 				document.getElementById("rollButtonId").style.display = "block";
 				document.getElementById("rollButtonId2").style.display = "none";
 				document.getElementById("rollButtonId").innerHTML = "ROLL"
@@ -727,6 +1117,7 @@ function playerAction(){
 		}
 
 		// if game ends
+		// draw
 		if(health1<=0 && health2<=0){ 
 			hideButtons();
 			alert("Game ends in a draw!")
@@ -734,13 +1125,19 @@ function playerAction(){
 			document.getElementById("p1Health").innerHTML = 0;
 			document.getElementById("p2Health").innerHTML = 0;
 		}
+		//player 2 wins
 		else if(health1<=0)
 		{
+
+			console.log("player2wins")
 			hideButtons();
 			alert("Player 2 wins!") // replace with username and make pop-up
 			document.getElementById("instructionsId").innerHTML = "Player 2 wins!" // replace with username
 			document.getElementById("p1Health").innerHTML = 0;
+		
+		
 		}
+		// player 1 wins
 		else if(health2<=0){
 			hideButtons();
 			alert("Player 1 wins!"); // replace with username and make pop-up
@@ -762,9 +1159,11 @@ function playerAction(){
 allowSelection();
 allowSelection2();
 
+
 document.getElementById("rollButtonId").addEventListener("click",playerAction)
 document.getElementById("rollButtonId2").addEventListener("click",playerAction)
 
+<<<<<<< HEAD
 document.getElementById("instructionsId").innerHTML = "Roll dice Player 1" // db username
 =======
 /* goals and notes */
@@ -1999,3 +2398,6 @@ document.getElementById("rollButtonId2").addEventListener("click",playerAction)
 
 document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Roll dice Player 1" // db username
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Roll dice Player 1" // db username
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530

@@ -75,8 +75,13 @@ showRules();
 function showGames(){
 	// takes the game table from the html
 	let gameTable = document.getElementById("gameTable");
+<<<<<<< HEAD
 
 	console.log("gameTable after assignment: " +gameTable)
+=======
+	console.log("gameTable after assignment: " +gameTable)
+	
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("Error!")};
 	xmlhttp.onload = function(){

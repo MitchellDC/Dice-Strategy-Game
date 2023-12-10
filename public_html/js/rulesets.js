@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 function toHome() {
 =======
 function toHome() { 
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+function toHome() { 
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
     document.getElementById("home").onclick = function () { location.href = "home.html"}
 }
 
@@ -16,15 +20,18 @@ function toRules() {
 
 function showRules() {
 <<<<<<< HEAD
+<<<<<<< HEAD
     document.getElementById("ruleset").classList.toggle("active")
+=======
+    document.getElementById("rulePopup").classList.toggle("active")
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
 }
-
 
 function displayRulesets(){
 
-
 	// takes the rulesets table from the html
 	let ruleTable = document.getElementById("ruleTable");
+<<<<<<< HEAD
 
 =======
     document.getElementById("rulePopup").classList.toggle("active")
@@ -36,6 +43,9 @@ function displayRulesets(){
 	let ruleTable = document.getElementById("ruleTable");
     console.log("ruletable: "+ ruleTable)
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+    console.log("ruletable: "+ ruleTable)
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("Error!")};
 	xmlhttp.onload = function(){
@@ -43,6 +53,7 @@ function displayRulesets(){
 		else{
 
 			let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
+<<<<<<< HEAD
 <<<<<<< HEAD
 			console.log(resp)
 			if(resp.length>0){
@@ -53,11 +64,20 @@ function displayRulesets(){
                         column = 0
                         newRow = ruleTable.insertRow(); // new row is made
                     }
+=======
+			console.log("resp: "+ resp)
+			if(resp.length>0){
+				document.getElementById("noRulesets").style.display="none"; // hides the table that says no rulesets if there are no active rulesets
+				console.log("ruletable: " + ruleTable)
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
 
-					ruleColumn = newRow.insertCell(column); // variable for the second column of the new row
+				for(let i = 0; i < resp.length; i++) {
+					
+					newRow = ruleTable.insertRow() // maybe i+1
 
-					ruleColumn.innerHTML = resp[Rule].Ruleset_name //displays the ruleset (will change once the rulesets are applied)
+					// variable for the second column of the new row
 
+<<<<<<< HEAD
                     let ruleID = resp[Rule].Rule_ID;
 					ruleColumn.classList.add("ongoing"); //assigns class to the columns
 					ruleColumn.id = ruleID; //assigns id to the first column
@@ -80,6 +100,13 @@ function displayRulesets(){
 					let ruleID = resp[i].Rule_ID;
 					newRow.id = ruleID; //assigns id to the first column
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+					newRow.innerHTML = resp[i].Ruleset_name //displays the ruleset (will change once the rulesets are applied)
+					newRow.classList.add("details"); //assigns class to the columns
+					//alert(resp[game].Game_ID)
+					let ruleID = resp[i].Rule_ID;
+					newRow.id = ruleID; //assigns id to the first column
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
 
 					/*
 					oppColumn.addEventListener("click", function(){
@@ -91,11 +118,24 @@ function displayRulesets(){
 					// anonymous function where opponent is different at each iteration of the loop
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                         column += column
+=======
+					(function (ruleID) {
+						newRow.addEventListener("click", function () {
+						alert(ruleID)
+						document.getElementById("rulePopup").classList.toggle("active")
+						});
+					})(ruleID)
+
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
 				}
+
+					
 			}
 			else{
 				document.getElementById("noRules").style.display="block"; //another table that says no active rulesets if there are no rulesets made
+<<<<<<< HEAD
 				document.getElementById("noRules").innerHTML="<b>NO ACTIVE RULESETS</b>"
 =======
 					(function (ruleID) {
@@ -113,19 +153,26 @@ function displayRulesets(){
 				document.getElementById("noRules").style.display="block"; //another table that says no active rulesets if there are no rulesets made
 				//document.getElementById("noRules").innerHTML="<b>NO ACTIVE RULESETS</b>"
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+				//document.getElementById("noRules").innerHTML="<b>NO ACTIVE RULESETS</b>"
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
 				ruleTable.style.display='none'; //table is hidden if there are no active rulesets
 			}
 
 		}
 
 	}
-	xmlhttp.open("GET","http://104.196.1.169/rules");
+	xmlhttp.open("GET","http://104.196.28.244/rules");
 	xmlhttp.send();
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 displayRulesets();
 =======
 displayRulesets();
+=======
+displayRulesets();
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
 
 
 
@@ -142,7 +189,11 @@ function displayHealth() { // to display initial health in rulesets popup
 			health.innerHTML = ("Initial Health: " + resp[Rule].InitialHealth); // display initial health from database table
 		}
 	}
+<<<<<<< HEAD
 	xmlhttp.open("GET","http://104.196.1.169/rules");
+=======
+	xmlhttp.open("GET","http://104.196.28.244/rules");
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
 	xmlhttp.send();
 }
 displayHealth();
@@ -162,6 +213,7 @@ function displayPowers() {
 			let powers = document.createElement("div")
 
 			if(resp[Rule].antiMalware == true){
+<<<<<<< HEAD
 				createPowers.appendChild(powers)
 				console.log("antiMalware true")
 				powers.innerHTML = (resp[Rule].antiMalware);
@@ -183,3 +235,25 @@ function displayPowers() {
 }
 displayPowers();
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+				console.log("antiMalware true")
+				powers.innerHTML += "antiMalware";
+			}
+			if(resp[Rule].binarySearch == true){
+				console.log("binarySearch true")
+				powers.innerHTML += "binarySearch";
+			}
+			if(resp[Rule].ciphertext == true){
+				console.log("ciphertext true")
+				powers.innerHTML += "ciphertext";
+			}
+
+			// append divs to container inside popup
+			createPowers.appendChild(powers)
+		}
+	}
+	xmlhttp.open("GET","http://104.196.28.244/rules");
+	xmlhttp.send();
+}
+displayPowers();
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530

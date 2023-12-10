@@ -90,7 +90,11 @@ body {
     margin-right: 0%;
 =======
     margin-right: 10px;
+<<<<<<< HEAD
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
     height: 450px;
     
     float: right;
@@ -158,7 +162,11 @@ body {
  /* Powerup selection - Every 3 turns */
 =======
 /* Powerup selection - Every 3 turns */
+<<<<<<< HEAD
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
 
  /* powerup1 - select */
  .popup .overlay {
@@ -171,7 +179,11 @@ body {
     background: rgba(0,0,0,0.7);
 =======
     background: rgba(0,0,0,0.5);
+<<<<<<< HEAD
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
     z-index: 1;
     display: none;
 }
@@ -228,7 +240,11 @@ body {
     border-width: 3px;
     border-color: black;
     border-style: solid;
+<<<<<<< HEAD
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
 
 }
 
@@ -242,7 +258,11 @@ body {
     transform: translate(15%, -50%) scale(1);
 =======
     transform: translate(-125%, -50%) scale(1);
+<<<<<<< HEAD
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
 }
 
 /* powerup2 - for selection */
@@ -256,7 +276,11 @@ body {
     background: rgba(0,0,0,0.7);
 =======
     background: rgba(0,0,0,0.5);
+<<<<<<< HEAD
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
     z-index: 1;
     display: none;
 }
@@ -293,7 +317,11 @@ body {
     font-weight: bold;
     font-size: 16pt;
     
+<<<<<<< HEAD
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
 
 }
 
@@ -311,7 +339,11 @@ body {
 }
 
 /* Player Debuffs */
+<<<<<<< HEAD
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
 
 .popup3 .overlay {
     position: fixed;
@@ -329,7 +361,11 @@ body {
     display: none;
 
     
+<<<<<<< HEAD
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
 }
 
 .popup3 .content {
@@ -363,7 +399,11 @@ body {
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     font-size: 16pt;
+<<<<<<< HEAD
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
 
 }
 
@@ -380,7 +420,11 @@ body {
 /* Debuff 2 */
 
 =======
+<<<<<<< HEAD
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
 .popup4 .overlay {
     position: fixed;
     top: 0px;
@@ -391,7 +435,11 @@ body {
     background: rgba(0,0,0,0.7);
 =======
     background: rgba(0,0,0,0.5);
+<<<<<<< HEAD
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
     z-index: 1;
     display: none;
 }
@@ -428,7 +476,11 @@ body {
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     font-size: 16pt;
+<<<<<<< HEAD
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
 
 }
 
@@ -503,7 +555,11 @@ body {
 <<<<<<< HEAD
 =======
     font-family: 'Courier New', Courier, monospace;
+<<<<<<< HEAD
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
     float: right;
 
 }
@@ -556,7 +612,11 @@ body {
 <<<<<<< HEAD
 =======
     margin-left: 10px;
+<<<<<<< HEAD
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
 
     height: 450px;
     float: left;
@@ -741,7 +801,11 @@ body {
 .tableDesc {
     text-decoration: underline;
 
+<<<<<<< HEAD
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
 }
 
 .enemyPowerups {
@@ -758,7 +822,11 @@ body {
     border-color: white;
     border-style: solid;
     border-width: 2px;
+<<<<<<< HEAD
 >>>>>>> 9dfcd3f88cefcfb661621bc63debad14562146df
+=======
+>>>>>>> e060db734b62164d406ad71a3fb1a6461988186e
+>>>>>>> 9d834ba3d32e52d7e13350eeb9f1549a4a867530
 
     font-size: 20pt;
     font-weight:bold;
