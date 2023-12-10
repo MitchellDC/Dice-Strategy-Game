@@ -235,11 +235,9 @@ function populateItems(enabledPowerups, enabledDebuffs, resp) {
 	console.log(resp[0])
 
 	for (let i = 0; i < enabledPowerups.length; i++){
-		console.log(enabledPowerups[i])
-		console.log(enabledPowerups[i].toString())
 		tmp = (enabledPowerups[i] + "1").toString()
 		console.log(tmp)
-		if (resp[0].arg == true) {
+		if (resp[0].tmp == true) {
 			console.log("tmp sliced: " + tmp.slice(0, -1))
 			powerups1[tmp.slice(0, -1)] = true
 			console.log("added" + tmp.slice(0, -1) + "to powerups1" )
