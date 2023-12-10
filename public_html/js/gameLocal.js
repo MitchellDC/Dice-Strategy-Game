@@ -100,6 +100,13 @@ function getGameState(){
 			// hide and show buttons buttons
 			document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Roll dice " + turn
 
+			// update dice images
+			atkDiceId.src = "css/images/dd"+attackNum1+".jpeg"
+			dfsDiceId.src = "css/images/dd"+defenseNum1+".jpeg"
+			atkDiceId2.src = "css/images/dd"+attackNum2+".jpeg"
+			dfsDiceId2.src = "css/images/dd"+defenseNum2+".jpeg"
+
+
 			if (turn == user) { 
 				// current player has control
 				if(turn==username1){ //shows player 1 button if the user in a device is player 2
@@ -130,7 +137,6 @@ function getGameState(){
 			}
 
 			if (dfsDiceId2.src != `http://104.196.1.169/css/images/dd0.jpeg`) {
-
 				diceReady2 = true
 
 
