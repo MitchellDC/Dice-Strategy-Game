@@ -69,6 +69,7 @@ let maxHealth
 let username1
 let username2
 
+console.log(enabledPowerups)
 
 function getGameState(){
 	let xmlhttp = new XMLHttpRequest();
@@ -209,8 +210,9 @@ function initializeRule() {
 				}
 			}
 		}
+		
 	}	
-
+	console.log(enabledPowerups)
 
 	xmlhttp.open("GET","http://104.196.1.169/rule?"+queryObjectToString({ruleID:rulesetID})); 
 	xmlhttp.send();
@@ -224,7 +226,7 @@ function queryObjectToString(query) {
     return(arrOfQuesryStrings.join('&'));
  }
 
-
+ console.log(enabledPowerups)
 /*
 
 if recurion == true in database
@@ -243,7 +245,7 @@ powerups1 = {
 
 }*/
 
-console.log(enabledPowerups)
+
 
 
 let player1CurrentItems = []
