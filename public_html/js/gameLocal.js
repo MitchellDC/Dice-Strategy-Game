@@ -134,7 +134,7 @@ function getGameState(){
 				//browser gets refreshed every 5 seconds if it is not user's turn
 				setInterval(() => {
 					location.reload();
-				}, 5000);
+				}, 999999); // change back to 5000
 			}
 			
 			if (dfsDiceId.src != `http://104.196.1.169/css/images/dd0.jpeg`) {
@@ -236,8 +236,8 @@ function populateItems(enabledPowerups, enabledDebuffs, resp) {
 
 	for (let i = 0; i < enabledPowerups.length; i++){
 		console.log(enabledPowerups[i])
-		console.log(toString(enabledPowerups[i]))
-		tmp = toString(enabledPowerups[i] + "1")
+		console.log(enabledPowerups[i].toString())
+		tmp = (enabledPowerups[i] + "1").toString()
 		console.log(tmp)
 		if (resp[0].arg == true) {
 			console.log("tmp sliced: " + tmp.slice(0, -1))
