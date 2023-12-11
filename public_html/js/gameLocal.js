@@ -850,7 +850,7 @@ function selectItem(totalTurns, powerupFreq, debuffFreq, enabledPowerups, enable
 	console.log(powerupFreq)
 	console.log(debuffFreq)
 	
-	if ((user==turn) && (turn==username1)) {
+	if ((user==turn) && (turn==username1) && (!diceReady2)) {
 		if (totalTurns % powerupFreq == 0 && (totalTurns != 0)){
 			// if true pass powerup
 			alert("Select a powerup :)")
@@ -985,7 +985,7 @@ function selectItem(totalTurns, powerupFreq, debuffFreq, enabledPowerups, enable
 		}
 	}
 
-	if ((user==turn) && (turn==username2)) {
+	if ((user==turn) && (turn==username2) && (diceReady1)) {
 		if (totalTurns % powerupFreq == 0 && (totalTurns != 0)){
 			// if true pass powerup
 			alert("Select a powerup :)")
