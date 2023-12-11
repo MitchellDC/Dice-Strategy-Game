@@ -104,6 +104,9 @@ function getGameState(){
 			firewallCount1 = resp[0].firewallCount1
 			firewallCount2 = resp[0].firewallCount2
 
+			console.log(firewallCount1)
+			console.log(firewallCount2)
+
 			initializeRule(resp)
 			
 		}
