@@ -318,8 +318,8 @@ function populateItems(enabledPowerups, enabledDebuffs, resp) {
 	if (enabledDebuffs.includes('blueScreen')) {
 		console.log(debuffs1['blueScreen'])
 		console.log(debuffs2['blueScreen'])
-		debuffs1['blueScreen'] = (resp[0].blueScreen1) ? true : false
-		debuffs2['blueScreen'] = (resp[0].blueScreen2) ? true : false
+		debuffs1["blueScreen"] = (resp[0].blueScreen1) ? true : false
+		debuffs2["blueScreen"] = (resp[0].blueScreen2) ? true : false
 		console.log(debuffs1['blueScreen'])
 		console.log(debuffs2['blueScreen'])
 	}
