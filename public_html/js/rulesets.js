@@ -132,7 +132,7 @@ function displayPowers(ruleID) {
 		
         let selectedRuleset = resp.find(rule => rule.Rule_ID === ruleID);
 		if(selectedRuleset){
-			createPowers.innerHTML = ""; // reset powerups
+			createPowers.innerHTML = "Powerups"; // reset powerups to placeholders
 			let powers = document.createElement("div")
 			// array of powerups
 			let powerTypes = ["antiMalware", "binarySearch", "ciphertext", "cyberSecurity", "firewall", "fullStack", "hack", "powerOutlet", "reboot", "recursion", "tryCatch", "typeCast", "windowsUpdate"]
@@ -171,7 +171,7 @@ function displayDisadvantages(ruleID) {
 		let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
 		let selectedRuleset = resp.find(rule => rule.Rule_ID === ruleID);
 		if(selectedRuleset){
-			createDisadvantages.innerHTML = ""; // reset disadvantages
+			createDisadvantages.innerHTML = "Disadvantages"; // reset disadvantages to placeholders
 
 			let disadvantages = document.createElement("div")
 			// array of disadvantages
