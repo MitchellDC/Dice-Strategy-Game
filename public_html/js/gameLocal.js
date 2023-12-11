@@ -65,10 +65,6 @@ let health2
 let maxHealth
 let username1
 let username2
-let attackNum1
-let defenseNum1
-let attackNum2
-let defenseNum2
 
 
 function getGameState(){
@@ -122,7 +118,10 @@ function getGameState(){
 		document.getElementById("turn").innerHTML = "turn: " +totalTurns
 
 		// update dice images
-
+		atkDiceId.src = "css/images/dd"+attackNum1+".jpeg"
+		dfsDiceId.src = "css/images/dd"+defenseNum1+".jpeg"
+		atkDiceId2.src = "css/images/dd"+attackNum2+".jpeg"
+		dfsDiceId2.src = "css/images/dd"+defenseNum2+".jpeg"
 
 		// hide and show buttons buttons
 
@@ -148,7 +147,7 @@ function getGameState(){
 			//browser gets refreshed every 5 seconds if it is not user's turn
 			setInterval(() => {
 				location.reload();
-			}, 99999); // change back to 5000
+			}, 5000); // change back to 5000
 		}
 			
 		if (dfsDiceId.src != `http://104.196.1.169/css/images/dd0.jpeg`) {
@@ -184,8 +183,8 @@ function initializeRule(resp) {
 			ruleKeys = Object.keys(ruleObj)
 			ruleLength = Object.keys(ruleObj).length
 
-			powerupFreq = 1
-			debuffFreq = 2
+			powerupFreq = 3
+			debuffFreq = 5
 			
 			// adds all enabled powerups to "enabledPowerups" array (16 = number of powerups + 3)
 			for(let i = 3; i < 16; i++) {
@@ -226,6 +225,7 @@ getGameState()
 
 
 function populateItems(enabledPowerups, enabledDebuffs, resp) {
+
 
 	// every turn, set client side equal to game table in database
 	if (enabledPowerups.includes("antiMalware")) {
@@ -403,11 +403,6 @@ function populateItems(enabledPowerups, enabledDebuffs, resp) {
 		debuffs2["syntaxError"] = null
 	}
 
-	atkDiceId.src = "css/images/dd"+attackNum1+".jpeg"
-	dfsDiceId.src = "css/images/dd"+defenseNum1+".jpeg"
-	atkDiceId2.src = "css/images/dd"+attackNum2+".jpeg"
-	dfsDiceId2.src = "css/images/dd"+defenseNum2+".jpeg"
-
 	updatePowerups()
 
 }
@@ -437,7 +432,10 @@ let dfsDiceId2 = document.getElementById("defenseDiceId2")
 let atkDiceId2 = document.getElementById("attackDiceId2")
 let selected = null
 
-
+let attackNum1
+let defenseNum1
+let attackNum2
+let defenseNum2
 let change1
 let change2
 health1 = maxHealth;
