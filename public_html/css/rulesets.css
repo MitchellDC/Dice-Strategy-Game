@@ -55,18 +55,6 @@ body {
 }
 
 
-.details {
-    width: 5%;
-    font-size: xx-large;
-    text-align: center;
-    color: whitesmoke;
-}
-
-.details:hover {
-    cursor: pointer;
-    color:#1733d3;
-}
-
 .ruleTable {
     width: 70%;
     height: 20%;
@@ -84,6 +72,11 @@ body {
     text-align: center;
     font-size: xx-large;
     color: #fff;
+}
+
+.list:hover {
+    cursor: pointer;
+    color:#1733d3;
 }
 
 .rulePopup .overlay {
