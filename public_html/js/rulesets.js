@@ -129,17 +129,19 @@ function displayPowers() {
 		for(let Rule in resp){
 
 			let powers = document.createElement("div")
+			// array of powerups
 			let powerTypes = ["antiMalware", "binarySearch", "ciphertext", "cyberSecurity", "firewall", "fullStack", "hack", "powerOutlet", "reboot", "recursion", "tryCatch", "typeCast", "windowsUpdate"]
+			// array of powerups that are true
 			let activePowers = []
 
 
-			powerTypes.forEach(powerType =>{
-				if(resp[Rule][powerType] == true){
-					activePowers.push(powerType)
+			powerTypes.forEach(powerType =>{ // for each powerup
+				if(resp[Rule][powerType] == true && !activePowers.includes(powerType)){ // check if powerup is true and if it is not yet stored in array
+					activePowers.push(powerType) // store powerup in array if both conditions are true
 				}
 			})
 
-			powers.innerHTML = activePowers.join("<br>")
+			powers.innerHTML = activePowers.join("<br>") // print active powers
 
 			// append divs to container inside popup 
 			createPowers.appendChild(powers)
@@ -165,17 +167,19 @@ function displayDisadvantages() {
 		for(let Rule in resp){
 
 			let disadvantages = document.createElement("div")
+			// array of disadvantages
 			let disadvantageTypes = ["blueScreen", "bug", "computerVirus", "infiniteLoop", "lowBattery", "ransomware", "slowComputer", "syntaxError"]
+			// empty array to store disadvantages that are true
 			let activeDisadvantages = []
 
 
 			disadvantageTypes.forEach(disadvantageType =>{
-				if(resp[Rule][disadvantageType] == true){
-					activeDisadvantages.push(disadvantageType)
+				if(resp[Rule][disadvantageType] == true && !activeDisadvantages.includes(disadvantageType)){ // if powerup is true and is not already stored
+					activeDisadvantages.push(disadvantageType) // store inside array
 				}
 			})
 
-			disadvantages.innerHTML = activeDisadvantages.join("<br>")
+			disadvantages.innerHTML = activeDisadvantages.join("<br>") // print array values
 
 			// append divs to container inside popup 
 			createDisadvantages.appendChild(disadvantages)
