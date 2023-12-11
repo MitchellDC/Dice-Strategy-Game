@@ -152,10 +152,8 @@ body {
     font-size: x-large;
 }
 
-.pside {
-    padding-right: 20%;
-}
-
-.dside {
-    padding-left: 20%;
+.flex-rules {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
 }
