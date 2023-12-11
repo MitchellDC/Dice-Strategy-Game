@@ -884,8 +884,8 @@ function healthChange() {
 		alert("Select a powerup :)")
 
 		console.log(enabledPowerups)
-		randomPowerupKey1 = enabledPowerups[Math.floor(Math.random() * enabledPowerup.length)]
-		randomPowerupKey2 = enabledPowerups[Math.floor(Math.random() * enabledPowerup.length)]
+		randomPowerupKey1 = enabledPowerups[Math.floor(Math.random() * enabledPowerups.length)]
+		randomPowerupKey2 = enabledPowerups[Math.floor(Math.random() * enabledPowerups.length)]
 		console.log(randomPowerupKey1)
 		console.log(randomPowerupKey2)
 		// initialize variables to check validity
