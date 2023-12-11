@@ -1603,30 +1603,49 @@ function playerAction(){
 
 		// if game ends
 		// draw
-		if(health1<=0 && health2<=0){ 
-			hideButtons();
-			alert("Game ends in a draw!")
-			document.getElementById("instructionsId").innerHTML = "Game is a draw!"
-			document.getElementById("p1Health").innerHTML = 0;
-			document.getElementById("p2Health").innerHTML = 0;
-		}
-		//player 2 wins
-		else if(health1<=0)
-		{
+		if(health1<=0 !! health2<=0){
+			if(health1<=0 && health2<=0){ 
+				hideButtons();
+				alert("Game ends in a draw!")
+				document.getElementById("instructionsId").innerHTML = "Game is a draw!"
+				document.getElementById("p1Health").innerHTML = 0;
+				document.getElementById("p2Health").innerHTML = 0;
+			}
+			//player 2 wins
+			else if(health1<=0)
+			{
 
-			hideButtons();
-			alert("Player 2 wins!") // replace with username and make pop-up
-			document.getElementById("instructionsId").innerHTML = "Player 2 wins!" // replace with username
-			document.getElementById("p1Health").innerHTML = 0;
+				hideButtons();
+				alert("Player 2 wins!") // replace with username and make pop-up
+				document.getElementById("instructionsId").innerHTML = "Player 2 wins!" // replace with username
+				document.getElementById("p1Health").innerHTML = 0;
 		
 		
-		}
-		// player 1 wins
-		else if(health2<=0){
-			hideButtons();
-			alert("Player 1 wins!"); // replace with username and make pop-up
-			document.getElementById("instructionsId").innerHTML = "Player 1 wins!" // replace with username
-			document.getElementById("p2Health").innerHTML = 0;
+			}
+			// player 1 wins
+			else if(health2<=0){
+				hideButtons();
+				alert("Player 1 wins!"); // replace with username and make pop-up
+				document.getElementById("instructionsId").innerHTML = "Player 1 wins!" // replace with username
+				document.getElementById("p2Health").innerHTML = 0;
+			}
+			let xml = new XMLHttpRequest();
+			xml.onerror=function(){alert("error deleting game")}
+			xml.onload=function(){
+				let response = this.responseText;
+
+				if(response=="deleted"){
+					alert("game is finished")
+					window.open("http://104.196.1.169/home.html","_self");
+				}
+
+				
+			}
+
+			xmlhttp.open("GET","http://104.196.1.169/deletegame?"+queryObjectToString({gameId:gameID})); 
+			xmlhttp.send();
+
+			
 		}
 		else{
 			stage = 1;
