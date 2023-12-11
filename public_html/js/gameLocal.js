@@ -38,7 +38,7 @@ let descriptions = {
 	fullStack: `Set attack and defense to ${fullStackValue} next turn`,
 	hack: `Enemy loses ${hackValue} defense each turn`,
 	powerOutlet: `Every turn, gain ${powerOutletValue} health`,
-	reboot: "Restore health to maximum next turn",
+	reboot: "Restore health to half next turn",
 	recursion: "Damage dealt becomes value of an extra attack",
 	tryCatch: "Avoid death once",
 	typeCast: "Heal instead of hurting next turn",
@@ -184,8 +184,8 @@ function initializeRule(resp) {
 			ruleKeys = Object.keys(ruleObj)
 			ruleLength = Object.keys(ruleObj).length
 
-			powerupFreq = 1
-			debuffFreq = 2
+			powerupFreq = 3
+			debuffFreq = 5
 			
 			// adds all enabled powerups to "enabledPowerups" array (16 = number of powerups + 3)
 			for(let i = 3; i < 16; i++) {
@@ -726,14 +726,20 @@ function itemCalculationsBefore() {
         }
     }
 
-    // reboot = once, restore all health
+    // reboot = once, restore 64% health
     if (powerups1.reboot) {
-        health1 = maxHealth
+		tmp = Math.floor(maxHealth* 0.5)
+        if (health1 < tmp) {
+			health1 = tmp
+		}
 		powerups1.reboot = false
 
     }
     if (powerups2.reboot) {
-        health2 = maxHealth
+		tmp = Math.floor(maxHealth* 0.5)
+        if (health2 < tmp) {
+			health2 = tmp
+		}
 		powerups2.reboot = false
 
     }
