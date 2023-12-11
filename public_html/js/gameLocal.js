@@ -409,6 +409,13 @@ function populateItems(enabledPowerups, enabledDebuffs, resp) {
 	console.log(powerups1)
 	console.log(powerups2)
 
+	if ((user==username1) && (powerups2["ciphertext"] == true)) {
+		atkDiceId2.src = `css/images/dd0.jpeg`
+
+	}
+
+
+
 	updatePowerups()
 
 }
