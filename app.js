@@ -465,6 +465,28 @@ function deleteRule(qu,res){
 	}
 	
 }
+function deleteGame(qu,res){
+	if(!qu){
+		res.writeHead(404,{'Content-Type':'text/plain'});
+		res.write("Error!")
+		res.end();
+	}
+	else{
+		res.writeHead(200,{'Content-Type':'text/plain'});
+		conn.query("DELETE FROM Game WHERE Game_ID="+qu.gameid+";",function(err,result){
+			if(err)
+			{
+				console.log(err);
+			}
+			else{
+				res.write("deleted");
+				res.end();
+			}
+		})
+	}
+	
+}
+
 
 const main = function(req, res){
 
@@ -505,6 +527,9 @@ const main = function(req, res){
 	}
 	else if(parsedURL.pathname=="/deleterule"){
 		return deleteRule(parsedURL.query,res);
+	}
+	else if(parsedURL.pathname=="/deletegame"){
+		return deleteGame(parsedURL.query,res);
 	}
 	else
         {
