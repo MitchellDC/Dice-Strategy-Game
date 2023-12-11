@@ -70,7 +70,7 @@ let username2
 
 function getGameState(){
 
-
+	
 
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("AJAX Error!")};
@@ -386,7 +386,8 @@ function populateItems(enabledPowerups, enabledDebuffs, resp) {
 		debuffs1["syntaxError"] = null
 		debuffs2["syntaxError"] = null
 	}
-
+	
+	updatePowerups()
 
 }
 
