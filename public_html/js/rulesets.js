@@ -112,7 +112,7 @@ function displayHealth(ruleID) { // to display initial health in rulesets popup
 		let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
 		let selectedRuleset = resp.find(rule => rule.Rule_ID == ruleID)
 		if(selectedRuleset){
-			health.innerHTML = selectedRuleset.InitialHealth; // display ruleset name from database table
+			health.innerHTML = ("Initial Health: " + selectedRuleset.InitialHealth); // display ruleset name from database table
 		}
 	}
 	xmlhttp.open("GET","http://104.196.1.169/rules");
@@ -140,7 +140,7 @@ function displayPowers(ruleID) {
 
 
 			powerTypes.forEach(powerType =>{ // for each powerup
-				if(resp[Rule][powerType] == true && !activePowers.includes(powerType)){ // check if powerup is true and if it is not yet stored in array
+				if(selectedRuleset[powerType] == true && !activePowers.includes(powerType)){ // check if powerup is true and if it is not yet stored in array
 					activePowers.push(powerType) // store powerup in array if both conditions are true
 				}
 			})
@@ -179,7 +179,7 @@ function displayDisadvantages(ruleID) {
 
 
 			disadvantageTypes.forEach(disadvantageType =>{
-				if(resp[Rule][disadvantageType] == true && !activeDisadvantages.includes(disadvantageType)){ // if powerup is true and is not already stored
+				if(selectedRuleset[disadvantageType] == true && !activeDisadvantages.includes(disadvantageType)){ // if powerup is true and is not already stored
 					activeDisadvantages.push(disadvantageType) // store inside array
 				}
 			})
