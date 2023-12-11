@@ -78,7 +78,7 @@ function displayRulesets(){
 displayRulesets();
 
 
-
+let rulesetID = ""
 function fetchRuleset(rulesetID, res){ // function to fetch ruleset for popups
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("Error!")};
