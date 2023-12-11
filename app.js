@@ -120,7 +120,7 @@ function updateGame1(qu,res){
 			" typeCast2="+qu.typeCast2+", " + 
 			" windowsUpdate1="+qu.windowsUpdate1+", " + 
 			" windowsUpdate2="+qu.windowsUpdate2+", " + 
-			" blueScreen1="+qu.bluueScreen1+", " + 
+			" blueScreen1="+qu.blueScreen1+", " + 
 			" blueScreen2="+qu.blueScreen2+", " + 
 			" bug1="+qu.bug1+", " + 
 			" bug2="+qu.bug2+", " + 
