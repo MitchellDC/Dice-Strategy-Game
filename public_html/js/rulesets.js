@@ -14,6 +14,8 @@ function showRules() {
     document.getElementById("rulePopup").classList.toggle("active")
 }
 
+let rulesetID;
+
 function displayRulesets(){
 
 	// takes the rulesets table from the html
@@ -54,8 +56,17 @@ function displayRulesets(){
 
 					(function (currentRuleID) {
 						newRow.addEventListener("click", function () {
-						alert(currentRuleID)
-						document.getElementById("rulePopup").classList.toggle("active")
+							rulesetID = currentRuleID;
+							alert(currentRuleID)
+							document.getElementById("rulePopup").classList.toggle("active")
+
+
+							fetchRuleset(rulesetID, function(ruleset){ // call fetch ruleset to get ruleset details
+								displayRulename(ruleset)
+								displayHealth(ruleset)
+								displayPowers(ruleset)
+								displayDisadvantages(ruleset)
+							})
 						});
 					})(ruleID)
 
@@ -78,7 +89,7 @@ function displayRulesets(){
 displayRulesets();
 
 
-function fetchRuleset(rulesetID, res){ // function to fetch ruleset for popups
+function fetchRuleset(id, res){ // function to fetch ruleset for popups
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("Error!")};
 	xmlhttp.onload = function(){
@@ -88,7 +99,7 @@ function fetchRuleset(rulesetID, res){ // function to fetch ruleset for popups
 			res(resp) // pass specific ruleset details to callback function
 		}
 	}
-	xmlhttp.open("GET", "http://104.196.1.169/rules/" + rulesetID);
+	xmlhttp.open("GET", "http://104.196.1.169/rules/" + id);
 	xmlhttp.send();
 }
 
@@ -162,10 +173,3 @@ function displayDisadvantages() {
 	createDisadvantages.appendChild(disadvantages)
 }
 
-let rulesetID = "";
-fetchRuleset(rulesetID, function(ruleset){ // call fetch ruleset to get ruleset details
-	displayRulename(ruleset)
-	displayHealth(ruleset)
-	displayPowers(ruleset)
-	displayDisadvantages(ruleset)
-})
