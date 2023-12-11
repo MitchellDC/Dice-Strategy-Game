@@ -849,6 +849,7 @@ function selectItem(totalTurns, powerupFreq, debuffFreq, enabledPowerups, enable
 	console.log(totalTurns)
 	console.log(powerupFreq)
 	console.log(debuffFreq)
+	firstSelect = username1
 	
 	if ((user==turn) && (turn==username1) && (!diceReady2)) {
 		if (totalTurns % powerupFreq == 0 && (totalTurns != 0)){
@@ -1491,6 +1492,7 @@ function playerAction(){
 				document.getElementById("rollButtonId2").innerHTML = "ROLL"
 				document.getElementById("turn").innerHTML = "turn: " + totalTurns
 				
+
 			}
 			
 			// ending player 2's turn
@@ -1570,6 +1572,7 @@ function playerAction(){
 			}
 			xhr.onload = function(){
 				console.log(this.responseText)
+				location.reload();
 			}
 
 			xhr.open("POST","http://104.196.1.169/updategame1?"+queryObjectToString(updated));
