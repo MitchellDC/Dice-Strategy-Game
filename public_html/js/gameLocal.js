@@ -479,7 +479,7 @@ function addItem(selected) {
 			console.log("player1 selected left")
 		}
 		else {
-			powerups2[randomPowerupKey2] = true
+			powerups2[randomPowerupKey1] = true
 			console.log("player2 selected left")
 		}
 		
