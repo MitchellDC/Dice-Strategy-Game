@@ -136,7 +136,9 @@ function updateGame1(qu,res){
 			" slowComputer1="+qu.slowComputer1+", " + 
 			" slowComputer2="+qu.slowComputer2+", " +
 			" syntaxError1="+qu.syntaxError1+", " +
-			" syntaxError2="+qu.syntaxError2+" " +
+			" syntaxError2="+qu.syntaxError2+", " +
+			" firewallCount1="+qu.firewallCount1+", " +
+			" firewallCount2="+qu.firewallCount2+" " +
 			   " WHERE Game_ID="+qu.gameId+";",function(err,result){
 			if(err){
 				console.log(err);
