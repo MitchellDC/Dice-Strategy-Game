@@ -172,6 +172,7 @@ function updateGame2(qu,res){
                         }
                         else{
 				console.log(qu);
+				console.log(qu.turn);
                                 res.write("updated second");
                                 res.end();
                         }
