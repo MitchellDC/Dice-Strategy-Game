@@ -695,7 +695,7 @@ function itemCalculationsBefore() {
     if (debuffs1.slowComputer) {
         attackNum1 = 0
         slowComputerCount1 -= 1
-		console.log(slowComputerCount2)
+		console.log(slowComputerCount1)
 
         if (slowComputerCount1 <= 0) {
             debuffs1.slowComputer = false
