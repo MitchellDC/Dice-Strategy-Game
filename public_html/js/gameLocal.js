@@ -759,9 +759,11 @@ function itemCalculationsAfter() {
 	if (powerups1.firewall) {
 		change1 = 0
 		firewallCount1 -= 1
+
 		console.log(firewallCount1)
 		if (firewallCount1 <= 0) {
 			powerups1.firewall = false
+			powerups1.firewallCount1 = 2
 			console.log("firewall1 made false")
 		}
 	}
@@ -772,6 +774,7 @@ function itemCalculationsAfter() {
 
 		if (firewallCount2 <= 0) {
 			powerups1.firewall = false
+			powerups1.firewallCount2 = 2
 			console.log("firewall2 made false")
 		}
 	}
