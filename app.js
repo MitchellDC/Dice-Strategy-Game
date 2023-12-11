@@ -141,8 +141,8 @@ function updateGame1(qu,res){
 			" firewallCount2="+qu.firewallCount2+", " +
 			" slowComputerCount1="+qu.slowComputerCount1+", " +
 			" slowComputerCount2="+qu.slowComputerCount2+", " +
-			" computerVirusCount1="qu.computerVirusCount1+", " +
-			" computerVirusCount2="qu.computerVirusCount2+" " +
+			" computerVirusCount1="+qu.computerVirusCount1+", " +
+			" computerVirusCount2="+qu.computerVirusCount2+" " +
 			   " WHERE Game_ID="+qu.gameId+";",function(err,result){
 			if(err){
 				console.log(err);
