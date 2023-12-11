@@ -34,7 +34,7 @@ let descriptions = {
 	binarySearch: "Halve opponent's health next turn",
 	ciphertext: "Enemy can't see your attack value", // need test
 	cyberSecurity: `Every turn, gain ${cyberSecurityValue} extra defense`,
-	firewall: `Become immune for 2 turns`, // need test
+	firewall: `Become immune for 2 attacks`, // need test
 	fullStack: `Set attack and defense to ${fullStackValue} next turn`,
 	hack: `Enemy loses ${hackValue} defense each turn`,
 	powerOutlet: `Every turn, gain ${powerOutletValue} health`,
@@ -47,11 +47,11 @@ let descriptions = {
 	// debuffs
 	blueScreen: "Cannot attack or defend next turn", 
 	bug: "Sometimes, attack or defense is 0",
-	computerVirus: `Cannot defend for ${computerVirusCount1} turns`,
+	computerVirus: `Cannot defend for ${computerVirusCount1} attacks`,
 	infiniteLoop: `Defend for ${infiniteLoopValue} forever`, 
 	lowBattery: `Every turn, lose ${lowBatteryValue} health`,
 	ransomware: `50% chance to lose ${ransomwareValue} health next turn`,
-	slowComputer: `Cannot attack for ${slowComputerCount1} turns`, 
+	slowComputer: `Cannot attack for ${slowComputerCount1} attacks`, 
 	syntaxError: `Lose ${syntaxErrorValue} health next turn`
 
 }
@@ -503,6 +503,10 @@ function addItem(selected) {
 		else {
 			powerups2[randomPowerupKey1] = true
 
+			if (randomPowerupKey1 == "firewall") {
+				firewallCount2 = 2
+			}
+
 		}
 		
 		document.getElementById("select").classList.toggle("active")
@@ -524,7 +528,10 @@ function addItem(selected) {
 		}
 		else {
 			powerups2[randomPowerupKey2] = true
-
+			
+			if (randomPowerupKey2 == "firewall") {
+				firewallCount2 = 2
+			}
 		}
 
 		document.getElementById("select").classList.toggle("active")
@@ -538,9 +545,23 @@ function addItem(selected) {
 
 		if (turn == username1) {
 			debuffs1[randomDebuffKey1] = true
+
+			if (randomDebuffKey1 == "slowComputer") {
+				slowComputerCount1 = 2
+			}
+			else if (randomDebuffKey1 == "computerVirus") {
+				computerVirusCount1 = 2
+
+			}
 		}
 		else {
 			debuffs2[randomDebuffKey1] = true
+			if (randomDebuffKey1 == "slowComputer") {
+				slowComputerCount2 = 2
+			}
+			else if (randomDebuffKey1 == "computerVirus") {
+				computerVirusCount2 = 2
+			}
 		}
 		document.getElementById("debuff1").classList.toggle("active")
 		document.getElementById("debuff2").classList.toggle("active")
@@ -550,9 +571,26 @@ function addItem(selected) {
 	if (selected == 4) {
 		if (turn == username1) {
 			debuffs1[randomDebuffKey2] = true
+
+			if (randomDebuffKey2 == "slowComputer") {
+				slowComputerCount1 = 2
+			}
+			else if (randomDebuffKey2 == "computerVirus") {
+				computerVirusCount1 = 2
+			}
+
+
 		}
 		else {
 			debuffs2[randomDebuffKey2] = true
+
+			if (randomDebuffKey2 == "slowComputer") {
+				slowComputerCount2 = 2
+			}
+			else if (randomDebuffKey2 == "computerVirus") {
+				computerVirusCount2 = 2
+			}
+
 		}
 
 		document.getElementById("debuff1").classList.toggle("active")
