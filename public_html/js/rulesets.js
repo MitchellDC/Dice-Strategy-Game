@@ -78,7 +78,6 @@ function displayRulesets(){
 displayRulesets();
 
 
-let rulesetID = ""
 function fetchRuleset(rulesetID, res){ // function to fetch ruleset for popups
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("Error!")};
@@ -163,7 +162,7 @@ function displayDisadvantages() {
 	createDisadvantages.appendChild(disadvantages)
 }
 
-
+let rulesetID = "";
 fetchRuleset(rulesetID, function(ruleset){ // call fetch ruleset to get ruleset details
 	displayRulename(ruleset)
 	displayHealth(ruleset)
