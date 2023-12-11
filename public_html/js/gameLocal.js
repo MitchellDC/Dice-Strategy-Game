@@ -763,7 +763,7 @@ function itemCalculationsAfter() {
 		change1 = 0
 		firewallCount1 -= 1
 
-		if (firewallCount <= 0) {
+		if (firewallCount1 <= 0) {
 			powerups1.firewall = false
 		}
 	}
