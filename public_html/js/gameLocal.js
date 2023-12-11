@@ -111,6 +111,8 @@ function getGameState(){
 			dfsDiceId2.src = "css/images/dd"+defenseNum2+".jpeg"
 
 			// hide and show buttons buttons
+			console.log(turn)
+			console.log(user)
 			if (turn == user) { 
 				// current player has control
 				if(turn==username1){ //shows player 1 button if the user in a device is player 2
@@ -118,6 +120,7 @@ function getGameState(){
 					document.getElementById("rollButtonId2").style.display = "none";
 				}
 				else{ //shows player 2 button if the user is player 2
+					console.log("here")
 					document.getElementById("rollButtonId").style.display = "none";
 					document.getElementById("rollButtonId2").style.display = "block";
 				}
