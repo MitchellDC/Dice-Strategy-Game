@@ -98,12 +98,11 @@ function getGameState(){
 
 			rulesetID = resp[0].Rule_ID;
 
-			console.log(turn)
 			initializeRule(resp)
 
 			}
 			// display instructions and turn count
-			console.log(turn)
+
 			document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Roll dice " + turn
 			document.getElementById("turn").innerHTML = "turn: " +totalTurns
 
@@ -114,8 +113,7 @@ function getGameState(){
 			dfsDiceId2.src = "css/images/dd"+defenseNum2+".jpeg"
 
 			// hide and show buttons buttons
-			console.log(turn)
-			console.log(user)
+
 			if (turn == user) { 
 				// current player has control
 				if(turn==username1){ //shows player 1 button if the user in a device is player 2
@@ -192,8 +190,6 @@ function initializeRule(resp) {
 			document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
 			document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
 
-			console.log(enabledPowerups)
-			console.log(enabledDebuffs)
 			populateItems(enabledPowerups, enabledDebuffs, resp)
 			
 		}
@@ -213,9 +209,7 @@ getGameState()
 
 
 function populateItems(enabledPowerups, enabledDebuffs, resp) {
-	console.log(enabledPowerups)
-	console.log(enabledDebuffs)
-	console.log(resp[0])
+
 
 	// every turn, set client side equal to game table in database
 	if (enabledPowerups.includes("antiMalware")) {
@@ -323,22 +317,18 @@ function populateItems(enabledPowerups, enabledDebuffs, resp) {
 		powerups2["windowsUpdate"] = null
 	}
 	// debuffs
-	console.log(enabledDebuffs)
+
 	if (enabledDebuffs.includes('blueScreen')) {
-		console.log(debuffs1['blueScreen'])
-		console.log(debuffs2['blueScreen'])
+
 		debuffs1["blueScreen"] = (resp[0].blueScreen1) ? true : false
 		debuffs2["blueScreen"] = (resp[0].blueScreen2) ? true : false
-		console.log(debuffs1['blueScreen'])
-		console.log(debuffs2['blueScreen'])
+
 	}
 	else {
-		console.log(debuffs1['blueScreen'])
-		console.log(debuffs2['blueScreen'])
+
 		debuffs1['blueScreen'] = null
 		debuffs2['blueScreen'] = null
-		console.log(debuffs1['blueScreen'])
-		console.log(debuffs2['blueScreen'])
+
 	}
 	if (enabledDebuffs.includes('bug')) {
 		debuffs1['bug'] = (resp[0].bug1) ? true : false
@@ -397,10 +387,7 @@ function populateItems(enabledPowerups, enabledDebuffs, resp) {
 		debuffs2["syntaxError"] = null
 	}
 
-	console.log(powerups1)
-	console.log(powerups2)
-	console.log(debuffs1)
-	console.log(debuffs2)
+
 }
 
 
@@ -516,6 +503,7 @@ function addItem(selected) {
 		document.getElementById("select2").classList.toggle("active")
 	}
 
+	console.log(powerups2)
 	// debuff on left
 	if (selected == 3) {
 
@@ -542,10 +530,6 @@ function addItem(selected) {
 		document.getElementById("debuff2").classList.toggle("active")
 	}
 
-	console.log(powerups1)
-	console.log(powerups2)
-	console.log(debuffs1)
-	console.log(debuffs2)
 	updatePowerups()
 
 }
@@ -882,12 +866,8 @@ function healthChange() {
 	if (totalTurns % powerupFreq == 0 && (totalTurns != 0)){
 		// if true pass powerup
 		alert("Select a powerup :)")
-
-		console.log(enabledPowerups)
 		randomPowerupKey1 = enabledPowerups[Math.floor(Math.random() * enabledPowerups.length)]
 		randomPowerupKey2 = enabledPowerups[Math.floor(Math.random() * enabledPowerups.length)]
-		console.log(randomPowerupKey1)
-		console.log(randomPowerupKey2)
 		// initialize variables to check validity
 		let unique = true
 		let alreadyHasLeft = false
@@ -1022,11 +1002,6 @@ function healthChange() {
 // clears all rows of powerups and rebuilds based on what is still true
 function updatePowerups() {
 
-	console.log(powerups1)
-	console.log(powerups2)
-	console.log(debuffs1)
-	console.log(debuffs2)
-
 
 	// clear all rows of powerup table
 	for (let i = 0; i < player1CurrentItems.length; i++) {
@@ -1092,10 +1067,6 @@ function updatePowerups() {
 		nameColumn.innerHTML = (player2CurrentItems[i] + "> " + descriptions[player2CurrentItems[i]])
 	}
 
-	console.log(powerups1)
-	console.log(powerups2)
-	console.log(debuffs1)
-	console.log(debuffs2)
 
 
 }
@@ -1335,10 +1306,7 @@ function playerAction(){
 	else if (stage == 4){
 		// display new turns
 		document.getElementById("turn").innerHTML = "turn: " + totalTurns
-		console.log(powerups1)
-		console.log(powerups2)
-		console.log(debuffs1)
-		console.log(debuffs2)
+
 
 		// checks if battle ready
 		if(diceReady1 && diceReady2){
@@ -1375,11 +1343,6 @@ function playerAction(){
 				document.getElementById("turn").innerHTML = "turn: " + totalTurns
 
 			}
-
-			console.log(powerups1)
-			console.log(powerups2)
-			console.log(debuffs1)
-			console.log(debuffs2)
 
 			let xhr = new XMLHttpRequest();
 			let updated = {
