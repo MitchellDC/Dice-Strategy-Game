@@ -14,8 +14,6 @@ function showRules() {
     document.getElementById("rulePopup").classList.toggle("active")
 }
 
-let rulesetID;
-
 function displayRulesets(){
 
 	// takes the rulesets table from the html
@@ -34,7 +32,6 @@ function displayRulesets(){
 				console.log("ruletable: " + ruleTable)
 
 				for(let i = 0; i < resp.length; i++) {
-					let ruleID = resp[i].Rule_ID;
 					
 					newRow = ruleTable.insertRow() // maybe i+1
 
@@ -43,6 +40,7 @@ function displayRulesets(){
 					newRow.innerHTML = resp[i].Ruleset_name //displays the ruleset (will change once the rulesets are applied)
 					newRow.classList.add("details"); //assigns class to the columns
 					//alert(resp[game].Game_ID)
+					let ruleID = resp[i].Rule_ID;
 					newRow.id = ruleID; //assigns id to the first column
 
 					/*
@@ -56,17 +54,12 @@ function displayRulesets(){
 
 					(function (currentRuleID) {
 						newRow.addEventListener("click", function () {
-							rulesetID = currentRuleID;
 							alert(currentRuleID)
 							document.getElementById("rulePopup").classList.toggle("active")
-
-
-							fetchRuleset(rulesetID, function(ruleset){ // call fetch ruleset to get ruleset details
-								displayRulename(ruleset)
-								displayHealth(ruleset)
-								displayPowers(ruleset)
-								displayDisadvantages(ruleset)
-							})
+							displayRulename(currentRuleID)
+							displayHealth(currentRuleID);
+							displayPowers(currentRuleID);
+							displayDisadvantages(currentRuleID);
 						});
 					})(ruleID)
 
@@ -89,62 +82,78 @@ function displayRulesets(){
 displayRulesets();
 
 
-function fetchRuleset(id, res){ // function to fetch ruleset for popups
+
+function displayRulename(ruleID) { // to display ruleset name
+
+	let ruleName = document.getElementById("ruleName") // get id from div in popup
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("Error!")};
 	xmlhttp.onload = function(){
-		if(this.status != 200) {alert("Error!")}
-		else {
-			let resp = JSON.parse(this.responseText);
-			res(resp) // pass specific ruleset details to callback function
+
+		let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
+		let selectedRuleset = resp.find(rule => rule.Rule_ID == ruleID)
+		if(selectedRuleset){
+			ruleName.innerHTML = selectedRuleset.Ruleset_name; // display ruleset name from database table
 		}
 	}
-	xmlhttp.open("GET", "http://104.196.1.169/rules/" + id);
+	xmlhttp.open("GET","http://104.196.1.169/rules");
 	xmlhttp.send();
 }
 
 
 
-function displayRulename(ruleset) { // to display ruleset name
-
-	let ruleName = document.getElementById("ruleName") // get id from div in popup
-	ruleName.innerHTML = ruleset.Ruleset_name; // display ruleset name from database table
-}
-
-
-
-function displayHealth(ruleset) { // to display initial health in rulesets popup
+function displayHealth() { // to display initial health in rulesets popup
 
 	let health = document.getElementById("health") // get id from div in popup
-	health.classList.add("r-titles"); // add class to div
-	health.innerHTML = ("Initial Health: " + ruleset.InitialHealth); // display initial health from database table
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.onerror = function(){alert("Error!")};
+	xmlhttp.onload = function(){
 
+		let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
+		let selectedRuleset = resp.find(rule => rule.Rule_ID == ruleID)
+		if(selectedRuleset){
+			health.innerHTML = selectedRuleset.InitialHealth; // display ruleset name from database table
+		}
+	}
+	xmlhttp.open("GET","http://104.196.1.169/rules");
+	xmlhttp.send();
 }
 
 
 
-function displayPowers(ruleset) {
+function displayPowers() {
 
 	let createPowers = document.getElementById("powers")
-	let powers = document.createElement("div")
-	// array of powerups
-	let powerTypes = ["antiMalware", "binarySearch", "ciphertext", "cyberSecurity", "firewall", "fullStack", "hack", "powerOutlet", "reboot", "recursion", "tryCatch", "typeCast", "windowsUpdate"]
-	// array of powerups that are true
-	let activePowers = []
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.onerror = function(){alert("Error!")};
+	xmlhttp.onload = function(){
+
+		let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
+		
+        let selectedRuleset = resp.find(rule => rule.Rule_ID === ruleID);
+		if(selectedRuleset){
+			let powers = document.createElement("div")
+			// array of powerups
+			let powerTypes = ["antiMalware", "binarySearch", "ciphertext", "cyberSecurity", "firewall", "fullStack", "hack", "powerOutlet", "reboot", "recursion", "tryCatch", "typeCast", "windowsUpdate"]
+			// array of powerups that are true
+			let activePowers = []
 
 
-	powerTypes.forEach(powerType =>{ // for each powerup
-		if(ruleset[powerType] == true && !activePowers.includes(powerType)){ // check if powerup is true and if it is not yet stored in array
-			activePowers.push(powerType) // store powerup in array if both conditions are true
+			powerTypes.forEach(powerType =>{ // for each powerup
+				if(resp[Rule][powerType] == true && !activePowers.includes(powerType)){ // check if powerup is true and if it is not yet stored in array
+					activePowers.push(powerType) // store powerup in array if both conditions are true
+				}
+			})
+
+			powers.innerHTML = activePowers.join("<br>") // print active powers
+
+			powers.classList.add("r-list"); // add class to div
+			// append divs to container inside popup 
+			createPowers.appendChild(powers)
 		}
-	})
-
-	powers.innerHTML = activePowers.join("<br>") // print active powers
-
-	powers.classList.add("r-list"); // add class to div
-	// append divs to container inside popup 
-	createPowers.appendChild(powers)
-
+	}
+	xmlhttp.open("GET","http://104.196.1.169/rules");
+	xmlhttp.send();
 }
 
 
@@ -152,24 +161,38 @@ function displayPowers(ruleset) {
 function displayDisadvantages() {
 
 	let createDisadvantages = document.getElementById("disadvantages")
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.onerror = function(){alert("Error!")};
+	xmlhttp.onload = function(){
 
-	let disadvantages = document.createElement("div")
-	// array of disadvantages
-	let disadvantageTypes = ["blueScreen", "bug", "computerVirus", "infiniteLoop", "lowBattery", "ransomware", "slowComputer", "syntaxError"]
-	// empty array to store disadvantages that are true
-	let activeDisadvantages = []
+		
+
+		let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
+		let selectedRuleset = resp.find(rule => rule.Rule_ID === ruleID);
+		if(selectedRuleset){
+
+			let disadvantages = document.createElement("div")
+			// array of disadvantages
+			let disadvantageTypes = ["blueScreen", "bug", "computerVirus", "infiniteLoop", "lowBattery", "ransomware", "slowComputer", "syntaxError"]
+			// empty array to store disadvantages that are true
+			let activeDisadvantages = []
 
 
-	disadvantageTypes.forEach(disadvantageType =>{
-		if(ruleset[disadvantageType] == true && !activeDisadvantages.includes(disadvantageType)){ // if powerup is true and is not already stored
-			activeDisadvantages.push(disadvantageType) // store inside array
+			disadvantageTypes.forEach(disadvantageType =>{
+				if(resp[Rule][disadvantageType] == true && !activeDisadvantages.includes(disadvantageType)){ // if powerup is true and is not already stored
+					activeDisadvantages.push(disadvantageType) // store inside array
+				}
+			})
+
+			disadvantages.innerHTML = activeDisadvantages.join("<br>") // print array values
+
+			disadvantages.classList.add("r-list"); // add class to div
+
+			// append divs to container inside popup 
+			createDisadvantages.appendChild(disadvantages)
+
 		}
-	})
-
-	disadvantages.innerHTML = activeDisadvantages.join("<br>") // print array values
-	disadvantages.classList.add("r-list"); // add class to div
-
-	// append divs to container inside popup 
-	createDisadvantages.appendChild(disadvantages)
+	}
+	xmlhttp.open("GET","http://104.196.1.169/rules");
+	xmlhttp.send();
 }
-
