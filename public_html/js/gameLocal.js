@@ -107,8 +107,6 @@ function getGameState(){
 			firewallCount1 = resp[0].firewallCount1
 			firewallCount2 = resp[0].firewallCount2
 
-			console.log(firewallCount1)
-			console.log(firewallCount2)
 
 			initializeRule(resp)
 			
@@ -408,6 +406,8 @@ function populateItems(enabledPowerups, enabledDebuffs, resp) {
 
 	console.log(powerups1["ciphertext"])
 	console.log(powerups2["ciphertext"])
+	console.log(powerups1)
+	console.log(powerups2)
 
 	updatePowerups()
 
@@ -525,7 +525,6 @@ function addItem(selected) {
 				firewallCount1 = 2
 			}
 
-			console.log(firewallCount1)
 
 		}
 		else {
@@ -697,24 +696,24 @@ function itemCalculationsBefore() {
     if (debuffs1.slowComputer) {
         attackNum1 = 0
         slowComputerCount1 -= 1
-		console.log(slowComputerCount1)
+
 
         if (slowComputerCount1 <= 0) {
             debuffs1.slowComputer = false
             slowComputerCount1 = 2
-			console.log("slowComputer1 made false")
+		
         }
     }
 
 	if (debuffs2.slowComputer) {
         attackNum2 = 0
         slowComputerCount2 -= 1
-		console.log(slowComputerCount2)
+		
 
         if (slowComputerCount2 <= 0) {
             debuffs2.slowComputer = false
             slowComputerCount2 = 2
-			console.log("slowComputer2 made false")
+			
         }
     }
 
@@ -1601,8 +1600,6 @@ function playerAction(){
 			}
 
 
-			console.log(firewallCount1)
-			console.log(firewallCount2)
 			let xhr = new XMLHttpRequest();
 			let updated = {
 				player1Health: health1,
