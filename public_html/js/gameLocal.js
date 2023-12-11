@@ -148,7 +148,7 @@ function getGameState(){
 			//browser gets refreshed every 5 seconds if it is not user's turn
 			setInterval(() => {
 				location.reload();
-			}, 5000); // change back to 5000
+			}, 99999); // change back to 5000
 		}
 			
 		if (dfsDiceId.src != `http://104.196.1.169/css/images/dd0.jpeg`) {
@@ -184,8 +184,8 @@ function initializeRule(resp) {
 			ruleKeys = Object.keys(ruleObj)
 			ruleLength = Object.keys(ruleObj).length
 
-			powerupFreq = 3
-			debuffFreq = 5
+			powerupFreq = 1
+			debuffFreq = 2
 			
 			// adds all enabled powerups to "enabledPowerups" array (16 = number of powerups + 3)
 			for(let i = 3; i < 16; i++) {
@@ -407,7 +407,7 @@ function populateItems(enabledPowerups, enabledDebuffs, resp) {
 	dfsDiceId.src = "css/images/dd"+defenseNum1+".jpeg"
 	atkDiceId2.src = "css/images/dd"+attackNum2+".jpeg"
 	dfsDiceId2.src = "css/images/dd"+defenseNum2+".jpeg"
-	
+
 	updatePowerups()
 
 }
