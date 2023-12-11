@@ -37,7 +37,7 @@ let descriptions = {
 	binarySearch: "Halve opponent's health next turn",
 	ciphertext: "Enemy can't see your attack value", // need test
 	cyberSecurity: `Every turn, gain ${cyberSecurityValue} extra defense`,
-	firewall: `Become immune for ${firewallCount} turns`, // need test
+	firewall: `Become immune for ${firewallCount1} turns`, // need test
 	fullStack: `Set attack and defense to ${fullStackValue} next turn`,
 	hack: `Enemy loses ${hackValue} defense each turn`,
 	powerOutlet: `Every turn, gain ${powerOutletValue} health`,
