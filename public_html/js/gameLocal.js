@@ -680,6 +680,16 @@ function itemCalculationsBefore() {
         }
 
     }
+	if (debuffs2.computerVirus) {
+        defenseNum2 = 0
+        computerVirusCount2 -= 1
+
+        if (computerVirusCount2 <= 0) {
+            debuffs2.computerVirus = false
+            computerVirusCount2 = 2
+        }
+
+    }
 
     // slow computer = for two turns, make attack 0
     if (debuffs1.slowComputer) {
@@ -691,8 +701,16 @@ function itemCalculationsBefore() {
             slowComputerCount1 = 2
         }
     }
-	
 
+	if (debuffs2.slowComputer) {
+        attackNum2 = 0
+        slowComputerCount2 -= 1
+
+        if (slowComputerCount2 <= 0) {
+            debuffs2.slowComputer = false
+            slowComputerCount2 = 2
+        }
+    }
 
     // reboot = once, restore all health
     if (powerups1.reboot) {
