@@ -409,12 +409,14 @@ function populateItems(enabledPowerups, enabledDebuffs, resp) {
 	console.log(powerups1)
 	console.log(powerups2)
 
+	// cipher text masking
 	if ((user==username1) && (powerups2["ciphertext"] == true)) {
 		atkDiceId2.src = `css/images/dd0.jpeg`
-
 	}
 
-
+	if ((user==username2) && (powerups1["ciphertext"] == true)) {
+		atkDiceId.src = `css/images/dd0.jpeg`
+	}
 
 	updatePowerups()
 
