@@ -60,6 +60,7 @@ body {
     font-size: xx-large;
     text-align: center;
     color: whitesmoke;
+    border: 1px solid #074d5c;
 }
 
 .details:hover {
@@ -79,10 +80,7 @@ body {
     max-height:20%;
 }
 
-.list {
-    align-items: center;
-    background-color: #074d5c;
-}
+
 
 .rulePopup .overlay {
     position: fixed;
@@ -159,4 +157,18 @@ body {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-around;
+}
+
+.rule-info {
+      position: absolute;
+      display: none;
+      width: 20%;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.r-list:hover .rule-info {
+
 }
