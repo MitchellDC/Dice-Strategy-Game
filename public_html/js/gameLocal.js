@@ -394,6 +394,7 @@ function populateItems(enabledPowerups, enabledDebuffs, resp) {
 	console.log(debuffs2)
 }
 
+
 function queryObjectToString(query) {
     let properties = Object.keys(query);
     let arrOfQuesryStrings = properties.map(prop => prop+"="+query[prop]);
@@ -1406,8 +1407,12 @@ function playerAction(){
 				
 				// hypothesis: if not in powerups1, will return null to DB
 				// also do all powerups
+				
+				
 			}
-
+			console.log(updated)
+			console.log(updated[blueScreen1])
+			console.log(updated[blueScreen2])
 			xhr.onerror = function() {
 				console.log("ajax error")
 			}
