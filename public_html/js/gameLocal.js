@@ -484,17 +484,16 @@ function addDebuffRight() {
 // display initial powerups (should be none by default)
 updatePowerups()
 
-
-
 function addItem(selected) {
 	// powerup on left
 	if (selected == 1) {
 		if (turn == username1) {
 			powerups1[randomPowerupKey1] = true
+			console.log("player1 selected left")
 		}
 		else {
 			powerups2[randomPowerupKey2] = true
-
+			console.log("player2 selected left")
 		}
 		
 		document.getElementById("select").classList.toggle("active")
@@ -506,10 +505,11 @@ function addItem(selected) {
 
 		if (turn == username1) {
 			powerups1[randomPowerupKey1] = true
+			console.log("player1 selected right")
 		}
 		else {
 			powerups2[randomPowerupKey2] = true
-
+			console.log("player2 selected right")
 		}
 
 		document.getElementById("select").classList.toggle("active")
@@ -954,7 +954,6 @@ function healthChange() {
 		alert("Select a debuff :(")
 
 		// get 2 random debuffs
-		
 
 		randomDebuffKey1 = enabledDebuffs[Math.floor(Math.random() * enabledDebuffs.length)]
 		randomDebuffKey2 = enabledDebuffs[Math.floor(Math.random() * enabledDebuffs.length)]
