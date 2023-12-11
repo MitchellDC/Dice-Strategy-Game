@@ -314,13 +314,18 @@ function populateItems(enabledPowerups, enabledDebuffs, resp) {
 		powerups2["windowsUpdate"] = null
 	}
 	// debuffs
+	console.log(enabledDebuffs)
 	if (enabledDebuffs.includes('blueScreen')) {
 		debuffs1['blueScreen'] = (resp[0].blueScreen1) ? true : false
 		debuffs2['blueScreen'] = (resp[0].blueScreen2) ? true : false
 	}
 	else {
-		debuffs1["blueScreen"] = null
-		debuffs2["blueScreen"] = null
+		console.log(debuffs1['blueScreen'])
+		console.log(debuffs2['blueScreen'])
+		debuffs1['blueScreen'] = null
+		debuffs2['blueScreen'] = null
+		console.log(debuffs1['blueScreen'])
+		console.log(debuffs2['blueScreen'])
 	}
 	if (enabledDebuffs.includes('bug')) {
 		debuffs1['bug'] = (resp[0].bug1) ? true : false
