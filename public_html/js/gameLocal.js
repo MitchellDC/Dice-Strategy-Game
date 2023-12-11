@@ -28,7 +28,8 @@ computerVirusCount1 = 2
 slowComputerCount2 = 2
 computerVirusCount2 = 2
 
-firewallCount = 2
+firewallCount1 = 2
+firewallCount2 = 2
 
 let descriptions = {
 	// powerups 
@@ -68,6 +69,7 @@ let maxHealth
 let username1
 let username2
 
+
 function getGameState(){
 
 	
@@ -98,7 +100,12 @@ function getGameState(){
 
 			rulesetID = resp[0].Rule_ID;
 
-
+			computerVirusCount1 = resp[0].computerVirusCount1
+			computerVirusCount2 = resp[0].computerVirusCount2
+			slowComputerCount1 = resp[0].slowComputerCount1
+			slowComputerCount2 = resp[0].slowComputerCount2
+			firewallCount1 = resp[0].firewallCount1
+			firewallCount2 = resp[0].firewallCount2
 
 			initializeRule(resp)
 			
@@ -754,11 +761,19 @@ function itemCalculationsAfter() {
 	// firewall = once, become immune
 	if (powerups1.firewall) {
 		change1 = 0
-		powerups1.firewall = false
+		firewallCount1 -= 1
+
+		if (firewallCount <= 0) {
+			powerups1.firewall = false
+		}
 	}
 	if (powerups2.firewall) {
 		change2 = 0
-		powerups1.firewall = false
+		firewallCount2 -= 1
+
+		if (firewallCount2 <= 0) {
+			powerups1.firewall = false
+		}
 	}
 
 	// type cast = heal for damage you would have taken
@@ -1560,11 +1575,16 @@ function playerAction(){
 				slowComputer1: debuffs1['slowComputer'],
 				slowComputer2: debuffs2['slowComputer'],
 				syntaxError1: debuffs1['syntaxError'],
-				syntaxError2: debuffs2['syntaxError']
-				
+				syntaxError2: debuffs2['syntaxError'],
+				slowComputerCount1: slowComputerCount1,
+				slowComputerCount2: slowComputerCount2,
+				computerVirusCount1: computerVirusCount1,
+				computerVirusCount2: computerVirusCount2,
+				firewallCount1: firewallCount1,
+				firewallCount2: firewallCount2
+			
 				// hypothesis: if not in powerups1, will return null to DB
 				// also do all powerups
-				
 				
 			}
 			console.log(updated)
