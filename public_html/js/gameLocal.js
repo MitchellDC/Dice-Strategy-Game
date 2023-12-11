@@ -695,20 +695,24 @@ function itemCalculationsBefore() {
     if (debuffs1.slowComputer) {
         attackNum1 = 0
         slowComputerCount1 -= 1
+		console.log(slowComputerCount2)
 
         if (slowComputerCount1 <= 0) {
             debuffs1.slowComputer = false
             slowComputerCount1 = 2
+			console.log("slowComputer1 made false")
         }
     }
 
 	if (debuffs2.slowComputer) {
         attackNum2 = 0
         slowComputerCount2 -= 1
+		console.log(slowComputerCount2)
 
         if (slowComputerCount2 <= 0) {
             debuffs2.slowComputer = false
             slowComputerCount2 = 2
+			console.log("slowComputer2 made false")
         }
     }
 
@@ -834,22 +838,22 @@ function itemCalculationsAfter() {
 		change1 = 0
 		firewallCount1 -= 1
 
-		console.log(firewallCount1)
+	
 		if (firewallCount1 <= 0) {
 			powerups1.firewall = false
 			powerups1.firewallCount1 = 2
-			console.log("firewall1 made false")
+			
 		}
 	}
 	if (powerups2.firewall) {
 		change2 = 0
-		console.log(firewallCount2)
+
 		firewallCount2 -= 1
 
 		if (firewallCount2 <= 0) {
 			powerups2.firewall = false
 			powerups2.firewallCount2 = 2
-			console.log("firewall2 made false")
+
 		}
 	}
 
