@@ -143,6 +143,7 @@ function displayPowers() {
 
 			powers.innerHTML = activePowers.join("<br>") // print active powers
 
+			powers.classList.add("r-list"); // add class to div
 			// append divs to container inside popup 
 			createPowers.appendChild(powers)
 		}
@@ -180,6 +181,8 @@ function displayDisadvantages() {
 			})
 
 			disadvantages.innerHTML = activeDisadvantages.join("<br>") // print array values
+
+			disadvantages.classList.add("r-list"); // add class to div
 
 			// append divs to container inside popup 
 			createDisadvantages.appendChild(disadvantages)
