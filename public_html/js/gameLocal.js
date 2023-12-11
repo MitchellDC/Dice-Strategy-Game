@@ -406,6 +406,9 @@ function populateItems(enabledPowerups, enabledDebuffs, resp) {
 		debuffs2["syntaxError"] = null
 	}
 
+	console.log(powerups1["ciphertext"])
+	console.log(powerups2["ciphertext"])
+
 	updatePowerups()
 
 }
