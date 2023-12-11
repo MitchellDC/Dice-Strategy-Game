@@ -893,7 +893,7 @@ function selectItem(totalTurns, powerupFreq, debuffFreq, enabledPowerups, enable
 
 			/* ensure validity of popups (cannot be the same, and player doesn't have either option)
 			will try 30 times until exiting */
-			while (!unique || alreadyHasLeft || alreadyHasRight && (tries < 500)) {
+			while (!unique || alreadyHasLeft || alreadyHasRight && (tries < 100)) {
 				randomPowerupKey1 = enabledPowerups[Math.floor(Math.random() * enabledPowerups.length)]
 				randomPowerupKey2 = enabledPowerups[Math.floor(Math.random() * enabledPowerups.length)]
 
@@ -918,8 +918,7 @@ function selectItem(totalTurns, powerupFreq, debuffFreq, enabledPowerups, enable
 					alreadyHasRight = false
 
 				tries += 1
-				if (tries >= 50)
-					console.log("exit loop after " +tries+ " tries")
+
 			}
 
 			// if the condition is true, toggle the popups
@@ -961,7 +960,7 @@ function selectItem(totalTurns, powerupFreq, debuffFreq, enabledPowerups, enable
 
 			/* ensure validity of popups (cannot be the same, and player doesn't have either option)
 			will try 30 times until exiting */
-			while (!uniqueDebuff || alreadyHasLeftDebuff || alreadyHasRightDebuff && (triesDebuff < 500)) {
+			while (!uniqueDebuff || alreadyHasLeftDebuff || alreadyHasRightDebuff && (triesDebuff < 100)) {
 				randomDebuffKey1 = enabledDebuffs[Math.floor(Math.random() * enabledDebuffs.length)]
 				randomDebuffKey2 = enabledDebuffs[Math.floor(Math.random() * enabledDebuffs.length)]
 
@@ -985,9 +984,8 @@ function selectItem(totalTurns, powerupFreq, debuffFreq, enabledPowerups, enable
 				else 
 					alreadyHasRightDebuff = false
 
-					triesDebuff += 1
-				if (triesDebuff >= 500)
-					console.log("exit debuff loop after " +triesDebuff+ " tries")
+				triesDebuff += 1
+
 			}
 
 
@@ -1028,7 +1026,7 @@ function selectItem(totalTurns, powerupFreq, debuffFreq, enabledPowerups, enable
 
 			/* ensure validity of popups (cannot be the same, and player doesn't have either option)
 			will try 30 times until exiting */
-			while (!unique || alreadyHasLeft || alreadyHasRight && (tries < 500)) {
+			while (!unique || alreadyHasLeft || alreadyHasRight && (tries < 100)) {
 				randomPowerupKey1 = enabledPowerups[Math.floor(Math.random() * enabledPowerups.length)]
 				randomPowerupKey2 = enabledPowerups[Math.floor(Math.random() * enabledPowerups.length)]
 
@@ -1053,8 +1051,7 @@ function selectItem(totalTurns, powerupFreq, debuffFreq, enabledPowerups, enable
 					alreadyHasRight = false
 
 				tries += 1
-				if (tries >= 50)
-					console.log("exit loop after " +tries+ " tries")
+
 			}
 
 			// if the condition is true, toggle the popups
@@ -1096,7 +1093,7 @@ function selectItem(totalTurns, powerupFreq, debuffFreq, enabledPowerups, enable
 
 			/* ensure validity of popups (cannot be the same, and player doesn't have either option)
 			will try 30 times until exiting */
-			while (!uniqueDebuff || alreadyHasLeftDebuff || alreadyHasRightDebuff && (triesDebuff < 500)) {
+			while (!uniqueDebuff || alreadyHasLeftDebuff || alreadyHasRightDebuff && (triesDebuff < 100)) {
 				randomDebuffKey1 = enabledDebuffs[Math.floor(Math.random() * enabledDebuffs.length)]
 				randomDebuffKey2 = enabledDebuffs[Math.floor(Math.random() * enabledDebuffs.length)]
 
