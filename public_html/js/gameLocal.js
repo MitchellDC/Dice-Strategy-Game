@@ -1142,7 +1142,11 @@ function healthChange() {
 	document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
 
 	// update powerups after battle
-	totalTurns = totalTurns + 1;
+
+	if (turn == username1) {
+		totalTurns = totalTurns + 1;
+	}
+	
 	updatePowerups()
 
 	//document.getElementById("round").innerHTML = ("Round: " + (totalTurns))
