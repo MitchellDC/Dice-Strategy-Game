@@ -62,10 +62,13 @@ let enabledPowerups
 let enabledDebuffs
 let health1
 let health2
+let attackNum1
+let defenseNum1
+let attackNum2
+let defenseNum2
 let maxHealth
 let username1
 let username2
-
 
 function getGameState(){
 
@@ -432,10 +435,7 @@ let dfsDiceId2 = document.getElementById("defenseDiceId2")
 let atkDiceId2 = document.getElementById("attackDiceId2")
 let selected = null
 
-let attackNum1
-let defenseNum1
-let attackNum2
-let defenseNum2
+
 let change1
 let change2
 health1 = maxHealth;
