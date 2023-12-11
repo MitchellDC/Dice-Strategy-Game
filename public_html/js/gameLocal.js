@@ -176,8 +176,8 @@ function initializeRule(resp) {
 			ruleKeys = Object.keys(ruleObj)
 			ruleLength = Object.keys(ruleObj).length
 
-			let powerupFreq = 3
-			let debuffFreq = 5
+			powerupFreq = 1
+			debuffFreq = 5
 			
 			// adds all enabled powerups to "enabledPowerups" array (16 = number of powerups + 3)
 			for(let i = 3; i < 16; i++) {
@@ -198,7 +198,7 @@ function initializeRule(resp) {
 			document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
 
 			populateItems(enabledPowerups, enabledDebuffs, resp)
-			selectItem(totalTurns, powerupFreq, debuffFreq, enabledPowerups, enabledDebuffs)
+			
 			
 		}
 	}	
@@ -212,6 +212,8 @@ let powerups1 = {}
 let powerups2 = {}
 let debuffs1 = {}
 let debuffs2 = {}
+let powerupFreq
+let debuffFreq
 
 getGameState()
 
@@ -1381,7 +1383,7 @@ function playerAction(){
 		
 		rollAttack();
 		rollDefense();
-
+		selectItem(totalTurns, powerupFreq, debuffFreq, enabledPowerups, enabledDebuffs)
 		document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Re-roll one die (or skip)"
 		document.getElementById("rollButtonId").innerHTML = "SKIP"
 		document.getElementById("rollButtonId2").innerHTML = "SKIP"
