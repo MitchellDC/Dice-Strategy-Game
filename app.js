@@ -93,7 +93,7 @@ function updateGame1(qu,res){
 			" Player2_defense="+qu.player2Defense+", "+
 			" Player1_attack="+qu.player1Attack+","+
 			" Player1_defense="+qu.player1Defense+","+
-			" turn='"+qu.turn+"', "
+			" turn='"+qu.turn+"', "+
 			" totalturns="+qu.totalturns+","+
 			" antiMalware1="+qu.antiMalware1+", " +
 			" antiMalware2="+qu.antiMalware2+", " +
