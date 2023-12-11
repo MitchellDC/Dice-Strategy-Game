@@ -691,6 +691,7 @@ function itemCalculationsBefore() {
             slowComputerCount1 = 2
         }
     }
+	
 
 
     // reboot = once, restore all health
@@ -828,8 +829,8 @@ function itemCalculationsAfter() {
 		firewallCount2 -= 1
 
 		if (firewallCount2 <= 0) {
-			powerups1.firewall = false
-			powerups1.firewallCount2 = 2
+			powerups2.firewall = false
+			powerups2.firewallCount2 = 2
 			console.log("firewall2 made false")
 		}
 	}
