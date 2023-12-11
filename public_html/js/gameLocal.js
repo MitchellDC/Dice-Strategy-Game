@@ -499,7 +499,7 @@ function addItem(selected) {
 	if (selected == 2) {
 
 		if (turn == username1) {
-			powerups1[randomPowerupKey1] = true
+			powerups1[randomPowerupKey2] = true
 			console.log("player1 selected right")
 		}
 		else {
@@ -516,10 +516,10 @@ function addItem(selected) {
 	if (selected == 3) {
 
 		if (turn == username1) {
-			debuffs1[randomDebuffKey2] = true
+			debuffs1[randomDebuffKey1] = true
 		}
 		else {
-			debuffs2[randomDebuffKey2] = true
+			debuffs2[randomDebuffKey1] = true
 		}
 		document.getElementById("debuff1").classList.toggle("active")
 		document.getElementById("debuff2").classList.toggle("active")
