@@ -98,8 +98,7 @@ function getGameState(){
 
 			rulesetID = resp[0].Rule_ID;
 
-			let powerupFreq = 1
-			let debuffFreq = 2
+
 
 			initializeRule(resp)
 			
@@ -176,6 +175,9 @@ function initializeRule(resp) {
 			ruleObj = ruleJSON[0]
 			ruleKeys = Object.keys(ruleObj)
 			ruleLength = Object.keys(ruleObj).length
+
+			let powerupFreq = 1
+			let debuffFreq = 2
 			
 			// adds all enabled powerups to "enabledPowerups" array (16 = number of powerups + 3)
 			for(let i = 3; i < 16; i++) {
