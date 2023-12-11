@@ -159,13 +159,12 @@ function displayDisadvantages() {
 	xmlhttp.onerror = function(){alert("Error!")};
 	xmlhttp.onload = function(){
 
-		let disadvantages = document.createElement("div")
-		// append divs to container inside popup 
-		createDisadvantages.appendChild(disadvantages)
+		
 
 		let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
 		for(let Rule in resp){
 
+			let disadvantages = document.createElement("div")
 			let disadvantageTypes = ["blueScreen", "bug", "computerVirus"]
 			let activeDisadvantages = []
 
@@ -177,6 +176,9 @@ function displayDisadvantages() {
 			})
 
 			disadvantages.innerHTML = activeDisadvantages.join("<br>")
+
+			// append divs to container inside popup 
+			createDisadvantages.appendChild(disadvantages)
 
 		}
 	}
