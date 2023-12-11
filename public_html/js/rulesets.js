@@ -148,7 +148,7 @@ function displayDisadvantages() {
 			})
 
 			// append divs to container inside popup 
-			createDisadvantages.appendChild(powers)
+			createDisadvantages.appendChild(disadvantages)
 		}
 	}
 	xmlhttp.open("GET","http://104.196.1.169/rules");
