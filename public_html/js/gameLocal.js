@@ -28,16 +28,13 @@ computerVirusCount1 = 2
 slowComputerCount2 = 2
 computerVirusCount2 = 2
 
-firewallCount1 = 2
-firewallCount2 = 2
-
 let descriptions = {
 	// powerups 
 	antiMalware: `Make defense at least ${antiMalwareThreshold} each turn`,
 	binarySearch: "Halve opponent's health next turn",
 	ciphertext: "Enemy can't see your attack value", // need test
 	cyberSecurity: `Every turn, gain ${cyberSecurityValue} extra defense`,
-	firewall: `Become immune for ${firewallCount1} turns`, // need test
+	firewall: `Become immune for 2 turns`, // need test
 	fullStack: `Set attack and defense to ${fullStackValue} next turn`,
 	hack: `Enemy loses ${hackValue} defense each turn`,
 	powerOutlet: `Every turn, gain ${powerOutletValue} health`,
@@ -132,7 +129,7 @@ function getGameState(){
 				document.getElementById("rollButtonId2").style.display = "none";
 			}
 			else{ //shows player 2 button if the user is player 2
-				console.log("here")
+
 				document.getElementById("rollButtonId").style.display = "none";
 				document.getElementById("rollButtonId2").style.display = "block";
 			}
@@ -493,11 +490,11 @@ function addItem(selected) {
 	if (selected == 1) {
 		if (turn == username1) {
 			powerups1[randomPowerupKey1] = true
-			console.log("player1 selected left")
+
 		}
 		else {
 			powerups2[randomPowerupKey1] = true
-			console.log("player2 selected left")
+
 		}
 		
 		document.getElementById("select").classList.toggle("active")
@@ -509,18 +506,18 @@ function addItem(selected) {
 
 		if (turn == username1) {
 			powerups1[randomPowerupKey2] = true
-			console.log("player1 selected right")
+
 		}
 		else {
 			powerups2[randomPowerupKey2] = true
-			console.log("player2 selected right")
+
 		}
 
 		document.getElementById("select").classList.toggle("active")
 		document.getElementById("select2").classList.toggle("active")
 	}
 
-	console.log(powerups2)
+
 	// debuff on left
 	if (selected == 3) {
 
@@ -864,9 +861,6 @@ function itemCalculationsAfter() {
 
 function selectItem(totalTurns, powerupFreq, debuffFreq, enabledPowerups, enabledDebuffs) {
 
-	console.log(totalTurns)
-	console.log(powerupFreq)
-	console.log(debuffFreq)
 	firstSelect = username1
 	
 	if ((user==turn) && (turn==username1) && (!diceReady2)) {
@@ -884,7 +878,6 @@ function selectItem(totalTurns, powerupFreq, debuffFreq, enabledPowerups, enable
 			if (randomPowerupKey1 == randomPowerupKey2)
 				unique = false
 
-			console.log(player1CurrentItems)
 			if (player1CurrentItems.includes(randomPowerupKey1))
 				alreadyHasLeft = true
 
@@ -1017,7 +1010,7 @@ function selectItem(totalTurns, powerupFreq, debuffFreq, enabledPowerups, enable
 			if (randomPowerupKey1 == randomPowerupKey2)
 				unique = false
 
-			console.log(player2CurrentItems)
+
 			if (player2CurrentItems.includes(randomPowerupKey1))
 				alreadyHasLeft = true
 
@@ -1117,9 +1110,8 @@ function selectItem(totalTurns, powerupFreq, debuffFreq, enabledPowerups, enable
 				else 
 					alreadyHasRightDebuff = false
 
-					triesDebuff += 1
-				if (triesDebuff >= 500)
-					console.log("exit debuff loop after " +triesDebuff+ " tries")
+				triesDebuff += 1
+
 			}
 
 			// if the condition is true, toggle the popups
