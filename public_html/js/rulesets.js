@@ -102,7 +102,7 @@ function displayRulename(ruleID) { // to display ruleset name
 
 
 
-function displayHealth() { // to display initial health in rulesets popup
+function displayHealth(ruleID) { // to display initial health in rulesets popup
 
 	let health = document.getElementById("health") // get id from div in popup
 	let xmlhttp = new XMLHttpRequest();
@@ -121,7 +121,7 @@ function displayHealth() { // to display initial health in rulesets popup
 
 
 
-function displayPowers() {
+function displayPowers(ruleID) {
 
 	let createPowers = document.getElementById("powers")
 	let xmlhttp = new XMLHttpRequest();
@@ -158,7 +158,7 @@ function displayPowers() {
 
 
 
-function displayDisadvantages() {
+function displayDisadvantages(ruleID) {
 
 	let createDisadvantages = document.getElementById("disadvantages")
 	let xmlhttp = new XMLHttpRequest();
