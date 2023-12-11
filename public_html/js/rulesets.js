@@ -79,6 +79,25 @@ displayRulesets();
 
 
 
+function displayRulename() { // to display ruleset name
+
+	let ruleName = document.getElementById("ruleName") // get id from div in popup
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.onerror = function(){alert("Error!")};
+	xmlhttp.onload = function(){
+
+		let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
+		for(let Rule in resp){
+			ruleName.innerHTML = (resp[Rule].Ruleset_name); // display ruleset name from database table
+		}
+	}
+	xmlhttp.open("GET","http://104.196.1.169/rules");
+	xmlhttp.send();
+}
+displayRulename();
+
+
+
 function displayHealth() { // to display initial health in rulesets popup
 
 	let health = document.getElementById("health") // get id from div in popup
@@ -98,6 +117,7 @@ function displayHealth() { // to display initial health in rulesets popup
 displayHealth();
 
 
+
 function displayPowers() {
 
 	let createPowers = document.getElementById("powers")
@@ -110,6 +130,8 @@ function displayPowers() {
 
 			let powers = document.createElement("div")
 			let powerTypes = ["antiMalware", "binarySearch", "ciphertext"]
+
+			powers.innerHTML = "";
 
 			powerTypes.forEach(powerType =>{
 				if(resp[Rule][powerType] == true){
@@ -128,6 +150,7 @@ function displayPowers() {
 displayPowers();
 
 
+
 function displayDisadvantages() {
 
 	let createDisadvantages = document.getElementById("disadvantages")
@@ -141,6 +164,8 @@ function displayDisadvantages() {
 			let disadvantages = document.createElement("div")
 			let disadvantageTypes = ["blueScreen", "bug", "computerVirus"]
 
+			disadvantages.innerHTML = "";
+			
 			disadvantageTypes.forEach(disadvantageType =>{
 				if(resp[Rule][disadvantageType] == true){
 					disadvantages.innerHTML += disadvantageType;
