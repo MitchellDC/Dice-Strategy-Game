@@ -907,8 +907,8 @@ function healthChange() {
 		/* ensure validity of popups (cannot be the same, and player doesn't have either option)
 		will try 30 times until exiting */
 		while (!unique || alreadyHasLeft || alreadyHasRight && (tries < 500)) {
-			randomPowerupKey1 = powerupKeys[Math.floor(Math.random() * powerupKeys.length)]
-			randomPowerupKey2 = powerupKeys[Math.floor(Math.random() * powerupKeys.length)]
+			randomPowerupKey1 = enabledPowerups[Math.floor(Math.random() * enabledPowerups.length)]
+			randomPowerupKey2 = enabledPowerups[Math.floor(Math.random() * enabledPowerups.length)]
 
 			// cannot be the same
 			if (randomPowerupKey1 == randomPowerupKey2) {
@@ -976,8 +976,8 @@ function healthChange() {
 		/* ensure validity of popups (cannot be the same, and player doesn't have either option)
 		will try 30 times until exiting */
 		while (!uniqueDebuff || alreadyHasLeftDebuff || alreadyHasRightDebuff && (triesDebuff < 500)) {
-			randomDebuffKey1 = debuffKeys[Math.floor(Math.random() * debuffKeys.length)]
-			randomDebuffKey2 = debuffKeys[Math.floor(Math.random() * debuffKeys.length)]
+			randomDebuffKey1 = enabledDebuffs[Math.floor(Math.random() * enabledDebuffs.length)]
+			randomDebuffKey2 = enabledDebuffs[Math.floor(Math.random() * enabledDebuffs.length)]
 
 			// cannot be the same
 			if (randomDebuffKey1 == randomDebuffKey2) {
