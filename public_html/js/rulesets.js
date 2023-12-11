@@ -38,7 +38,7 @@ function displayRulesets(){
 					// variable for the second column of the new row
 
 					newRow.innerHTML = resp[i].Ruleset_name //displays the ruleset (will change once the rulesets are applied)
-					newRow.classList.add("details"); //assigns class to the columns
+					newRow.classList.add("list"); //assigns class to the columns
 					//alert(resp[game].Game_ID)
 					let ruleID = resp[i].Rule_ID;
 					newRow.id = ruleID; //assigns id to the first column
