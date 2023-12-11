@@ -847,137 +847,274 @@ function selectItem(totalTurns, powerupFreq, debuffFreq, enabledPowerups, enable
 	console.log(totalTurns)
 	console.log(powerupFreq)
 	console.log(debuffFreq)
-	if (totalTurns % powerupFreq == 0 && (totalTurns != 0)){
-		// if true pass powerup
-		alert("Select a powerup :)")
-		randomPowerupKey1 = enabledPowerups[Math.floor(Math.random() * enabledPowerups.length)]
-		randomPowerupKey2 = enabledPowerups[Math.floor(Math.random() * enabledPowerups.length)]
-		// initialize variables to check validity
-		let unique = true
-		let alreadyHasLeft = false
-		let alreadyHasRight = false
-		let tries = 0
-
-		if (randomPowerupKey1 == randomPowerupKey2)
-			unique = false
-
-		console.log(player1CurrentItems)
-		if (player1CurrentItems.includes(randomPowerupKey1))
-			alreadyHasLeft = true
-
-		if (player1CurrentItems.includes(randomPowerupKey2))
-			alreadyHasRight = true
-
-		/* ensure validity of popups (cannot be the same, and player doesn't have either option)
-		will try 30 times until exiting */
-		while (!unique || alreadyHasLeft || alreadyHasRight && (tries < 500)) {
+	
+	if ((user==turn) && (turn==username1)) {
+		if (totalTurns % powerupFreq == 0 && (totalTurns != 0)){
+			// if true pass powerup
+			alert("Select a powerup :)")
 			randomPowerupKey1 = enabledPowerups[Math.floor(Math.random() * enabledPowerups.length)]
 			randomPowerupKey2 = enabledPowerups[Math.floor(Math.random() * enabledPowerups.length)]
+			// initialize variables to check validity
+			let unique = true
+			let alreadyHasLeft = false
+			let alreadyHasRight = false
+			let tries = 0
 
-			// cannot be the same
-			if (randomPowerupKey1 == randomPowerupKey2) {
+			if (randomPowerupKey1 == randomPowerupKey2)
 				unique = false
-			}	
-			else
-				unique = true
-	
-			// player doesn't have either option
-			if (player1CurrentItems.includes(randomPowerupKey1)) {
+
+			console.log(player1CurrentItems)
+			if (player1CurrentItems.includes(randomPowerupKey1))
 				alreadyHasLeft = true
-			}
-			else 
-				alreadyHasLeft = false
-	
-			if (player1CurrentItems.includes(randomPowerupKey2)) {
+
+			if (player1CurrentItems.includes(randomPowerupKey2))
 				alreadyHasRight = true
+
+			/* ensure validity of popups (cannot be the same, and player doesn't have either option)
+			will try 30 times until exiting */
+			while (!unique || alreadyHasLeft || alreadyHasRight && (tries < 500)) {
+				randomPowerupKey1 = enabledPowerups[Math.floor(Math.random() * enabledPowerups.length)]
+				randomPowerupKey2 = enabledPowerups[Math.floor(Math.random() * enabledPowerups.length)]
+
+				// cannot be the same
+				if (randomPowerupKey1 == randomPowerupKey2) {
+					unique = false
+				}	
+				else
+					unique = true
+		
+				// player doesn't have either option
+				if (player1CurrentItems.includes(randomPowerupKey1)) {
+					alreadyHasLeft = true
+				}
+				else 
+					alreadyHasLeft = false
+		
+				if (player1CurrentItems.includes(randomPowerupKey2)) {
+					alreadyHasRight = true
+				}
+				else 
+					alreadyHasRight = false
+
+				tries += 1
+				if (tries >= 50)
+					console.log("exit loop after " +tries+ " tries")
 			}
-			else 
-				alreadyHasRight = false
 
-			tries += 1
-			if (tries >= 50)
-				console.log("exit loop after " +tries+ " tries")
+			// if the condition is true, toggle the popups
+			// have to do this here to prevent async
+		
+			document.getElementById("select").classList.toggle("active")
+			document.getElementById("select2").classList.toggle("active")
+		
+			// two random powerups selected from array of keys
+			document.getElementById("rpower1").innerHTML = randomPowerupKey1
+			document.getElementById("pdesc").innerHTML = descriptions[randomPowerupKey1]
+			document.getElementById("rpower2").innerHTML = randomPowerupKey2
+			document.getElementById("pdesc2").innerHTML = descriptions[randomPowerupKey2]
+
 		}
+		// check if the total number of turns is divisible by 5 and not equal to 0
+		if (totalTurns % debuffFreq == 0 && totalTurns != 0){
+			// if true pass debuff
+			alert("Select a debuff :(")
 
-		// if the condition is true, toggle the popups
-		// have to do this here to prevent async
-	
-		document.getElementById("select").classList.toggle("active")
-		document.getElementById("select2").classList.toggle("active")
-	
-		// two random powerups selected from array of keys
-		document.getElementById("rpower1").innerHTML = randomPowerupKey1
-		document.getElementById("pdesc").innerHTML = descriptions[randomPowerupKey1]
-		document.getElementById("rpower2").innerHTML = randomPowerupKey2
-		document.getElementById("pdesc2").innerHTML = descriptions[randomPowerupKey2]
+			// get 2 random debuffs
 
-	}
-	// check if the total number of turns is divisible by 5 and not equal to 0
-	if (totalTurns % debuffFreq == 0 && totalTurns != 0){
-		// if true pass debuff
-		alert("Select a debuff :(")
-
-		// get 2 random debuffs
-
-		randomDebuffKey1 = enabledDebuffs[Math.floor(Math.random() * enabledDebuffs.length)]
-		randomDebuffKey2 = enabledDebuffs[Math.floor(Math.random() * enabledDebuffs.length)]
-
-		let uniqueDebuff = true
-		let alreadyHasLeftDebuff = false
-		let alreadyHasRightDebuff = false
-		let triesDebuff = 0
-
-		if (randomDebuffKey1 == randomDebuffKey2)
-			uniqueDebuff = false
-
-		if (player1CurrentItems.includes(randomDebuffKey1))
-			alreadyHasLeftDebuff = true
-
-		if (player1CurrentItems.includes(randomDebuffKey2))
-			alreadyHasRightDebuff = true
-
-		/* ensure validity of popups (cannot be the same, and player doesn't have either option)
-		will try 30 times until exiting */
-		while (!uniqueDebuff || alreadyHasLeftDebuff || alreadyHasRightDebuff && (triesDebuff < 500)) {
 			randomDebuffKey1 = enabledDebuffs[Math.floor(Math.random() * enabledDebuffs.length)]
 			randomDebuffKey2 = enabledDebuffs[Math.floor(Math.random() * enabledDebuffs.length)]
 
-			// cannot be the same
-			if (randomDebuffKey1 == randomDebuffKey2) {
+			let uniqueDebuff = true
+			let alreadyHasLeftDebuff = false
+			let alreadyHasRightDebuff = false
+			let triesDebuff = 0
+
+			if (randomDebuffKey1 == randomDebuffKey2)
 				uniqueDebuff = false
-			}	
-			else
-				uniqueDebuff = true
-	
-			// player doesn't have either option
-			if (player1CurrentItems.includes(randomDebuffKey1)) {
+
+			if (player1CurrentItems.includes(randomDebuffKey1))
 				alreadyHasLeftDebuff = true
-			}
-			else 
-				alreadyHasLeftDebuff = false
-	
-			if (player1CurrentItems.includes(randomDebuffKey2)) {
+
+			if (player1CurrentItems.includes(randomDebuffKey2))
 				alreadyHasRightDebuff = true
+
+			/* ensure validity of popups (cannot be the same, and player doesn't have either option)
+			will try 30 times until exiting */
+			while (!uniqueDebuff || alreadyHasLeftDebuff || alreadyHasRightDebuff && (triesDebuff < 500)) {
+				randomDebuffKey1 = enabledDebuffs[Math.floor(Math.random() * enabledDebuffs.length)]
+				randomDebuffKey2 = enabledDebuffs[Math.floor(Math.random() * enabledDebuffs.length)]
+
+				// cannot be the same
+				if (randomDebuffKey1 == randomDebuffKey2) {
+					uniqueDebuff = false
+				}	
+				else
+					uniqueDebuff = true
+		
+				// player doesn't have either option
+				if (player1CurrentItems.includes(randomDebuffKey1)) {
+					alreadyHasLeftDebuff = true
+				}
+				else 
+					alreadyHasLeftDebuff = false
+		
+				if (player1CurrentItems.includes(randomDebuffKey2)) {
+					alreadyHasRightDebuff = true
+				}
+				else 
+					alreadyHasRightDebuff = false
+
+					triesDebuff += 1
+				if (triesDebuff >= 500)
+					console.log("exit debuff loop after " +triesDebuff+ " tries")
 			}
-			else 
-				alreadyHasRightDebuff = false
 
-				triesDebuff += 1
-			if (triesDebuff >= 500)
-				console.log("exit debuff loop after " +triesDebuff+ " tries")
+
+			// if the condition is true, toggle the popups
+			document.getElementById("debuff1").classList.toggle("active")
+			document.getElementById("debuff2").classList.toggle("active")
+		
+			// two random powerups selected from array of keys
+			document.getElementById("rdebuff1").innerHTML = randomDebuffKey1
+			document.getElementById("ddesc").innerHTML = descriptions[randomDebuffKey1]
+			document.getElementById("rdebuff2").innerHTML = randomDebuffKey2
+			document.getElementById("ddesc2").innerHTML = descriptions[randomDebuffKey2]
+
 		}
+	}
 
+	if ((user==turn) && (turn==username2)) {
+		if (totalTurns % powerupFreq == 0 && (totalTurns != 0)){
+			// if true pass powerup
+			alert("Select a powerup :)")
+			randomPowerupKey1 = enabledPowerups[Math.floor(Math.random() * enabledPowerups.length)]
+			randomPowerupKey2 = enabledPowerups[Math.floor(Math.random() * enabledPowerups.length)]
+			// initialize variables to check validity
+			let unique = true
+			let alreadyHasLeft = false
+			let alreadyHasRight = false
+			let tries = 0
 
-		// if the condition is true, toggle the popups
-		document.getElementById("debuff1").classList.toggle("active")
-		document.getElementById("debuff2").classList.toggle("active")
-	
-		// two random powerups selected from array of keys
-		document.getElementById("rdebuff1").innerHTML = randomDebuffKey1
-		document.getElementById("ddesc").innerHTML = descriptions[randomDebuffKey1]
-		document.getElementById("rdebuff2").innerHTML = randomDebuffKey2
-		document.getElementById("ddesc2").innerHTML = descriptions[randomDebuffKey2]
+			if (randomPowerupKey1 == randomPowerupKey2)
+				unique = false
 
+			console.log(player2CurrentItems)
+			if (player2CurrentItems.includes(randomPowerupKey1))
+				alreadyHasLeft = true
+
+			if (player2CurrentItems.includes(randomPowerupKey2))
+				alreadyHasRight = true
+
+			/* ensure validity of popups (cannot be the same, and player doesn't have either option)
+			will try 30 times until exiting */
+			while (!unique || alreadyHasLeft || alreadyHasRight && (tries < 500)) {
+				randomPowerupKey1 = enabledPowerups[Math.floor(Math.random() * enabledPowerups.length)]
+				randomPowerupKey2 = enabledPowerups[Math.floor(Math.random() * enabledPowerups.length)]
+
+				// cannot be the same
+				if (randomPowerupKey1 == randomPowerupKey2) {
+					unique = false
+				}	
+				else
+					unique = true
+		
+				// player doesn't have either option
+				if (player2CurrentItems.includes(randomPowerupKey1)) {
+					alreadyHasLeft = true
+				}
+				else 
+					alreadyHasLeft = false
+		
+				if (player2CurrentItems.includes(randomPowerupKey2)) {
+					alreadyHasRight = true
+				}
+				else 
+					alreadyHasRight = false
+
+				tries += 1
+				if (tries >= 50)
+					console.log("exit loop after " +tries+ " tries")
+			}
+
+			// if the condition is true, toggle the popups
+			// have to do this here to prevent async
+		
+			document.getElementById("select").classList.toggle("active")
+			document.getElementById("select2").classList.toggle("active")
+		
+			// two random powerups selected from array of keys
+			document.getElementById("rpower1").innerHTML = randomPowerupKey1
+			document.getElementById("pdesc").innerHTML = descriptions[randomPowerupKey1]
+			document.getElementById("rpower2").innerHTML = randomPowerupKey2
+			document.getElementById("pdesc2").innerHTML = descriptions[randomPowerupKey2]
+
+		}
+		// check if the total number of turns is divisible by 5 and not equal to 0
+		if (totalTurns % debuffFreq == 0 && totalTurns != 0){
+			// if true pass debuff
+			alert("Select a debuff :(")
+
+			// get 2 random debuffs
+
+			randomDebuffKey1 = enabledDebuffs[Math.floor(Math.random() * enabledDebuffs.length)]
+			randomDebuffKey2 = enabledDebuffs[Math.floor(Math.random() * enabledDebuffs.length)]
+
+			let uniqueDebuff = true
+			let alreadyHasLeftDebuff = false
+			let alreadyHasRightDebuff = false
+			let triesDebuff = 0
+
+			if (randomDebuffKey1 == randomDebuffKey2)
+				uniqueDebuff = false
+
+			if (player2CurrentItems.includes(randomDebuffKey1))
+				alreadyHasLeftDebuff = true
+
+			if (player2CurrentItems.includes(randomDebuffKey2))
+				alreadyHasRightDebuff = true
+
+			/* ensure validity of popups (cannot be the same, and player doesn't have either option)
+			will try 30 times until exiting */
+			while (!uniqueDebuff || alreadyHasLeftDebuff || alreadyHasRightDebuff && (triesDebuff < 500)) {
+				randomDebuffKey1 = enabledDebuffs[Math.floor(Math.random() * enabledDebuffs.length)]
+				randomDebuffKey2 = enabledDebuffs[Math.floor(Math.random() * enabledDebuffs.length)]
+
+				// cannot be the same
+				if (randomDebuffKey1 == randomDebuffKey2) {
+					uniqueDebuff = false
+				}	
+				else
+					uniqueDebuff = true
+		
+				// player doesn't have either option
+				if (player2CurrentItems.includes(randomDebuffKey1)) {
+					alreadyHasLeftDebuff = true
+				}
+				else 
+					alreadyHasLeftDebuff = false
+		
+				if (player2CurrentItems.includes(randomDebuffKey2)) {
+					alreadyHasRightDebuff = true
+				}
+				else 
+					alreadyHasRightDebuff = false
+
+					triesDebuff += 1
+				if (triesDebuff >= 500)
+					console.log("exit debuff loop after " +triesDebuff+ " tries")
+			}
+
+			// if the condition is true, toggle the popups
+			document.getElementById("debuff1").classList.toggle("active")
+			document.getElementById("debuff2").classList.toggle("active")
+		
+			// two random powerups selected from array of keys
+			document.getElementById("rdebuff1").innerHTML = randomDebuffKey1
+			document.getElementById("ddesc").innerHTML = descriptions[randomDebuffKey1]
+			document.getElementById("rdebuff2").innerHTML = randomDebuffKey2
+			document.getElementById("ddesc2").innerHTML = descriptions[randomDebuffKey2]
+
+		}
 	}
 
 }
