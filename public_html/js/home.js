@@ -75,8 +75,8 @@ showRules();
 function showGames(){
 	// takes the game table from the html
 	let gameTable = document.getElementById("gameTable");
-
 	console.log("gameTable after assignment: " +gameTable)
+	
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("Error!")};
 	xmlhttp.onload = function(){
@@ -199,6 +199,69 @@ function toNewGame(){
 	}
 }
 
+// same as show rules but for deleting games
+function showGames() {
+
+    let xmlhttp = new XMLHttpRequest()
+	xmlhttp.onerror = function(){alert("Error!")};
+	xmlhttp.onload = function(){
+
+    let games = JSON.parse(this.responseText)
+    console.log("games: " + games)
+
+        let dropdown = document.getElementById("games")
+	    console.log("dropdown: "+dropdown) 
+
+        for (let game in games) {
+
+            console.log("game: " + game)
+            
+            let newOption = document.createElement("option")
+
+            newOption.value = games[game].Game_ID
+            newOption.text = games[game].Player2_uname
+
+
+	        console.log(newOption)
+            dropdown.appendChild(newOption)
+
+            console.log()
+
+
+
+        }
+
+
+    }
+
+    
+	xmlhttp.open("GET","http://104.196.1.169/games");
+	xmlhttp.send();
+}
+showGames();
+
+function delGame() {
+	document.getElementById("popup2").classList.toggle("active")
+}
+
+function confirmDelGame(gameID) {
+	let game = document.getElementById("games")
+
+	if(game == 0){alert("Choose a game to delete!")}
+
+	let xmlhttp = new XMLHttpRequest();
+		xmlhttp.onerror = function() {}
+		xmlhttp.onload = function(){
+			let resp = this.responseText
+			console.log(resp)
+			if(this.responseText=="deleted"){
+				alert("Game successfully deleted");
+				location.reload();
+			}
+		}
+			xmlhttp.open("GET","http://104.196.1.169/deletegame?"+queryObjectToString({gameid:gameID}));
+			xmlhttp.send();
+}
 
     //if(ruleset.value == "0") alert("No ruleset selected!")
 
