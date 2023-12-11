@@ -1492,10 +1492,7 @@ function playerAction(){
 				document.getElementById("rollButtonId2").innerHTML = "ROLL"
 				document.getElementById("turn").innerHTML = "turn: " + totalTurns
 				
-				if (user==turn) {
-					location.reload()
 
-				}
 
 			}
 			
@@ -1509,10 +1506,6 @@ function playerAction(){
 				document.getElementById("rollButtonId").innerHTML = "ROLL"
 				document.getElementById("turn").innerHTML = "turn: " + totalTurns
 
-				if (user==turn) {
-					location.reload()
-
-				}
 			}
 
 			let xhr = new XMLHttpRequest();
@@ -1580,7 +1573,6 @@ function playerAction(){
 			}
 			xhr.onload = function(){
 				console.log(this.responseText)
-				location.reload();
 			}
 
 			xhr.open("POST","http://104.196.1.169/updategame1?"+queryObjectToString(updated));
