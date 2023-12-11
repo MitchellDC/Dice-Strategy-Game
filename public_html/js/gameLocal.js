@@ -883,11 +883,11 @@ function healthChange() {
 		// if true pass powerup
 		alert("Select a powerup :)")
 
-		// get 2 random powerups
-		powerupKeys = Object.keys(powerups1)
-		randomPowerupKey1 = powerupKeys[Math.floor(Math.random() * powerupKeys.length)]
-		randomPowerupKey2 = powerupKeys[Math.floor(Math.random() * powerupKeys.length)]
-		
+		console.log(enabledPowerups)
+		randomPowerupKey1 = enabledPowerups[Math.floor(Math.random() * enabledPowerup.length)]
+		randomPowerupKey2 = enabledPowerups[Math.floor(Math.random() * enabledPowerup.length)]
+		console.log(randomPowerupKey1)
+		console.log(randomPowerupKey2)
 		// initialize variables to check validity
 		let unique = true
 		let alreadyHasLeft = false
@@ -897,6 +897,7 @@ function healthChange() {
 		if (randomPowerupKey1 == randomPowerupKey2)
 			unique = false
 
+		console.log(player1CurrentItems)
 		if (player1CurrentItems.includes(randomPowerupKey1))
 			alreadyHasLeft = true
 
@@ -953,9 +954,10 @@ function healthChange() {
 		alert("Select a debuff :(")
 
 		// get 2 random debuffs
-		debuffKeys = Object.keys(debuffs1)
-		randomDebuffKey1 = debuffKeys[Math.floor(Math.random() * debuffKeys.length)]
-		randomDebuffKey2 = debuffKeys[Math.floor(Math.random() * debuffKeys.length)]
+		
+
+		randomDebuffKey1 = enabledDebuffs[Math.floor(Math.random() * enabledDebuffs.length)]
+		randomDebuffKey2 = enabledDebuffs[Math.floor(Math.random() * enabledDebuffs.length)]
 
 		let uniqueDebuff = true
 		let alreadyHasLeftDebuff = false
@@ -1039,13 +1041,13 @@ function updatePowerups() {
 	// this essentially filters out the values that turned false
 	for (let field in powerups1) {
 
-		if (powerups1[field]) {
+		if (powerups1[field] == true) {
 			player1CurrentItems.push(field)
 		}
 
 	}
 	for (let field in debuffs1) {
-		if (debuffs1[field]) {
+		if (debuffs1[field] == true) {
 			player1CurrentItems.push(field)
 		}
 
@@ -1071,13 +1073,13 @@ function updatePowerups() {
 	// this essentially filters out the values that turned false
 	for (let field in powerups2) {
 
-		if (powerups2[field]) {
+		if (powerups2[field] == true) {
 			player2CurrentItems.push(field)
 		}
 
 	}
 	for (let field in debuffs2) {
-		if (debuffs2[field]) {
+		if (debuffs2[field] == true) {
 			player2CurrentItems.push(field)
 		}
 
