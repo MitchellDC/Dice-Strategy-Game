@@ -537,6 +537,12 @@ function addItem(selected) {
 		document.getElementById("debuff2").classList.toggle("active")
 	}
 
+	console.log(powerups1)
+	console.log(powerups2)
+	console.log(debuffs1)
+	console.log(debuffs2)
+	updatePowerups()
+
 }
 
 
@@ -1080,6 +1086,11 @@ function updatePowerups() {
 		nameColumn.innerHTML = (player2CurrentItems[i] + "> " + descriptions[player2CurrentItems[i]])
 	}
 
+	console.log(powerups1)
+	console.log(powerups2)
+	console.log(debuffs1)
+	console.log(debuffs2)
+
 
 }
 
@@ -1318,6 +1329,10 @@ function playerAction(){
 	else if (stage == 4){
 		// display new turns
 		document.getElementById("turn").innerHTML = "turn: " + totalTurns
+		console.log(powerups1)
+		console.log(powerups2)
+		console.log(debuffs1)
+		console.log(debuffs2)
 
 		// checks if battle ready
 		if(diceReady1 && diceReady2){
