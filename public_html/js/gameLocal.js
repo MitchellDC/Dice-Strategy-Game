@@ -1492,6 +1492,10 @@ function playerAction(){
 				document.getElementById("rollButtonId2").innerHTML = "ROLL"
 				document.getElementById("turn").innerHTML = "turn: " + totalTurns
 				
+				if (user==turn) {
+					location.reload()
+
+				}
 
 			}
 			
@@ -1505,6 +1509,10 @@ function playerAction(){
 				document.getElementById("rollButtonId").innerHTML = "ROLL"
 				document.getElementById("turn").innerHTML = "turn: " + totalTurns
 
+				if (user==turn) {
+					location.reload()
+
+				}
 			}
 
 			let xhr = new XMLHttpRequest();
