@@ -184,7 +184,7 @@ function initializeRule(resp) {
 			ruleLength = Object.keys(ruleObj).length
 
 			powerupFreq = 1
-			debuffFreq = 5
+			debuffFreq = 2
 			
 			// adds all enabled powerups to "enabledPowerups" array (16 = number of powerups + 3)
 			for(let i = 3; i < 16; i++) {
