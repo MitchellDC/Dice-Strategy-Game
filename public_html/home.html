@@ -35,6 +35,7 @@
         </table>
 
         <button class="new" onclick="createGame()"><b>Create Game</b></button>
+        <button class="new" onclick="delGame()"><b>Delete Game</b></button>
 
         <div class="popup" id="popup1">
             <div class="overlay"></div>
@@ -52,6 +53,21 @@
                     <img class="arrow" src="css/images/arrow.webp" onclick="toNewGame()">
                 </div>
             </div>
+
+            <div class="popup" id="popup2">
+                <div class="overlay"></div>
+                <div class="content">
+                    <div class="close" onclick="delGame()">&times;</div>
+                    <div class="flex-create">
+                       <div>Select Game to delete: </div>
+                    </div>
+                    <div class="flex-inputs">
+                        <select id="games">
+                            <option value="0">select game</option>
+                        </select>
+                        <img class="arrow" src="css/images/x.webp" onclick="confirmDelGame()">
+                    </div>
+                </div>
             
         <h2 class="howToPlayTitle"><u>HOW TO PLAY</u></h2>
         <div class="rules">
