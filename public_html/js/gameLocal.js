@@ -1145,8 +1145,9 @@ function healthChange() {
 
 	if (turn == username1) {
 		totalTurns = totalTurns + 1;
+		document.getElementById("turn").innerHTML = "turn: " + totalTurns
 	}
-	
+
 	updatePowerups()
 
 	//document.getElementById("round").innerHTML = ("Round: " + (totalTurns))
