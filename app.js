@@ -138,7 +138,11 @@ function updateGame1(qu,res){
 			" syntaxError1="+qu.syntaxError1+", " +
 			" syntaxError2="+qu.syntaxError2+", " +
 			" firewallCount1="+qu.firewallCount1+", " +
-			" firewallCount2="+qu.firewallCount2+" " +
+			" firewallCount2="+qu.firewallCount2+", " +
+			" slowComputerCount1="+qu.slowComputerCount1+", " +
+			" slowComputerCount2="+qu.slowComputerCount2+", " +
+			" computerVirusCount1="qu.computerVirusCount1+", " +
+			" computerVirusCount2="qu.computerVirusCount2+", " +
 			   " WHERE Game_ID="+qu.gameId+";",function(err,result){
 			if(err){
 				console.log(err);
