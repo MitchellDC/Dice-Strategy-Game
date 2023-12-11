@@ -98,56 +98,61 @@ function getGameState(){
 
 			rulesetID = resp[0].Rule_ID;
 
+			let powerupFreq = 1
+			let debuffFreq = 2
+
 			initializeRule(resp)
-
-			}
-			// display instructions and turn count
-
-			document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Roll dice " + turn
-			document.getElementById("turn").innerHTML = "turn: " +totalTurns
-
-			// update dice images
-			atkDiceId.src = "css/images/dd"+attackNum1+".jpeg"
-			dfsDiceId.src = "css/images/dd"+defenseNum1+".jpeg"
-			atkDiceId2.src = "css/images/dd"+attackNum2+".jpeg"
-			dfsDiceId2.src = "css/images/dd"+defenseNum2+".jpeg"
-
-			// hide and show buttons buttons
-
-			if (turn == user) { 
-				// current player has control
-				if(turn==username1){ //shows player 1 button if the user in a device is player 2
-					document.getElementById("rollButtonId").style.display = "block";
-					document.getElementById("rollButtonId2").style.display = "none";
-				}
-				else{ //shows player 2 button if the user is player 2
-					console.log("here")
-					document.getElementById("rollButtonId").style.display = "none";
-					document.getElementById("rollButtonId2").style.display = "block";
-				}
-
-			}
-			// player sees no buttons
-			else { 
-				//hides buttons if it is not user's turn
-				document.getElementById("rollButtonId").style.display = "none";
-				document.getElementById("rollButtonId2").style.display = "none";
-
-				//browser gets refreshed every 5 seconds if it is not user's turn
-				setInterval(() => {
-					location.reload();
-				}, 999999); // change back to 5000
-			}
 			
-			if (dfsDiceId.src != `http://104.196.1.169/css/images/dd0.jpeg`) {
-				diceReady1 = true
-			}
+		}
 
-			if (dfsDiceId2.src != `http://104.196.1.169/css/images/dd0.jpeg`) {
-				diceReady2 = true
+
+		// display instructions and turn count
+
+		document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Roll dice " + turn
+		document.getElementById("turn").innerHTML = "turn: " +totalTurns
+
+		// update dice images
+		atkDiceId.src = "css/images/dd"+attackNum1+".jpeg"
+		dfsDiceId.src = "css/images/dd"+defenseNum1+".jpeg"
+		atkDiceId2.src = "css/images/dd"+attackNum2+".jpeg"
+		dfsDiceId2.src = "css/images/dd"+defenseNum2+".jpeg"
+
+		// hide and show buttons buttons
+
+		if (turn == user) { 
+			// current player has control
+			if(turn==username1){ //shows player 1 button if the user in a device is player 2
+				document.getElementById("rollButtonId").style.display = "block";
+				document.getElementById("rollButtonId2").style.display = "none";
+			}
+			else{ //shows player 2 button if the user is player 2
+				console.log("here")
+				document.getElementById("rollButtonId").style.display = "none";
+				document.getElementById("rollButtonId2").style.display = "block";
 			}
 
 		}
+			// player sees no buttons
+		else { 
+			//hides buttons if it is not user's turn
+			document.getElementById("rollButtonId").style.display = "none";
+			document.getElementById("rollButtonId2").style.display = "none";
+
+			//browser gets refreshed every 5 seconds if it is not user's turn
+			setInterval(() => {
+				location.reload();
+			}, 999999); // change back to 5000
+		}
+			
+		if (dfsDiceId.src != `http://104.196.1.169/css/images/dd0.jpeg`) {
+			diceReady1 = true
+		}
+
+		if (dfsDiceId2.src != `http://104.196.1.169/css/images/dd0.jpeg`) {
+			diceReady2 = true
+		}
+
+	}
 	
 	xmlhttp.open("GET","http://104.196.1.169/game?"+queryObjectToString({gameId:gameID})); 
 	xmlhttp.send();
@@ -191,6 +196,7 @@ function initializeRule(resp) {
 			document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
 
 			populateItems(enabledPowerups, enabledDebuffs, resp)
+			selectItem(totalTurns, powerupFreq, debuffFreq, enabledPowerups, enabledDebuffs)
 			
 		}
 	}	
@@ -386,7 +392,7 @@ function populateItems(enabledPowerups, enabledDebuffs, resp) {
 		debuffs1["syntaxError"] = null
 		debuffs2["syntaxError"] = null
 	}
-	
+
 	updatePowerups()
 
 }
@@ -428,8 +434,7 @@ let totalTurns = 0;
 
 let randomPowerupKey1
 let randomPowerupKey2
-powerupFreq = 1
-debuffFreq = 2
+
 
 let turn = ""; // db key "turn" with value of player's username
 /*
@@ -834,36 +839,8 @@ function itemCalculationsAfter() {
 	}
 }
 
-// front-end calculations and powerup calculations
-function healthChange() {
 
-	itemCalculationsBefore()
-
-	change1 = attackNum2 - defenseNum1
-	change2 = attackNum1 - defenseNum2
-
-	itemCalculationsAfter()
-
-	// change health
-	if(change1>0 ) {
-		health1 -= change1
-	}
-	if (change2> 0) {
-		health2 -= change2
-	}
-
-	// display health
-	document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
-	document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
-
-	// update powerups after battle
-	totalTurns = totalTurns + 1;
-	updatePowerups()
-
-	//document.getElementById("round").innerHTML = ("Round: " + (totalTurns))
-
-	/* SELECT POWERUP code
-	check if the total number of turns is divisible by 3 and not equal to 0*/
+function selectItem(totalTurns, powerupFreq, debuffFreq, enabledPowerups, enabledDebuffs) {
 	if (totalTurns % powerupFreq == 0 && (totalTurns != 0)){
 		// if true pass powerup
 		alert("Select a powerup :)")
@@ -996,13 +973,46 @@ function healthChange() {
 		document.getElementById("ddesc2").innerHTML = descriptions[randomDebuffKey2]
 
 	}
+
+}
+
+// front-end calculations and powerup calculations
+function healthChange() {
+
+	itemCalculationsBefore()
+
+	change1 = attackNum2 - defenseNum1
+	change2 = attackNum1 - defenseNum2
+
+	itemCalculationsAfter()
+
+	// change health
+	if(change1>0 ) {
+		health1 -= change1
+	}
+	if (change2> 0) {
+		health2 -= change2
+	}
+
+	// display health
+	document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
+	document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
+
+	// update powerups after battle
+	totalTurns = totalTurns + 1;
+	updatePowerups()
+
+	//document.getElementById("round").innerHTML = ("Round: " + (totalTurns))
+
+	/* SELECT POWERUP code
+	check if the total number of turns is divisible by 3 and not equal to 0*/
+	
 }
 
 // updates powerup arrays
 // is called after every battle and once during start of game
 // clears all rows of powerups and rebuilds based on what is still true
 function updatePowerups() {
-
 
 	// clear all rows of powerup table
 	for (let i = 0; i < player1CurrentItems.length; i++) {
