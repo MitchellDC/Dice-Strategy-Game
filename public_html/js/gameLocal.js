@@ -494,6 +494,11 @@ function addItem(selected) {
 		if (turn == username1) {
 			powerups1[randomPowerupKey1] = true
 
+			if (randomPowerupKey1 == "firewall") {
+				firewallCount1 = 2
+			}
+
+			console.log(firewallCount1)
 		}
 		else {
 			powerups2[randomPowerupKey1] = true
@@ -510,6 +515,12 @@ function addItem(selected) {
 		if (turn == username1) {
 			powerups1[randomPowerupKey2] = true
 
+			if (randomPowerupKey2 == "firewall") {
+				firewallCount1 = 2
+			}
+
+			console.log(firewallCount1)
+
 		}
 		else {
 			powerups2[randomPowerupKey2] = true
@@ -519,6 +530,7 @@ function addItem(selected) {
 		document.getElementById("select").classList.toggle("active")
 		document.getElementById("select2").classList.toggle("active")
 	}
+	
 
 
 	// debuff on left
@@ -746,6 +758,8 @@ function itemCalculationsBefore() {
 		defenseNum2 = 0
 		debuffs2.blueScreen = false
 	}
+
+	updatePowerups()
 }
 
 function itemCalculationsAfter() {
@@ -862,6 +876,8 @@ function itemCalculationsAfter() {
 		health2 = 5
 		powerups1.tryCatch = false
 	}
+
+	updatePowerups()
 }
 
 
@@ -1521,6 +1537,9 @@ function playerAction(){
 
 			}
 
+
+			console.log(firewallCount1)
+			console.log(firewallCount2)
 			let xhr = new XMLHttpRequest();
 			let updated = {
 				player1Health: health1,
