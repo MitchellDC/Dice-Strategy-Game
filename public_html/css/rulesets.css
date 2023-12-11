@@ -64,7 +64,7 @@ body {
 
 .details:hover {
     cursor: pointer;
-    color:#0bafd4;
+    color:#1733d3;
 }
 
 .ruleTable {
@@ -140,6 +140,8 @@ body {
 .popupTitle {
     color: #fff;
     font-size: xx-large;
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 .r-list {
