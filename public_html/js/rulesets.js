@@ -79,6 +79,22 @@ displayRulesets();
 
 
 
+function fetchRuleset(rulesetID, res){ // function to fetch ruleset for popups
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.onerror = function(){alert("Error!")};
+	xmlhttp.onload = function(){
+		if(this.status != 200) {alert("Error!")}
+		else {
+			let resp = JSON.parse(this.responseText);
+			res(resp) // pass specific ruleset details to callback function
+		}
+	}
+	xmlhttp.open("GET", "http://104.196.1.169/rules/" + rulesetID);
+	xmlhttp.send();
+}
+
+
+
 function displayRulename(ruleset) { // to display ruleset name
 
 	let ruleName = document.getElementById("ruleName") // get id from div in popup
@@ -147,20 +163,8 @@ function displayDisadvantages() {
 	createDisadvantages.appendChild(disadvantages)
 }
 
-function fetchRuleset(rulesetID, res){
-	let xmlhttp = new XMLHttpRequest();
-	xmlhttp.onerror = function(){alert("Error!")};
-	xmlhttp.onload = function(){
-		if(this.status != 200) {alert("Error!")}
-		else {
-			let resp = JSON.parse(this.responseText);
-			res(resp) // pass ruleset to callback function
-		}
-	}
-	xmlhttp.open("GET", "http://104.196.1.169/rules/" + rulesetID);
-	xmlhttp.send();
-}
-fetchRuleset(rulesetID, function(ruleset){
+
+fetchRuleset(rulesetID, function(ruleset){ // call fetch ruleset to get ruleset details
 	displayRulename(ruleset)
 	displayHealth(ruleset)
 	displayPowers(ruleset)
