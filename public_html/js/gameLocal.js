@@ -69,6 +69,9 @@ let username1
 let username2
 
 function getGameState(){
+
+
+
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("AJAX Error!")};
 	xmlhttp.onload = function(){
@@ -189,6 +192,8 @@ function initializeRule(resp) {
 			document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
 			document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
 
+			console.log(enabledPowerups)
+			console.log(enabledDebuffs)
 			populateItems(enabledPowerups, enabledDebuffs, resp)
 			
 		}
@@ -435,8 +440,8 @@ let totalTurns = 0;
 
 let randomPowerupKey1
 let randomPowerupKey2
-powerupFreq = 3
-debuffFreq = 5
+powerupFreq = 1
+debuffFreq = 2
 
 let turn = ""; // db key "turn" with value of player's username
 /*
@@ -1374,6 +1379,7 @@ function playerAction(){
 			console.log(powerups2)
 			console.log(debuffs1)
 			console.log(debuffs2)
+
 			let xhr = new XMLHttpRequest();
 			let updated = {
 				player1Health: health1,
