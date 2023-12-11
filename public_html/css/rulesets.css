@@ -60,7 +60,6 @@ body {
     font-size: xx-large;
     text-align: center;
     color: whitesmoke;
-    border: 3px solid #074d5c;
 }
 
 .details:hover {
@@ -80,7 +79,12 @@ body {
     max-height:20%;
 }
 
-
+.list {
+    background-color: #074d5c;
+    text-align: center;
+    font-size: xx-large;
+    color: #fff;
+}
 
 .rulePopup .overlay {
     position: fixed;
