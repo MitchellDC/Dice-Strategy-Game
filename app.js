@@ -142,7 +142,7 @@ function updateGame1(qu,res){
 			" slowComputerCount1="+qu.slowComputerCount1+", " +
 			" slowComputerCount2="+qu.slowComputerCount2+", " +
 			" computerVirusCount1="qu.computerVirusCount1+", " +
-			" computerVirusCount2="qu.computerVirusCount2+", " +
+			" computerVirusCount2="qu.computerVirusCount2+" " +
 			   " WHERE Game_ID="+qu.gameId+";",function(err,result){
 			if(err){
 				console.log(err);
