@@ -95,11 +95,12 @@ function getGameState(){
 
 			rulesetID = resp[0].Rule_ID;
 
-			console.log(resp)
+			console.log(turn)
 			initializeRule(resp)
 
 			}
 			// display instructions and turn count
+			console.log(turn)
 			document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Roll dice " + turn
 			document.getElementById("turn").innerHTML = "turn: " +totalTurns
 
