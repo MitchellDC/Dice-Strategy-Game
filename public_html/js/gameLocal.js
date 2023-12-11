@@ -135,7 +135,7 @@ function getGameState(){
 				//browser gets refreshed every 5 seconds if it is not user's turn
 				setInterval(() => {
 					location.reload();
-				}, 9999999); // change back to 5000
+				}, 5000); // change back to 5000
 			}
 			
 			if (dfsDiceId.src != `http://104.196.1.169/css/images/dd0.jpeg`) {
