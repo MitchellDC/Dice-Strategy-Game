@@ -841,6 +841,10 @@ function itemCalculationsAfter() {
 
 
 function selectItem(totalTurns, powerupFreq, debuffFreq, enabledPowerups, enabledDebuffs) {
+
+	console.log(totalTurns)
+	console.log(powerupFreq)
+	console.log(debuffFreq)
 	if (totalTurns % powerupFreq == 0 && (totalTurns != 0)){
 		// if true pass powerup
 		alert("Select a powerup :)")
