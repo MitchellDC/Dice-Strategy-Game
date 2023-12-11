@@ -128,20 +128,21 @@ function displayPowers() {
 		let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
 		for(let Rule in resp){
 
-			let powers = document.createElement("div")
+			//let powers = document.createElement("div")
 			let powerTypes = ["antiMalware", "binarySearch", "ciphertext"]
+			let activePowers = []
 
-			powers.innerHTML = "";
 
 			powerTypes.forEach(powerType =>{
 				if(resp[Rule][powerType] == true){
-					powers.innerHTML += powerType;
-					console.log(powerType)
+					activePowers.push(powerType)
 				}
 			})
 
+			powers.innerHTML = activePowers.join("<br>")
+
 			// append divs to container inside popup 
-			createPowers.appendChild(powers)
+			//createPowers.appendChild(powers)
 		}
 	}
 	xmlhttp.open("GET","http://104.196.1.169/rules");
@@ -163,14 +164,16 @@ function displayDisadvantages() {
 
 			let disadvantages = document.createElement("div")
 			let disadvantageTypes = ["blueScreen", "bug", "computerVirus"]
+			let activeDisadvantages = []
 
-			disadvantages.innerHTML = "";
-			
+
 			disadvantageTypes.forEach(disadvantageType =>{
 				if(resp[Rule][disadvantageType] == true){
-					disadvantages.innerHTML += disadvantageType;
+					activeDisadvantages.push(disadvantageType)
 				}
 			})
+
+			disadvantages.innerHTML = activeDisadvantages.join("<br>")
 
 			// append divs to container inside popup 
 			createDisadvantages.appendChild(disadvantages)
