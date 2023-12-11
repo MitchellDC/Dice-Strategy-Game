@@ -200,6 +200,7 @@ function toNewGame(){
 }
 
 // same as show rules but for deleting games
+/*
 function showGames() {
 
     let xmlhttp = new XMLHttpRequest()
@@ -239,6 +240,8 @@ function showGames() {
 	xmlhttp.send();
 }
 showGames();
+
+/*
 
 function delGame() {
 	document.getElementById("popup2").classList.toggle("active")
