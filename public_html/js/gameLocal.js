@@ -1411,10 +1411,6 @@ function playerAction(){
 				
 			}
 			console.log(updated)
-			console.log(updated[antiMalware1])
-			console.log(updated[antiMalware2])
-			console.log(updated[blueScreen1])
-			console.log(updated[blueScreen2])
 			xhr.onerror = function() {
 				console.log("ajax error")
 			}
