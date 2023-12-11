@@ -1603,7 +1603,7 @@ function playerAction(){
 
 		// if game ends
 		// draw
-		if(health1<=0 !! health2<=0){
+		if(health1<=0 && health2<=0){
 			if(health1<=0 && health2<=0){ 
 				hideButtons();
 				alert("Game ends in a draw!")
