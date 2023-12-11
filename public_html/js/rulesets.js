@@ -79,117 +79,90 @@ displayRulesets();
 
 
 
-function displayRulename() { // to display ruleset name
+function displayRulename(ruleset) { // to display ruleset name
 
 	let ruleName = document.getElementById("ruleName") // get id from div in popup
-	let xmlhttp = new XMLHttpRequest();
-	xmlhttp.onerror = function(){alert("Error!")};
-	xmlhttp.onload = function(){
-
-		let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
-		for(let Rule in resp){
-			ruleName.innerHTML = (resp[Rule].Ruleset_name); // display ruleset name from database table
-		}
-	}
-	xmlhttp.open("GET","http://104.196.1.169/rules");
-	xmlhttp.send();
+	ruleName.innerHTML = ruleset.Ruleset_name; // display ruleset name from database table
 }
-displayRulename();
 
 
 
-function displayHealth() { // to display initial health in rulesets popup
+function displayHealth(ruleset) { // to display initial health in rulesets popup
 
 	let health = document.getElementById("health") // get id from div in popup
-	let xmlhttp = new XMLHttpRequest();
-	xmlhttp.onerror = function(){alert("Error!")};
-	xmlhttp.onload = function(){
+	health.classList.add("r-titles"); // add class to div
+	health.innerHTML = ("Initial Health: " + ruleset.InitialHealth); // display initial health from database table
 
-		let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
-		for(let Rule in resp){
-			health.classList.add("r-titles"); // add class to div
-			health.innerHTML = ("Initial Health: " + resp[Rule].InitialHealth); // display initial health from database table
-		}
-	}
-	xmlhttp.open("GET","http://104.196.1.169/rules");
-	xmlhttp.send();
 }
-displayHealth();
 
 
 
-function displayPowers() {
+function displayPowers(ruleset) {
 
 	let createPowers = document.getElementById("powers")
-	let xmlhttp = new XMLHttpRequest();
-	xmlhttp.onerror = function(){alert("Error!")};
-	xmlhttp.onload = function(){
-
-		let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
-		for(let Rule in resp){
-
-			let powers = document.createElement("div")
-			// array of powerups
-			let powerTypes = ["antiMalware", "binarySearch", "ciphertext", "cyberSecurity", "firewall", "fullStack", "hack", "powerOutlet", "reboot", "recursion", "tryCatch", "typeCast", "windowsUpdate"]
-			// array of powerups that are true
-			let activePowers = []
+	let powers = document.createElement("div")
+	// array of powerups
+	let powerTypes = ["antiMalware", "binarySearch", "ciphertext", "cyberSecurity", "firewall", "fullStack", "hack", "powerOutlet", "reboot", "recursion", "tryCatch", "typeCast", "windowsUpdate"]
+	// array of powerups that are true
+	let activePowers = []
 
 
-			powerTypes.forEach(powerType =>{ // for each powerup
-				if(resp[Rule][powerType] == true && !activePowers.includes(powerType)){ // check if powerup is true and if it is not yet stored in array
-					activePowers.push(powerType) // store powerup in array if both conditions are true
-				}
-			})
-
-			powers.innerHTML = activePowers.join("<br>") // print active powers
-
-			powers.classList.add("r-list"); // add class to div
-			// append divs to container inside popup 
-			createPowers.appendChild(powers)
+	powerTypes.forEach(powerType =>{ // for each powerup
+		if(ruleset[powerType] == true && !activePowers.includes(powerType)){ // check if powerup is true and if it is not yet stored in array
+			activePowers.push(powerType) // store powerup in array if both conditions are true
 		}
-	}
-	xmlhttp.open("GET","http://104.196.1.169/rules");
-	xmlhttp.send();
+	})
+
+	powers.innerHTML = activePowers.join("<br>") // print active powers
+
+	powers.classList.add("r-list"); // add class to div
+	// append divs to container inside popup 
+	createPowers.appendChild(powers)
+
 }
-displayPowers();
 
 
 
 function displayDisadvantages() {
 
 	let createDisadvantages = document.getElementById("disadvantages")
+
+	let disadvantages = document.createElement("div")
+	// array of disadvantages
+	let disadvantageTypes = ["blueScreen", "bug", "computerVirus", "infiniteLoop", "lowBattery", "ransomware", "slowComputer", "syntaxError"]
+	// empty array to store disadvantages that are true
+	let activeDisadvantages = []
+
+
+	disadvantageTypes.forEach(disadvantageType =>{
+		if(ruleset[disadvantageType] == true && !activeDisadvantages.includes(disadvantageType)){ // if powerup is true and is not already stored
+			activeDisadvantages.push(disadvantageType) // store inside array
+		}
+	})
+
+	disadvantages.innerHTML = activeDisadvantages.join("<br>") // print array values
+	disadvantages.classList.add("r-list"); // add class to div
+
+	// append divs to container inside popup 
+	createDisadvantages.appendChild(disadvantages)
+}
+
+function fetchRuleset(rulesetID, res){
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("Error!")};
 	xmlhttp.onload = function(){
-
-		
-
-		let resp = JSON.parse(this.responseText); // takes the response from the server in variable resp
-		for(let Rule in resp){
-
-			let disadvantages = document.createElement("div")
-			// array of disadvantages
-			let disadvantageTypes = ["blueScreen", "bug", "computerVirus", "infiniteLoop", "lowBattery", "ransomware", "slowComputer", "syntaxError"]
-			// empty array to store disadvantages that are true
-			let activeDisadvantages = []
-
-
-			disadvantageTypes.forEach(disadvantageType =>{
-				if(resp[Rule][disadvantageType] == true && !activeDisadvantages.includes(disadvantageType)){ // if powerup is true and is not already stored
-					activeDisadvantages.push(disadvantageType) // store inside array
-				}
-			})
-
-			disadvantages.innerHTML = activeDisadvantages.join("<br>") // print array values
-
-			disadvantages.classList.add("r-list"); // add class to div
-
-			// append divs to container inside popup 
-			createDisadvantages.appendChild(disadvantages)
-
+		if(this.status != 200) {alert("Error!")}
+		else {
+			let resp = JSON.parse(this.responseText);
+			res(resp) // pass ruleset to callback function
 		}
 	}
-	xmlhttp.open("GET","http://104.196.1.169/rules");
+	xmlhttp.open("GET", "http://104.196.1.169/rules/" + rulesetID);
 	xmlhttp.send();
 }
-displayDisadvantages();
+fetchRuleset(rulesetID, function(ruleset){
+	displayRulename(ruleset)
+	displayHealth(ruleset)
+	displayPowers(ruleset)
+	displayDisadvantages(ruleset)
+})
