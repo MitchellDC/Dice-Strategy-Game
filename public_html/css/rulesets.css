@@ -56,7 +56,7 @@ body {
 
 
 .ruleTable {
-    width: 70%;
+    width: 30%;
     height: 20%;
     background-color: #0bafd4;
     background-position: center;
@@ -76,7 +76,7 @@ body {
 
 .list:hover {
     cursor: pointer;
-    color:#1733d3;
+    color:#0bafd4;
 }
 
 .rulePopup .overlay {
