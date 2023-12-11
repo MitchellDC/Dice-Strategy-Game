@@ -129,7 +129,7 @@ function displayPowers() {
 		for(let Rule in resp){
 
 			let powers = document.createElement("div")
-			let powerTypes = ["antiMalware", "binarySearch", "ciphertext"]
+			let powerTypes = ["antiMalware", "binarySearch", "ciphertext", "cyberSecurity", "firewall", "fullStack", "hack", "powerOutlet", "reboot", "recursion", "tryCatch", "typeCast", "windowsUpdate"]
 			let activePowers = []
 
 
@@ -165,7 +165,7 @@ function displayDisadvantages() {
 		for(let Rule in resp){
 
 			let disadvantages = document.createElement("div")
-			let disadvantageTypes = ["blueScreen", "bug", "computerVirus"]
+			let disadvantageTypes = ["blueScreen", "bug", "computerVirus", "infiniteLoop", "lowBattery", "ransomware", "slowComputer", "syntaxError"]
 			let activeDisadvantages = []
 
 
