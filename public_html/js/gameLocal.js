@@ -1370,6 +1370,10 @@ function playerAction(){
 
 			}
 
+			console.log(powerups1)
+			console.log(powerups2)
+			console.log(debuffs1)
+			console.log(debuffs2)
 			let xhr = new XMLHttpRequest();
 			let updated = {
 				player1Health: health1,
