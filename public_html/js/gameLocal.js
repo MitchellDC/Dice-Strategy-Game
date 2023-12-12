@@ -6,17 +6,17 @@
 
 // powerups balancing
 recursionAttacks = 2
-hackValue = 3
+hackValue = 2
 tryCatchValue = 5
 antiMalwareThreshold = 4
 powerOutletValue = 2
-cyberSecurityValue = 3
+cyberSecurityValue = 2
 fullStackValue = 8
 windowsUpdateValue = 1
 
 // debuffs balancing
 syntaxErrorValue = 5
-ransomwareValue = 15
+ransomwareValue = 10
 lowBatteryValue = 2
 infiniteLoopValue = 1
 bugChance = 0.2 // if Math.random() is below this number, attack or defense will be 0
@@ -42,7 +42,7 @@ let descriptions = {
 	recursion: "Damage dealt becomes value of an extra attack",
 	tryCatch: "Avoid death once",
 	typeCast: "Heal instead of hurting next turn",
-	windowsUpdate: `+${windowsUpdateValue} attack, defense, and health each turn`,
+	windowsUpdate: `+${windowsUpdateValue} attack and defense each turn`,
 	
 	// debuffs
 	blueScreen: "Cannot attack or defend next turn", 
@@ -184,8 +184,8 @@ function initializeRule(resp) {
 			ruleKeys = Object.keys(ruleObj)
 			ruleLength = Object.keys(ruleObj).length
 
-			powerupFreq = 3
-			debuffFreq = 5
+			powerupFreq = 2
+			debuffFreq = 4
 			
 			// adds all enabled powerups to "enabledPowerups" array (16 = number of powerups + 3)
 			for(let i = 3; i < 16; i++) {
@@ -766,8 +766,6 @@ function itemCalculationsBefore() {
 		}
     }
 
-
-
 	// cyber security = every turn, gain 2 extra defense
 	if (powerups1.cyberSecurity) {
 		defenseNum1 += cyberSecurityValue
@@ -780,12 +778,10 @@ function itemCalculationsBefore() {
 	if (powerups1.windowsUpdate) {
 		attackNum1 += 1
 		defenseNum1 += 1
-		health1 += 1
 	}
 	if (powerups2.windowsUpdate) {
 		attackNum2 += 1
 		defenseNum2 += 1
-		health2 += 1
 	}
 
 	// bug = 25% chance to have attack and/or defense be 0
@@ -1684,9 +1680,12 @@ function playerAction(){
 				console.log("ajax error")
 			}
 			xhr.onload = function(){
+
 				console.log(this.responseText)
+				location.reload();
 			}
 
+			
 			xhr.open("POST","http://104.196.1.169/updategame1?"+queryObjectToString(updated));
 			//xhr.setRequestHeader('Content-type', 'application/json');
 			xhr.send();
