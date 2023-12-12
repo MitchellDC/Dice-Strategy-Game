@@ -1729,7 +1729,7 @@ function playerAction(){
 			xml.onload=function(){
 				let response = this.responseText;
 				console.log(response);
-				if(response=="game over now true"){
+				if(response=="game over"){
 					alert("game is finished")
 					window.open("http://104.196.1.169/home.html","_self");
 				}
