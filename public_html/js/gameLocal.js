@@ -185,23 +185,33 @@ function gameOverFunction() {
 		//let response = JSON.parse(this.responseText)
 		if ((health1 < 0) && (health2 < 0)) {
 			//alert("Game is over. Tie game.")
-			console.log("Game is over. Tie game.")
-			window.open("http://104.196.1.169/home.html","_self")
+			//console.log("Game is over. Tie game.")
+			//window.open("http://104.196.1.169/home.html","_self")
+			document.getElementById("p1Health").innerHTML = username1 + " (" + 0 + "/" + maxHealth + ")";
+			document.getElementById("p2Health").innerHTML = username2 + " (" + 0 + "/" + maxHealth + ")";
 		}
 		else if (health1 < 0) {
 			//alert("Game is over. Player 2 wins")
-			console.log("Game is over. Player 2 wins")
-			window.open("http://104.196.1.169/home.html","_self")
+			//console.log("Game is over. Player 2 wins")
+			//window.open("http://104.196.1.169/home.html","_self")
+			hideButtons();
+			document.getElementById("instructionsId").innerHTML = "Player 1 wins!" // replace with username
+			document.getElementById("p1Health").innerHTML = username1 + " (" + 0 + "/" + maxHealth + ")";
+			document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
 
 		}
 		else {
 			//alert("Game is over. Player 1 wins")
-			
-			console.log("Game is over. Player 1 wins")
-			window.open("http://104.196.1.169/home.html","_self")
-			
+			//console.log("Game is over. Player 1 wins")
+			//window.open("http://104.196.1.169/home.html","_self")
+			hideButtons();
+			document.getElementById("instructionsId").innerHTML = "Player 1 wins!" // replace with username
+			document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
+			document.getElementById("p2Health").innerHTML = username2 + " (" + 0 + "/" + maxHealth + ")";
 
 		}
+
+		// delete game <-- delete game
 		
 		// send back to home
 
