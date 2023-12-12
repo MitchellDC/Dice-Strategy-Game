@@ -1736,6 +1736,82 @@ function playerAction(){
 		// if game ends
 		// draw
 		if(health1<=0 || health2<=0){
+
+			let xhr = new XMLHttpRequest();
+			let updated = {
+				player1Health: health1,
+				player2Health: health2
+				/*
+				player1Attack: attackNum1,
+				player1Defense: defenseNum1,
+				player2Attack: attackNum2,
+				player2Defense: defenseNum2,
+				turn: turn,
+				gameId: gameID,
+				totalturns: totalTurns,
+				antiMalware1: powerups1["antiMalware"], // powerups start
+				antiMalware2: powerups2["antiMalware"],
+				binarySearch1: powerups1['binarySearch'],
+				binarySearch2: powerups2['binarySearch'],
+				ciphertext1: powerups1['ciphertext'],
+				ciphertext2: powerups2['ciphertext'],
+				cyberSecurity1: powerups1['cyberSecurity'],
+				cyberSecurity2: powerups2['cyberSecurity'],
+				firewall1: powerups1['firewall'],
+				firewall2: powerups2['firewall'],
+				fullStack1: powerups1['fullStack'],
+				fullStack2: powerups2['fullStack'],
+				hack1: powerups1['hack'],
+				hack2: powerups2['hack'],
+				powerOutlet1: powerups1['powerOutlet'],
+				powerOutlet2: powerups2['powerOutlet'],
+				reboot1: powerups1['reboot'],
+				reboot2: powerups2['reboot'],
+				recursion1: powerups1['recursion'],
+				recursion2: powerups2['recursion'],
+				tryCatch1: powerups1['tryCatch'],
+				tryCatch2: powerups2['tryCatch'],
+				typeCast1: powerups1['typeCast'],
+				typeCast2: powerups2['typeCast'],
+				windowsUpdate1: powerups1['windowsUpdate'],
+				windowsUpdate2: powerups2['windowsUpdate'],
+				blueScreen1: debuffs1['blueScreen'], // debuffs start
+				blueScreen2: debuffs2['blueScreen'],
+				bug1: debuffs1['bug'],
+				bug2: debuffs2['bug'],
+				computerVirus1: debuffs1['computerVirus'],
+				computerVirus2: debuffs2['computerVirus'],
+				infiniteLoop1: debuffs1['infiniteLoop'],
+				infiniteLoop2: debuffs2['infiniteLoop'],
+				lowBattery1: debuffs1['lowBattery'],
+				lowBattery2: debuffs2['lowBattery'],
+				ransomware1: debuffs1['ransomware'],
+				ransomware2: debuffs2['ransomware'],
+				slowComputer1: debuffs1['slowComputer'],
+				slowComputer2: debuffs2['slowComputer'],
+				syntaxError1: debuffs1['syntaxError'],
+				syntaxError2: debuffs2['syntaxError'],
+				slowComputerCount1: slowComputerCount1,
+				slowComputerCount2: slowComputerCount2,
+				computerVirusCount1: computerVirusCount1,
+				computerVirusCount2: computerVirusCount2,
+				firewallCount1: firewallCount1,
+				firewallCount2: firewallCount2*/
+			}
+
+			xhr.onerror = function() {
+				console.log("ajax error")
+			}
+			xhr.onload = function(){
+
+				console.log(this.responseText)
+				location.reload();
+			}
+	
+			xhr.open("POST","http://104.196.1.169/updategame1?"+queryObjectToString(updated));
+			//xhr.setRequestHeader('Content-type', 'application/json');
+			xhr.send();
+
 			if(health1<=0 && health2<=0){ 
 				hideButtons();
 
