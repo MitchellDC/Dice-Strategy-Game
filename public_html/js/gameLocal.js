@@ -1804,7 +1804,7 @@ function playerAction(){
 			xhr.onload = function(){
 
 				console.log(this.responseText)
-				location.reload();
+
 			}
 	
 			xhr.open("POST","http://104.196.1.169/updategame1?"+queryObjectToString(updated));
