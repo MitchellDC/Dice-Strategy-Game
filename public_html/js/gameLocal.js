@@ -186,8 +186,6 @@ function gameOverFunction() {
 	xmlhttp.onload = function(){
 		hideButtons();
 
-
-
 		
 		//let response = JSON.parse(this.responseText)
 		if ((health1 < 0) && (health2 < 0)) {
@@ -202,18 +200,22 @@ function gameOverFunction() {
 			//console.log("Game is over. Player 2 wins")
 			//window.open("http://104.196.1.169/home.html","_self")
 			
-			document.getElementById("instructionsId").innerHTML = "Player 1 wins!" // replace with username
+			document.getElementById("instructionsId").innerHTML = "Player 2 wins!" // replace with username
 			document.getElementById("p1Health").innerHTML = username1 + " (" + 0 + "/" + maxHealth + ")";
 			document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
 
 		}
-		else {
+		else if (health2 < 0){
 			//alert("Game is over. Player 1 wins")
 			//console.log("Game is over. Player 1 wins")
 			//window.open("http://104.196.1.169/home.html","_self")
 			document.getElementById("instructionsId").innerHTML = "Player 1 wins!" // replace with username
 			document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
 			document.getElementById("p2Health").innerHTML = username2 + " (" + 0 + "/" + maxHealth + ")";
+
+		}
+		else {
+			console.log("end game error")
 
 		}
 
@@ -284,9 +286,7 @@ let powerups2 = {}
 let debuffs1 = {}
 let debuffs2 = {}
 
-
 getGameState()
-
 
 function populateItems(enabledPowerups, enabledDebuffs, resp) {
 
