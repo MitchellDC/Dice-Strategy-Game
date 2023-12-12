@@ -182,7 +182,7 @@ showRules();
 function deleteRule(ruleID){
 
 	let xml = new XMLHttpRequest();
-	xml.onerror=function(){}
+	xml.onerror=function(){alert("error in deleting ruleset")}
 
 	xml.onload=function(){
 		let resp = this.responseText;
@@ -191,6 +191,9 @@ function deleteRule(ruleID){
 		{
 			alert("Rule successfully deleted");
 			location.reload();
+		}
+		else if(this.responseText=='in use'){
+			alert("Ruleset in use!")
 		}
 	}
 
