@@ -196,10 +196,13 @@ function gameOverFunction() {
 		}
 		else {
 			//alert("Game is over. Player 1 wins")
+			
 			console.log("Game is over. Player 1 wins")
 			window.open("http://104.196.1.169/home.html","_self")
+			
 
 		}
+		
 		// send back to home
 
 	}
@@ -1718,37 +1721,42 @@ function playerAction(){
 		if(health1<=0 || health2<=0){
 			if(health1<=0 && health2<=0){ 
 				hideButtons();
-				alert("Game ends in a draw!")
+
 				document.getElementById("instructionsId").innerHTML = "Game is a draw!"
-				document.getElementById("p1Health").innerHTML = 0;
-				document.getElementById("p2Health").innerHTML = 0;
+				document.getElementById("p1Health").innerHTML = username1 + " (" + 0 + "/" + maxHealth + ")";
+				document.getElementById("p2Health").innerHTML = username2 + " (" + 0 + "/" + maxHealth + ")";
 			}
 			//player 2 wins
 			else if(health1<=0)
 			{
 
 				hideButtons();
-				alert("Player 2 wins!") // replace with username and make pop-up
+
 				document.getElementById("instructionsId").innerHTML = "Player 2 wins!" // replace with username
-				document.getElementById("p1Health").innerHTML = 0;
+				document.getElementById("p1Health").innerHTML = username1 + " (" + 0 + "/" + maxHealth + ")";
+				document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
 		
 		
 			}
 			// player 1 wins
 			else if(health2<=0){
 				hideButtons();
-				alert("Player 1 wins!"); // replace with username and make pop-up
+
 				document.getElementById("instructionsId").innerHTML = "Player 1 wins!" // replace with username
-				document.getElementById("p2Health").innerHTML = 0;
+				document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
+				document.getElementById("p2Health").innerHTML = username2 + " (" + 0 + "/" + maxHealth + ")";
 			}
+
 			
+
 			let xml = new XMLHttpRequest();
 			xml.onerror=function(){alert("error deleting game")}
 			xml.onload=function(){
 				let response = this.responseText;
 				console.log(response);
 				if(response=="game over"){
-					alert("game is finished")
+
+					hideButtons()
 					//window.open("http://104.196.1.169/home.html","_self");
 				}
 
