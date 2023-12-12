@@ -462,6 +462,8 @@ function deleteRule(qu,res){
 			if(err)
 			{
 				console.log(err);
+				res.write('in use');
+				res.end();
 			}
 			else{
 				res.write("deleted");
