@@ -117,7 +117,7 @@ function getGameState(){
 
 			
 			if (gameOver == true) {
-				gameOver()
+				gameOverFunction()
 			}
 			
 		}
@@ -176,7 +176,7 @@ function getGameState(){
 }
 
 
-function gameOver() {
+function gameOverFunction() {
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){
 		
