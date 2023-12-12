@@ -155,10 +155,12 @@ function getGameState(){
 			document.getElementById("rollButtonId").style.display = "none";
 			document.getElementById("rollButtonId2").style.display = "none";
 
-			//browser gets refreshed every 5 seconds if it is not user's turn
-			setInterval(() => {
-				location.reload();
-			}, 5000); // change back to 5000
+			if (gameOver == 0) {
+				//browser gets refreshed every 5 seconds if it is not user's turn
+				setInterval(() => {
+					location.reload();
+				}, 5000); // change back to 5000
+			}
 		}
 			
 		if (dfsDiceId.src != `http://104.196.1.169/css/images/dd0.jpeg`) {
@@ -182,6 +184,11 @@ function gameOverFunction() {
 		
 	}
 	xmlhttp.onload = function(){
+		hideButtons();
+
+
+
+		
 		//let response = JSON.parse(this.responseText)
 		if ((health1 < 0) && (health2 < 0)) {
 			//alert("Game is over. Tie game.")
@@ -194,7 +201,7 @@ function gameOverFunction() {
 			//alert("Game is over. Player 2 wins")
 			//console.log("Game is over. Player 2 wins")
 			//window.open("http://104.196.1.169/home.html","_self")
-			hideButtons();
+			
 			document.getElementById("instructionsId").innerHTML = "Player 1 wins!" // replace with username
 			document.getElementById("p1Health").innerHTML = username1 + " (" + 0 + "/" + maxHealth + ")";
 			document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
@@ -204,18 +211,16 @@ function gameOverFunction() {
 			//alert("Game is over. Player 1 wins")
 			//console.log("Game is over. Player 1 wins")
 			//window.open("http://104.196.1.169/home.html","_self")
-			hideButtons();
 			document.getElementById("instructionsId").innerHTML = "Player 1 wins!" // replace with username
 			document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
 			document.getElementById("p2Health").innerHTML = username2 + " (" + 0 + "/" + maxHealth + ")";
 
 		}
 
-		// delete game <-- delete game
-		
-		// send back to home
 
 	}
+
+
 	xmlhttp.open("POST","http://104.196.1.169/deletegame?"+queryObjectToString({gameid:gameID}));
 	xmlhttp.send();
 	
