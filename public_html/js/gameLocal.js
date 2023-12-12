@@ -201,6 +201,7 @@ function initializeRule(resp) {
 			maxHealth = ruleJSON[0].InitialHealth
 			powerupFreq = ruleJSON[0].powerupFreq
 			debuffFreq = ruleJSON[0].debuffFreq
+			console.log(ruleJSON[0])
 			console.log(powerupFreq)
 			console.log(debuffFreq)
 
