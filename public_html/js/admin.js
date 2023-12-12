@@ -53,9 +53,10 @@ function createPopup() {
 		let ransomware = document.getElementById("ransomware").checked;
 		let syntaxError = document.getElementById("syntaxError").checked;
 
-
 		let ruleName = document.getElementById("ruleName").value;
 		let health = document.getElementById("health").value;
+        let powerupFreq = document.getElementById("powerupFreq").value;
+        let debuffFreq = document.getElementById("debuffFreq").value;
 
 		if(ruleName){
 			let xml = new XMLHttpRequest();
@@ -103,7 +104,9 @@ function createPopup() {
 				ransomware:ransomware,
 				syntaxError:syntaxError,
 				ruleName:ruleName,
-				health:health
+				health:health,
+                powerupFreq: powerupFreq,
+                debuffFreq: debuffFreq
 			}
 
 			xml.open("GET","http://104.196.1.169/createrule?"+queryObjectToString(rules));
