@@ -100,6 +100,8 @@ function getGameState(){
 
 			rulesetID = resp[0].Rule_ID;
 
+			
+
 			computerVirusCount1 = resp[0].computerVirusCount1
 			computerVirusCount2 = resp[0].computerVirusCount2
 			slowComputerCount1 = resp[0].slowComputerCount1
@@ -109,6 +111,14 @@ function getGameState(){
 
 
 			initializeRule(resp)
+
+			gameOver = resp[0].gameOver;
+			console.log(gameOver)
+
+			/*
+			if (gameOver == true) {
+				gameOver()
+			*/
 			
 		}
 
@@ -163,6 +173,21 @@ function getGameState(){
 	
 	xmlhttp.open("GET","http://104.196.1.169/game?"+queryObjectToString({gameId:gameID})); 
 	xmlhttp.send();
+}
+
+
+function gameOver() {
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.onerror = function(){
+		
+	}
+	xmlhttp.onload = function(){
+		alert("Game is over")
+
+	}
+	xmlhttp.open("POST","http://104.196.1.169/deletegame?"+queryObjectToString({gameid:gameID}));
+	xmlhttp.send();
+	
 }
 
 
@@ -1337,30 +1362,6 @@ function updatePowerups() {
 
 }
 
-	// html display
-	/*
-	if (player == 1) {
-		for (let i = 0; i < player1CurrentPowerups.length; i++) {
-			newRow = playerPowerupsTable.insertRow();
-			nameColumn = newRow.insertCell(0)
-			durationColumn = newRow.insertCell(1)
-		
-			nameColumn.innerHTML = (arr[i] + "> " + descriptions[arr[i]])
-			durationColumn.innerHTML = ""
-		
-		}
-	}
-	else if (player == 2) {
-		for (let i = 0; i < arr.length; i++) {
-			newRow = enemyPowerupsTable.insertRow();
-			nameColumn = newRow.insertCell(0)
-		
-			nameColumn.innerHTML = (arr[i] + "> " + descriptions[arr[i]])
-			
-		}
-
-	}*/
-
 
 // lets player 1 select dice if appropriate
 function allowSelection() {
@@ -1696,7 +1697,7 @@ function playerAction(){
 
 		// if game ends
 		// draw
-		if(health1<=0 && health2<=0){
+		if(health1<=0 || health2<=0){
 			if(health1<=0 && health2<=0){ 
 				hideButtons();
 				alert("Game ends in a draw!")
@@ -1722,12 +1723,13 @@ function playerAction(){
 				document.getElementById("instructionsId").innerHTML = "Player 1 wins!" // replace with username
 				document.getElementById("p2Health").innerHTML = 0;
 			}
+			
 			let xml = new XMLHttpRequest();
 			xml.onerror=function(){alert("error deleting game")}
 			xml.onload=function(){
 				let response = this.responseText;
-
-				if(response=="deleted"){
+				console.log(response);
+				if(response=="game over now true"){
 					alert("game is finished")
 					window.open("http://104.196.1.169/home.html","_self");
 				}
@@ -1735,7 +1737,7 @@ function playerAction(){
 				
 			}
 
-			xmlhttp.open("GET","http://104.196.1.169/deletegame?"+queryObjectToString({gameId:gameID})); 
+			xmlhttp.open("GET","http://104.196.1.169/gameover?"+queryObjectToString({gameId:gameID})); 
 			xmlhttp.send();
 
 			
@@ -1757,6 +1759,7 @@ function backHome() {
 	window.open("http://104.196.1.169/home.html","_self");
 
 }
+
 
 allowSelection();
 allowSelection2();
