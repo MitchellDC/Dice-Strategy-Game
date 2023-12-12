@@ -410,7 +410,7 @@ function createRule(qu,res){
 						   "fullStack, reboot, powerOutlet, recursion, hack, tryCatch, "+
 						   "antiMalware, cyberSecurity, windowsUpdate, syntaxError, "+
 						   "ransomware, lowBattery, blueScreen, slowComputer, computerVirus, "+
-						   "infiniteLoop, bug, typeCast, binarySearch) "+
+						   "infiniteLoop, bug, typeCast, binarySearch, powerupFreq, debuffFreq) "+
 						   "VALUES ('"+qu.ruleName+"', "+qu.health+", "+qu.firewall+", "+qu.ciphertext+", "+
 						   qu.fullStack+", "+qu.reboot+", "+qu.powerOutlet+", "+qu.recursion+", "+ 
 						   qu.hack+", "+qu.tryCatch+", "+qu.antiMalware+", "+
