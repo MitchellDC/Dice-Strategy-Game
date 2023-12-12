@@ -1740,8 +1740,7 @@ function playerAction(){
 			let xhr = new XMLHttpRequest();
 			let updated = {
 				player1Health: health1,
-				player2Health: health2
-				/*
+				player2Health: health2,
 				player1Attack: attackNum1,
 				player1Defense: defenseNum1,
 				player2Attack: attackNum2,
@@ -1796,7 +1795,7 @@ function playerAction(){
 				computerVirusCount1: computerVirusCount1,
 				computerVirusCount2: computerVirusCount2,
 				firewallCount1: firewallCount1,
-				firewallCount2: firewallCount2*/
+				firewallCount2: firewallCount2
 			}
 
 			xhr.onerror = function() {
