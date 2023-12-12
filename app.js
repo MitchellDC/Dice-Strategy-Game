@@ -457,7 +457,6 @@ function deleteRule(qu,res){
 		res.end();
 	}
 	else{
-		res.writeHead(200,{'Content-Type':'text/plain'});
 		conn.query("DELETE FROM Rule WHERE Rule_ID="+qu.ruleid+";",function(err,result){
 			if(err)
 			{
