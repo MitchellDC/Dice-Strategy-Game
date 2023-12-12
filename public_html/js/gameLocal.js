@@ -195,7 +195,7 @@ function gameOverFunction() {
 			//console.log("Game is over. Tie game.")
 			//window.open("http://104.196.1.169/home.html","_self")
 			//document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Re-roll one die (or skip)"
-			document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Game is a draw" // replace with username
+			document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Game is a draw!" // replace with username
 			document.getElementById("p1Health").innerHTML = username1 + " (" + 0 + "/" + maxHealth + ")";
 			document.getElementById("p2Health").innerHTML = username2 + " (" + 0 + "/" + maxHealth + ")";
 		}
