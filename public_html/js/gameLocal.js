@@ -190,30 +190,30 @@ function gameOverFunction() {
 		console.log(health2)
 
 		//let response = JSON.parse(this.responseText)
-		if ((health1 < 0) && (health2 < 0)) {
+		if ((health1 <= 0) && (health2 <= 0)) {
 			//alert("Game is over. Tie game.")
 			//console.log("Game is over. Tie game.")
 			//window.open("http://104.196.1.169/home.html","_self")
 			//document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Re-roll one die (or skip)"
-			document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction>Game is a draw" // replace with username
+			document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Game is a draw" // replace with username
 			document.getElementById("p1Health").innerHTML = username1 + " (" + 0 + "/" + maxHealth + ")";
 			document.getElementById("p2Health").innerHTML = username2 + " (" + 0 + "/" + maxHealth + ")";
 		}
-		else if (health1 < 0) {
+		else if (health1 <= 0) {
 			//alert("Game is over. Player 2 wins")
 			//console.log("Game is over. Player 2 wins")
 			//window.open("http://104.196.1.169/home.html","_self")
 			
-			document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction>"+username2+" wins!" // replace with username
+			document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> "+username2+" wins!" // replace with username
 			document.getElementById("p1Health").innerHTML = username1 + " (" + 0 + "/" + maxHealth + ")";
 			document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
 
 		}
-		else if (health2 < 0){
+		else if (health2 <= 0){
 			//alert("Game is over. Player 1 wins")
 			//console.log("Game is over. Player 1 wins")
 			//window.open("http://104.196.1.169/home.html","_self")
-			document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction>"+username1+ " wins!" // replace with username
+			document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> "+username1+ " wins!" // replace with username
 			document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
 			document.getElementById("p2Health").innerHTML = username2 + " (" + 0 + "/" + maxHealth + ")";
 
@@ -1816,7 +1816,7 @@ function playerAction(){
 			if(health1<=0 && health2<=0){ 
 				hideButtons();
 
-				document.getElementById("instructionsId").innerHTML = "Game is a draw!"
+				document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> Game is a draw!"
 				document.getElementById("p1Health").innerHTML = username1 + " (" + 0 + "/" + maxHealth + ")";
 				document.getElementById("p2Health").innerHTML = username2 + " (" + 0 + "/" + maxHealth + ")";
 			}
@@ -1826,7 +1826,7 @@ function playerAction(){
 
 				hideButtons();
 
-				document.getElementById("instructionsId").innerHTML = "Player 2 wins!" // replace with username
+				document.getElementById("instructionsId").innerHTML = "C:\\Game\\Instruction> "+username2+" wins!" // replace with username
 				document.getElementById("p1Health").innerHTML = username1 + " (" + 0 + "/" + maxHealth + ")";
 				document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
 		
@@ -1836,7 +1836,7 @@ function playerAction(){
 			else if(health2<=0){
 				hideButtons();
 
-				document.getElementById("instructionsId").innerHTML = "Player 1 wins!" // replace with username
+				document.getElementById("instructionsId").innerHTML =  "C:\\Game\\Instruction> "+username1+" wins!" // replace with username
 				document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
 				document.getElementById("p2Health").innerHTML = username2 + " (" + 0 + "/" + maxHealth + ")";
 			}
