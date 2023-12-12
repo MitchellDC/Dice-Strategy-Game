@@ -462,7 +462,7 @@ function deleteRule(qu,res){
 			if(err)
 			{
 				console.log(err);
-				res.writeHead(400,{'Content-Type':'text/plain'})
+				res.writeHead(200,{'Content-Type':'text/plain'})
 				res.write('in use')
 				res.end();
 			}
