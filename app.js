@@ -500,7 +500,7 @@ function gameOver(qu,res){
 	}
 	else{
 		res.writeHead(200,{'Content-Type':'text/plain'});
-		conn.query("UPDATE FROM Game SET gameOver= true WHERE Game_ID="+qu.gameId+";",function(err,result){
+		conn.query("UPDATE FROM Game SET gameOver=1 WHERE Game_ID="+qu.gameId+";",function(err,result){
 			if(err)
 			{
 				console.log(err);
