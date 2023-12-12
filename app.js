@@ -492,6 +492,28 @@ function deleteGame(qu,res){
 	}
 	
 }
+function gameOver(qu,res){
+	if(!qu){
+		res.writeHead(404,{'Content-Type':'text/plain'});
+		res.write("Error!")
+		res.end();
+	}
+	else{
+		res.writeHead(200,{'Content-Type':'text/plain'});
+		conn.query("UPDATE FROM Game SET gameOver= true WHERE Game_ID="+qu.gameid+";",function(err,result){
+			if(err)
+			{
+				console.log(err);
+			}
+			else{
+				res.write("game over");
+				res.end();
+			}
+		})
+	}
+	
+}
+
 
 
 const main = function(req, res){
@@ -536,6 +558,9 @@ const main = function(req, res){
 	}
 	else if(parsedURL.pathname=="/deletegame"){
 		return deleteGame(parsedURL.query,res);
+	}
+	else if(parsedURL.pathname=="/gameover"){
+		return gameOver(parsedURL.query,res);
 	}
 	else
         {
