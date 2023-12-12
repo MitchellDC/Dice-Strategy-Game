@@ -417,7 +417,7 @@ function createRule(qu,res){
 						   qu.cyberSecurity+", "+qu.windowsUpdate+", "+qu.syntaxError+", "+
 						   qu.ransomware+", "+qu.lowBattery+", "+qu.blueScreen+", "+
 						   qu.slowComputer+", "+qu.computerVirus+", "+qu.infiniteLoop+", "+
-						   qu.bug+", "+qu.typeCast+", "+qu.binarySearch+");",function(err,result){
+						   qu.bug+", "+qu.typeCast+", "+qu.binarySearch+", "+qu.powerupFreq+", "+qu.debuffFreq+");",function(err,result){
 						if(err){
 							console.log(err)
 						}
@@ -457,16 +457,13 @@ function deleteRule(qu,res){
 		res.end();
 	}
 	else{
+		res.writeHead(200,{'Content-Type':'text/plain'});
 		conn.query("DELETE FROM Rule WHERE Rule_ID="+qu.ruleid+";",function(err,result){
 			if(err)
 			{
 				console.log(err);
-				res.writeHead(200,{'Content-Type':'text/plain'})
-				res.write('in use')
-				res.end();
 			}
 			else{
-				res.writeHead(200,{'Content-Type':'text/plain'});
 				res.write("deleted");
 				res.end();
 			}
