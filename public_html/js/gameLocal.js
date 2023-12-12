@@ -272,10 +272,16 @@ function initializeRule(resp) {
 			console.log(powerupFreq)
 			console.log(debuffFreq)
 
-			if (gameOver == false) {
-				document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
-				document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
+			if (health1 < 0) {
+				health1 = 0
 			}
+			if (health2 < 0) {
+				health2 = 0
+			}
+
+			document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
+			document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
+			
 
 			populateItems(enabledPowerups, enabledDebuffs, resp)
 			
@@ -1312,10 +1318,12 @@ function healthChange() {
 	}
 
 	// display health
-	if (gameOver == false) {
-		document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
-		document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
-	}
+	console.log(health1)
+	console.log(health2)
+	console.log(maxHealth)
+	document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
+	document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
+	
 
 	// update powerups after battle
 
