@@ -1737,8 +1737,8 @@ function playerAction(){
 				
 			}
 
-			xmlhttp.open("GET","http://104.196.1.169/gameover?"+queryObjectToString({gameId:gameID})); 
-			xmlhttp.send();
+			xml.open("GET","http://104.196.1.169/gameover?"+queryObjectToString({gameId:gameID})); 
+			xml.send();
 
 			
 		}
