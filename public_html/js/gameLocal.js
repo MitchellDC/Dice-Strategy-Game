@@ -186,7 +186,9 @@ function gameOverFunction() {
 	xmlhttp.onload = function(){
 		hideButtons();
 
-		
+		console.log(health1)
+		console.log(health2)
+
 		//let response = JSON.parse(this.responseText)
 		if ((health1 < 0) && (health2 < 0)) {
 			//alert("Game is over. Tie game.")
