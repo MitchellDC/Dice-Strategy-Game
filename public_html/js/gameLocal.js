@@ -60,19 +60,19 @@ const gameID = localStorage.getItem('gameID');
 const user = localStorage.getItem('username')
 let enabledPowerups
 let enabledDebuffs
+let maxHealth
+let powerupFreq
+let debuffFreq
 let health1
 let health2
 let attackNum1
 let defenseNum1
 let attackNum2
 let defenseNum2
-let maxHealth
 let username1
 let username2
 
 function getGameState(){
-
-	
 
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onerror = function(){alert("AJAX Error!")};
@@ -184,9 +184,6 @@ function initializeRule(resp) {
 			ruleKeys = Object.keys(ruleObj)
 			ruleLength = Object.keys(ruleObj).length
 
-			powerupFreq = 2
-			debuffFreq = 4
-			
 			// adds all enabled powerups to "enabledPowerups" array (16 = number of powerups + 3)
 			for(let i = 3; i < 16; i++) {
 				if (ruleObj[ruleKeys[i]]) {
@@ -195,13 +192,18 @@ function initializeRule(resp) {
 			}
 
 			// enabled debuffs
-			for(let i = 16; i < ruleLength; i++) {
+			for(let i = 16; i < (ruleLength-2); i++) {
 				if (ruleObj[ruleKeys[i]]) {
 					enabledDebuffs.push(ruleKeys[i])
 				}
 			}
-			// display initial health
+			// display initial health and freq
 			maxHealth = ruleJSON[0].InitialHealth
+			powerupFreq = ruleJSON[0].powerupFreq
+			debuffFreq = ruleJSON[0].debuffFreq
+			console.log(powerupFreq)
+			console.log(debuffFreq)
+
 			document.getElementById("p1Health").innerHTML = username1 + " (" + health1 + "/" + maxHealth + ")";
 			document.getElementById("p2Health").innerHTML = username2 + " (" + health2 + "/" + maxHealth + ")";
 
@@ -219,8 +221,7 @@ let powerups1 = {}
 let powerups2 = {}
 let debuffs1 = {}
 let debuffs2 = {}
-let powerupFreq
-let debuffFreq
+
 
 getGameState()
 
