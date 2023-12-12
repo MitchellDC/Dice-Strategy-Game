@@ -462,8 +462,12 @@ function deleteRule(qu,res){
 			if(err)
 			{
 				console.log(err);
+				res.writeHead(404,{'Content-Type':'text/plain'})
+				res.write('in use')
+				res.end();
 			}
 			else{
+				res.writeHead(200,{'Content-Type':'text/plain'});
 				res.write("deleted");
 				res.end();
 			}
