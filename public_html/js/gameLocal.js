@@ -184,16 +184,19 @@ function gameOverFunction() {
 	xmlhttp.onload = function(){
 		//let response = JSON.parse(this.responseText)
 		if ((health1 < 0) && (health2 < 0)) {
-			alert("Game is over. Tie game.")
+			//alert("Game is over. Tie game.")
+			console.log("Game is over. Tie game.")
 			window.open("http://104.196.1.169/home.html","_self")
 		}
 		else if (health1 < 0) {
-			alert("Game is over. Player 2 wins")
+			//alert("Game is over. Player 2 wins")
+			console.log("Game is over. Player 2 wins")
 			window.open("http://104.196.1.169/home.html","_self")
 
 		}
 		else {
-			alert("Game is over. Player 1 wins")
+			//alert("Game is over. Player 1 wins")
+			console.log("Game is over. Player 1 wins")
 			window.open("http://104.196.1.169/home.html","_self")
 
 		}
