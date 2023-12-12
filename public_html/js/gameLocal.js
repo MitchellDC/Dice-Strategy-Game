@@ -115,10 +115,10 @@ function getGameState(){
 			gameOver = resp[0].gameOver;
 			console.log(gameOver)
 
-			/*
+			
 			if (gameOver == true) {
 				gameOver()
-			*/
+			}
 			
 		}
 
@@ -1731,7 +1731,7 @@ function playerAction(){
 				console.log(response);
 				if(response=="game over"){
 					alert("game is finished")
-					window.open("http://104.196.1.169/home.html","_self");
+					//window.open("http://104.196.1.169/home.html","_self");
 				}
 
 				
